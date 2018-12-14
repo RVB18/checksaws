@@ -1,0 +1,139 @@
+
+
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+ @import url('https://fonts.googleapis.com/css?family=Pacifico');
+  @page
+{
+    size: auto;   /* auto is the initial value */
+
+    /* this affects the margin in the printer settings */
+    margin: 5mm 0mm 0mm 0mm;
+}
+
+
+body{
+background-image: radial-gradient(circle,#E9F5F3,#f0f9f4);
+font-family: 'Oswald', sans-serif;
+margin: 0;
+}
+
+
+ .page-break { height:0; page-break-before:always; margin:0; border-top:none; }
+#example2 {
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 5px 5px 5px #ddd;
+}
+p{
+
+	font-size:23px;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 42%;
+    left: 10%;
+}
+
+.top-left {
+    position: absolute;
+    top: 10%;
+    left: 10%;color:black;margin-left:-6%;
+}
+.top-left1 {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+}
+.top-left2 {
+    position: absolute;
+    top: 6%;
+    left: 18%;
+}
+.top-right {
+    position: absolute;
+    top: 11%;
+    right: 22%
+}
+.top-right1 {
+    position: absolute;
+    top: 13%;
+    right: 8%
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 20%;
+    right: 14%;
+}
+
+.bottom-left1 {
+    position: absolute;
+    top: 55%;
+    left:4%;
+	text-align:left;
+}
+.bottom-left2 {
+    position: absolute;
+    top:53%;
+    left: 4%;
+	text-align:left;
+	width:20%;
+
+}
+.bottom-left3 {
+    position: absolute;
+    top:71%;
+    left: 4%;
+	text-align:left;
+	width:50%;
+
+}
+.container1 {
+    position: relative;
+    text-align: center;
+}
+.centered {
+    position: absolute;
+    top: 38%;
+    left: 82%;
+    transform: translate(-50%, -50%);
+}
+.centeredq {
+    position: absolute;
+    top: 6%;
+    left: 82%;
+    transform: translate(-50%, -50%);
+}
+.bot {
+    position: absolute;
+    top : 69%;
+    left: 13%;
+	font-size:35px
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.mat-row.hovered {
+  background: #eee;
+}
+
+.mat-row.highlighted {
+  background: #999;
+}
+
+/*
+  This is a work around for checkbox bug in material row
+  https://github.com/angular/material2/issues/8600
+*/
+mat-cell.mat-cell, mat-header-cell.mat-header-cell {
+  overflow: visible;
+}

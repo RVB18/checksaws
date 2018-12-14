@@ -1,0 +1,185 @@
+<!--<nav class="navbar navbar-expand-lg navbar-dark "  style="background-color:black;">
+  <a class="navbar-brand" href="#"> Alekya </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/cheques">Cheques</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/vendor">Vendor</a>
+      </li>
+
+      <li class="nav-item dropdown my-2 my-lg-0" style="float:right">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+Settings          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Test Print</a>
+            <a class="dropdown-item" href="#"> Config</a>
+            <a class="dropdown-item" href="#"></a>
+          </div>
+        </li>
+    </ul>
+
+
+  </div>
+</nav>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="mb-4 navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+                <a class="navbar-brand" href="#">Alekta</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+                    <ul class="navbar-nav ml-auto">
+
+
+                        <li class="nav-item dropdown" [routerLinkActive]="['active']">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-credit-card"></i> Check</a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item"
+                                 href="http://alektasolutions.com/purchase/print/cheque?date=2018-11-26&name=ravinder&amount=4500&addr=Phoenix,Arizona" routerLink="/cheques"> Checks </a>
+                                <a class="dropdown-item"  data-toggle="modal" data-target="#id02">Single Check</a>
+                            </div>
+                        </li>
+    <li class="nav-item dropdown" [routerLinkActive]="['active']">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user"></i>Vendor </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item"
+                                 href="http://alektasolutions.com/purchase/print/cheque?date=2018-11-26&name=ravinder&amount=4500&addr=Phoenix,Arizona" routerLink="/vendor"> Vendor Checks </a>
+                                <a class="dropdown-item"  routerLink="/tableview">Vendor</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-cog"></i>Settings </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item" href="http://alektasolutions.com/purchase/print/cheque/ang?words=Three%20Hundred%20and%20Forty%20Three%20%20and%2030/100*****&date=10-08-2018&name=Raghava&amount=**343.3&addr=Arizona,Phoenix," target="_blank">Test Print</a>
+                                <a class="dropdown-item"  data-toggle="modal" data-target="#id01">Config</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+
+
+
+
+            <div class="modal fade" id="id01" role="dialog" >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Enter Config details</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+          <form  #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <div class="modal-body">
+            <div class="row" style="margin-left:50px;">
+            <br>
+            <br>
+                     <div class="col-50" >
+
+
+
+					 <label for="fname"><b>Bank Name</b></label><br>
+                         <input type="text" placeholder="Enter Bank Name"  class="form-control" name="bank"  ngModel={{config.bank}} required>
+                          <label for="fname"><b>Routing</b></label><br>
+                             <input type="text" placeholder="Enter Routing"  class="form-control" name="routing" ngModel={{config.route}} required>
+                       <label for="email"><b> Cheque Number</b></label>
+               <input type="text" placeholder="Enter Cheque Number" name="cheque" class="form-control"  ngModel={{config.cheque}} required >
+
+                          <label for="email"><b> Account Number</b> </label>
+               <input type="text" placeholder="Enter Account Number" name="account" class="form-control" ngModel={{config.Account}} required >
+               <label for="adr"><b> Enter Your Name </b></label>
+
+         <input type="text" placeholder="Enter Your Name" name="name" class="form-control " value={{s.Name}}  ngModel={{config.Name}} required >
+               <label for="city"> <b>Enter Your Address</b></label>
+        <input type="text" placeholder="Enter Your Address" name="address" class="form-control" maxlength="40" ngModel={{config.addresss}} required ngModel >
+        </div>
+
+
+
+
+            <br>
+                       </div>
+					   </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" >Submit</button>
+
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+ <div class="modal fade" id="id02">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Create Single Check</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <form  #f1="ngForm" (ngSubmit)="onvendorcreate(f1)">
+
+              <div class="modal-body">
+                <div class="row" style="margin-left:50px;">
+                <br>
+                <br>
+                         <div class="col-50" >
+                              <label for="fname"><b>Vendor</b></label><br>
+                           <select class="form-control" name="Name" ngModel>
+
+
+                                <option *ngFor="let st of mat" value={{st.Name}} >{{st.Name}}</option>
+
+                              </select>
+
+
+                              <label for="email"><b> Date</b> </label>
+                   <input type="date" placeholder="Enter Date" name="Date" class="form-control" ngModel required >
+
+                   <label for="city"> <b>Description</b></label>
+
+            <input type="text" placeholder="Enter Description" name="Description" class="form-control" required ngModel >
+
+            <label for="city"> <b>Amount</b></label>
+              <input type="text" placeholder="Enter Amount" name="Dollar" class="form-control" required ngModel >
+
+                           </div>
+
+
+
+                <br>
+                           </div>          </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success" >Submit</button>
+
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+<router-outlet></router-outlet>

@@ -1,0 +1,79 @@
+
+
+
+<br>
+<h1 align="center">Vendor Check's List</h1>
+<div class="container">
+
+	<nav aria-label="breadcrumb ">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/vendor">Vendor</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Cheque details</li>
+		</ol>
+	</nav>
+
+	<mat-form-field	style="width:20%">
+    <input  matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+
+	</mat-form-field>
+
+<div class="example-container mat-elevation-z8" style="background-color:#fff">
+
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+
+		<ng-container matColumnDef="ChequeID">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ChequeID </mat-header-cell>
+      <mat-cell *matCellDef="let dataSource"> {{dataSource.chequeid}} </mat-cell>
+    </ng-container>
+    <!-- ID Column -->
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let dataSource"> {{dataSource.Name}} </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="Date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+      <mat-cell *matCellDef="let dataSource"> {{dataSource.Date}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Amount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+      <mat-cell *matCellDef="let dataSource"> {{dataSource.Amount}} </mat-cell>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let dataSource" [style.color]="dataSource.color"> {{dataSource.Status}} </mat-cell>
+    </ng-container>
+
+<ng-container matColumnDef="addr">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
+      <mat-cell *matCellDef="let dataSource" > {{dataSource.Address}} </mat-cell>
+    </ng-container>
+
+		<ng-container matColumnDef="Print">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Print </mat-header-cell>
+      <mat-cell *matCellDef="let dataSource" (click)="send(dataSource)" > <i class="fa fa-print" style="font-size:24px"></i></mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+</div>
+
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
+</div>

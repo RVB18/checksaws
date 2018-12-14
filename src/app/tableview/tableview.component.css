@@ -1,0 +1,35 @@
+mat-header-cell{
+  background-color: #000;
+  color: white;
+}
+.modal-header{
+  background-color: black;
+  color:white;
+}
+th{
+  background-color: #000;
+  color: white;
+}
+.modal-header{
+  background-color: black;
+  color:white;
+}
+.export{
+align-items:center;height:35px;
+}
+.container{
+padding-right:0px;
+padding-left:0px;
+
+}
+
+#both{
+background-color:black;margin-left:10%;
+}
+
+@media screen and (min-width: 780px) {
+    #both {
+      background-color:black;margin-left:20%;
+    }
+
+}
