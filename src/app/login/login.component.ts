@@ -18,6 +18,10 @@ import { HttpModule } from '@angular/http';
 export class LoginComponent implements OnInit {
 c:any;
 p:any;
+succcess:any
+
+busy: Promise<any>;
+
 constructor(private http: Http, private router: Router, private route: ActivatedRoute,private httpService: HttpClient) { }
   signup=function(data)
   {
@@ -40,7 +44,12 @@ this.http.post('https://64go7jtbv1.execute-api.ap-south-1.amazonaws.com/pro/logi
     }
     var r=res.json();
     console.log(r)
-    alert(r.message)
+    this.success=r
+   if(this.success.message=="Failure")
+   alert(this.success.data)
+   else
+   this.router.navigate(['/cheques'])
+
 /*	if(r.message=="Error")
 alert(r.data.message)
 else*/
@@ -49,6 +58,10 @@ else*/
 })
   }
  ngOnInit() {
+
+this.busy = this.http.get('...').toPromise();
+
+
   }
 
 }

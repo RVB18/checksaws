@@ -86,7 +86,7 @@ window.location.reload();
       //  if(hash)
 //
 
-      var a=row.chequeid
+      var a=row.id
 
 
 
@@ -131,8 +131,8 @@ console.log(users)
 console.log(this.map)
 var a=[]
 this.map.forEach((value, key) => {
-var k=convertNumberToWords(value.Dollar)
-var num=value.Dollar+""
+var k=convertNumberToWords(value.Amount)
+var num=value.Amount+""
 if(num.includes(".")){
 var dot=num .split(".")
 var doting=""
@@ -155,7 +155,7 @@ g1--;
   var mydate = new Date(value.Date);
    var t=mydate.getMonth()+1;
 
-a.push({id:value.chequeid,name:value.Name,date:value.Date,amount:astreik+value.Dollar,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrer})
+a.push({id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
 
 }
 else{
@@ -176,7 +176,7 @@ else{
 
 
    var t=mydate.getMonth()+1;
-  a.push({id:value.chequeid,name:value.Name,date:value.Date,amount:astreik+value.Dollar+".00",words:k+ " and 00 cents",addr:value.Address,load:value.Loadnumber,carrer:value.Careername})
+  a.push({id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount+".00",words:k+ " and 00 cents",addr:value.Address,load:value.Loadnumber,carrer:value.Careername})
 }
 });
 /*var xdata=[];

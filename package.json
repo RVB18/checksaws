@@ -24,6 +24,7 @@
     "@angular/router": "~7.0.0",
     "@types/datatables.net": "^1.10.13",
     "angular-material": "^1.1.10",
+    "angular2-busy": "^2.0.4",
     "angular2-flash-messages": "^3.0.1",
     "angular4-material-table": "^0.7.0",
     "angular5-csv": "^0.2.10",

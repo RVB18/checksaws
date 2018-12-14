@@ -57,39 +57,42 @@ onvendorcreate(data){
 var date=new Date(data.value.Date)
 var t=date.getMonth()+1
 var ne=t+"/"+date.getDate()+"/"+date.getFullYear();
-var f={Name:data.value.Name,Date:ne,Dollar:data.value.Dollar,Address:data.value.Address}
+
+var f={Name:data.value.Name,Date:ne,Amount:data.value.Amount,Carrername:data.value.Careern,Loadnumber:data.value.Loadnumber,id:uuid()}
 console.log(f)
-  this.http.post('http://13.232.165.2:3000/singlecheque',f).subscribe(data => {
+
+ this.http.put('https://coet3arhmf.execute-api.ap-south-1.amazonaws.com/pro/cheques',f).subscribe(data => {
     ///console.log(data);
     console.log(data)
 
     this.msg=data;
     if(this.msg.message=="Success"){
     alert("Succesfully Saved")
-    window.location.reload();
+  //  window.location.reload();
 }
     else
     alert("Spmething Went wrong..")
 
   //  window.open('/cheque')
 
-  });
+});
 }
   ngOnInit() {
 
-            this.http.get('http://13.232.165.2:3000/vendornames').subscribe(data => {
+            this.http.get('https://2xwiw9cxhb.execute-api.ap-south-1.amazonaws.com/pro/vendor').subscribe(data => {
               //console.log(data);
             this.data=data
-          var datas=this.data.data;
-          //console.log(this.datas)
-     var w=[]
-    for(var a=0;a<datas.length;a++){
-      if(datas[a].Name){
-    w.push({Name:datas[a].Name})
-    }
 
-    }
-    this.mat=w
+
+          var datas=this.data.body.data.Items;
+          //console.log(this.datas)
+
+
+
+
+
+
+    this.mat=datas
     console.log(this.mat)
 
           //    alert("Succesfully Saved")

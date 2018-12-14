@@ -109,7 +109,7 @@ Settings          </a>
                <input type="text" placeholder="Enter Account Number" name="account" class="form-control" ngModel={{config.Account}} required >
                <label for="adr"><b> Enter Your Name </b></label>
 
-         <input type="text" placeholder="Enter Your Name" name="name" class="form-control " value={{s.Name}}  ngModel={{config.Name}} required >
+         <input type="text" placeholder="Enter Your Name" name="name" class="form-control"  ngModel={{config.Name}} required >
                <label for="city"> <b>Enter Your Address</b></label>
         <input type="text" placeholder="Enter Your Address" name="address" class="form-control" maxlength="40" ngModel={{config.addresss}} required ngModel >
         </div>
@@ -152,7 +152,7 @@ Settings          </a>
                            <select class="form-control" name="Name" ngModel>
 
 
-                                <option *ngFor="let st of mat" value={{st.Name}} >{{st.Name}}</option>
+                                <option *ngFor="let st of mat" value={{st.Name}}>{{st.Name}}</option>
 
                               </select>
 
@@ -165,7 +165,14 @@ Settings          </a>
             <input type="text" placeholder="Enter Description" name="Description" class="form-control" required ngModel >
 
             <label for="city"> <b>Amount</b></label>
-              <input type="text" placeholder="Enter Amount" name="Dollar" class="form-control" required ngModel >
+              <input type="text" placeholder="Enter Amount" name="Amount" class="form-control" required ngModel >
+
+              <label for="city"> <b>Load Number</b></label>
+                <input type="text" placeholder="Enter LOADNUMBER" name="Loadnumber"  class="form-control" required ngModel >
+
+                <label for="city"> <b>Career Number</b></label>
+                  <input type="text" placeholder="Enter career number" name="Careern"  class="form-control" required ngModel >
+
 
                            </div>
 
