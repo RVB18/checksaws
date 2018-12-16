@@ -39,10 +39,10 @@ datac:any;
     // Assign the data to the data source for the table to render
 
 
-    this.http.get('http://13.232.165.2:3000/vendordetails').subscribe(data => {
+    this.http.get('https://kphbidyfng.execute-api.ap-south-1.amazonaws.com/pro/checkstatus').subscribe(data => {
       this.datac=data;
 
-      this.datac=this.datac.data;
+      this.datac=this.datac.body.finaldata;
       for(var t=0;t<this.datac.length;t++){
         users.push(this.datac[t])
 

@@ -3,13 +3,12 @@
 
 
 
-<div style="margin-top:16px;width:100%;height:480px;background:transparent" class="container1  " *ngFor="let exdata1 of data ; let i=index;">
+<div  *ngFor="let exdata1 of data ; let i=index;" >
 
-
-
-   <p class="top-left2" style="color:black;margin-left:41%;font-family: 'ZCOOL XiaoWei', serif;">{{config.bank}}</p> <br>
+       <div *ngIf="exdata1.count == 1" style="margin-top:16px;width:100%;height:480px;background:transparent" class="container1">
+   <p class="top-left2" style="color:black;margin-left:41%;font-family: 'ZCOOL XiaoWei', serif;">{{config.Bankname}}</p> <br>
  <span class="top-left" style="color:black;margin-left:-6%;margin-top:-2%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Name}}</span>
-   <span class="top-left" style="	width:20%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px;margin-left:-4%" >{{config.addresss}}</span>
+   <span class="top-left" style="	width:20%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px;margin-left:-4%" >{{config.Address}}</span>
 
   <p class="bottom-left1" style="color:black;font-family: 'ZCOOL XiaoWei', serif;margin-top:-3%	;width:65%">{{exdata1.name}}</p><br>
 
@@ -28,16 +27,69 @@
   <img class="bottom-right "  style="margin-right:-4%;height:28%;width:18%;margin-bottom:2%" src="/assets/signn.png" alt="no signadfkjbadkjfbadkjvbjakd" />
   <p class="centered" style="color:black;margin-top:1%;font-family: 'Saira Semi Condensed', sans-serif;">$ {{exdata1.amount}}</p>
 
-  <p class="top-right1" style="color:black;font-family: 'Saira Semi Condensed', sans-serif ;top:6%;margin-right:0%;">{{config.cheque+i}}</p>
+  <p class="top-right1" style="color:black;font-family: 'Saira Semi Condensed', sans-serif ;top:6%;margin-right:0%;">{{config.Chequenumber+i}}</p>
 
-  <p class="bot" style="color:black;margin-left:10%;font: italic bold;margin-top:5% ">C{{config.cheque+i}}C  A{{config.Route}}A  {{config.Account}}C</p>
-
-
+  <p class="bot" style="color:black;margin-left:10%;font: italic bold;margin-top:5% ">C{{config.Chequenumber+i}}C  A{{config.Routenumber}}A  {{config.Accountnumber}}C</p>
 
 
 
 </div>
+     <div *ngIf="exdata1.count == 2" style="margin-top:25px;width:100%;height:480px;background:transparent" class="container1">
+   <p class="top-left2" style="color:black;margin-left:41%;font-family: 'ZCOOL XiaoWei', serif;">{{config.Bankname}}</p> <br>
+ <span class="top-left" style="color:black;margin-left:-6%;margin-top:-2%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Name}}</span>
+   <span class="top-left" style="	width:20%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px;margin-left:-4%" >{{config.Address}}</span>
+
+  <p class="bottom-left1" style="color:black;font-family: 'ZCOOL XiaoWei', serif;margin-top:-3%	;width:65%">{{exdata1.name}}</p><br>
+
+ <p class="bottom-left2" style="color:black;margin-right:-15%;margin-bottom:5%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;">{{exdata1.addr}}</p>
+
+  <p class="bottom-left3" style="color:black;margin-right:-15%;margin-bottom:-2%;font-family: 'ZCOOL XiaoWei', serif;">MEMO : LOAD # {{exdata1.load}} for {{exdata1.carrer}}</p>
+
+ <p class="top-left1" style="color:black;margin-top:3.5%;margin-left:3%;font-family: 'Charm', cursive;font-size:25px">{{exdata1.words}}</p>
+  <p class="top-left1" style="margin-top:3%;margin-left:-6%;font-family: 'Bree Serif', sans-serif;font-size:28px;">PAY :</p>
+  <p class="top-left1" style="margin-top:6%;margin-left:-6%;font-family: 'Bree Serif', sans-serif;font-size:28px;">TO THE ORDER OF</p>
+
+
+   <p class="top-right" style="color:black;margin-right:1%;margin-top:5.5%;font-family: 'Saira Semi Condensed', sans-serif;">{{exdata1.date}}</p>
+      <p class="top-right" style="color:black;margin-right:11%;margin-top:5%;font-family: 'Bree Serif', cursive;font-size:28px;">DATE :</p>
+
+  <img class="bottom-right "  style="margin-right:-4%;height:28%;width:18%;margin-bottom:2%" src="/assets/signn.png" alt="no signadfkjbadkjfbadkjvbjakd" />
+  <p class="centered" style="color:black;margin-top:1%;font-family: 'Saira Semi Condensed', sans-serif;">$ {{exdata1.amount}}</p>
+
+  <p class="top-right1" style="color:black;font-family: 'Saira Semi Condensed', sans-serif ;top:6%;margin-right:0%;">{{config.Chequenumber+i}}</p>
+
+  <p class="bot" style="color:black;margin-left:10%;font: italic bold;margin-top:5% ">C{{config.Chequenumber+i}}C  A{{config.Routenumber}}A  {{config.Accountnumber}}C</p>
 
 
 
-	
+</div>
+     <div *ngIf="exdata1.count == 3" style="margin-top:46px;width:100%;height:480px;background:transparent" class="container1">
+   <p class="top-left2" style="color:black;margin-left:41%;font-family: 'ZCOOL XiaoWei', serif;">{{config.Bankname}}</p> <br>
+ <span class="top-left" style="color:black;margin-left:-6%;margin-top:-2%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Name}}</span>
+   <span class="top-left" style="	width:20%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px;margin-left:-4%" >{{config.Address}}</span>
+
+  <p class="bottom-left1" style="color:black;font-family: 'ZCOOL XiaoWei', serif;margin-top:-3%	;width:65%">{{exdata1.name}}</p><br>
+
+ <p class="bottom-left2" style="color:black;margin-right:-15%;margin-bottom:5%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;">{{exdata1.addr}}</p>
+
+  <p class="bottom-left3" style="color:black;margin-right:-15%;margin-bottom:-2%;font-family: 'ZCOOL XiaoWei', serif;">MEMO : LOAD # {{exdata1.load}} for {{exdata1.carrer}}</p>
+
+ <p class="top-left1" style="color:black;margin-top:3.5%;margin-left:3%;font-family: 'Charm', cursive;font-size:25px">{{exdata1.words}}</p>
+  <p class="top-left1" style="margin-top:3%;margin-left:-6%;font-family: 'Bree Serif', sans-serif;font-size:28px;">PAY :</p>
+  <p class="top-left1" style="margin-top:6%;margin-left:-6%;font-family: 'Bree Serif', sans-serif;font-size:28px;">TO THE ORDER OF</p>
+
+
+   <p class="top-right" style="color:black;margin-right:1%;margin-top:5.5%;font-family: 'Saira Semi Condensed', sans-serif;">{{exdata1.date}}</p>
+      <p class="top-right" style="color:black;margin-right:11%;margin-top:5%;font-family: 'Bree Serif', cursive;font-size:28px;">DATE :</p>
+
+  <img class="bottom-right "  style="margin-right:-4%;height:28%;width:18%;margin-bottom:2%" src="/assets/signn.png" alt="no signadfkjbadkjfbadkjvbjakd" />
+  <p class="centered" style="color:black;margin-top:1%;font-family: 'Saira Semi Condensed', sans-serif;">$ {{exdata1.amount}}</p>
+
+  <p class="top-right1" style="color:black;font-family: 'Saira Semi Condensed', sans-serif ;top:6%;margin-right:0%;">{{config.Chequenumber+i}}</p>
+
+  <p class="bot" style="color:black;margin-left:10%;font: italic bold;margin-top:5% ">C{{config.Chequenumber+i}}C  A{{config.Routenumber}}A  {{config.Accountnumber}}C</p>
+
+
+
+</div>
+</div>

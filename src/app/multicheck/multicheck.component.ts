@@ -13,7 +13,9 @@ export class MulticheckComponent implements OnInit {
   m:any;
 config:any;
 
-  constructor(private route: ActivatedRoute,private http:HttpClient) { }
+  constructor(private route: ActivatedRoute,private http:HttpClient) {
+this.config={}
+   }
 
   ngOnInit() {
     this.m=[{
@@ -28,10 +30,11 @@ config:any;
 console.log(this.data)
 
 //
-			      this.http.get('http://alektasolutions.com/connected/getconfig').subscribe(data => {
+			      this.http.get('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config').subscribe(data => {
               //console.log(data);
 
 this.config=data
+this.config=this.config.body.data.Items[0]
 console.log(this.config)
           //    alert("Succesfully Saved")
 

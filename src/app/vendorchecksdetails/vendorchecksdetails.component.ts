@@ -18,7 +18,7 @@ export class VendorchecksdetailsComponent implements OnInit {
 
 
 
-  displayedColumns = [ 'ChequeID', 'Name', 'Date', 'Amount','Status','addr','Print'];
+  displayedColumns = [ 'ChequeID', 'Name', 'Date', 'Amount','Status','addr','Load','Carrer','Print'];
   dataSource: MatTableDataSource<UserData>;
   //
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,7 +47,9 @@ export class VendorchecksdetailsComponent implements OnInit {
 
  g1--;
  }
- window.open('http://alektasolutions.com/purchase/print/cheque/ang?words='+nu+'&date='+data.Date+'&name='+data.Name+'&amount='+astreik+data.Amount+'&addr='+data.Address)
+ var tt=[]
+  tt=[{count:1,words:nu,date:data.Date,name:data.Name,amount:astreik+data.Amount,addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
+ window.open("/multicheck?a="+JSON.stringify(tt), "_blank");
 
  }
  else{
@@ -63,8 +65,10 @@ export class VendorchecksdetailsComponent implements OnInit {
    g1--;
    }
    console.log("astreik "+g1)
-   window.open('http://alektasolutions.com/purchase/print/cheque/ang?words='+convertNumberToWords(data.Amount)+'&date='+data.Date+'&name='+data.Name+'&amount='+astreik+data.Amount+".00"+'&addr='+data.Address)
+   var tt=[]
+    tt=[{count:1,words:convertNumberToWords(data.Amount),date:data.Date+"",name:data.Name,amount:astreik+data.Amount+".00",addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
 
+     window.open("/multicheck?a="+JSON.stringify(tt), "_blank");
 
  }
 
@@ -101,7 +105,7 @@ var name='';
        console.log(name);
 
     });
-    this.http.post('https://coet3arhmf.execute-api.ap-south-1.amazonaws.com/pro/cheques',{Name:"AjeetSandela"}).subscribe(data => {
+    this.http.post('https://coet3arhmf.execute-api.ap-south-1.amazonaws.com/pro/cheques',{Name:name}).subscribe(data => {
       console.log(data);
       this.data=data;
       this.data=this.data.body.data.Items;
@@ -149,7 +153,9 @@ export interface UserData {
   Dollar: string;
   Date: string;
   Status: string;
-  address;string;
+  address:string;
+  Loadnumber:string;
+  Carrername:string;
 
 }
 //

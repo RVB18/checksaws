@@ -42,8 +42,10 @@ this.config={}
 
   onSubmit(f){
 console.log(f.value)
+var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": f.value.cheque, "id": "1", "Name": f.value.name }
 
-    this.http.post('http://alektasolutions.com/connected/config/save/ang',f.value).subscribe(data => {
+
+    this.http.post('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config',sett).subscribe(data => {
       //console.log(data);
       console.log(data)
       alert("Succesfully Saved")
@@ -101,10 +103,13 @@ console.log(f)
             });
 
 
-			      this.http.get('http://alektasolutions.com/connected/getconfig').subscribe(data => {
+			      this.http.get('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config').subscribe(data => {
               console.log(data);
 
-this.config=data
+              this.config=data
+              this.config=this.config.body.data.Items[0]
+
+              console.log(this.config)
 this.isDataAvailable = true
 
           //    alert("Succesfully Saved")

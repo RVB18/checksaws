@@ -20,6 +20,7 @@ datak:any;
   data:any;
   map:any;
 	count:any;
+  coun:any;
   displayedColumns = [ 'chequeid', 'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer'];
   dataSource: MatTableDataSource<UserData>;
   //
@@ -35,16 +36,16 @@ datak:any;
 var idmap='';
 
 
-	  console.log(data.value.to +"sdfgs "+this.config.cheque)
+	  console.log(data.value.to +"sdfgs "+this.config.Chequenumber)
 	  var gh=0;
 	  //{from: "236", to: "249"}
-	  if(data.value.to==this.config.cheque){
+	  if(data.value.to==this.config.Chequenumber){
 		  gh=0
 	  }
 	  else{
-	  gh=parseInt(data.value.to)-parseInt(this.config.cheque)
+	  gh=parseInt(data.value.to)-parseInt(this.config.Chequenumber)
 	  }
-	  console.log(this.config.cheque+"  checking "+gh)
+	  console.log(this.config.Chequenumber+"  checking "+gh)
 	//  var po=parseInt(data.value.to)-parseInt(data.value.from)
 
 	  for(var t=0;t<=gh;t++){
@@ -101,7 +102,7 @@ window.location.reload();
   constructor(private http: HttpClient,private router: Router) {
     const users: UserData[] = [];
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
-
+this.coun=0;
     // Assign the data to the data source for the table to render
 //
 
@@ -131,6 +132,9 @@ console.log(users)
 console.log(this.map)
 var a=[]
 this.map.forEach((value, key) => {
+  this.coun++
+  if(this.coun==4)
+		  this.coun=1
 var k=convertNumberToWords(value.Amount)
 var num=value.Amount+""
 if(num.includes(".")){
@@ -155,7 +159,7 @@ g1--;
   var mydate = new Date(value.Date);
    var t=mydate.getMonth()+1;
 
-a.push({id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
+a.push({count:this.coun,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
 
 }
 else{
@@ -176,7 +180,7 @@ else{
 
 
    var t=mydate.getMonth()+1;
-  a.push({id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount+".00",words:k+ " and 00 cents",addr:value.Address,load:value.Loadnumber,carrer:value.Careername})
+  a.push({count:this.coun,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount+".00",words:k+ " and 00 cents",addr:value.Address,load:value.Loadnumber,carrer:value.Careername})
 }
 });
 /*var xdata=[];
@@ -235,10 +239,12 @@ window.location.reload();
 	//getting config details
 
 
-	     this.http.get('http://alektasolutions.com/connected/getconfig').subscribe(data => {
+	     this.http.get('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config').subscribe(data => {
               //console.log(data);
 
 this.config=data
+this.config=this.config.body.data.Items[0]
+
 console.log(this.config)
 
             });
