@@ -55,7 +55,7 @@ var idmap='';
 
 		  	idmap+="'"+this.count[t].id+"',"
 
-	  }
+ 	  }
 	  idmap = idmap.slice(0, -1); // "12345.0"
 
 
