@@ -1,7 +1,8 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
+import { CookieService } from 'angular2-cookie/core';
 
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
@@ -70,7 +71,14 @@ export class VendorchecksdetailsComponent implements OnInit {
 
      window.open("/multicheck?a="+JSON.stringify(tt), "_blank");
 
+
+
  }
+
+
+
+
+
 
  this.http.get('http://13.232.165.2:3000/statusupdates?a='+"'"+data.chequeid+"'").subscribe(data => {
       console.log(data);
@@ -90,11 +98,14 @@ export class VendorchecksdetailsComponent implements OnInit {
 
 
 
+  getCookie(key:string){
+      return this._cookieService.get(key);
+    }
 
 
 
 
-  constructor(private route: ActivatedRoute,private http: HttpClient,private router: Router) {
+  constructor(private route: ActivatedRoute,private http: Http,private router: Router,private _cookieService:CookieService) {
     const users: UserData[] = [];
 
 var name='';
@@ -105,9 +116,17 @@ var name='';
        console.log(name);
 
     });
-    this.http.post('https://coet3arhmf.execute-api.ap-south-1.amazonaws.com/pro/cheques',{Name:name}).subscribe(data => {
-      console.log(data);
-      this.data=data;
+    var k= this.getCookie("idToken");
+
+        	let myHeaders = new Headers();
+        	myHeaders.append('Content-Type', 'application/json');
+          myHeaders.append('Authorization',k)
+        console.log(myHeaders)
+          let options = new RequestOptions({ headers: myHeaders });
+
+    this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',{Name:name},options).subscribe(data => {
+      console.log(data.json());
+      this.data=data.json();
       this.data=this.data.body.data.Items;
 
 console.log(this.data)
@@ -150,7 +169,7 @@ console.log(this.data)
 export interface UserData {
   ChequeID:string;
   Name: string;
-  Dollar: string;
+  Amount: string;
   Date: string;
   Status: string;
   address:string;

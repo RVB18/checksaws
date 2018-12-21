@@ -1,9 +1,10 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+import { CookieService } from 'angular2-cookie/core';
 
 
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -30,7 +31,13 @@ datac:any;
     this.router.navigate(['/vendorcheckdetails', name.Name]);
 
   }
-  constructor(private http: HttpClient,private router: Router) {
+
+  getCookie(key:string){
+      return this._cookieService.get(key);
+    }
+
+
+  constructor(private http: Http,private router: Router,private _cookieService:CookieService) {
     // Create 100 users
     const users: UserData[] = [];
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
@@ -38,10 +45,21 @@ datac:any;
 
     // Assign the data to the data source for the table to render
 
+    var k= this.getCookie("idToken");
+                    console.log(k+"venkat")
 
-    this.http.get('https://kphbidyfng.execute-api.ap-south-1.amazonaws.com/pro/checkstatus').subscribe(data => {
-      this.datac=data;
 
+
+
+    	let myHeaders = new Headers();
+    	myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization',k)
+    console.log(myHeaders)
+      let options = new RequestOptions({ headers: myHeaders });
+
+    this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/changecheckstatus',options).subscribe(data => {
+      this.datac=data.json();
+console.log(this.datac)
       this.datac=this.datac.body.finaldata;
       for(var t=0;t<this.datac.length;t++){
         users.push(this.datac[t])
@@ -63,6 +81,8 @@ datac:any;
 
 
 }//
+
+
 applyFilter(filterValue: string) {
   filterValue = filterValue.trim(); // Remove whitespace
   filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
@@ -70,6 +90,9 @@ applyFilter(filterValue: string) {
 }
 
 }
+
+
+
 export interface UserData {
   Name: string;
   Pending: string;

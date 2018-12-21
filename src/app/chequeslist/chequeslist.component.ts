@@ -6,6 +6,7 @@ import {MatTableDataSource,MatPaginator, MatSort,} from '@angular/material';
 
 import { Router } from '@angular/router';
 
+import { v4 as uuid } from 'uuid';
 
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
@@ -49,20 +50,17 @@ this.coun=0;
 var k= this.getCookie("idToken");
                 console.log(k+"venkat")
 
-              var email = this.getCookie("email");
-                                console.log(email+"venkat")
 
 
 
 	let myHeaders = new Headers();
 	myHeaders.append('Content-Type', 'application/json');
   myHeaders.append('Authorization',k)
-  myHeaders.append('useremail',email)
 console.log(myHeaders)
   let options = new RequestOptions({ headers: myHeaders });
 
 
-    this.http.get('https://coet3arhmf.execute-api.ap-south-1.amazonaws.com/pro/cheques').subscribe(data => {
+    this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',options).subscribe(data => {
 console.log(data.json())
 
    this.datap=data.json()
@@ -192,10 +190,7 @@ g1--;
    var t=mydate.getMonth()+1;
 
 a.push({count:this.coun,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
-this._cookieService.put("aa",a);
 
-  var k= this.getCookie("aa");
-                  console.log(k+"venkat")
 
 }
 else{
@@ -246,31 +241,69 @@ this.router.navigate(['/multicheck']);
 //this.router.navigate(['/multicheckmulticheck',a])
       }
 
-  public changeListener(files: FileList){
-  console.log(files);
-  if(files && files.length > 0) {
-     let file : File = files.item(0);
-       console.log(file.name);
-       const formData = new FormData();
-formData.append('file', file, file.name);
-
-       console.log(formData)
+  public changeListener(){
 
 
-
-
-           this.http.post('http://13.232.165.2:3000/formbabieee', formData)
-      .subscribe(
-        res => {
-          console.log(res);
-window.location.reload();
-        },
-        err => {
-          console.log("error")
-          window.location.reload();
-        }
-      );
+    var filedata=[];
+    var filedate2=[];
+        var file = (<HTMLInputElement>document.getElementById('filePicker'));
+      //  var jsonFile = this.csvJSON(file);
+        //console.log(jsonFilefile)
+        const reader = new FileReader();
+     reader.onload = () => {
+       var text=""
+       text = reader.result;
+       console.log('CSV: ', text);
+       var lines = text.split("\n");
+       var result = [];
+       var headers = lines[0].split(",");
+       for (var i = 1; i < lines.length; i++) {
+           var obj = {};
+           var currentline = lines[i].split(",");
+           for (var j = 0; j < headers.length; j++) {
+               obj[headers[j]] = currentline[j];
+           }
+           result.push(obj);
+       }
+       //convert text to json here
+       //var json = this.csvJSON(text);
+       console.log(JSON.stringify(result.pop()))
+    /*   result.forEach(function(ele){
+       console.log(ele.Name+ele.Amount)
+     })*/
+     result.forEach(function(ele){
+       console.log(ele.Name)
+      var m={
+         "Amount": ele.Amount,
+            "Carrername":ele.CarrerName,
+            "Date": ele.Date,
+            "id": uuid(),
+            "Loadnumber": ele.LoadNumber,
+            "Name": ele.Name,
+            "StreetAddress":ele.StreetAddress,
+            "CityorTown": ele.CityorTown,
+            "State":ele.State,
+            "zipcode": ele.zipcode,
+            "Country": ele.Country,
     }
+    filedata.push(m)
+    //this.filedata.push(m);
+    //console.log(filedata)
+    })
+    console.log(filedata)
+     var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
+     if(filedata.length>0){
+        this.http.post(url,{"Items":filedata}).subscribe (
+         (res:Response) =>{
+           console.log("success "+JSON.stringify(res));
+    }
+    )
+    }
+    else
+    console.log("sorry file is empty....")
+     };
+     reader.readAsText(file.files[0]);
+
 }
 
 

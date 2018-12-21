@@ -71,11 +71,11 @@ this.loading = true;
 //
 ///
 console.log(data)
-this.http.post('https://64go7jtbv1.execute-api.ap-south-1.amazonaws.com/pro/login',data)
+this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/login',data)
 .subscribe (
   (res:Response,err) =>{
     this.loading = false;
-
+//
 
     if(err)
     {
@@ -143,14 +143,9 @@ else*/
 
         this.http.post('https://64go7jtbv1.execute-api.ap-south-1.amazonaws.com/pro/login',this.form.value)
         .subscribe (
-          (res:Response,err) =>{
+          (res:Response) =>{
             this.loading = false;
 
-
-            if(err)
-            {
-            //  res.send(err)
-            }
             var r=res.json();
             console.log(r);
 

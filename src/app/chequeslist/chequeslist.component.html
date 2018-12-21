@@ -28,7 +28,9 @@
 
 			<div class="modal-body">
 				<div class="modal-body">
-						<input type="file"  class="upload" align="right" (change)="changeListener($event.target.files)">
+					<form  >
+						<input type="file"  class="upload" id="filePicker" align="right" (change)="handleFileSelect($event)" name="file"  accept="image/jpeg/csv" ngModel>
+						</form>
 						 <br> <br> <br>
 					<label style="margin-top:10px;"> Download Sample Csv File </label>	<a href="http://13.232.165.2:3000/images/csv file.csv" download>
 							<i class="fa fa-download" aria-hidden="true"></i>

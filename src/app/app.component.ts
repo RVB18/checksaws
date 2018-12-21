@@ -1,13 +1,14 @@
 import { Component,OnInit } from '@angular/core';
 //import { UserService } from './services/user.service';
 //import { User } from './models/user.model';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+
+
+
+
+import { CookieService } from 'angular2-cookie/core';
+
 import { v4 as uuid } from 'uuid';
-
-
-
-
-
 
 
 import {
@@ -47,20 +48,36 @@ msg:any;
 
 config:any;
 isDataAvailable:boolean = false;
+myHeaders:any;
+options:any;
+getCookie(key:string){
+    return this._cookieService.get(key);
+  }
 
-  constructor(private http: HttpClient,private formBuilder: FormBuilder) {
+  constructor(private http: Http,private formBuilder: FormBuilder,private _cookieService:CookieService) {
 this.config={}
+this.myHeaders = new Headers();
+var k= this.getCookie("idToken");
+                console.log(k+"venkat")
 
+
+
+
+
+
+  this.myHeaders.append('Authorization',k)
+console.log(this.myHeaders)
+  this.options = new RequestOptions({ headers: this.myHeaders });
   }
 //
 
 
   onSubmit(f){
 //console.log(f.value)
-var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": f.value.cheque, "id": "", "Name": f.value.name }
+var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": f.value.cheque, "id": "1234", "Name": f.value.name }
 console.log(sett)
 
-    this.http.post('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config',sett).subscribe(data => {
+    this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
       //console.log(data);
       console.log(data)
       alert("Succesfully Saved")
@@ -78,9 +95,9 @@ var ne=t+"/"+date.getDate()+"/"+date.getFullYear();
 var f={Name:data.value.Name,Date:ne,Amount:data.value.Amount,Carrername:data.value.Careern,Loadnumber:data.value.Loadnumber,id:uuid()}
 console.log(f)
 
- this.http.put('https://coet3arhmf.execute-api.ap-south-1.amazonaws.com/pro/cheques',f).subscribe(data => {
+ this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',this.options).subscribe(data => {
     ///console.log(data);
-    console.log(data)
+    //console.log(data)
 
     this.msg=data;
     if(this.msg.message=="Success"){
@@ -97,9 +114,9 @@ console.log(f)
   ngOnInit() {
 
 
-
+/*
             this.http.get('https://2xwiw9cxhb.execute-api.ap-south-1.amazonaws.com/pro/vendor').subscribe(data => {
-              //console.log(data);
+              console.log(data);
             this.data=data
 
 
@@ -119,22 +136,17 @@ console.log(f)
 
             });
 
+*/
 
 
 
+			      this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
+              //console.log(data);
 
-
-
-
-
-
-			      this.http.get('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config').subscribe(data => {
-              console.log(data);
-
-              this.config=data
+              this.config=data.json()
               this.config=this.config.data.body.data.Items[0]
 
-              console.log(this.config)
+            //  console.log(this.config)
 this.isDataAvailable = true
 
           //    alert("Succesfully Saved")

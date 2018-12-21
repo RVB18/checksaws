@@ -2,7 +2,6 @@
 
 
 
-
 import {Injectable,OnInit} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Issue} from '../models/issue';
@@ -109,7 +108,6 @@ console.log(issue);
       this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
     });
    }
-
 /*
     // UPDATE, PUT METHOD
      updateItem(kanbanItem: KanbanItem): void {
@@ -122,7 +120,6 @@ console.log(issue);
       }
     );
   }
-
   // DELETE METHOD
   deleteItem(id: number): void {
     this.httpClient.delete(this.API_URL + id).subscribe(data => {

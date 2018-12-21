@@ -67,7 +67,7 @@ verify=function(data)
 	"vcode":data.verify
 
   }
-  this.http.post('https://ofokt9vcqg.execute-api.ap-south-1.amazonaws.com/prod/verification',baka)
+  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/verification',baka)
 .subscribe (
   (res:Response) =>{
   var r=res.json();
@@ -93,7 +93,7 @@ var t={
 	"password":data.password
 }
 this.emailforverify=data.email
-this.http.post('https://6ggpglz69a.execute-api.ap-south-1.amazonaws.com/prod/signup',t)
+this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/signup',t)
 .subscribe (
 (res:Response) =>{
 var r=res.json();
