@@ -10,6 +10,12 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TableviewComponent } from './tableview/tableview.component';
 
+import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component';
+
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+
+import  {UsersserviceComponent} from './usersservice/usersservice.component';
+
 
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
@@ -21,7 +27,12 @@ const routes: Routes = [
 {path:'',component:LoginComponent},
 {path:'signup',component:SignupComponent},
 {path:'login',component:LoginComponent},
+{path:'forgot',component: ForgotpasswordComponent},
+{path:'users',component: UsersserviceComponent},
+{path:'valid',component:ValidateFieldsSubmitFormComponent},
+
 {path:'tableview',component:TableviewComponent}];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

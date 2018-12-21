@@ -15,10 +15,14 @@ import { HttpModule } from '@angular/http';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
 
 
-
-
+import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component';
+import { CookieService } from 'angular2-cookie/core';
+import { UserService } from './services/user.service';
 
 
 
@@ -58,7 +62,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatStepperModule,
+  
 
 } from '@angular/material';
 
@@ -80,7 +84,14 @@ import { SignupComponent } from './signup/signup.component';
 import {DataService} from './services/data.service';
 import {AddComponent} from'./add/add.component';
 import {MattableeditComponent} from'./mattableedit/mattableedit.component';
-import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component'
+import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component';
+import { NgxLoadingModule,ngxLoadingAnimationTypes } from 'ngx-loading';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { UsersserviceComponent } from './usersservice/usersservice.component';
+
+
+
+
 @NgModule({
   exports: [
     CdkTableModule,
@@ -90,7 +101,6 @@ import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatStepperModule,
     MatDatepickerModule,
     MatDialogModule,
     MatExpansionModule,
@@ -127,7 +137,7 @@ export class DemoMaterialModule {}
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
-    MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,
+    MulticheckComponent,ForgotpasswordComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,FieldErrorDisplayComponent,ValidateFieldsSubmitFormComponent,UsersserviceComponent
   ],
   imports: [
     BrowserModule,
@@ -141,9 +151,18 @@ BrowserAnimationsModule,
 CommonModule,
 HttpClientModule,
 HttpModule,
-
+NgxSpinnerModule,
 
  FlashMessagesModule.forRoot(),
+
+ NgxLoadingModule.forRoot({
+       animationType: ngxLoadingAnimationTypes.chasingDots,
+       backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+       backdropBorderRadius: '4px',
+       primaryColour: '#ffffff',
+       secondaryColour: '#ffffff',
+       tertiaryColour: '#ffffff'
+   })
 
   ],
   entryComponents:[
@@ -151,7 +170,7 @@ HttpModule,
     MattableeditComponent,
     MattabledeleteComponent,
   ],
-  providers: [DataService],
+  providers: [DataService,CookieService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

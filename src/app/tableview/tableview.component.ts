@@ -16,6 +16,7 @@ import { MattableeditComponent } from '../mattableedit/mattableedit.component';
 import { MattabledeleteComponent } from '../mattabledelete/mattabledelete.component';
 import {map} from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material';
+import { UserService } from '../services/user.service';
 
 
 
@@ -48,7 +49,7 @@ export class TableviewComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
               public dialog: MatDialog,
-              public dataService: DataService,) {}
+              public dataService: DataService) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -84,10 +85,6 @@ ExportTOExcel()
 
 
   ngOnInit() {
-
-
-
-
 
 
 

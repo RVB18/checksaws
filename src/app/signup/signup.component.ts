@@ -22,6 +22,16 @@ import { HttpModule } from '@angular/http';
 import * as $ from 'jquery';
 
 
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
+
+
+
+
 
 @Component({
   selector: 'app-signup',
@@ -29,6 +39,7 @@ import * as $ from 'jquery';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+    form: FormGroup;
 c:any;
 p:any;
 e:any;
@@ -37,7 +48,7 @@ mes:any;
 
 emailforverify:any;
 
-constructor(private http: Http, private router: Router, private route: ActivatedRoute,private httpService: HttpClient) { }
+constructor(private http: Http, private router: Router, private route: ActivatedRoute,private httpService: HttpClient,private formBuilder: FormBuilder) { }
 
 
 
@@ -104,10 +115,75 @@ console.log(this.msgs.data)
 
   ngOnInit() {
 
+    this.form = this.formBuilder.group({
+      email: [null, Validators.required],
+      password:[null, Validators.required]
+
+
+
+
+   })
+
+
+
 
 }
 
-}
+
+    isFieldValid(field: string) {
+      return !this.form.get(field).valid && this.form.get(field).touched;
+    }
+
+    displayFieldCss(field: string) {
+      return {
+        'has-error': this.isFieldValid(field),
+        'has-feedback': this.isFieldValid(field)
+      };
+    }
+
+    onSubmit() {
+      console.log(this.form.value);
+      if (this.form.valid) {
+
+        this.http.post('https://6ggpglz69a.execute-api.ap-south-1.amazonaws.com/prod/signup',this.form.value)
+        .subscribe (
+        (res:Response) =>{
+        var r=res.json();
+        console.log(r)
+        /*this.msgs=r;
+        console.log(this.msgs)
+        if(this.msgs.message="failed")
+        alert(this.msgs.data)
+        console.log(this.msgs.data)
+        */
+        })
+        console.log('form submitted');
+      } else {
+        this.validateAllFormFields(this.form);
+      }
+    }
+
+    validateAllFormFields(formGroup: FormGroup) {
+      Object.keys(formGroup.controls).forEach(field => {
+        console.log(field);
+        const control = formGroup.get(field);
+        if (control instanceof FormControl) {
+          control.markAsTouched({ onlySelf: true });
+        } else if (control instanceof FormGroup) {
+          this.validateAllFormFields(control);
+        }
+      });
+    }
+
+    reset(){
+      this.form.reset();
+    }
+  }
+//
+
+
+
+
     /*  this.http.get('https://bqvf7yj8s8.execute-api.ap-south-1.amazonaws.com/prod')
           .subscribe(
             res => {

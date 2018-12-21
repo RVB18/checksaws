@@ -7,6 +7,18 @@ import { v4 as uuid } from 'uuid';
 
 
 
+
+
+
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +26,9 @@ import { v4 as uuid } from 'uuid';
 })
 
 export class AppComponent implements OnInit {
+
+
+  form: FormGroup;
 
 
 
@@ -33,17 +48,17 @@ msg:any;
 config:any;
 isDataAvailable:boolean = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private formBuilder: FormBuilder) {
 this.config={}
 
   }
-
+//
 
 
   onSubmit(f){
-console.log(f.value)
-var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": f.value.cheque, "id": "1", "Name": f.value.name }
-
+//console.log(f.value)
+var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": f.value.cheque, "id": "", "Name": f.value.name }
+console.log(sett)
 
     this.http.post('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config',sett).subscribe(data => {
       //console.log(data);
@@ -51,7 +66,7 @@ var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber
       alert("Succesfully Saved")
     //  window.open('/cheque')
 
-    });
+  });
 }
 onvendorcreate(data){
 
@@ -81,6 +96,8 @@ console.log(f)
 }
   ngOnInit() {
 
+
+
             this.http.get('https://2xwiw9cxhb.execute-api.ap-south-1.amazonaws.com/pro/vendor').subscribe(data => {
               //console.log(data);
             this.data=data
@@ -103,11 +120,19 @@ console.log(f)
             });
 
 
+
+
+
+
+
+
+
+
 			      this.http.get('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config').subscribe(data => {
               console.log(data);
 
               this.config=data
-              this.config=this.config.body.data.Items[0]
+              this.config=this.config.data.body.data.Items[0]
 
               console.log(this.config)
 this.isDataAvailable = true
@@ -118,15 +143,68 @@ this.isDataAvailable = true
             });
 
 
+
+            this.form = this.formBuilder.group({
+
+              bank: [null, Validators.required],
+                routing: [null, Validators.required],
+                cheque:[null, Validators.required],
+                account:[null, Validators.required],
+                name:[null, Validators.required],
+                address:[null, Validators.required],
+                Description:[null, Validators.required],
+                Amount:[null, Validators.required],
+                Loadnumber:[null, Validators.required],
+                Careern:[null, Validators.required],
+                Date:[null, Validators.required],
+                Name:[null, Validators.required]
+            })
+
+
+  }
+
+
+  isFieldValid(field: string) {
+    return !this.form.get(field).valid && this.form.get(field).touched;
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field)
+    };
+  }
+
+  onSubmit1() {
+    console.log(this.form.value);
+    if (this.form.valid) {
+      console.log('form submitted');
+    } else {
+      this.validateAllFormFields(this.form);
+    }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      console.log(field);
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
+
+  reset(){
+    this.form.reset();
+  }
   }
 
 
 
 
 
-
-
-}
 
 
   /*   // If you don't need a filter or a pagination this can be simplified, you just use code from else block

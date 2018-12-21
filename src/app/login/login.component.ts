@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Request,RequestMethod,Http,Response,Headers,ResponseType, ResponseContentType } from '@angular/http';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
@@ -10,19 +10,52 @@ import {FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
+
+import { CookieService } from 'angular2-cookie/core';
+
+
+
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from '@angular/forms';
+
+
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+
+  form: FormGroup;
 c:any;
 p:any;
-succcess:any
+success:any
 
-busy: Promise<any>;
 
-constructor(private http: Http, private router: Router, private route: ActivatedRoute,private httpService: HttpClient) { }
+public loading = false;
+
+constructor(private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService) {
+
+
+ }
+
+
+
+
+getCookie(key:string){
+    return this._cookieService.get(key);
+  }
+
+
   signup=function(data)
   {
     /*var data2=JSON.stringify(data)
@@ -30,6 +63,9 @@ constructor(private http: Http, private router: Router, private route: Activated
     this.c=data.email;
     this.p=data.password
 console.log(this.c+this.p)*/
+this.loading = true;
+
+
 
 
 //
@@ -38,6 +74,9 @@ console.log(data)
 this.http.post('https://64go7jtbv1.execute-api.ap-south-1.amazonaws.com/pro/login',data)
 .subscribe (
   (res:Response,err) =>{
+    this.loading = false;
+
+
     if(err)
     {
     //  res.send(err)
@@ -48,6 +87,10 @@ this.http.post('https://64go7jtbv1.execute-api.ap-south-1.amazonaws.com/pro/logi
    if(this.success.message=="Failure")
    alert(this.success.data)
    else
+   {
+
+
+   }
    this.router.navigate(['/cheques'])
 
 /*	if(r.message=="Error")
@@ -57,11 +100,110 @@ else*/
 
 })
   }
+//
+
  ngOnInit() {
 
-this.busy = this.http.get('...').toPromise();
+   this.form = this.formBuilder.group({
+     email: [null, Validators.required],
+     password:[null, Validators.required]
 
 
-  }
+
+  })
 
 }
+
+
+
+    isFieldValid(field: string) {
+      return !this.form.get(field).valid && this.form.get(field).touched;
+    }
+
+    displayFieldCss(field: string) {
+      return {
+        'has-error': this.isFieldValid(field),
+        'has-feedback': this.isFieldValid(field)
+      };
+    }
+
+    onSubmit() {
+
+      console.log(this.form.value);
+      if (this.form.valid) {
+        console.log('form submitted');
+
+        this.loading = true;
+
+
+
+
+        //
+        ///
+
+        this.http.post('https://64go7jtbv1.execute-api.ap-south-1.amazonaws.com/pro/login',this.form.value)
+        .subscribe (
+          (res:Response,err) =>{
+            this.loading = false;
+
+
+            if(err)
+            {
+            //  res.send(err)
+            }
+            var r=res.json();
+            console.log(r);
+
+
+            this.success=r
+           if(this.success.message=="Failure")
+           alert(this.success.data)
+           else
+           {
+
+             var i=r.data.idToken.jwtToken;
+             this._cookieService.put("idToken",i);
+             this._cookieService.put("email",this.form.value.email);
+
+             console.log(this.form.value.email)
+
+               var k= this.getCookie("idToken");
+                               console.log(k+"venkat")
+
+
+this.router.navigate(['/cheques'])
+
+           }
+
+
+
+        /*	if(r.message=="Error")
+        alert(r.data.message)
+        else*/
+        //this.router.navigate(['/cheques'])
+
+        })
+
+
+
+      } else {
+        this.validateAllFormFields(this.form);
+      }
+    }
+
+    validateAllFormFields(formGroup: FormGroup) {
+      Object.keys(formGroup.controls).forEach(field => {
+        console.log(field);
+        const control = formGroup.get(field);
+        if (control instanceof FormControl) {
+          control.markAsTouched({ onlySelf: true });
+        } else if (control instanceof FormGroup) {
+          this.validateAllFormFields(control);
+        }
+      });
+    }
+
+    reset(){
+      this.form.reset();
+    }
+  }

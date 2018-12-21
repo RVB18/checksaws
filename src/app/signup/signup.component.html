@@ -9,25 +9,42 @@
         <div id="signup">
           <h1>Sign Up for Free</h1>
 
-          <form class="form-horizontal"  #Data = "ngForm" (ngSubmit) = "signup(Data.value)">
-
-            <div class="field-wrap">
-
-              <input type="text" required placeholder="Email" autocomplete="off"  name="email" id="fname" ngModel/>
-            </div>
 
 
 
 
 
-          <div class="field-wrap">
+                                                <form class="form-horizontal" [formGroup]="form">
 
-            <input type="password"required placeholder="Password" autocomplete="off"name="password"  id="password" ngModel/>
-          </div>
+                                                  <div class="form-group" [ngClass]="displayFieldCss('email')">
+                                                    <div class="field-wrap">
+                                                      <label for="email" class="control-label required"><b></b></label>
+                                                      <input type="text" placeholder="Email"  id="email" class="form-control"  formControlName="email" ngModel required>
+                                                      <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Please enter Email">
+                                                      </app-field-error-display>
+                                                    </div>
+                                                  </div>
 
-          <button type="submit" class="button button-block" data-toggle="modal" data-target="#myModal">Get Started</button>
 
-          </form>
+
+
+
+                                                                                                    <div class="form-group" [ngClass]="displayFieldCss('password')">
+                                                                                                      <div class="field-wrap">
+                                                                                                        <label for="password" class="control-label required"><b></b></label>
+                                                                                                        <input type="text" placeholder="Password"  id="password" class="form-control"  formControlName="password" ngModel required>
+                                                                                                        <app-field-error-display [displayError]="isFieldValid('password')" errorMsg="Please enter Password">
+                                                                                                        </app-field-error-display>
+                                                                                                      </div>
+                                                                                                    </div>
+
+
+      <button type="submit" class="button button-block" (click)="onSubmit()" data-toggle="modal" data-target="#myModal">Get Startedh</button>
+
+
+</form>
+
+
 
         </div>
         <div class="modal" id="myModal">

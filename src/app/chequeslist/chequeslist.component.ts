@@ -1,11 +1,18 @@
 
 
 
-import { Component, ViewChild , ElementRef, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Component, ViewChild , ElementRef, OnInit ,Injectable} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatSort,} from '@angular/material';
 
 import { Router } from '@angular/router';
+
+
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+
+
+import { CookieService } from 'angular2-cookie/core';
+import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-chequeslist',
@@ -31,6 +38,51 @@ datak:any;
   /*highlight(element: Element) {
     element.highlighted = !element.highlighted;
   }*/
+
+
+  constructor(private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService) {
+    const users: UserData[] = [];
+    //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
+this.coun=0;
+    // Assign the data to the data source for the table to render
+//
+var k= this.getCookie("idToken");
+                console.log(k+"venkat")
+
+              var email = this.getCookie("email");
+                                console.log(email+"venkat")
+
+
+
+	let myHeaders = new Headers();
+	myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Authorization',k)
+  myHeaders.append('useremail',email)
+console.log(myHeaders)
+  let options = new RequestOptions({ headers: myHeaders });
+
+
+    this.http.get('https://coet3arhmf.execute-api.ap-south-1.amazonaws.com/pro/cheques').subscribe(data => {
+console.log(data.json())
+
+   this.datap=data.json()
+this.datap=this.datap.body.data.Items;
+      for(var t=0;t<this.datap.length;t++){
+        users.push(this.datap[t])
+
+      }
+console.log("getting "+users)
+
+      this.dataSource = new MatTableDataSource(users);
+
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      //  console.log("sdfsd "+this.dataSource)
+
+
+    });
+  }
+
 
   updatestatus(data){
 var idmap='';
@@ -99,33 +151,13 @@ window.location.reload();
 
       }
 
-  constructor(private http: HttpClient,private router: Router) {
-    const users: UserData[] = [];
-    //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
-this.coun=0;
-    // Assign the data to the data source for the table to render
-//
-
-    this.http.get('https://coet3arhmf.execute-api.ap-south-1.amazonaws.com/pro/cheques').subscribe(data => {
 
 
-    this.datap=data
-this.datap=this.datap.body.data.Items;
-      for(var t=0;t<this.datap.length;t++){
-        users.push(this.datap[t])
-
-      }
-console.log(users)
-
-      this.dataSource = new MatTableDataSource(users);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      //  console.log("sdfsd "+this.dataSource)
+  getCookie(key:string){
+      return this._cookieService.get(key);
+    }
 
 
-    });
-  }
 
       g(){
 
@@ -160,6 +192,10 @@ g1--;
    var t=mydate.getMonth()+1;
 
 a.push({count:this.coun,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
+this._cookieService.put("aa",a);
+
+  var k= this.getCookie("aa");
+                  console.log(k+"venkat")
 
 }
 else{
@@ -172,10 +208,10 @@ else{
 
   astreik+="*"
 
-
   g1--;
   }
   console.log("astreik "+g1)
+
   var mydate = new Date(value.Date);
 
 
@@ -188,17 +224,23 @@ else{
 
 	xdata.push({in:a.splice(0,3)})
 
-
+getCookie(key:string){
+      return this._cookieServicegetCookie(key:string){
+    return this._cookieService.get(key);
+  }
+.get(key);
+    }
 	}
 ///	console.log(xdata)
 a=xdata;*/
 //
 this.count=a
 
+this.userdata.changeMessage(JSON.stringify(a))
+this.userdata.changeMessage1(this.config)
 
 
-
-window.open("/multicheck?a="+JSON.stringify(a));
+this.router.navigate(['/multicheck']);
 //window.open("http://alektasolutions.com/purchase/print/cheques/ang?a="+JSON.stringify(a), "_blank");
 
 //this.router.navigate(['/multicheckmulticheck',a])
@@ -232,7 +274,6 @@ window.location.reload();
 }
 
 
-
   ngOnInit() {
     this.map = new Map();
 
@@ -242,7 +283,7 @@ window.location.reload();
 	     this.http.get('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config').subscribe(data => {
               //console.log(data);
 
-this.config=data
+this.config=data.json()
 this.config=this.config.body.data.Items[0]
 
 console.log(this.config)
@@ -251,7 +292,7 @@ console.log(this.config)
 
 
   }
-
+//
 
 
   ngAfterViewInit() {
@@ -301,6 +342,7 @@ export function  convertNumberToWords(amount:string) {
    words[20] = 'Twenty';
    words[30] = 'Thirty';
    words[40] = 'Forty';
+
    words[50] = 'Fifty';
    words[60] = 'Sixty';
    words[70] = 'Seventy';

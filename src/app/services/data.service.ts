@@ -13,6 +13,11 @@ import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class DataService {
+
+
+
+
+
   private readonly API_URL = ' https://2xwiw9cxhb.execute-api.ap-south-1.amazonaws.com/pro/vendor';
 
   dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
@@ -20,6 +25,11 @@ export class DataService {
   dialogData: any;
      datap:any;
   constructor (private httpClient: HttpClient) {}
+
+
+
+
+
 
   get data(): Issue[] {
     return this.dataChange.value;
