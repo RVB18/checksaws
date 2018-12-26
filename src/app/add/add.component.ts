@@ -1,13 +1,16 @@
 import { OnInit } from '@angular/core';
 
 
+import { CookieService } from 'angular2-cookie/core';
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Component, Inject} from '@angular/core';
 import {DataService} from '../services/data.service';
 import {FormControl, Validators} from '@angular/forms';
 import {Issue} from '../models/issue';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
+import { v4 as uuid } from 'uuid';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -19,7 +22,7 @@ import {Issue} from '../models/issue';
 export class AddComponent  implements OnInit {
   constructor(public dialogRef: MatDialogRef<AddComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Issue,
-              public dataService: DataService) { }
+              public dataService: DataService,private _cookieService:CookieService,private http:Http) { }
 
 
 
@@ -49,11 +52,32 @@ export class AddComponent  implements OnInit {
     this.dialogRef.close();
   }
 
+    getCookie(key:string){
+        return this._cookieService.get(key);
+      }
+
   public confirmAdd(): void {
 
 
+    //
+    var k= this.getCookie("idToken");
+                    console.log(this.data)
 
-    this.dataService.addIssue(this.data);
+  var b={id:uuid(),Name:this.data.Name,Address:this.data.Address,Mobile:this.data.Mobile,Email:this.data.Email}
+
+    let myHeaders = new Headers();
+    	myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization',k)
+    console.log(myHeaders)
+      let options = new RequestOptions({ headers: myHeaders });
+
+
+        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
+    console.log(data.json())
+
+
+  })
+  //  this.dataService.addIssue(this.data);
   }
 
 

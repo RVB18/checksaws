@@ -59,12 +59,13 @@ var k= this.getCookie("idToken");
 console.log(myHeaders)
   let options = new RequestOptions({ headers: myHeaders });
 
-
+this.options=options;
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',options).subscribe(data => {
 console.log(data.json())
 
    this.datap=data.json()
 this.datap=this.datap.body.data.Items;
+
       for(var t=0;t<this.datap.length;t++){
         users.push(this.datap[t])
 
@@ -252,7 +253,7 @@ this.router.navigate(['/multicheck']);
         const reader = new FileReader();
      reader.onload = () => {
        var text=""
-       text = reader.result;
+      // text = reader.result;
        console.log('CSV: ', text);
        var lines = text.split("\n");
        var result = [];
@@ -313,7 +314,7 @@ this.router.navigate(['/multicheck']);
 	//getting config details
 
 
-	     this.http.get('https://6lwaus656f.execute-api.ap-south-1.amazonaws.com/pro/config').subscribe(data => {
+	     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
               //console.log(data);
 
 this.config=data.json()

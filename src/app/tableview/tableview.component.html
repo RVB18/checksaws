@@ -25,9 +25,13 @@
 
   <div class="col-md-10">
 </div> </div>
+
+
 <mat-form-field floatPlaceholder="never" class="form">
 		<input matInput #filter placeholder="Search">
 	</mat-form-field>
+
+
 	<button type="button" id="both"  style="width:130px" name="button" class="btn btn-primary" style="" (click)="ExportTOExcel()"><i class="fa fa-download" style="font-size:18px"></i>
 		Export as Excel      	</button>&nbsp;
 <div class="example-container mat-elevation-z8" #TABLE>
@@ -93,7 +97,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+  <div class="no-results" [style.display]="dataSource.length == 0 ? '' : 'none'">
     No results
   </div>
  <mat-paginator #paginator

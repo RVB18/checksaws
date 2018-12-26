@@ -4,6 +4,7 @@ import { Component,OnInit } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
 
+import { Router } from '@angular/router';
 
 
 import { CookieService } from 'angular2-cookie/core';
@@ -40,12 +41,12 @@ export class AppComponent implements OnInit {
    }
 
 s=[];
+dataSource: MatTableDataSource<UserData>;
 
 msg:any;
-  mat:any;
-
+  mat=[];
+users:any
   data:any;
-
 config:any;
 isDataAvailable:boolean = false;
 myHeaders:any;
@@ -54,20 +55,42 @@ getCookie(key:string){
     return this._cookieService.get(key);
   }
 
-  constructor(private http: Http,private formBuilder: FormBuilder,private _cookieService:CookieService) {
+  constructor(private http: Http,private router: Router,private formBuilder: FormBuilder,private _cookieService:CookieService) {
 this.config={}
 this.myHeaders = new Headers();
 var k= this.getCookie("idToken");
                 console.log(k+"venkat")
 
+                const users: UserData[] = [];
 
 
 
 
 
   this.myHeaders.append('Authorization',k)
-console.log(this.myHeaders)
+console.log("headu",this.myHeaders)
+
+
+
+
   this.options = new RequestOptions({ headers: this.myHeaders });
+  console.log("ajji")
+  
+          this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',this.options).subscribe(data => {
+      console.log(data.json())
+
+         this.datap=data.json()
+      this.datap=this.datap.body.data.Items;
+            for(var t=0;t<this.datap.length;t++){
+              users.push(this.datap[t])
+
+            }
+      console.log("getting "+users)
+
+
+
+
+          });
   }
 //
 
@@ -92,8 +115,8 @@ var date=new Date(data.value.Date)
 var t=date.getMonth()+1
 var ne=t+"/"+date.getDate()+"/"+date.getFullYear();
 
-var f={Name:data.value.Name,Date:ne,Amount:data.value.Amount,Carrername:data.value.Careern,Loadnumber:data.value.Loadnumber,id:uuid()}
-console.log(f)
+var f1={Name:data.value.Name,Date:data.value.Date,Amount:data.value.Amount,Carrername:data.value.Carrername,Loadnumber:data.value.Loadnumber,id:uuid()}
+console.log(f1)
 
  this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',this.options).subscribe(data => {
     ///console.log(data);
@@ -111,6 +134,25 @@ console.log(f)
 
 });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   ngOnInit() {
 
 
@@ -120,7 +162,7 @@ console.log(f)
             this.data=data
 
 
-          var datas=this.data.body.data.Items;
+          var datas=this.d<form  >ata.body.data.Items;
           //console.log(this.datas)
 
 
