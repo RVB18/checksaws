@@ -1,6 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {DataService} from '../services/data.service';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { CookieService } from 'angular2-cookie/core';
 
@@ -11,43 +10,46 @@ import { CookieService } from 'angular2-cookie/core';
 })
 export class MattabledeleteComponent implements OnInit {
 
-
+options:any;
   constructor(public dialogRef: MatDialogRef<MattabledeleteComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService,private _cookieService:CookieService,private http:Http) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private _cookieService:CookieService,private http:Http) {
+
+              }
+
+
+              getCookie(key:string){
+                  return this._cookieService.get(key);
+                }
 
 
                 onNoClick(): void {
                   this.dialogRef.close();
                 }
 
-                getCookie(key:string){
-                    return this._cookieService.get(key);
-                  }
+
 
 
 
                 confirmDelete(): void {
-                  //this.dataService.deleteIssue(this.data.id);
 
 
-                    var k= this.getCookie("idToken");
-                                    console.log(this.data)
+                                  console.log(this.data)
+                              var k= this.getCookie("idToken");
 
-                  var b={id:this.data.id}
+                              let myHeaders = new Headers();
+                                myHeaders.append('Content-Type', 'application/json');
+                                myHeaders.append('Authorization',k)
 
-console.log(b)
-                    let myHeaders = new Headers();
-                      myHeaders.append('Content-Type', 'application/json');
-                      myHeaders.append('Authorization',k)
-                    console.log(myHeaders)
-                      let options = new RequestOptions({ headers: myHeaders });
-console.log(options)
-
-                        this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
-                    console.log(data.json())
+                                var options = new RequestOptions({ headers: myHeaders });
 
 
-                  })
+                  this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor?id='+this.data.id,options).subscribe(data => {
+                  ///  window.location.reload;
+
+
+                  console.log(data);
+                })
+
 
 
                 }

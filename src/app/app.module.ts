@@ -62,7 +62,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  
+
 
 } from '@angular/material';
 
@@ -81,7 +81,6 @@ import { Multicheck2Component } from './multicheck2/multicheck2.component';
 import { TableviewComponent } from './tableview/tableview.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import {DataService} from './services/data.service';
 import {AddComponent} from'./add/add.component';
 import {MattableeditComponent} from'./mattableedit/mattableedit.component';
 import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component';
@@ -170,7 +169,7 @@ NgxSpinnerModule,
     MattableeditComponent,
     MattabledeleteComponent,
   ],
-  providers: [DataService,CookieService,UserService],
+  providers: [CookieService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 
 import { ElementRef, OnInit, ViewChild} from '@angular/core';
-import {DataService} from '../services/data.service';
 //import {HttpClient} from '@angular/common/http';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {Issue} from '../models/issue';
@@ -21,6 +20,7 @@ import { UserService } from '../services/user.service';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
 import { Angular5Csv } from 'angular5-csv/Angular5-csv';
+import { v4 as uuid } from 'uuid';
 
 
 import { ActivatedRoute } from '@angular/router';
@@ -35,7 +35,6 @@ import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import { CookieService } from 'angular2-cookie/core';
 
 
-import {DataService} from '../services/data.service';
 
 
 @Component({
@@ -46,8 +45,6 @@ import {DataService} from '../services/data.service';
 
 export class TableviewComponent implements OnInit {
   displayedColumns = ['id', 'Name', 'Address', 'Mobile', 'Email','actions'];
-  exampleDatabase: DataService | null;
-  dataSource: ExampleDataSource | null;
   index: number;
   id: string;
   dataSource: MatTableDataSource<VendorData>;
@@ -58,10 +55,17 @@ export class TableviewComponent implements OnInit {
   a=[]
 
 
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
+    @ViewChild('TABLE') table: ElementRef;
+
+
     dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
     // Temporarily stores data from dialogs
     dialogData: any;
-       datap:any;
+
 
 
 
@@ -77,7 +81,7 @@ export class TableviewComponent implements OnInit {
 
   constructor(public http: Http,
               public dialog: MatDialog,
-              public dataService: DataService,private _cookieService:CookieService,private router: Router) {
+            private _cookieService:CookieService,private router: Router) {
 
 const users: VendorData[] = [];
 
@@ -129,29 +133,16 @@ console.log(k)
               }
 
 
+
+
               addIssue (issue: Issue): void {
 
-              console.log("hihihi"
-                console.log( uuid());
             var b={id:uuid(),Name:issue.Name,Address:issue.Address,Mobile:issue.Mobile,Email:issue.Email}
 
             console.log(b)
 
                 console.log(issue)
-
-
-              this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b).subscribe(data => {
-                      this.dialogData = issue;
-            		  window.location.reload;
-
-
-                  //this.dialogData = kanbanItem;
-                //  this.toastrService.success('Successfully added', 3000);
-                  },
-                  (err: HttpErrorResponse) => {
-                  //this.toastrService.error('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
-                });
-              }
+}
 
 
 
@@ -160,20 +151,6 @@ console.log(k)
                     return this._cookieService.get(key);
                   }
 
-
-
-                    get data(): Issue[] {
-                      return this.dataChange.value;
-                    }
-
-                    getDialogData() {
-                      return this.dialogData;
-                    }
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('filter') filter: ElementRef;
-    @ViewChild('TABLE') table: ElementRef;
 
 
 
@@ -226,11 +203,12 @@ ExportTOExcel()
 
 //console.log(this.loadData)
 
-  }
 
-  refresh() {
-  //  this.loadData();
-  }
+}
+
+
+
+
 
 
   addNew(issue: Issue) {
@@ -244,14 +222,7 @@ ExportTOExcel()
 
 
 
-    /*dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
-        // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataService
-        this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
-        this.refreshTable();
-      }
-    });*/
+
   }
 
   startEdit(i: number, id: string, Name: string, Address: string, Mobile: string, Email:string) {
@@ -263,10 +234,8 @@ ExportTOExcel()
       data: {id: id, Name: Name, Address: Address, Mobile: Mobile, Email: Email}
     });
 
-//			window.location.reload;
-https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
+    /*  if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);//
         // Then you update that record using data from dialogData (values you enetered)
@@ -275,9 +244,10 @@ https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor
         // And lastly refresh table
         this.refreshTable();
 		//window.location.reload
-      }
+  }*/
     });
   }
+
 
   deleteItem(i: number, id: string, Name: string, Address: string, Mobile: string, Email:string) {
     this.index = i;
@@ -288,48 +258,17 @@ https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+      //  const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
         // for delete we use splice in order to remove single object from DataService
-        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-        this.refreshTable();
+      //  this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+      //  this.refreshTable();
       }
     });
   }
 
-on(){
-
-
 
 
 }
-
-
-
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-    // OLD METHOD:
-    // if there's a paginator active we're using it for refresh
-    /*if (this.dataSource._paginator.hasNextPage()) {
-      this.dataSource._paginator.nextPage();
-      this.dataSource._paginator.previousPage();
-      // in case we're on last page this if will tick
-    } else if (this.dataSource._paginator.hasPreviousPage()) {
-      this.dataSource._paginator.previousPage();
-      this.dataSource._paginator.nextPage();
-      // in all other cases including active filter we do it like this
-    } else {
-      this.dataSource.filter = '';
-      this.dataSource.filter = this.filter.nativeElement.value;
-    }
-*/
-
-//
-
-
-
-
-//
-
 export function getdata(sheet){
    var result = [];
    var row;

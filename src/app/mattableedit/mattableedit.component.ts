@@ -3,7 +3,6 @@
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Component,OnInit, Inject} from '@angular/core';
-import {DataService} from '../services/data.service';
 import {FormControl, Validators} from '@angular/forms';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
@@ -20,7 +19,7 @@ export class MattableeditComponent implements OnInit {
 
 
   constructor(public dialogRef: MatDialogRef<MattableeditComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService,private _cookieService:CookieService,private http:Http) { }
+              @Inject(MAT_DIALOG_DATA) public data: any,private _cookieService:CookieService,private http:Http) { }
 
   formControl = new FormControl('', [
     Validators.required
@@ -48,7 +47,6 @@ export class MattableeditComponent implements OnInit {
 
 
   stopEdit(): void {
-  //  this.dataService.updateIssue(this.data);
 
 
 
@@ -70,7 +68,6 @@ var b={id:this.data.id,Name:this.data.Name,Address:this.data.Address,Mobile:this
 
 
 })
-//  this.dataService.addIssue(this.data);
 }
 
 

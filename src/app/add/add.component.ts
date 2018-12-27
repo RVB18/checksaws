@@ -5,7 +5,6 @@ import { CookieService } from 'angular2-cookie/core';
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Component, Inject} from '@angular/core';
-import {DataService} from '../services/data.service';
 import {FormControl, Validators} from '@angular/forms';
 import {Issue} from '../models/issue';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
@@ -21,8 +20,8 @@ import { v4 as uuid } from 'uuid';
 
 export class AddComponent  implements OnInit {
   constructor(public dialogRef: MatDialogRef<AddComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Issue,
-              public dataService: DataService,private _cookieService:CookieService,private http:Http) { }
+              @Inject(MAT_DIALOG_DATA) public data: Issue
+          ,private _cookieService:CookieService,private http:Http) { }
 
 
 
@@ -77,8 +76,11 @@ export class AddComponent  implements OnInit {
 
 
   })
-  //  this.dataService.addIssue(this.data);
   }
+
+
+
+
 
 
 

@@ -29,6 +29,7 @@ datak:any;
   map:any;
 	count:any;
   coun:any;
+  options:any;
   displayedColumns = [ 'chequeid', 'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer'];
   dataSource: MatTableDataSource<UserData>;
   //
@@ -81,6 +82,100 @@ console.log("getting "+users)
 
     });
   }
+
+
+
+
+  handleFileSelect()
+    {
+      var filedata=[];
+  var filedate2=[];
+      var file = (<HTMLInputElement>document.getElementById('filePicker'));
+    //  var jsonFile = this.csvJSON(file);
+
+      //console.log(jsonFilefile)
+      const reader = new FileReader();
+   reader.onload = () => {
+     var text = reader.result.toString();
+     console.log('CSV: ', text);
+     var lines = text.split("\n");
+
+     var result = [];
+
+     var headers = lines[0].split(",");
+
+     for (var i = 1; i < lines.length; i++) {
+
+         var obj = {};
+         var currentline = lines[i].split(",");
+
+         for (var j = 0; j < headers.length; j++) {
+             obj[headers[j]] = currentline[j];
+         }
+
+         result.push(obj);
+
+     }
+     //convert text to json here
+     //var json = this.csvJSON(text);
+     console.log(JSON.stringify(result.pop()))
+  /*   result.forEach(function(ele){
+     console.log(ele.Name+ele.Amount)
+
+   })*/
+   result.forEach(function(ele){
+     console.log(ele.Name)
+    var m={
+
+       "Amount": ele.Amount,
+          "Carrername":ele.CarrerName,
+          "Date": ele.Date,
+          "id": uuid(),
+          "Loadnumber": ele.LoadNumber,
+          "Name": ele.Name,
+          "StreetAddress":ele.StreetAddress,
+          "CityorTown": ele.CityorTown,
+          "State":ele.State,
+          "zipcode": ele.zipcode,
+          "Country": ele.Country,
+
+  }
+
+  filedata.push(m)
+  //this.filedata.push(m);
+  //console.log(filedata)
+  })
+
+  console.log(filedata)
+   var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
+   if(filedata.length>0){
+      this.http.post(url,{"Items":filedata},this.options).subscribe (
+
+       (res:Response) =>{
+
+         console.log("success "+JSON.stringify(res));
+
+  }
+  )
+  }
+  else
+  console.log("sorry file is empty....")
+   };
+
+
+
+
+
+   reader.readAsText(file.files[0]);
+
+  }
+
+
+
+
+
+
+
 
 
   updatestatus(data){
@@ -318,7 +413,7 @@ this.router.navigate(['/multicheck']);
               //console.log(data);
 
 this.config=data.json()
-this.config=this.config.body.data.Items[0]
+//this.config=this.config.body.data.Items[0]
 
 console.log(this.config)
 

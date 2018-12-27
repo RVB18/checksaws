@@ -50,7 +50,7 @@ export class VendorchecksdetailsComponent implements OnInit {
  }
  var tt=[]
   tt=[{count:1,words:nu,date:data.Date,name:data.Name,amount:astreik+data.Amount,addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
- window.open("/multicheck?a="+JSON.stringify(tt), "_blank");
+ //window.print("/multicheck?a="+JSON.stringify(tt), "_blank");
 
  }
  else{
@@ -69,7 +69,7 @@ export class VendorchecksdetailsComponent implements OnInit {
    var tt=[]
     tt=[{count:1,words:convertNumberToWords(data.Amount),date:data.Date+"",name:data.Name,amount:astreik+data.Amount+".00",addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
 
-     window.open("/multicheck?a="+JSON.stringify(tt), "_blank");
+//     window.open("/multicheck?a="+JSON.stringify(tt), "_blank");
 
 
 
