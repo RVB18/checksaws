@@ -95,7 +95,7 @@ this.vendor=this.vendor.body.data.Items;
 var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": f.value.cheque, "id": "1234", "Name": f.value.name }
 console.log(sett)
 
-    this.http.post('https://y50p3nohl9.execute-api.us-westCarrername-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
+    this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
       //console.log(data);
       console.log(data)
       alert("Succesfully Saved")
@@ -126,7 +126,11 @@ console.log(data.json())
 
 
   ngOnInit() {
+    this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
+    console.log(data.json())
+    this.config=data.json()
+    this.config=this.config.data.body.data.Items[0]
 
-
+    });
 }
 }

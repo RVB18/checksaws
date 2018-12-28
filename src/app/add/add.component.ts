@@ -72,6 +72,7 @@ export class AddComponent  implements OnInit {
 
 
         this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
+          window.location.reload();
     console.log(data.json())
 
 

@@ -34,6 +34,9 @@ options:any;
 
 
                                   console.log(this.data)
+                                  console.log(this.data.id)
+
+
                               var k= this.getCookie("idToken");
 
                               let myHeaders = new Headers();
@@ -41,10 +44,11 @@ options:any;
                                 myHeaders.append('Authorization',k)
 
                                 var options = new RequestOptions({ headers: myHeaders });
+                                console.log(options)
 
 
-                  this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor?id='+this.data.id,options).subscribe(data => {
-                  ///  window.location.reload;
+                  this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor?id='+'"'+this.data.id+'"',options).subscribe(data => {
+                    window.location.reload();
 
 
                   console.log(data);

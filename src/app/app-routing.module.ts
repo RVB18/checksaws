@@ -15,7 +15,7 @@ import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 import  {UsersserviceComponent} from './usersservice/usersservice.component';
-
+import  {FlashhComponent} from './flashh/flashh.component';
 
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
@@ -30,6 +30,8 @@ const routes: Routes = [
 {path:'forgot',component: ForgotpasswordComponent},
 {path:'users',component: UsersserviceComponent},
 {path:'valid',component:ValidateFieldsSubmitFormComponent},
+
+{path:'flashh',component:FlashhComponent},
 
 {path:'tableview',component:TableviewComponent}];
 

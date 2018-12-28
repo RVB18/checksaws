@@ -14,7 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 
 import { CookieService } from 'angular2-cookie/core';
-
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 import {
@@ -43,7 +43,7 @@ success:any
 
 public loading = false;
 
-constructor(private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService) {
+constructor(private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService,private _flashMessagesService: FlashMessagesService) {
 
 
  }
@@ -151,10 +151,19 @@ else*/
 
 
             this.success=r
+
+
+
+
            if(this.success.message=="Failure")
+
+
+
            alert(this.success.data)
            else
            {
+
+
 
              var i=r.data.idToken.jwtToken;
              this._cookieService.put("idToken",i);
@@ -183,10 +192,18 @@ this.router.navigate(['/cheques'])
 
       } else {
         this.validateAllFormFields(this.form);
+
+              this._flashMessagesService.show('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Enter Valid Credentials', { cssClass: 'alert-danger',timeout: 10000 });
+
+              console.log(this.form)
       }
     }
 
     validateAllFormFields(formGroup: FormGroup) {
+
+
+
+
       Object.keys(formGroup.controls).forEach(field => {
         console.log(field);
         const control = formGroup.get(field);

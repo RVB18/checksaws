@@ -98,7 +98,8 @@ p{
     transform: translate(-50%, -50%);
 }
 .centeredq {
-    position: absolute;
+    position: absolute; has no exported member 'MaterialModule'. Did you mean 'MatRippleModule'?
+
     top: 6%;
     left: 82%;
     transform: translate(-50%, -50%);

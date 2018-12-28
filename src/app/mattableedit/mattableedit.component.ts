@@ -64,6 +64,7 @@ var b={id:this.data.id,Name:this.data.Name,Address:this.data.Address,Mobile:this
 
 
       this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
+        window.location.reload();
   console.log(data.json())
 
 

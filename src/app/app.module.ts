@@ -23,7 +23,8 @@ import { FieldErrorDisplayComponent } from './field-error-display/field-error-di
 import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component';
 import { CookieService } from 'angular2-cookie/core';
 import { UserService } from './services/user.service';
-
+import  {FlashhComponent} from './flashh/flashh.component';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 
 
@@ -136,7 +137,7 @@ export class DemoMaterialModule {}
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
-    MulticheckComponent,ForgotpasswordComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,FieldErrorDisplayComponent,ValidateFieldsSubmitFormComponent,UsersserviceComponent
+    MulticheckComponent,ForgotpasswordComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,FieldErrorDisplayComponent,ValidateFieldsSubmitFormComponent,UsersserviceComponent,FlashhComponent
   ],
   imports: [
     BrowserModule,
