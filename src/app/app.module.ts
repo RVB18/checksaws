@@ -24,12 +24,6 @@ import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form
 import { CookieService } from 'angular2-cookie/core';
 import { UserService } from './services/user.service';
 import  {FlashhComponent} from './flashh/flashh.component';
-import { FlashMessagesModule } from 'angular2-flash-messages';
-
-
-
-
-
 
 
 import {

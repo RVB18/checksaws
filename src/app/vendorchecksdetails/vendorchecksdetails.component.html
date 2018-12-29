@@ -54,7 +54,7 @@
 
 <ng-container matColumnDef="addr">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
-      <mat-cell *matCellDef="let dataSource" > {{dataSource.Address}} </mat-cell>
+      <mat-cell *matCellDef="let dataSource" > {{dataSource.StreetAddress}} ,{{dataSource.CityorTown}} {{dataSource.State}} {{dataSource.zipcode}} </mat-cell>
     </ng-container>
 		<ng-container matColumnDef="Load">
 		      <mat-header-cell *matHeaderCellDef mat-sort-header> Load Number </mat-header-cell>

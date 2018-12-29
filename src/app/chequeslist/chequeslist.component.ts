@@ -285,7 +285,7 @@ g1--;
   var mydate = new Date(value.Date);
    var t=mydate.getMonth()+1;
 
-a.push({count:this.coun,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
+a.push({count:this.coun,street:value.StreetAddress,postal:value.CityorTown+" "+value.State+" "+value.zipcode,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
 
 
 }
@@ -307,7 +307,7 @@ else{
 
 
    var t=mydate.getMonth()+1;
-  a.push({count:this.coun,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount+".00",words:k+ " and 00 cents",addr:value.Address,load:value.Loadnumber,carrer:value.Careername})
+  a.push({count:this.coun,street:value.StreetAddress,postal:value.CityorTown+" "+value.State+" "+value.zipcode,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount+".00",words:k+ " and 00 cents",addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
 }
 });
 /*var xdata=[];
@@ -439,7 +439,10 @@ export interface UserData {
   id: string;
   Name: string;
   Date: string;
-  Amount: string;
+  StreetAddress: string;
+  zipcode:string;
+  State:string;
+  CityorTown:string;
   Address:string;
   Loadnumber:string;
   Carrername:string;

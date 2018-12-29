@@ -6,6 +6,7 @@ import { CookieService } from 'angular2-cookie/core';
 
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-vendorchecksdetails',
@@ -16,8 +17,8 @@ export class VendorchecksdetailsComponent implements OnInit {
 
   data:any;
 
-
-
+config:any;
+options:any;
 
   displayedColumns = [ 'ChequeID', 'Name', 'Date', 'Amount','Status','addr','Load','Carrer','Print'];
   dataSource: MatTableDataSource<UserData>;
@@ -49,9 +50,14 @@ export class VendorchecksdetailsComponent implements OnInit {
  g1--;
  }
  var tt=[]
-  tt=[{count:1,words:nu,date:data.Date,name:data.Name,amount:astreik+data.Amount,addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
+  tt=[{count:1,words:nu,street:data.StreetAddress,postal:data.CityorTown+" "+data.State+" "+data.zipcode,date:data.Date,name:data.Name,amount:astreik+data.Amount,addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
  //window.print("/multicheck?a="+JSON.stringify(tt), "_blank");
+ var newString = JSON.stringify(tt).replace(/undefined/g," ");
+ this.userdata.changeMessage(JSON.stringify(tt))
+ this.userdata.changeMessage1(this.config)
 
+
+ this.router.navigate(['/multicheck']);
  }
  else{
 
@@ -67,11 +73,16 @@ export class VendorchecksdetailsComponent implements OnInit {
    }
    console.log("astreik "+g1)
    var tt=[]
-    tt=[{count:1,words:convertNumberToWords(data.Amount),date:data.Date+"",name:data.Name,amount:astreik+data.Amount+".00",addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
+    tt=[{count:1,words:convertNumberToWords(data.Amount),street:data.StreetAddress,postal:data.CityorTown+" "+data.State+" "+data.zipcode,date:data.Date+"",name:data.Name,amount:astreik+data.Amount+".00",addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
 
 //    window.open("/multicheck?a="+JSON.stringify(tt), "_blank");
 
+var newString = JSON.stringify(tt).replace(/undefined/g," ");
+this.userdata.changeMessage(JSON.stringify(tt))
+this.userdata.changeMessage1(this.config)
 
+
+this.router.navigate(['/multicheck']);
 
  }
 
@@ -80,13 +91,6 @@ export class VendorchecksdetailsComponent implements OnInit {
 
 
 
- this.http.get('http://13.232.165.2:3000/statusupdates?a='+"'"+data.chequeid+"'").subscribe(data => {
-      console.log(data);
-    //  this.data=data.data;
-//
-
-
-    });
 
   }
 
@@ -105,9 +109,9 @@ export class VendorchecksdetailsComponent implements OnInit {
 
 
 
-  constructor(private route: ActivatedRoute,private http: Http,private router: Router,private _cookieService:CookieService) {
+  constructor(private route: ActivatedRoute,private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService) {
     const users: UserData[] = [];
-
+this.config={}
 var name='';
     this.route.params.subscribe(params => {
        name = params['name']; // (+) converts string 'id' to a number
@@ -122,9 +126,9 @@ var name='';
         	myHeaders.append('Content-Type', 'application/json');
           myHeaders.append('Authorization',k)
         console.log(myHeaders)
-          let options = new RequestOptions({ headers: myHeaders });
+          this.options = new RequestOptions({ headers: myHeaders });
 
-    this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',{Name:name},options).subscribe(data => {
+    this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',{Name:name},this.options).subscribe(data => {
       console.log(data.json());
       this.data=data.json();
       this.data=this.data.body.data.Items;
@@ -153,7 +157,15 @@ console.log(this.data)
 
    }
   ngOnInit() {
+    this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
+           //console.log(data);
 
+this.config=data.json()
+//this.config=this.config.body.data.Items[0]
+
+console.log(this.config)
+
+         });
 
 
 //
@@ -175,7 +187,10 @@ export interface UserData {
   address:string;
   Loadnumber:string;
   Carrername:string;
-
+  StreetAddress: string;
+  zipcode:string;
+  State:string;
+  CityorTown:string;
 }
 //
 export function  convertNumberToWords(amount:string) {
