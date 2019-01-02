@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { UserService } from '../services/user.service';
+import { CookieService } from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-multicheck',
@@ -18,10 +19,25 @@ export class MulticheckComponent implements OnInit  {
  message:any;
   mdlSampleIsOpen : boolean = false;
 to:any;
-  constructor(private router:Router,private route: ActivatedRoute,private http:HttpClient,private userdata:UserService) {
+options:any;
+  constructor(private router:Router,private route: ActivatedRoute,private http:Http,private userdata:UserService,private _cookieService:CookieService) {
 	 this.config={}
 	 this.coun=0
 	 this.to=""
+   var k= this.getCookie("idToken");
+                   console.log(k+"venkat")
+
+
+
+
+   	let myHeaders = new Headers();
+   	myHeaders.append('Content-Type', 'application/json');
+     myHeaders.append('Authorization',k)
+   console.log(myHeaders)
+     let options = new RequestOptions({ headers: myHeaders });
+
+   this.options=options;
+
   }
 
   private openModal(open : boolean) : void {
@@ -30,53 +46,62 @@ to:any;
 
 }
  updatestatus(){
-	 var data=document.getElementById('to').value
+//	 var data=document.getElementById('to').value
+   var data=(<HTMLInputElement>document.getElementById('to')).value;
 var idmap='';
+var podata=[];
 
-
-	  console.log(data +"sdfgs "+ this.config.cheque)
+	  console.log(data +"sdfgs "+ this.config.Chequenumber)
 	  var gh=0;
 	  //{from: "236", to: "249"}
-	  if(data==this.config.cheque){
+	  if(data==this.config.Chequenumber){
 		  gh=0
 	  }
 	  else{
-	  gh=parseInt(data)-parseInt(this.config.cheque)
+
+	  gh=parseInt(data)-parseInt(this.config.Chequenumber)
+    console.log(this.config.Chequenumber+"  checking " +" "+gh)
+
 	  }
-	  console.log(this.config.cheque+"  checking "+gh)
 	//  var po=parseInt(data.value.to)-parseInt(data.value.from)
 
 	  for(var t=0;t<=gh;t++){
 		  console.log(this.data[t].id)
 
 
+        podata.push(this.data[t].id)
 
-
-		  	idmap+="'"+this.data[t].id+"',"
+		  	//idmap+="'"+this.data[t].id+"',"
 
 	  }
-	  idmap = idmap.slice(0, -1); // "12345.0"
+	 // idmap = idmap.slice(0, -1); // "12345.0"
 
 
-console.log(idmap)
+//console.log(idmap)
 if(gh==0)
 	gh=1
 else
 	gh++
-  /*this.http.get('http://13.232.165.2:3000/statusupdates?a='+idmap).subscribe(data => {
-      console.log(data);
-      this.data=data.data;
 
-this.http.get('http://52.11.32.193/connected/chequeupdate?a='+gh).subscribe(data => {
-      console.log(data);
-      //this.data=data.data;
-
-//this.router.navigate(['/cheques']);
-window.location.replace("/cheques");
+  var printchangedata={id:podata}
+  console.log(printchangedata)
+  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/changecheckstatus',printchangedata,this.options).subscribe(data => {
+      console.log(data.json());
 
 
-    });
-  });*/
+      var sett={ "Bankname": this.config.Bankname , "Address": this.config.Address, "Accountnumber":this.config.Accountnumber, "Routenumber":this.config.Routenumber, "Chequenumber": parseInt(this.config.Chequenumber+gh), "id": "1234", "Name":this.config.Name }
+      console.log(sett)
+
+          this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
+            //console.log(data);
+            console.log(data)
+            //alert("Succesfully Saved")
+        //    window.open('/cheque')
+            this.router.navigate(['/cheques'])
+
+        });
+
+  });
   }
 
   pagin(f){
@@ -118,6 +143,10 @@ setTimeout(()=>{    //<<<---    using ()=> syntax
 
   }
 
+
+    getCookie(key:string){
+        return this._cookieService.get(key);
+      }
 
 
 }

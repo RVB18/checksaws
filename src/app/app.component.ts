@@ -92,7 +92,7 @@ this.vendor=this.vendor.body.data.Items;
 
   onSubmit(f){
 //console.log(f.value)
-var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": f.value.cheque, "id": "1234", "Name": f.value.name }
+var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": "1234", "Name": f.value.name }
 console.log(sett)
 
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
@@ -116,7 +116,7 @@ console.log(f1)
 
 
 
-  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',f1,this.options).subscribe(data => {
+  this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',f1,this.options).subscribe(data => {
 console.log(data.json())
 
   });
