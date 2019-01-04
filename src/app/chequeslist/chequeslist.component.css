@@ -1,68 +1,140 @@
-
-
-
-
-
-
-
 mat-header-cell{
-  background-color: #000;
-  color: white;
+ background-color: 	#386B88	;
+ color: #fff;
 }
-.modal-header{
-  background-color: black;
-  color:white;
+
+
+
+.modal-header,.modal-header{
+ background-color: black;
+ color:white;
 }
 .close{
 color: white;
 }
+td.mat-column-star {
+ width: 20px;
+ padding-right: 8px;
+}
+
+th.mat-column-position, td.mat-column-position {
+ padding-left: 8px;
+}
+
+.mat-table-sticky:first-child {
+ border-right: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky:last-child {
+ border-left: 1px solid #e0e0e0;
+}
+
 @media screen and (max-width: 600px) {
 
-#both{
-background-color:black;margin-left:2%;
+#pr{
+margin-left:1%;
 }
-}
-@media screen and (min-width: 780px) {
-    #both {
-      background-color:black;margin-left:20%;
-    }
+.one{
+width:100%;
+margin-left:1px;
 
 }
+#table{
+
+}
+mat-header-cell{
+ background-color: 	#386B88	;
+ width:10%;
+ color: #fff;
+}
+mat-cell{
+ width:100%;
+}
+}
+@media screen and (max-width: 960px) {
+   #pr {
+margin-left:72%;
+}}
+@media screen and (min-width: 960px) {
+   #pr {
+margin-left:50%;
+  }
+
+
+
+}
+
 .row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  margin: 0 -16px;
+ display: -ms-flexbox; /* IE10 */
+ display: flex;
+ -ms-flex-wrap: wrap; /* IE10 */
+ flex-wrap: wrap;
+ margin: 0 -16px;
 }
 
 .col-25 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
+ -ms-flex: 25%; /* IE10 */
+ flex: 25%;
 }
 
 .col-50 {
-  -ms-flex: 50%; /* IE10 */
-  flex: 50%;
+ -ms-flex: 50%; /* IE10 */
+ flex: 50%;
 }
 
 .col-75 {
-  -ms-flex: 75%; /* IE10 */
-  flex: 75%;
+ -ms-flex: 75%; /* IE10 */
+ flex: 75%;
 }
 
 .col-25,
 .col-50,
 .col-75 {
-  padding: 0 16px;
+ padding: 0 16px;
 }
- select{
+select{
 
 width:75%;
 
 
- }
+}
 
- #print{
- top:15%;
- }
+
+.one{
+
+  margin-right:10%;
+  margin-left:10%;
+}
+
+
+#print{
+top:15%;
+}
+.modalhead{
+ background-color: black;
+ color:white;
+ padding-top:11%;
+
+}
+.modal-title
+{
+color:white;
+}
+.modal-dialog,
+{
+   /* 80% of window height */
+   height: 80%;
+}
+
+ #mdlSample{
+   top:15%;
+padding-top:2%;
+}
+
+
+#table1{
+
+  height:400px;
+
+  overflow-y:scroll;
+}

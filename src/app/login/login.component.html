@@ -153,7 +153,7 @@
 
     e.preventDefault();
 
-    $(this).parent().addClass('active');    </flash-messages>
+    $(this).parent().addClass('active');
     $(this).parent().siblings().removeClass('active');
 
     target = $(this).attr('href');
@@ -169,4 +169,4 @@
 
 <ngx-loading [show]="loading" [config]="{
         backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
-        primaryColour: '#ffffff', secondaryColour: '#ffffff', tertiaryColour: '#ffffff' }" [template]="customLoadingTemplate"></ngx-loading>
+        primaryColour: '#ffffff', secondaryColour: '#ffffff', tertiaryColour: '#ffffff' }" ></ngx-loading>

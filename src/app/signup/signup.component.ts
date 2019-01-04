@@ -52,33 +52,7 @@ constructor(private http: Http, private router: Router, private route: Activated
 
 
 
-verify=function(data)
-{
-  //this.x=document.getElementById("verifys").value;
- // /conform/:verificationcode'
 
-  //console.log(this.x)
-  var baka={
-
-
-
-	"email":this.emailforverify,
-
-	"vcode":data.verify
-
-  }
-  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/verification',baka)
-.subscribe (
-  (res:Response) =>{
-  var r=res.json();
-  console.log(r)
-this.mes=r;
-console.log(this.mes)
-
-//this.router.navigate(['/login'])
-
-})
-}
  signup=function(data)
 
 //
@@ -111,7 +85,36 @@ console.log(this.msgs.data)
 }
 
 
+verify=function(data)
+{
+  //this.x=document.getElementById("verifys").value;
+ // /conform/:verificationcode'
 
+  //console.log(this.x)
+  var em = (<HTMLInputElement>document.getElementById('email'));
+
+  var baka={
+
+
+
+	"email":em.value,
+
+	"vcode":data.verify
+
+  }
+  console.log(baka)
+  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/verification',baka)
+.subscribe (
+  (res:Response) =>{
+  var r=res.json();
+  console.log(r)
+this.mes=r;
+alert(this.mes.meassage)
+
+window.open("/login","_self")
+
+})
+}
 
   ngOnInit() {
 

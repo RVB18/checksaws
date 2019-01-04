@@ -14,7 +14,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 
 import { CookieService } from 'angular2-cookie/core';
-import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 import {
@@ -40,12 +39,13 @@ c:any;
 p:any;
 success:any
 
+public showNav = true;
 
 public loading = false;
 
-constructor(private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService,private _flashMessagesService: FlashMessagesService) {
+constructor(private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService) {
 
-
+this.showNav=true
  }
 
 
@@ -175,7 +175,8 @@ else*/
                                console.log(k+"venkat")
 
 
-this.router.navigate(['/cheques'])
+//this.router.navigate(['/cheques'])
+window.open("/cheques","_self")
 
            }
 
@@ -193,7 +194,6 @@ this.router.navigate(['/cheques'])
       } else {
         this.validateAllFormFields(this.form);
 
-              this._flashMessagesService.show('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Enter Valid Credentials', { cssClass: 'alert-danger',timeout: 10000 });
 
               console.log(this.form)
       }

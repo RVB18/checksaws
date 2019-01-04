@@ -3,28 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import '../polyfills';
+import { UserService } from './services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Request,RequestMethod,Http,Response,Headers,ResponseType, ResponseContentType } from '@angular/http';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-
-import { FlashMessagesModule } from 'angular2-flash-messages';
-
-import { NgxSpinnerModule } from 'ngx-spinner';
-
-import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
-
-
-import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component';
-import { CookieService } from 'angular2-cookie/core';
-import { UserService } from './services/user.service';
-import  {FlashhComponent} from './flashh/flashh.component';
-
 
 import {
   MatAutocompleteModule,
@@ -57,12 +44,15 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-
+MatTreeModule,
 
 } from '@angular/material';
 
 import {CdkTableModule} from '@angular/cdk/table';
+import { CookieService } from 'angular2-cookie/core';
+import { NgxLoadingModule,ngxLoadingAnimationTypes } from 'ngx-loading';
 
+import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -78,14 +68,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import {AddComponent} from'./add/add.component';
 import {MattableeditComponent} from'./mattableedit/mattableedit.component';
-import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component';
-import { NgxLoadingModule,ngxLoadingAnimationTypes } from 'ngx-loading';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-import { UsersserviceComponent } from './usersservice/usersservice.component';
-
-
-
-
+import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component'
 @NgModule({
   exports: [
     CdkTableModule,
@@ -119,6 +102,8 @@ import { UsersserviceComponent } from './usersservice/usersservice.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+	MatTreeModule,
+	MatTableModule ,
   ],
   declarations: []
 })
@@ -131,7 +116,8 @@ export class DemoMaterialModule {}
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
-    MulticheckComponent,ForgotpasswordComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,FieldErrorDisplayComponent,ValidateFieldsSubmitFormComponent,UsersserviceComponent,FlashhComponent
+    MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,
+    FieldErrorDisplayComponent,
   ],
   imports: [
     BrowserModule,
@@ -145,10 +131,6 @@ BrowserAnimationsModule,
 CommonModule,
 HttpClientModule,
 HttpModule,
-NgxSpinnerModule,
-
- FlashMessagesModule.forRoot(),
-
  NgxLoadingModule.forRoot({
        animationType: ngxLoadingAnimationTypes.chasingDots,
        backdropBackgroundColour: 'rgba(0,0,0,0.1)',
@@ -156,7 +138,7 @@ NgxSpinnerModule,
        primaryColour: '#ffffff',
        secondaryColour: '#ffffff',
        tertiaryColour: '#ffffff'
-   })
+   }),
 
   ],
   entryComponents:[
@@ -164,7 +146,7 @@ NgxSpinnerModule,
     MattableeditComponent,
     MattabledeleteComponent,
   ],
-  providers: [CookieService,UserService],
+  providers: [UserService,CookieService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

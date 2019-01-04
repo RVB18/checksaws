@@ -40,7 +40,7 @@ options:any;
 
   }
 
-  private openModal(open : boolean) : void {
+  public openModal(open : boolean) : void {
     this.mdlSampleIsOpen = open;
 	this.router.navigate(['/cheques']);
 
@@ -89,15 +89,15 @@ else
       console.log(data.json());
 
 
-      var sett={ "Bankname": this.config.Bankname , "Address": this.config.Address, "Accountnumber":this.config.Accountnumber, "Routenumber":this.config.Routenumber, "Chequenumber": parseInt(this.config.Chequenumber+gh), "id": "1234", "Name":this.config.Name }
+      var sett={ "Bankname": this.config.Bankname , "Address": this.config.Address, "Accountnumber":this.config.Accountnumber, "Routenumber":this.config.Routenumber, "Chequenumber": parseInt(this.config.Chequenumber+gh), "id": this.config.id, "Name":this.config.Name }
       console.log(sett)
 
           this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
             //console.log(data);
             console.log(data)
             //alert("Succesfully Saved")
-        //    window.open('/cheque')
-            this.router.navigate(['/cheques'])
+           window.open('/cheques')
+          //  this.router.navigate(['/cheques'])
 
         });
 

@@ -51,6 +51,7 @@ vendor:any;
 isDataAvailable:boolean = false;
 myHeaders:any;
 options:any;
+showNav:boolean=false;
 getCookie(key:string){
     return this._cookieService.get(key);
   }
@@ -61,6 +62,10 @@ this.myHeaders = new Headers();
 var k= this.getCookie("idToken");
                 console.log(k+"venkat")
 
+                if(window.location.pathname=="/login"||window.location.pathname=="/signup")
+this.showNav=false
+else
+this.showNav=true
 
 
 
@@ -73,7 +78,6 @@ console.log("headu",this.myHeaders)
 
 
   this.options = new RequestOptions({ headers: this.myHeaders });
-  console.log("ajji")
 
           this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',this.options).subscribe(data => {
       console.log(data.json())
@@ -85,27 +89,35 @@ this.vendor=this.vendor.body.data.Items;
 
           });
   }
-//
+
 
 
 
 
   onSubmit(f){
-//console.log(f.value)
-var sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": "1234", "Name": f.value.name }
-console.log(sett)
+    var sett={}
+
+
+    if(this.config==null){
+     console.log(sett +"dfg")
+
+     sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
+}
+    else{
+sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
+}
+
 
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
-      //console.log(data);
       console.log(data)
       alert("Succesfully Saved")
-    //  window.open('/cheque')
 
   });
 }
-onvendorcreate(data){
 
-//  console.log(data.value)
+createcheck(data){
+
+
 var date=new Date(data.value.Date)
 var t=date.getMonth()+1
 var ne=t+"/"+date.getDate()+"/"+date.getFullYear();
@@ -126,6 +138,8 @@ console.log(data.json())
 
 
   ngOnInit() {
+
+
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
     console.log(data.json())
     this.config=data.json()

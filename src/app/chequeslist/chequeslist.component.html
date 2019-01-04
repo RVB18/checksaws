@@ -13,13 +13,17 @@
 	<mat-form-field>
 		<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
 	</mat-form-field>
-	<button type="button" id="both"  style="width:130px" name="button" class="btn btn-primary" style=""  data-toggle="modal" data-target="#print"(click)="g()"><i class="fa fa-print" style="font-size:18px"></i>
-		Print      	</button>&nbsp;
-		<button type="button" class="btn btn-primary offset-md-1" data-toggle="modal"style="background-color:black" data-target="#myModal">
-			<i class="fa fa-upload" aria-hidden="true"></i>
-	Upload
-		</button>
-
+	<button type="button" id="pr"  style="width:130px" name="button" class="btn btn-success" style=""  data-toggle="modal" data-target="#print"(click)="g()"><i class="fa fa-print" style="font-size:18px"></i>
+			Print      	</button>&nbsp;
+			<button type="button" class="btn btn-primary " data-toggle="modal"style="background-color:#3498DB" data-target="#myModal">
+				<i class="fa fa-upload" aria-hidden="true"></i>
+		Upload
+			</button>
+		&nbsp;
+				<button type="button" class="btn btn-danger " (click)="openModal(true)" >
+					<i class="fa fa-trash" aria-hidden="true"></i>
+			Delete
+				</button>
 		<!-- The Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 	<div class="modal-dialog"  style="margin-top:75px;">
@@ -154,3 +158,55 @@
 
 			</div>
 		</div>
+
+
+	<div id="mdlSample" class="modal  fade" height="500px" role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
+	<div class="modal-dialog  modal-lg" id="modal">
+	<div class="modal-content">
+		<div class="modal-header modalhead" id="head" style="height:150px">
+	  <h2 class="modal-title" style="color:white;margin-top:2%">Delete Check's</h2>
+
+						</div>
+	<div class="modal-body">
+	<div class="row">
+
+	<div class="col-md-12">
+	  <div class="container" id="table1">
+	  <p>Are You Sure You Want To delete this check's....?</p>
+	  <table class="table ">
+	    <thead>
+	      <tr>
+	      
+	        <th>Name</th>
+			        <th>Date</th>
+
+	        <th>LoadNo</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr *ngFor="let ft of del">
+
+	        <td>{{ft.name}}</td>
+			        <td>{{ft.date}}</td>
+
+	        <td>{{ft.load}}</td>
+	      </tr>
+
+	    </tbody>
+	  </table>
+	</div>             </div>
+	            </div></div>
+	<div class="modal-footer" align="right">
+	            <button type="button" id="btnOK" class="btn btn-success" (click)="deleteitems(del)"><i class="fa fa-check fa-fw"></i> Ok</button>
+	            <button type="button" id="btnClose" class="btn btn-danger" (click)="openModal(false)"><i class="fa fa-times fa-fw"></i> Cancel</button></div>
+	</div>
+	</div>
+	</div>
+
+
+
+
+
+		<ngx-loading [show]="loading" [config]="{
+		        backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
+		        primaryColour: '#ffffff', secondaryColour: '#ffffff', tertiaryColour: '#ffffff' }" ></ngx-loading>

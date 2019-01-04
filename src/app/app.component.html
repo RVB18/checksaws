@@ -37,7 +37,7 @@ Settings          </a>
 
 
 
-<nav class="mb-4 navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+<nav class="mb-4 navbar navbar-expand-lg navbar-dark bg-dark" id="navbar" *ngIf='showNav' >
                 <a class="navbar-brand" href="#">Alekta</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -138,7 +138,7 @@ Settings          </a>
                 <h4 class="modal-title">Create Single Check</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
               </div>
-              <form  #f1="ngForm" (ngSubmit)="onvendorcreate(f1)">
+              <form  #f1="ngForm" (ngSubmit)="createcheck(f1)">
 
               <div class="modal-body">
                 <div class="row" style="margin-left:50px;">
@@ -189,4 +189,10 @@ Settings          </a>
             </div>
           </div>
         </div>
+
+
+
+
+
+
 <router-outlet></router-outlet>

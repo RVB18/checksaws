@@ -32,14 +32,14 @@
                                                                                                     <div class="form-group" [ngClass]="displayFieldCss('password')">
                                                                                                       <div class="field-wrap">
                                                                                                         <label for="password" class="control-label required"><b></b></label>
-                                                                                                        <input type="text" placeholder="Password"  id="password" class="form-control"  formControlName="password" ngModel required>
+                                                                                                        <input type="password" placeholder="Password"  id="password" class="form-control"  formControlName="password" ngModel required>
                                                                                                         <app-field-error-display [displayError]="isFieldValid('password')" errorMsg="Please enter Password">
                                                                                                         </app-field-error-display>
                                                                                                       </div>
                                                                                                     </div>
 
 
-      <button type="submit" class="button button-block" (click)="onSubmit()" data-toggle="modal" data-target="#myModal">Get Startedh</button>
+      <button type="submit" class="button button-block" (click)="onSubmit()" data-toggle="modal" data-target="#myModal">Signup Now</button>
 
 
 </form>

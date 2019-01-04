@@ -21,6 +21,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./chequeslist.component.css']
 })
 export class ChequeslistComponent implements OnInit  {
+  public loading = false;
 
 config:any;
 datap:any;
@@ -33,6 +34,8 @@ datak:any;
   displayedColumns = [ 'chequeid', 'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer'];
   dataSource: MatTableDataSource<UserData>;
   //
+  mdlSampleIsOpen : boolean = false;
+del:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -40,7 +43,23 @@ datak:any;
   /*highlight(element: Element) {
     element.highlighted = !element.highlighted;
   }*/
+  private openModal(open : boolean) : void {
+   this.mdlSampleIsOpen = open;
+ //this.router.navigate(['/cheques']);
+ var deletedata=[]
+ if(open==true){
 
+   this.map.forEach((value, key) => {
+deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumber})
+
+
+   })
+   this.del=deletedata;
+
+
+ }
+
+}
 
   constructor(private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService) {
     const users: UserData[] = [];
@@ -84,9 +103,33 @@ console.log("getting "+users)
   }
 
 
+  deleteitems(items){
+
+	  var dele=[];
+	 this.mdlSampleIsOpen=false;
 
 
-  handleFileSelect()
+	  for(var t=0;t<items.length;t++){
+
+		  		  	dele.push(items[t].id)
+
+
+
+
+	  }
+
+		  var fp={id:dele}
+      console.log(fp)
+		  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/mchequedel',fp,this.options).subscribe(data => {
+  console.log(data.json())
+window.location.reload()
+
+    });
+
+
+  }
+
+  handleFileSelect(e)
     {
       var filedata=[];
   var filedate2=[];
@@ -147,11 +190,13 @@ console.log("getting "+users)
   })
 
   console.log(filedata)
+  this.loading=true
    var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
    if(filedata.length>0){
       this.http.post(url,{"Items":filedata},this.options).subscribe (
 
        (res:Response) =>{
+         this.loading=false
 
          console.log("success "+JSON.stringify(res));
 
