@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { UserService } from '../services/user.service';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-multicheck',
@@ -96,7 +96,7 @@ else
             //console.log(data);
             console.log(data)
             //alert("Succesfully Saved")
-           window.open('/cheques')
+            window.open("/cheques","_self")
           //  this.router.navigate(['/cheques'])
 
         });

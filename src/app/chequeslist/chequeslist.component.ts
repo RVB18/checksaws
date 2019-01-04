@@ -11,7 +11,7 @@ import { v4 as uuid } from 'uuid';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
 
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 import { UserService } from '../services/user.service';
 
 
@@ -43,7 +43,7 @@ del:any;
   /*highlight(element: Element) {
     element.highlighted = !element.highlighted;
   }*/
-  private openModal(open : boolean) : void {
+  public openModal(open : boolean) : void {
    this.mdlSampleIsOpen = open;
  //this.router.navigate(['/cheques']);
  var deletedata=[]

@@ -49,7 +49,7 @@ MatTreeModule,
 } from '@angular/material';
 
 import {CdkTableModule} from '@angular/cdk/table';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieModule } from 'ngx-cookie';
 import { NgxLoadingModule,ngxLoadingAnimationTypes } from 'ngx-loading';
 
 import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
@@ -131,6 +131,7 @@ BrowserAnimationsModule,
 CommonModule,
 HttpClientModule,
 HttpModule,
+CookieModule.forRoot(),
  NgxLoadingModule.forRoot({
        animationType: ngxLoadingAnimationTypes.chasingDots,
        backdropBackgroundColour: 'rgba(0,0,0,0.1)',
@@ -146,7 +147,7 @@ HttpModule,
     MattableeditComponent,
     MattabledeleteComponent,
   ],
-  providers: [UserService,CookieService,],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

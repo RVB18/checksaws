@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 

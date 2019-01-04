@@ -7,7 +7,7 @@ import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angul
 import { Router } from '@angular/router';
 
 
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 
 import { v4 as uuid } from 'uuid';
 
@@ -62,7 +62,7 @@ this.myHeaders = new Headers();
 var k= this.getCookie("idToken");
                 console.log(k+"venkat")
 
-                if(window.location.pathname=="/login"||window.location.pathname=="/signup")
+                if(window.location.pathname=="/login"||window.location.pathname=="/signup"||window.location.pathname=="/"||window.location.pathname=="")
 this.showNav=false
 else
 this.showNav=true

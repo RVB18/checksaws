@@ -13,7 +13,7 @@ import { HttpModule } from '@angular/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 
 
 import {

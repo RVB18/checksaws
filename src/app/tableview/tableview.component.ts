@@ -32,7 +32,7 @@ import { Router } from '@angular/router';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 
 
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService } from 'ngx-cookie';
 
 
 
