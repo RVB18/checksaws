@@ -44,7 +44,7 @@ import { CookieService } from 'ngx-cookie';
 })
 
 export class TableviewComponent implements OnInit {
-  displayedColumns = ['id', 'Name', 'Address', 'Mobile', 'Email','actions'];
+  displayedColumns = ['Name', 'Address', 'Mobile', 'Email','actions'];
   index: number;
   id: string;
   dataSource: MatTableDataSource<VendorData>;

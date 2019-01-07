@@ -31,7 +31,7 @@ datak:any;
 	count:any;
   coun:any;
   options:any;
-  displayedColumns = [ 'chequeid', 'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer'];
+  displayedColumns = [  'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer'];
   dataSource: MatTableDataSource<UserData>;
   //
   mdlSampleIsOpen : boolean = false;

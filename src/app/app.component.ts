@@ -52,6 +52,9 @@ isDataAvailable:boolean = false;
 myHeaders:any;
 options:any;
 showNav:boolean=false;
+mdlSampleIsOpen : boolean = false;
+
+
 getCookie(key:string){
     return this._cookieService.get(key);
   }
@@ -60,7 +63,7 @@ getCookie(key:string){
 this.config={}
 this.myHeaders = new Headers();
 var k= this.getCookie("idToken");
-                console.log(k+"venkat")
+                console.log(k)
 
                 if(window.location.pathname=="/login"||window.location.pathname=="/signup"||window.location.pathname=="/"||window.location.pathname=="")
 this.showNav=false
@@ -91,14 +94,21 @@ this.vendor=this.vendor.body.data.Items;
   }
 
 
+  public openModal(open : boolean) : void {
+    this.mdlSampleIsOpen = open;
 
+
+  }
 
 
   onSubmit(f){
     var sett={}
 
 
-    if(this.config==null){
+    if(Object.keys(this.config).length==0){
+
+
+
      console.log(sett +"dfg")
 
      sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
@@ -135,16 +145,59 @@ console.log(data.json())
 
 }
 
+ isEmpty(arg) {
+  for (var item in arg) {
+    return false;
+  }
+  return true;
+}
 
 
+logout(){
+
+
+
+
+this._cookieService.removeAll()
+location.href='/login'
+
+}
+redirect(){
+var port=4200
+var consumerKey='Q0ypusZrhhgqsIbvnA1PNv2rleMwENKSvuY5GGbDS3kfskJ1Ho'
+
+var bb=  "https://appcenter.intuit.com/connect/oauth2" +
+     '?client_id=' + consumerKey +
+     '&redirect_uri=' + 'http://localhost:4200/cheques'+
+     '&scope=com.intuit.quickbooks.accounting' +
+     '&response_type=code' +
+     '&state=555ghjghj'
+window.open(bb)
+}
   ngOnInit() {
+
+/*
+if(this.getCookie("idToken"))
+console.log("yup"  )
+else
+console.log("nope")*/
 
 
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
     console.log(data.json())
     this.config=data.json()
-    this.config=this.config.data.body.data.Items[0]
+    console.log(this.config.data.body.data.Items.length)
+    if(this.config.data.body.data.Items.length==0&&this.getCookie("idToken"))
+      this.mdlSampleIsOpen=true
+  else
+  this.config=this.config.data.body.data.Items[0]
+
+
+
 
     });
+
+
+
 }
 }
