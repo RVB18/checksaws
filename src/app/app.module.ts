@@ -134,11 +134,11 @@ HttpModule,
 CookieModule.forRoot(),
  NgxLoadingModule.forRoot({
        animationType: ngxLoadingAnimationTypes.chasingDots,
-       backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+       backdropBackgroundColour: '#000000',
        backdropBorderRadius: '4px',
-       primaryColour: '#ffffff',
-       secondaryColour: '#ffffff',
-       tertiaryColour: '#ffffff'
+       primaryColour: '#000',
+       secondaryColour: '#000',
+       tertiaryColour: '#000'
    }),
 
   ],

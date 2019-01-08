@@ -21,7 +21,10 @@ background-color: black;
   -ms-flex: 25%; /* IE10 */
   flex: 25%;
 }
-
+.col-5 {
+  -ms-flex: 5%; /* IE10 */
+  flex: 5%;
+}
 .col-50 {
   -ms-flex: 50%; /* IE10 */
   flex: 50%;
@@ -31,8 +34,13 @@ background-color: black;
   -ms-flex: 75%; /* IE10 */
   flex: 75%;
 }
+#id01{
+
+
+}
 
 .col-25,
+.col-5,
 .col-50,
 .col-75 {
   padding: 0 16px;
@@ -74,4 +82,10 @@ color: white;
     .cancelbtn {
        width: 100%;
     }
+}
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }

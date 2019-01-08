@@ -1,19 +1,9 @@
-mat-header-cell{
-  background-color: #000;
-  color: white;
-}
-.modal-header{
-  background-color: black;
-  color:white;
-}
 th{
-  background-color: #000;
-  color: white;
+ background-color: 	#386B88	;
+ color: #fff;
 }
-.modal-header{
-  background-color: black;
-  color:white;
-}
+
+
 .export{
 align-items:center;height:35px;
 }
@@ -24,12 +14,12 @@ padding-left:0px;
 }
 
 #both{
-background-color:black;margin-left:10%;
+background-color:green;
 }
 
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 1180px) {
     #both {
-      background-color:black;margin-left:20%;
+      background-color:green;margin-left:70%;
     }
 
 }

@@ -4,7 +4,8 @@
 
 
 <br>
-<h1 align="center" ><i class="fa fa-list-alt" aria-hidden="true"></i> Check Details</h1>
+<h1 align="center" class="title" ><i class="fa fa-list-ul" aria-hidden="true"></i>
+ Check Details</h1>
 
 <br>
 
@@ -26,7 +27,7 @@
 				</button>
 		<!-- The Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
-	<div class="modal-dialog"  style="margin-top:75px;">
+	<div class="modal-dialog"  style="margin-top:10%;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">Upload CSV File</h4>
@@ -37,13 +38,13 @@
 
 			<div class="modal-body">
 				<div class="modal-body">
-					<form  >
+					<form >
 
 						<label for="filePicker"></label><br>
 
 						<input type="file"  class="upload" id="filePicker" align="right" (change)="handleFileSelect($event)" name="file"  accept="image/jpeg/csv" ngModel>
 						</form>
-						 <br> <br> <br>
+						 <br>
 					<label style="margin-top:10px;"> Download Sample Csv File </label>	<a href="http://13.232.165.2:3000/images/csv file.csv" download>
 							<i class="fa fa-download" aria-hidden="true"></i>
 
@@ -102,7 +103,7 @@
 		<br>
 
 		<div class="example-container mat-elevation-z8">
-			<mat-table #table [dataSource]="dataSource" matSort>
+			<mat-table #table [dataSource]="dataSource" matSort width="100%">
 
 				<!--- Note that these columns can be defined in any order.
 					The actual rendered columns are set as a property on the row definition" -->
@@ -111,7 +112,7 @@
 
 
 					<!-- ID Column -->
-				
+
 					<!-- Progress Column -->
 					<ng-container matColumnDef="Name">
 						<mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
@@ -136,7 +137,7 @@
 					<ng-container matColumnDef="Address">
 						<mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
 						<mat-cell *matCellDef="let dataSource"> {{dataSource.StreetAddress}} , {{dataSource.CityorTown}}  {{dataSource.State}} {{dataSource.zipcode}} </mat-cell>
-					</ng-container>
+					</ng-container> &nbsp;&nbsp;&nbsp;&nbsp;
 						<ng-container matColumnDef="LoadNo">
 						<mat-header-cell *matHeaderCellDef mat-sort-header> LoadNo </mat-header-cell>
 						<mat-cell *matCellDef="let dataSource"> {{dataSource.Loadnumber}} </mat-cell>

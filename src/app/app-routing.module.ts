@@ -23,7 +23,7 @@ const routes: Routes = [
 {path:'',component:LoginComponent},
 {path:'signup',component:SignupComponent},
 {path:'login',component:LoginComponent},
-
+{path:'quickbooks',component:Multicheck2Component},
 
 {path:'tableview',component:TableviewComponent}];
 

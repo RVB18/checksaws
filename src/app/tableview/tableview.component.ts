@@ -44,7 +44,7 @@ import { CookieService } from 'ngx-cookie';
 })
 
 export class TableviewComponent implements OnInit {
-  displayedColumns = ['Name', 'Address', 'Mobile', 'Email','actions'];
+  displayedColumns = ['Name', 'Street','City','State','Zipcode', 'Mobile', 'Email','actions'];
   index: number;
   id: string;
   dataSource: MatTableDataSource<VendorData>;
@@ -293,7 +293,10 @@ export function getdata(sheet){
 export interface VendorData {
   id: string;
   Name: string;
-  Address: string;
+  StreetAddress: string;
+  CityorTown: string;
+  State: string;
+  zipcode: string;
   Email: string;
   Mobile:string;
 

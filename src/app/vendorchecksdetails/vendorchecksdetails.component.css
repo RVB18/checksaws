@@ -3,7 +3,8 @@ ol.breadcrumb {
     list-style: none;
     background-color: #D9E7F4;
 }
+
 mat-header-cell{
-  background-color: #000;
-  color: white;
+ background-color: 	#386B88	;
+ color: #fff;
 }

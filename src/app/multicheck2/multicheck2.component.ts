@@ -1,73 +1,49 @@
 
 import { Component, OnInit ,ViewChild} from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import { CookieService } from 'ngx-cookie';
+
 @Component({
   selector: 'app-multicheck2',
   templateUrl: './multicheck2.component.html',
   styleUrls: ['./multicheck2.component.css']
 })
 export class Multicheck2Component implements OnInit {
+myHeaders:any;
+options:any;
+access:any;
+  getCookie(key:string){
+      return this._cookieService.get(key);
+    }
 
-  data:any;
-  map:any;
+  constructor(private http:Http,private router:Router,private activatedRoute: ActivatedRoute,private _cookieService:CookieService) {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      //  console.log(params.code);
 
-  displayedColumns = [ 'chequeid', 'Name', 'Date', 'Amount','Status'];
-  dataSource: MatTableDataSource<UserData>;
-//
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
-  constructor(private http:HttpClient) {
-    // Create 100 users
-    const users: UserData[] = [];
-    //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
-    this.map = new Map();
-
-    // Assign the data to the data source for the table to render
+    this.myHeaders = new Headers();
+    this.myHeaders.append('Authorization',this.getCookie("idToken"))
 
 
-    this.http.get('http://13.232.165.2:3000/cheque').subscribe(data => {
-      //console.log(data);
-      this.data=data;
-      for(var t=0;t<this.data.length;t++){
-        users.push(data[t])
+    this.options = new RequestOptions({ headers: this.myHeaders });
+var data={code:params.code,url:window.location.origin+window.location.pathname}
+console.log(data)
 
-      }
-      this.dataSource = new MatTableDataSource(users);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    //  console.log("sdfsd "+this.dataSource)
+    this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/quickbooks',data,this.options).subscribe(data => {
 
 
+this.access=data.json()
+console.log(this.access)
+this._cookieService.put("quickbookstoken",this.access.access_token);
+
+this.router.navigate(['/cheques',{ queryParams: { "host": 'qb' } }])
     });
+      });
   }
 
-  /**
-  * Set the paginator and sort after the view init since this component will
-  * be able to query its view for the initialized paginator and sort.
-  */
 
-  ngAfterViewInit() {
-  }
-
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
 
 
   ngOnInit(){}
 
-}
-
-
-
-export interface UserData {
-  chequeid: string;
-  Name: string;
-  Date: string;
-  Dollar: string;
 }

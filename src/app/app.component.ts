@@ -165,14 +165,14 @@ location.href='/login'
 redirect(){
 var port=4200
 var consumerKey='Q0ypusZrhhgqsIbvnA1PNv2rleMwENKSvuY5GGbDS3kfskJ1Ho'
-
+console.log(window.location)
 var bb=  "https://appcenter.intuit.com/connect/oauth2" +
      '?client_id=' + consumerKey +
-     '&redirect_uri=' + 'http://localhost:4200/cheques'+
+     '&redirect_uri=' + window.location.origin+'/quickbooks'+
      '&scope=com.intuit.quickbooks.accounting' +
      '&response_type=code' +
      '&state=555ghjghj'
-window.open(bb)
+window.open(bb,'_self')
 }
   ngOnInit() {
 

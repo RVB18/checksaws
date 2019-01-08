@@ -3,11 +3,12 @@ mat-header-cell{
  color: #fff;
 }
 
+.modal-header{
 
-
-.modal-header,.modal-header{
- background-color: black;
- color:white;
+  background-color: #000;
+}
+.mat-cell,.mat-header-cell {
+  padding: 0 8px 0  15px;
 }
 .close{
 color: white;
@@ -30,9 +31,15 @@ th.mat-column-position, td.mat-column-position {
 }
 
 @media screen and (max-width: 600px) {
-
+  .mat-cell,.mat-header-cell {
+    padding: 0 8px 0  15px;
+  }
+  mat-cell{
+    width:100%;
+    font-size: 0.2em;
+  }
 #pr{
-margin-left:1%;
+margin-right:10%;
 }
 .one{
 width:100%;
@@ -53,15 +60,13 @@ mat-cell{
 }
 @media screen and (max-width: 960px) {
    #pr {
-margin-left:72%;
+margin-left:1%;
 }}
-@media screen and (min-width: 960px) {
-   #pr {
-margin-left:50%;
-  }
+@media screen and (min-width: 1080px) {
 
-
-
+#pr{
+  margin-left:50%;
+}
 }
 
 .row {

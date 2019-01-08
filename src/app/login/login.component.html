@@ -13,7 +13,7 @@
 
 
 
-<div class="form">
+<div class="form" style="margin-top:8%;">
 
 
 
@@ -36,8 +36,9 @@
 
 
 
-                                    <form class="form-horizontal" [formGroup]="form">
 
+                                    <form class="form-horizontal" [formGroup]="form">
+<p style="color:white">  Email ID:<p>
                                       <div class="form-group" [ngClass]="displayFieldCss('email')">
                                         <div class="field-wrap">
                                           <label for="email" class="control-label required"><b></b></label>
@@ -50,7 +51,8 @@
 
 
 
-                                                                            <div class="form-group" [ngClass]="displayFieldCss('password')">
+
+                                                                <p style="color:white">  Password:<p>               <div class="form-group" [ngClass]="displayFieldCss('password')">
                                                                               <div class="field-wrap">
                                                                                 <label for="password" class="control-label required"><b></b></label>
                                                                                 <input type="password" placeholder=" Password"  id="password" class="form-control" formControlName="password" ngModel required>
@@ -168,5 +170,5 @@
 
 
 <ngx-loading [show]="loading" [config]="{
-        backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
-        primaryColour: '#ffffff', secondaryColour: '#ffffff', tertiaryColour: '#ffffff' }" ></ngx-loading>
+        backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
+        primaryColour: '#DB4437', secondaryColour: '#F4B400', tertiaryColour: '#DB4437' }" ></ngx-loading>
