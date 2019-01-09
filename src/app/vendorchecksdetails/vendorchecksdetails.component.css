@@ -7,4 +7,6 @@ ol.breadcrumb {
 mat-header-cell{
  background-color: 	#386B88	;
  color: #fff;
+ font-size: 1em;
+ text-align: center;
 }

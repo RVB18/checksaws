@@ -9,9 +9,22 @@
 }
 .title{
   font-size: 2.5em;
-
+    color: #3F5B59;
   font-family: 'Abril Fatface', cursive;
 
+}
+
+.one{
+
+  margin-right:15%;
+  margin-left:15%;
+}
+
+mat-header-cell{
+ background-color: 	#386B88	;
+ color: #fff;
+ font-size: 1em;
+ text-align: center;
 }
 
 body{
@@ -148,4 +161,10 @@ p{
 */
 mat-cell.mat-cell, mat-header-cell.mat-header-cell {
   overflow: visible;
+}
+
+
+
+.mat-dialog-container{
+  height:150px;
 }

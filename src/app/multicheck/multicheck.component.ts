@@ -19,6 +19,8 @@ export class MulticheckComponent implements OnInit  {
  message:any;
   mdlSampleIsOpen : boolean = false;
 to:any;
+public loading = false;
+
 options:any;
   constructor(private router:Router,private route: ActivatedRoute,private http:Http,private userdata:UserService,private _cookieService:CookieService) {
 	 this.config={}
@@ -85,6 +87,8 @@ else
 
   var printchangedata={id:podata}
   console.log(printchangedata)
+  this.loading=true
+
   this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/changecheckstatus',printchangedata,this.options).subscribe(data => {
       console.log(data.json());
 
@@ -95,6 +99,8 @@ else
           this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
             //console.log(data);
             console.log(data)
+            this.loading=false
+
             //alert("Succesfully Saved")
             window.open("/cheques","_self")
           //  this.router.navigate(['/cheques'])

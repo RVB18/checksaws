@@ -137,9 +137,9 @@ console.log(k)
 
               addIssue (issue: Issue): void {
 
-            var b={id:uuid(),Name:issue.Name,Address:issue.Address,Mobile:issue.Mobile,Email:issue.Email}
+          //  var b={id:uuid(),Name:issue.Name,Address:issue.Address,Mobile:issue.Mobile,Email:issue.Email}
 
-            console.log(b)
+          //  console.log(b)
 
                 console.log(issue)
 }
@@ -225,13 +225,13 @@ ExportTOExcel()
 
   }
 
-  startEdit(i: number, id: string, Name: string, Address: string, Mobile: string, Email:string) {
+  startEdit(i: number, id: string, Name: string, StreetAddress: string, CityorTown: string, State:string, zipcode:string,Mobile:string,Email:string) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
+    console.log("dscvs "+StreetAddress)
     const dialogRef = this.dialog.open(MattableeditComponent, {
-      data: {id: id, Name: Name, Address: Address, Mobile: Mobile, Email: Email}
+      data: {id: id, Name: Name, StreetAddress: StreetAddress,CityorTown:CityorTown,State:State,zipcode:zipcode, Mobile: Mobile, Email: Email}
     });
 
     dialogRef.afterClosed().subscribe(result => {

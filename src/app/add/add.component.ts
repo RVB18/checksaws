@@ -62,7 +62,7 @@ export class AddComponent  implements OnInit {
     var k= this.getCookie("idToken");
                     console.log(this.data)
 
-  var b={id:uuid(),Name:this.data.Name,Address:this.data.Address,Mobile:this.data.Mobile,Email:this.data.Email}
+  var b={id:uuid(),Name:this.data.Name,StreetAddress:this.data.StreetAddress,CityorTown:this.data.CityorTown,State:this.data.State,zipcode:this.data.zipcode,Mobile:this.data.Mobile,Email:this.data.Email}
 
     let myHeaders = new Headers();
     	myHeaders.append('Content-Type', 'application/json');

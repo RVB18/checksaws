@@ -3,7 +3,12 @@ th{
  color: #fff;
 }
 
-
+mat-header-cell{
+ background-color: 	#386B88	;
+ color: #fff;
+ font-size: 1em;
+ text-align: center;
+}
 .export{
 align-items:center;height:35px;
 }

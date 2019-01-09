@@ -17,10 +17,25 @@
     <!--Contains mat-hint for characters count and has maxLengt set-->
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #inputstate class="form-control" placeholder="Address" [(ngModel)]="data.Address" name="Address" maxlength="50" required >
+        <input matInput #inputstate class="form-control" placeholder="StreetAddress" [(ngModel)]="data.StreetAddress" name="StreetAddress" maxlength="50" required >
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         <mat-hint align="end">{{inputstate.value?.length || 0}}/50</mat-hint>
       </mat-form-field>
+    </div>
+    <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="CityorTown" [(ngModel)]="data.CityorTown" name="CityorTown">
+        </mat-form-field>
+    </div>
+    <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="State" [(ngModel)]="data.State" name="State">
+        </mat-form-field>
+    </div>
+    <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Zipcode" [(ngModel)]="data.zipcode" name="zipcode">
+        </mat-form-field>
     </div>
 
     <div class="form">
@@ -40,8 +55,8 @@
 
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()" style="color:white;background-color:green">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1" style="color:white;background-color:red">Cancel</button>
     </div>
   </form>
 </div>

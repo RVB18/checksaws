@@ -133,7 +133,7 @@ HttpClientModule,
 HttpModule,
 CookieModule.forRoot(),
  NgxLoadingModule.forRoot({
-       animationType: ngxLoadingAnimationTypes.chasingDots,
+       animationType: ngxLoadingAnimationTypes.circle,
        backdropBackgroundColour: '#000000',
        backdropBorderRadius: '4px',
        primaryColour: '#000',

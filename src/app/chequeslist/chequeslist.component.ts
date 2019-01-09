@@ -134,6 +134,7 @@ window.location.reload()
       var filedata=[];
   var filedate2=[];
       var file = (<HTMLInputElement>document.getElementById('filePicker'));
+      document.getElementById("filePicker").innerHTML = "File choose";
     //  var jsonFile = this.csvJSON(file);
 
       //console.log(jsonFilefile)
@@ -198,7 +199,15 @@ window.location.reload()
        (res:Response) =>{
          this.loading=false
 
-         console.log("success "+JSON.stringify(res));
+         console.log(res.json());
+         var uploadresponse=res.json()
+         if(uploadresponse.message=="success"){
+         alert("Succesfully uploaded")
+         window.location.reload()
+       }
+       else{
+         alert("There is a Problem With Upload File")
+       }
 
   }
   )

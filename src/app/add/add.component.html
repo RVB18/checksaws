@@ -15,11 +15,26 @@
     </div>
 
     <!--Contains mat-hint for characters count and has maxLengt set-->
+
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #inputstate class="form-control" placeholder="Address" [(ngModel)]="data.Address" name="Address" maxlength="50" required >
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        <mat-hint align="end">{{inputstate.value?.length || 0}}/50</mat-hint>
+        <input matInput placeholder="StreetAddress" [(ngModel)]="data.StreetAddress" name="StreetAddress" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="CityorTown" [(ngModel)]="data.CityorTown" name="CityorTown" required>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="State" [(ngModel)]="data.State" name="State" required>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="zipcode" [(ngModel)]="data.zipcode" name="zipcode" required>
       </mat-form-field>
     </div>
 
@@ -37,10 +52,10 @@
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="color:white;background-color:green">Save</button>
 
 
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1" style="color:white;background-color:red"> Cancel</button>
     </div>
   </form>
 </div>

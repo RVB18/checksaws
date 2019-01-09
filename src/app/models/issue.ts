@@ -1,7 +1,13 @@
 export class Issue {
   id: string;
   Name: string;
-  Address: string;
+  StreetAddress: string;
+  CityorTown: string;
+
+  State: string;
+
+  zipcode: string;
+
   Mobile: string;
 
   Email: string;

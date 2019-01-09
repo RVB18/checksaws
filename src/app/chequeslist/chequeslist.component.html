@@ -4,12 +4,12 @@
 
 
 <br>
-<h1 align="center" class="title" ><i class="fa fa-list-ul" aria-hidden="true"></i>
+<h1 align="center" class="title" ><i class="fa fa-list-ul " style="font-size:.80em" aria-hidden="true"></i> &nbsp;
  Check Details</h1>
 
 <br>
 
-<div class="container" >
+<div class="one" >
 
 	<mat-form-field>
 		<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
@@ -34,15 +34,23 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 			</div>
+      <form class="md-form">
+
+</form>
 			<form  #f="ngForm">
 
 			<div class="modal-body">
 				<div class="modal-body">
 					<form >
 
-						<label for="filePicker"></label><br>
+            <div class="file-upload">
+              <div class="file-select">
+                <div class="file-select-button" id="fileName">Choose File</div>
+                <div class="file-select-name" id="noFile">No file chosen...</div>
+                <input type="file"  name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" ngModel>
+              </div>
+            </div>
 
-						<input type="file"  class="upload" id="filePicker" align="right" (change)="handleFileSelect($event)" name="file"  accept="image/jpeg/csv" ngModel>
 						</form>
 						 <br>
 					<label style="margin-top:10px;"> Download Sample Csv File </label>	<a href="http://13.232.165.2:3000/images/csv file.csv" download>
@@ -52,7 +60,7 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-success" >Submit</button>
+				<button type="submit" class="btn btn-success" (click)="handleFileSelect($event)" >Submit</button>
 
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>	</div>
 			</form>
@@ -130,7 +138,7 @@
 						<mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
 						<mat-cell *matCellDef="let dataSource" [style.color]="dataSource.color"> {{dataSource.Amount}}</mat-cell>
 					</ng-container>
-					<ng-container matColumnDef="Status">
+					<ng-container matColumnDef="Status" style="color:red;">
 						<mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
 						<mat-cell *matCellDef="let dataSource"> {{dataSource.Currentstatus}} </mat-cell>
 					</ng-container>
@@ -200,10 +208,6 @@
 	</div>
 	</div>
 
-
-
-
-
-		<ngx-loading [show]="loading" [config]="{
-		        backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
-		        primaryColour: '#ffffff', secondaryColour: '#ffffff', tertiaryColour: '#ffffff' }" ></ngx-loading>
+  <ngx-loading [show]="loading" [config]="{
+          backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
+          primaryColour: '#DB4437', secondaryColour: '#F4B400', tertiaryColour: '#DB4437' }" ></ngx-loading>
