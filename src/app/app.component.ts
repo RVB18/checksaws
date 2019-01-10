@@ -49,6 +49,8 @@ users:any
 config:any;
 vendor:any;
 isDataAvailable:boolean = false;
+loading:boolean = false;
+
 myHeaders:any;
 options:any;
 showNav:boolean=false;
@@ -116,10 +118,13 @@ this.vendor=this.vendor.body.data.Items;
     else{
 sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
 }
+this.loading=true
 
 
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
       console.log(data)
+      this.loading=false
+
       alert("Succesfully Saved")
 
   });
@@ -135,12 +140,19 @@ var ne=t+"/"+date.getDate()+"/"+date.getFullYear();
 var f1={Name:data.value.Name,Date:data.value.Date,Amount:data.value.Amount,Carrername:data.value.Careern,Loadnumber:data.value.Loadnumber,id:uuid()}
 console.log(f1)
 
-
+this.loading=true
 
 
   this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',f1,this.options).subscribe(data => {
-console.log(data.json())
+var successdata=data.json()
+this.loading=false
+if(successdata.message="success"){
+alert("check created")
 
+window.location.reload()
+}
+else
+alert("There is a problem in creating a check")
   });
 
 }
