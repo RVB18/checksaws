@@ -29,10 +29,10 @@
 
 
 
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+</mat-form-field>
 
-<mat-form-field floatPlaceholder="never" class="form">
-		<input matInput #filter placeholder="Search">
-	</mat-form-field>
 
 
 	<button type="button" id="both"  style="width:130px;color:white" name="button" class="btn btn-success" style="" (click)="ExportTOExcel()"><i class="fa fa-download" style="font-size:18px"></i>

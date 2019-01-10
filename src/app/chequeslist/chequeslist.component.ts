@@ -68,7 +68,7 @@ this.coun=0;
     // Assign the data to the data source for the table to render
 //
 var k= this.getCookie("idToken");
-                console.log(k+"venkat")
+              //  console.log(k+"venkat")
 
 
 
@@ -81,7 +81,7 @@ console.log(myHeaders)
 
 this.options=options;
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',options).subscribe(data => {
-console.log(data.json())
+//console.log(data.json())
 
    this.datap=data.json()
 this.datap=this.datap.body.data.Items;
@@ -90,7 +90,7 @@ this.datap=this.datap.body.data.Items;
         users.push(this.datap[t])
 
       }
-console.log("getting "+users)
+//console.log("getting "+users)
 
       this.dataSource = new MatTableDataSource(users);
 
@@ -149,7 +149,7 @@ else
       const reader = new FileReader();
    reader.onload = () => {
      var text = reader.result.toString();
-     console.log('CSV: ', text);
+    // console.log('CSV: ', text);
      var lines = text.split("\n");
 
      var result = [];

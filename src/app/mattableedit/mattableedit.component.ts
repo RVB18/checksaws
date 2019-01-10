@@ -52,9 +52,9 @@ export class MattableeditComponent implements OnInit {
 
 
   var k= this.getCookie("idToken");
-                  console.log(this.data)
 
-var b={id:this.data.id,Name:this.data.Name,Street:this.data.StreetAddress,CityorTown:this.data.CityorTown,State:this.data.State,zipcode:this.data.zipcode,Mobile:this.data.Mobile,Email:this.data.Email}
+var b={id:this.data.id,Name:this.data.Name,StreetAddress:this.data.StreetAddress,CityorTown:this.data.CityorTown,State:this.data.State,zipcode:this.data.zipcode,Mobile:this.data.Mobile,Email:this.data.Email}
+console.log(b)
 
   let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -64,7 +64,11 @@ var b={id:this.data.id,Name:this.data.Name,Street:this.data.StreetAddress,Cityor
 
 
       this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
+        var data1=data.json();
+        if(data1.message="success")
         window.location.reload();
+        else
+        alert("Unable to Create")
   console.log(data.json())
 
 
