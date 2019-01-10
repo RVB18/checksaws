@@ -120,7 +120,7 @@ sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.
 }
 this.loading=true
 
-
+console.log(sett)
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
       console.log(data)
       this.loading=false
@@ -197,12 +197,12 @@ console.log("nope")*/
 
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
     console.log(data.json())
-    this.config=data.json()
-    console.log(this.config.data.body.data.Items.length)
-    if(this.config.data.body.data.Items.length==0&&this.getCookie("idToken"))
+    var bankdata=data.json()
+    console.log(bankdata.data.body.data.Items.length)
+    if(bankdata.data.body.data.Items.length==0&&this.getCookie("idToken"))
       this.mdlSampleIsOpen=true
   else
-  this.config=this.config.data.body.data.Items[0]
+  this.config=bankdata.data.body.data.Items[0]
 
 
 

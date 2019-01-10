@@ -106,7 +106,6 @@ console.log("getting "+users)
   deleteitems(items){
 
 	  var dele=[];
-	 this.mdlSampleIsOpen=false;
 
 
 	  for(var t=0;t<items.length;t++){
@@ -120,9 +119,18 @@ console.log("getting "+users)
 
 		  var fp={id:dele}
       console.log(fp)
+      this.loading=true
 		  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/mchequedel',fp,this.options).subscribe(data => {
-  console.log(data.json())
-window.location.reload()
+  var checksdata=data.json()
+  this.loading=false
+
+  if(checksdata.message=="success"){
+  window.location.reload()
+}
+else
+  alert("Cannot be Deleted")
+
+//window.location.reload()
 
     });
 
