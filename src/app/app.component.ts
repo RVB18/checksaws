@@ -146,13 +146,18 @@ this.loading=true
   this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',f1,this.options).subscribe(data => {
 var successdata=data.json()
 this.loading=false
-if(successdata.message="success"){
-alert("check created")
+if(successdata.message="success")
 
-window.location.reload()
+{
+  console.log(successdata.message)
+//alert("check created")
+
+//window.location.reload()
 }
-else
-alert("There is a problem in creating a check")
+else if(successdata.message="Failure"){
+console.log(this.success.message);
+}
+//alert("There is a problem in creating a check")
   });
 
 }
