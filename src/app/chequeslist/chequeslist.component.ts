@@ -22,6 +22,8 @@ import { UserService } from '../services/user.service';
 })
 export class ChequeslistComponent implements OnInit  {
   public loading = false;
+  users: UserData[] = [];
+  isLoading : boolean=false;
 
 config:any;
 datap:any;
@@ -62,7 +64,6 @@ deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumb
 }
 
   constructor(private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService) {
-    const users: UserData[] = [];
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
 this.coun=0;
     // Assign the data to the data source for the table to render
@@ -80,19 +81,22 @@ console.log(myHeaders)
   let options = new RequestOptions({ headers: myHeaders });
 
 this.options=options;
+this.isLoading=true
+
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',options).subscribe(data => {
 //console.log(data.json())
-
    this.datap=data.json()
+   this.isLoading=false
+
 this.datap=this.datap.body.data.Items;
 
       for(var t=0;t<this.datap.length;t++){
-        users.push(this.datap[t])
+        this.users.push(this.datap[t])
 
       }
 //console.log("getting "+users)
 
-      this.dataSource = new MatTableDataSource(users);
+      this.dataSource = new MatTableDataSource(this.users);
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -170,13 +174,13 @@ else
      }
      //convert text to json here
      //var json = this.csvJSON(text);
-     console.log(JSON.stringify(result.pop()))
+  //   console.log(JSON.stringify(result.pop()))
   /*   result.forEach(function(ele){
      console.log(ele.Name+ele.Amount)
 
    })*/
    result.forEach(function(ele){
-     console.log(ele.Name)
+     //console.log(ele.Name)
     var m={
 
        "Amount": ele.Amount,
@@ -211,6 +215,19 @@ else
          var uploadresponse=res.json()
          if(uploadresponse.message=="success"){
          alert("Succesfully uploaded")
+         console.log(this.users)
+      //   this.dataSource.data=filedata.concat(this.users)
+        // for(var g=0;g<filedata.length;g++){
+
+      //  this.dataSource.addRow(filedata[g])
+
+
+      //   }
+
+            //   this.dataSource = new MatTableDataSource(users);
+
+            //   this.dataSource.paginator = this.paginator;
+            //     this.dataSource.sort = this.sort;
          window.location.reload()
        }
        else{

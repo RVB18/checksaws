@@ -14,7 +14,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
   styleUrls: ['./vendor.component.css']
 })
 export class VendorComponent implements OnInit {
-
+isLoading:boolean=false
   map:any;
   data:any;
 datac:any;
@@ -56,10 +56,12 @@ datac:any;
       myHeaders.append('Authorization',k)
     console.log(myHeaders)
       let options = new RequestOptions({ headers: myHeaders });
-
+this.isLoading=true
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/changecheckstatus',options).subscribe(data => {
       this.datac=data.json();
 console.log(this.datac)
+this.isLoading=false
+
       this.datac=this.datac.body.finaldata;
       for(var t=0;t<this.datac.length;t++){
         users.push(this.datac[t])

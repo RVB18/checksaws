@@ -54,7 +54,7 @@ export class TableviewComponent implements OnInit {
 
   a=[]
 
-
+isLoading=false
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -99,11 +99,11 @@ console.log(k)
                   myHeaders.append('Authorization',k)
                 console.log(myHeaders)
                   let optionss = new RequestOptions({ headers: myHeaders });
-
+this.isLoading=true
                   this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',optionss).subscribe(data => {
                   console.log(data.json())
 
-
+this.isLoading=false
                   console.log("j")
                   this.datap=data.json()
 
@@ -141,7 +141,7 @@ console.log(k)
 
           //  console.log(b)
 
-                console.log(issue)
+                console.log("sdvds "+issue)
 }
 
 

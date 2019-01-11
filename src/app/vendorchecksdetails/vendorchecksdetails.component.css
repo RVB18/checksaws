@@ -10,3 +10,6 @@ mat-header-cell{
  font-size: 1em;
  text-align: center;
 }
+mat-progress-spinner {
+  color:#000;
+}

@@ -14,7 +14,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./vendorchecksdetails.component.css']
 })
 export class VendorchecksdetailsComponent implements OnInit {
-
+isLoading:boolean=false
   data:any;
 
 config:any;
@@ -127,11 +127,12 @@ var name='';
           myHeaders.append('Authorization',k)
         console.log(myHeaders)
           this.options = new RequestOptions({ headers: myHeaders });
-
+this.isLoading=true
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',{Name:name},this.options).subscribe(data => {
       console.log(data.json());
       this.data=data.json();
       this.data=this.data.body.data.Items;
+      this.isLoading=false
 
 console.log(this.data)
 
