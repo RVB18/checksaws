@@ -7,8 +7,30 @@
 .darken-grey-text {
     color: #2E2E2E;
 }
-#navbar{
-background-color: black;
+.navbar{
+background-color: #2f4f4f;
+}
+.delete{
+
+  background-color: white;
+  border-color: red;
+  color:red;
+  transition: 0.3s;
+}
+.delete:hover{
+  background-color: red;
+  color:white;
+}
+.print{
+
+  background-color: white;
+  border-color: green;
+  color:GREEN;
+  transition: 0.3s;
+}
+.print:hover{
+  background-color: green;
+  color:white;
 }
 .row {
   display: -ms-flexbox; /* IE10 */
@@ -17,9 +39,9 @@ background-color: black;
   flex-wrap: wrap;
   margin: 0 -16px;
 }
-.col-15 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
+.col-20 {
+  -ms-flex: 20%; /* IE10 */
+  flex: 20%;
 }
 .col-5 {
   -ms-flex: 5%; /* IE10 */
@@ -52,7 +74,7 @@ h4{
   margin-top:75px;
 }
 .modal-header{
-  background-color: black;
+  background-color: #2f4f4f;
   color:white;
 }
 .close{
@@ -71,6 +93,16 @@ color: white;
 @keyframes animatezoom {
     from {transform: scale(0)}
     to {transform: scale(1)}
+}
+
+
+@media screen and (min-width: 960px) {
+
+  .col-25 {
+   -ms-flex: 15%; /* IE10 */
+   flex: 15%;
+  }
+
 }
 
 /* Change styles for span and cancel button on extra small screens */

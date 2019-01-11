@@ -1,13 +1,48 @@
 mat-header-cell{
- background-color: 	#386B88	;
+ background-color: 	#778899	;
  color: #fff;
  font-size: 1em;
  text-align: center;
 }
+.print{
 
+  background-color: white;
+  border-color: green;
+  color:GREEN;
+  transition: 0.3s;
+}
+.print:hover{
+  background-color: green;
+  color:white;
+}
+
+.upload{
+
+  background-color: white;
+  border-color: #3498DB;
+  color:#3498DB;
+  transition: 0.3s;
+}
+.upload:hover{
+  background-color: #3498DB;
+  color:white;
+}
+
+
+.delete{
+
+  background-color: white;
+  border-color: red;
+  color:red;
+  transition: 0.3s;
+}
+.delete:hover{
+  background-color: red;
+  color:white;
+}
 .modal-header{
 
-  background-color: #000;
+  background-color: #2f4f4f;
 }
 .mat-cell,.mat-header-cell {
   padding: 0 8px 0  15px;
@@ -36,12 +71,18 @@ th.mat-column-position, td.mat-column-position {
   .mat-cell,.mat-header-cell {
     padding: 0 8px 0  15px;
   }
+  mat-header-cell{
+   background-color: 	#778899	;
+   color: #fff;
+   font-size: 1em;
+   text-align: center;
+  }
   mat-cell{
     width:100%;
     font-size: 0.2em;
   }
 #pr{
-margin-right:10%;
+margin-left:10%;
 }
 .one{
 width:100%;
@@ -51,26 +92,28 @@ margin-left:1px;
 #table{
 
 }
-mat-header-cell{
- background-color: 	#386B88	;
- width:10%;
- color: #fff;
-}
+
 mat-cell{
  width:100%;
  padding-right: -10%;
  text-align: center;
 }
 }
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 960px) {
    #pr {
-margin-left:1%;
-}}
-@media screen and (min-width: 1080px) {
+margin-left:40%;
+}
+
+
+
+}
+@media screen and (max-width: 1280px) {
 
 #pr{
   margin-left:50%;
 }
+
+
 }
 
 .row {
@@ -150,7 +193,7 @@ padding-top:2%;
 .file-upload{
   margin-left:19px;
   margin-top:19px;
-margin-right: 19px; 
+margin-right: 19px;
 
 }
 .copyright {
