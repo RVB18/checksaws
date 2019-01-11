@@ -131,31 +131,54 @@ var name='';
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',{Name:name},this.options).subscribe(data => {
       console.log(data.json());
       this.data=data.json();
-      this.data=this.data.body.data.Items;
-
-console.log(this.data)
-
-      for(var t=0;t<this.data.length;t++){
-        users.push(this.data[t])
-
-      }
 
 
 
 
+      if(this.data.message=="Unauthorized")
+                            {
+                              alert("forbidden")
+                              window.location.href="/login"
+                            }
+                            else if(this.data.message=="The incoming token has expired"){
+                              alert("Sorry Session Expired")
+                              window.location.href="/login"
+
+                            }
+
+    else{
 
 
 
-      this.dataSource = new MatTableDataSource(users);
+          this.data=this.data.body.data.Items;
 
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    //  console.log("sdfsd "+this.dataSource)
+    console.log(this.data)
+
+          for(var t=0;t<this.data.length;t++){
+            users.push(this.data[t])
+
+          }
 
 
-    });
 
-   }
+
+
+
+
+          this.dataSource = new MatTableDataSource(users);
+
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        //  console.log("sdfsd "+this.dataSource)
+
+    }
+        });
+
+       }
+
+
+
+
   ngOnInit() {
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
            //console.log(data);
@@ -183,7 +206,7 @@ export interface UserData {
   Name: string;
   Amount: string;
   Date: string;
-  Status: string;
+  Currentstatus: string;
   address:string;
   Loadnumber:string;
   Carrername:string;

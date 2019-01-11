@@ -12,6 +12,12 @@ import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fr
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
+import { FlashMessagesService } from 'angular2-flash-messages';
+
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
+
+
 
 import {
   MatAutocompleteModule,
@@ -132,6 +138,7 @@ CommonModule,
 HttpClientModule,
 HttpModule,
 CookieModule.forRoot(),
+ FlashMessagesModule.forRoot(),
  NgxLoadingModule.forRoot({
        animationType: ngxLoadingAnimationTypes.circle,
        backdropBackgroundColour: '#000000',

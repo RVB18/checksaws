@@ -14,7 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 
 import { CookieService } from 'ngx-cookie';
-
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 import {
   FormGroup,
@@ -43,7 +43,7 @@ public showNav = true;
 
 public loading = false;
 
-constructor(private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService) {
+constructor(private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService,private _flashMessagesService: FlashMessagesService) {
 
 this.showNav=true
  }
@@ -157,9 +157,9 @@ else*/
 
            if(this.success.message=="Failure")
 
+  this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
 
-
-           alert(this.success.data)
+           //alert(this.success.data)
            else
            {
 
@@ -202,6 +202,7 @@ window.open("/cheques","_self")
     validateAllFormFields(formGroup: FormGroup) {
 
 
+                    this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
 
 
       Object.keys(formGroup.controls).forEach(field => {

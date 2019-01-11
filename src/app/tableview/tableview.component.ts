@@ -108,25 +108,37 @@ console.log(k)
                   this.datap=data.json()
 
 
-                  this.datap=this.datap.body.data.Items;
-                  console.log(this.datap)
-                    for(var t=0;t<this.datap.length;t++){
+                  if(this.datap.message=="Unauthorized")
+                {
+                  alert("forbidden")
+                  window.location.href="/login"
+                }
+                else if(this.datap.message=="The incoming token has expired"){
+                  alert("Sorry Session Expired")
+                  window.location.href="/login"
+
+                }
+
+                else{
+
+                this.datap=this.datap.body.data.Items;
+                console.log(this.datap)
+                  for(var t=0;t<this.datap.length;t++){
 
 
-                      users.push(this.datap[t])
+                    users.push(this.datap[t])
 
-                    }
-                  console.log(users)
+                  }
+                console.log(users)
 
-                    this.dataSource = new MatTableDataSource(users);
+                  this.dataSource = new MatTableDataSource(users);
 
-                    this.dataSource.paginator = this.paginator;
-                    this.dataSource.sort = this.sort;
-                    //  console.log("sdfsd "+this.dataSource)
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  //  console.log("sdfsd "+this.dataSource)
+}
 
-
-                  });
-
+                });
 
 
 

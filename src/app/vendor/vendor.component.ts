@@ -60,21 +60,36 @@ datac:any;
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/changecheckstatus',options).subscribe(data => {
       this.datac=data.json();
 console.log(this.datac)
-      this.datac=this.datac.body.finaldata;
-      for(var t=0;t<this.datac.length;t++){
-        users.push(this.datac[t])
-
-      }
-      console.log(users)
-
-      this.dataSource = new MatTableDataSource(users);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    //  console.log("sdfsd "+this.dataSource)
 
 
-    }); }
+
+              if(this.datac.message=="Unauthorized")
+              {
+                alert("forbidden")
+                window.location.href="/login"
+              }
+              else if(this.datac.message=="The incoming token has expired"){
+                alert("Sorry Session Expired")
+                window.location.href="/login"
+
+              }
+
+else{
+  this.datac=this.datac.body.finaldata;
+  for(var t=0;t<this.datac.length;t++){
+    users.push(this.datac[t])
+
+  }
+  console.log(users)
+
+  this.dataSource = new MatTableDataSource(users);
+
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+//  console.log("sdfsd "+this.dataSource)
+
+}
+}); }
 
   ngOnInit() {
 

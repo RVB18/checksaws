@@ -73,8 +73,11 @@ export class AddComponent  implements OnInit {
 
         this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
           var data1=data.json();
-          if(data1.message="success")
+          if(data1.message="success"){
+          //  console.log("")
           window.location.reload();
+
+          }
           else
           alert("Unable to Create")
     console.log(data.json())

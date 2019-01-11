@@ -142,6 +142,8 @@ console.log(sett)
   });
 }
 
+
+//
 createcheck(data){
 
 console.log(data.value)
@@ -159,23 +161,24 @@ this.loading=true
 var successdata=data.json()
 console.log(successdata)
 this.loading=false
-if(successdata.message="success"){
+if(successdata.message="success")
+
+{
+  //console.log(successdata.message)
 alert("check created")
 
 window.location.reload()
 }
-else
+else {
+//console.log(this.success.message);
+
 alert("There is a problem in creating a check")
-  });
+}
+});
 
 }
 
- isEmpty(arg) {
-  for (var item in arg) {
-    return false;
-  }
-  return true;
-}
+
 
 
 logout(){
