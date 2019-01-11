@@ -14,14 +14,14 @@
 	<mat-form-field>
 		<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
 	</mat-form-field>
-	<button type="button" id="pr"  style="width:130px" name="button" class="btn " style=""  data-toggle="modal" data-target="#print"(click)="g()"><i class="fa fa-print" style="font-size:18px"></i>
+	<button type="button" id="pr"  style="width:130px" name="button" class="btn print" style=""  data-toggle="modal" data-target="#print"(click)="g()"><i class="fa fa-print" style="font-size:18px"></i>
 			Print      	</button>&nbsp;
-			<button type="button" class="btn btn-primary " data-toggle="modal"style="background-color:#3498DB" data-target="#myModal">
+			<button type="button" class="btn upload" data-toggle="modal" data-target="#myModal">
 				<i class="fa fa-upload" aria-hidden="true"></i>
 		Upload
 			</button>
 		&nbsp;
-				<button type="button" class="btn btn-danger " (click)="openModal(true)" >
+				<button type="button" class="btn delete " (click)="openModal(true)" >
 					<i class="fa fa-trash" aria-hidden="true"></i>
 			Delete
 				</button>
@@ -60,9 +60,9 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-success" (click)="handleFileSelect($event)" >Submit</button>
+				<button type="submit" class="btn print" (click)="handleFileSelect($event)" >Submit</button>
 
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>	</div>
+				<button type="button" class="btn delete" data-dismiss="modal">Close</button>	</div>
 			</form>
 		</div>
 	</div>

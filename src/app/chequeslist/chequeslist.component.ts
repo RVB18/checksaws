@@ -88,22 +88,40 @@ this.isLoading=true
    this.datap=data.json()
    this.isLoading=false
 
-this.datap=this.datap.body.data.Items;
-
-      for(var t=0;t<this.datap.length;t++){
-        this.users.push(this.datap[t])
-
-      }
-//console.log("getting "+users)
-
-      this.dataSource = new MatTableDataSource(this.users);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      //  console.log("sdfsd "+this.dataSource)
 
 
-    });
+
+   if(this.datap.message=="Unauthorized")
+                   {
+                     alert("forbidden")
+                     window.location.href="/login"
+                   }
+                   else if(this.datap.message=="The incoming token has expired"){
+                     alert("Sorry Session Expired")
+                     window.location.href="/login"
+
+                   }
+
+                   else{
+
+                   this.datap=this.datap.body.data.Items;
+                   console.log(this.datap)
+                     for(var t=0;t<this.datap.length;t++){
+
+
+                       this.users.push(this.datap[t])
+
+                     }
+                   //console.log(users)
+
+                     this.dataSource = new MatTableDataSource(this.users);
+
+                     this.dataSource.paginator = this.paginator;
+                     this.dataSource.sort = this.sort;
+                     //  console.log("sdfsd "+this.dataSource)
+ }
+
+                   });
   }
 
 

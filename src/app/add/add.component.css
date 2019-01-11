@@ -22,3 +22,24 @@
 
   height:390px;
 }
+.print{
+  background-color: white;
+  border-color: green;
+  color:green;
+  transition: 0.3s;
+}
+.print:hover{
+  background-color: green;
+  color:white;
+}
+.delete{
+
+  background-color: white;
+  border-color: red;
+  color:red;
+  transition: 0.3s;
+}
+.delete:hover{
+  background-color: red;
+  color:white;
+}

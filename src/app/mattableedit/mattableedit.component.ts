@@ -68,6 +68,7 @@ console.log(b)
         console.log(data1)
         if(data1.message="success"){
         console.log("done")
+
        window.location.reload();
   }
         else

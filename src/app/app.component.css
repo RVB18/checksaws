@@ -8,7 +8,7 @@
     color: #2E2E2E;
 }
 .navbar{
-background-color: black;
+background-color: #2f4f4f;
 }
 .row {
   display: -ms-flexbox; /* IE10 */
@@ -17,9 +17,9 @@ background-color: black;
   flex-wrap: wrap;
   margin: 0 -16px;
 }
-.col-15 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
+.col-20 {
+  -ms-flex: 20%; /* IE10 */
+  flex: 20%;
 }
 .col-5 {
   -ms-flex: 5%; /* IE10 */
@@ -52,7 +52,7 @@ h4{
   margin-top:75px;
 }
 .modal-header{
-  background-color: teal;
+  background-color: #2f4f4f;
   color:white;
 }
 .close{
@@ -73,6 +73,16 @@ color: white;
     to {transform: scale(1)}
 }
 
+
+@media screen and (min-width: 960px) {
+
+  .col-25 {
+   -ms-flex: 15%; /* IE10 */
+   flex: 15%;
+  }
+
+}
+
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
     span.psw {
@@ -89,9 +99,29 @@ input[type=text] {
   margin: 8px 0;
   box-sizing: border-box;
 }
-input[type=date] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 1px 0;
-  box-sizing: border-box;
+.print{
+  background-color: white;
+  border-color: green;
+  color:green;
+  transition: 0.3s;
 }
+.print:hover{
+  background-color: green;
+  color:white;
+}
+.delete{
+
+  background-color: white;
+  border-color: red;
+  color:red;
+  transition: 0.3s;
+}
+.delete:hover{
+  background-color: red;
+  color:white;
+}
+
+
+.pop{
+  margin-left:auto;margin-right:auto;
+width:30%; }

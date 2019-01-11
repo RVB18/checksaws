@@ -1,14 +1,25 @@
 th{
- background-color: 	#386B88	;
+ background-color: 	#778899	;
  color: #fff;
 }
+.print{
 
+  background-color: white;
+  border-color: green;
+  color:GREEN;
+  transition: 0.3s;
+}
+.print:hover{
+  background-color: green;
+  color:white;
+}
 mat-header-cell{
- background-color: 	#386B88	;
+ background-color: 	#778899	;
  color: #fff;
  font-size: 1em;
  text-align: center;
 }
+
 .export{
 align-items:center;height:35px;
 }
@@ -18,13 +29,10 @@ padding-left:0px;
 
 }
 
-#both{
-background-color:green;
-}
 
 @media screen and (min-width: 1180px) {
     #both {
-      background-color:green;margin-left:70%;
+margin-left:65%;
     }
 
 }
