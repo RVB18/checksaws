@@ -65,10 +65,12 @@ console.log(b)
 
       this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
         var data1=data.json();
+        console.log(data1)
         if(data1.message="success")
-        window.location.reload();
+        console.log("done")
+    //    window.location.reload();
         else
-        alert("Unable to Create")
+        alert("Unable to Update")
   console.log(data.json())
 
 
