@@ -68,7 +68,7 @@ this.coun=0;
     // Assign the data to the data source for the table to render
 //
 var k= this.getCookie("idToken");
-                console.log(k+"venkat")
+              //  console.log(k+"venkat")
 
 
 
@@ -81,7 +81,7 @@ console.log(myHeaders)
 
 this.options=options;
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',options).subscribe(data => {
-console.log(data.json())
+//console.log(data.json())
 
    this.datap=data.json()
 
@@ -125,7 +125,6 @@ console.log(data.json())
   deleteitems(items){
 
 	  var dele=[];
-	 this.mdlSampleIsOpen=false;
 
 
 	  for(var t=0;t<items.length;t++){
@@ -139,9 +138,18 @@ console.log(data.json())
 
 		  var fp={id:dele}
       console.log(fp)
+      this.loading=true
 		  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/mchequedel',fp,this.options).subscribe(data => {
-  console.log(data.json())
-window.location.reload()
+  var checksdata=data.json()
+  this.loading=false
+
+  if(checksdata.message=="success"){
+  window.location.reload()
+}
+else
+  alert("Cannot be Deleted")
+
+//window.location.reload()
 
     });
 
@@ -160,7 +168,7 @@ window.location.reload()
       const reader = new FileReader();
    reader.onload = () => {
      var text = reader.result.toString();
-     console.log('CSV: ', text);
+    // console.log('CSV: ', text);
      var lines = text.split("\n");
 
      var result = [];

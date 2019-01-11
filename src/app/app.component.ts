@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
    }
 tt=[];
 s=[];
-
+ hash:any;
 msg:any;
   mat=[];
 users:any
@@ -56,7 +56,7 @@ options:any;
 showNav:boolean=false;
 mdlSampleIsOpen : boolean = false;
 
-
+Addresscomplete:any;
 getCookie(key:string){
     return this._cookieService.get(key);
   }
@@ -66,7 +66,7 @@ this.config={}
 this.myHeaders = new Headers();
 var k= this.getCookie("idToken");
                 console.log(k)
-
+this.hash={}
                 if(window.location.pathname=="/login"||window.location.pathname=="/signup"||window.location.pathname=="/"||window.location.pathname=="")
 this.showNav=false
 else
@@ -74,7 +74,7 @@ this.showNav=true
 
 
 
-
+this.Addresscomplete={}
 
   this.myHeaders.append('Authorization',k)
 console.log("headu",this.myHeaders)
@@ -90,12 +90,24 @@ console.log("headu",this.myHeaders)
 
 this.vendor=data.json();
 this.vendor=this.vendor.body.data.Items;
+for(var t=0;t<this.vendor.length;t++){
+this.hash[this.vendor[t].Name]=this.vendor[t]
 
+}
+
+console.log(this.hash)
 
           });
   }
 
+completeAddress(){
 
+  var name = (<HTMLInputElement>document.getElementById('Name'));
+
+  this.Addresscomplete=this.hash[name.value]
+  console.log(this.Addresscomplete)
+
+}
   public openModal(open : boolean) : void {
     this.mdlSampleIsOpen = open;
 
@@ -120,7 +132,7 @@ sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.
 }
 this.loading=true
 
-
+console.log(sett)
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
       console.log(data)
       this.loading=false
@@ -130,21 +142,24 @@ this.loading=true
   });
 }
 
+
+//
 createcheck(data){
 
-
+console.log(data.value)
 var date=new Date(data.value.Date)
 var t=date.getMonth()+1
 var ne=t+"/"+date.getDate()+"/"+date.getFullYear();
 
-var f1={Name:data.value.Name,Date:data.value.Date,Amount:data.value.Amount,Carrername:data.value.Careern,Loadnumber:data.value.Loadnumber,id:uuid()}
-console.log(f1)
+var f1={Name:data.value.Name,Date:data.value.Date,Amount:data.value.Amount,StreetAddress:data.value.StreetAddress,State:data.value.State,CityorTown:data.value.CityorTown,Country:data.value.Country,zipcode:data.value.zipcode,Carrername:data.value.Careern,Loadnumber:data.value.Loadnumber,id:uuid()}
+
 
 this.loading=true
 
 
   this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',f1,this.options).subscribe(data => {
 var successdata=data.json()
+console.log(successdata)
 this.loading=false
 if(successdata.message="success")
 
@@ -154,13 +169,13 @@ if(successdata.message="success")
 
 //window.location.reload()
 }
-else if(successdata.message="Failure"){
+/*else if(successdata.message="Failure"){
 console.log(this.success.message);
 }
 //alert("There is a problem in creating a check")
-  });
+});
 
-}
+}*/
 
  isEmpty(arg) {
   for (var item in arg) {
@@ -202,12 +217,12 @@ console.log("nope")*/
 
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
     console.log(data.json())
-    this.config=data.json()
-    console.log(this.config.data.body.data.Items.length)
-    if(this.config.data.body.data.Items.length==0&&this.getCookie("idToken"))
+    var bankdata=data.json()
+    console.log(bankdata.data.body.data.Items.length)
+    if(bankdata.data.body.data.Items.length==0&&this.getCookie("idToken"))
       this.mdlSampleIsOpen=true
   else
-  this.config=this.config.data.body.data.Items[0]
+  this.config=bankdata.data.body.data.Items[0]
 
 
 
