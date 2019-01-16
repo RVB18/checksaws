@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "@types/datatables.net": "^1.10.13",
     "angular-material": "^1.1.10",
     "angular2-busy": "^2.0.4",

@@ -9,6 +9,7 @@ import { Multicheck2Component } from './multicheck2/multicheck2.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TableviewComponent } from './tableview/tableview.component';
+import { UserrolesComponent } from './userroles/userroles.component'
 
 
 
@@ -24,6 +25,7 @@ const routes: Routes = [
 {path:'signup',component:SignupComponent},
 {path:'login',component:LoginComponent},
 {path:'quickbooks',component:Multicheck2Component},
+{path:'userrole',component:UserrolesComponent},
 
 {path:'tableview',component:TableviewComponent}];
 

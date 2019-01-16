@@ -15,6 +15,7 @@ import { HttpModule } from '@angular/http';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -74,7 +75,9 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import {AddComponent} from'./add/add.component';
 import {MattableeditComponent} from'./mattableedit/mattableedit.component';
-import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component'
+import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component';
+import { UserrolesComponent } from './userroles/userroles.component'
+
 @NgModule({
   exports: [
     CdkTableModule,
@@ -122,7 +125,7 @@ export class DemoMaterialModule {}
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
-    MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,
+    MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
     FieldErrorDisplayComponent,
   ],
   imports: [
@@ -135,8 +138,8 @@ export class DemoMaterialModule {}
 ReactiveFormsModule,
 BrowserAnimationsModule,
 CommonModule,
-HttpClientModule,
 HttpModule,
+NgbModule,
 CookieModule.forRoot(),
  FlashMessagesModule.forRoot(),
  NgxLoadingModule.forRoot({
