@@ -10,7 +10,7 @@ import { TabletestComponent } from './tabletest/tabletest.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
-
+import { UserrolesComponent } from './userroles/userroles.component'
 
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
@@ -21,7 +21,7 @@ const routes: Routes = [
 {path:'multicheck2',component:Multicheck2Component},
 {path:'login',component:LoginComponent},
 {path:'signup',component:SignupComponent},
-
+{path:'userrole',component:UserrolesComponent},
 {path:'tabletest',component:TabletestComponent}];
 
 @NgModule({

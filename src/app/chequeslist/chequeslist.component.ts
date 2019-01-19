@@ -14,6 +14,7 @@ import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angul
 import { CookieService } from 'ngx-cookie';
 import { UserService } from '../services/user.service';
 
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-chequeslist',
@@ -63,7 +64,7 @@ deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumb
 
 }
 
-  constructor(private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService) {
+  constructor(private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService,private snackBar: MatSnackBar) {
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
 this.coun=0;
     // Assign the data to the data source for the table to render
@@ -93,12 +94,18 @@ this.isLoading=true
 
    if(this.datap.message=="Unauthorized")
                    {
-                     alert("forbidden")
-                     window.location.href="/login"
+
+                     this.snackBar.open('forbidden', 'error', {duration: 10000});
+
+                     //alert("forbidden")
+                     //window.location.href="/login"
                    }
                    else if(this.datap.message=="The incoming token has expired"){
-                     alert("Sorry Session Expired")
-                     window.location.href="/login"
+
+                     this.snackBar.open('forbidden', 'error', {duration: 10000});
+
+                     //alert("Sorry Session Expired")
+                     //window.location.href="/login"
 
                    }
 

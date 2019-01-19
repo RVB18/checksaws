@@ -5,6 +5,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie';
+import {MatSnackBar} from '@angular/material';
 
 
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -37,7 +38,7 @@ datac:any;
     }
 
 
-  constructor(private http: Http,private router: Router,private _cookieService:CookieService) {
+  constructor(private http: Http,private router: Router,private _cookieService:CookieService,private snackBar: MatSnackBar) {
     // Create 100 users
     const users: UserData[] = [];
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
@@ -68,11 +69,18 @@ this.isLoading=false
 
               if(this.datac.message=="Unauthorized")
               {
-                alert("forbidden")
-                window.location.href="/login"
+
+                this.snackBar.open('Forbidden ', 'error', {duration: 5000});
+
+                //alert("forbidden")
+                //window.location.href="/login"
               }
               else if(this.datac.message=="The incoming token has expired"){
-                alert("Sorry Session Expired")
+
+                this.snackBar.open('Sorry Session Expired', 'error', {duration: 5000});
+
+
+              //  alert("Sorry Session Expired")
                 window.location.href="/login"
 
               }

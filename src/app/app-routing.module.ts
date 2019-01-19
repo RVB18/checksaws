@@ -10,7 +10,11 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TableviewComponent } from './tableview/tableview.component';
 import { UserrolesComponent } from './userroles/userroles.component'
-
+import { UserComponent } from './user/user.component'
+import { AdduserComponent } from './adduser/adduser.component'
+import { EdituserComponent } from './edituser/edituser.component'
+import { SnackbarComponent } from './snackbar/snackbar.component'
+import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component'
 
 
 
@@ -26,7 +30,11 @@ const routes: Routes = [
 {path:'login',component:LoginComponent},
 {path:'quickbooks',component:Multicheck2Component},
 {path:'userrole',component:UserrolesComponent},
-
+{path:'user',component:UserComponent},
+{path:'adduser',component:AdduserComponent},
+{path:'edituser',component:EdituserComponent},
+{path:'snackbar',component:SnackbarComponent},
+{path:'valid',component:ValidateFieldsSubmitFormComponent},
 {path:'tableview',component:TableviewComponent}];
 
 

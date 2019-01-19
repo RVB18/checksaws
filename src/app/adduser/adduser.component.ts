@@ -1,3 +1,7 @@
+
+
+
+
 import { OnInit } from '@angular/core';
 
 
@@ -11,15 +15,15 @@ import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angul
 
 import { v4 as uuid } from 'uuid';
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  selector: 'app-adduser',
+  templateUrl: './adduser.component.html',
+  styleUrls: ['./adduser.component.css']
 })
 
 
 
-export class AddComponent  implements OnInit {
-  constructor(public dialogRef: MatDialogRef<AddComponent>,
+export class AdduserComponent implements OnInit {
+  constructor(public dialogRef: MatDialogRef<AdduserComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Issue
           ,private _cookieService:CookieService,private http:Http) { }
 
@@ -62,7 +66,11 @@ export class AddComponent  implements OnInit {
     var k= this.getCookie("idToken");
                     console.log(this.data)
 
-  var b={id:uuid(),Name:this.data.Name,StreetAddress:this.data.StreetAddress,CityorTown:this.data.CityorTown,State:this.data.State,zipcode:this.data.zipcode,Mobile:this.data.Mobile,Email:this.data.Email}
+
+                    var b={id:uuid(),Email:this.data.Email,Password:this.data.Password}
+
+                    console.log(b)
+
 
     let myHeaders = new Headers();
     	myHeaders.append('Content-Type', 'application/json');
@@ -71,10 +79,16 @@ export class AddComponent  implements OnInit {
       let options = new RequestOptions({ headers: myHeaders });
 
 
-        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
+
+        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',b,options).subscribe(data => {
           var data1=data.json();
           console.log(data1)
+
+
+
           if(data1.message="success"){
+
+            console.log(data1.message)
           //  console.log("")
           //window.location.reload();
 
@@ -85,7 +99,7 @@ export class AddComponent  implements OnInit {
 
 
   })
-  }
+}
 
 
 

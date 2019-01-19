@@ -34,7 +34,7 @@ import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 
 import { CookieService } from 'ngx-cookie';
 
-
+import {MatSnackBar} from '@angular/material';
 
 
 @Component({
@@ -81,7 +81,7 @@ isLoading=false
 
   constructor(public http: Http,
               public dialog: MatDialog,
-            private _cookieService:CookieService,private router: Router) {
+            private _cookieService:CookieService,private router: Router,private snackBar: MatSnackBar) {
 
 const users: VendorData[] = [];
 
@@ -110,12 +110,16 @@ this.isLoading=false
 
                   if(this.datap.message=="Unauthorized")
                 {
-                  alert("forbidden")
-                  window.location.href="/login"
+                   this.snackBar.open('forbidden', 'error', {duration: 5000});
+
+                  //alert("forbidden")
+                  //window.location.href="/login"
                 }
                 else if(this.datap.message=="The incoming token has expired"){
-                  alert("Sorry Session Expired")
-                  window.location.href="/login"
+
+                   this.snackBar.open('Sorry Session Expired', 'error', {duration: 5000});
+                  //alert("Sorry Session Expired")
+                  //window.location.href="/login"
 
                 }
 

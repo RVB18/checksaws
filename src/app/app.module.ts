@@ -18,8 +18,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
+//import { UserrolesComponent } from './userroles/userroles.component'
 
-
+//
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -76,7 +77,15 @@ import { SignupComponent } from './signup/signup.component';
 import {AddComponent} from'./add/add.component';
 import {MattableeditComponent} from'./mattableedit/mattableedit.component';
 import {MattabledeleteComponent} from './mattabledelete/mattabledelete.component';
-import { UserrolesComponent } from './userroles/userroles.component'
+import { UserrolesComponent } from './userroles/userroles.component';
+import { UserComponent } from './user/user.component';
+import { AdduserComponent } from './adduser/adduser.component';
+import { EdituserComponent } from './edituser/edituser.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
+import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component'
+
+
+
 
 @NgModule({
   exports: [
@@ -126,7 +135,7 @@ export class DemoMaterialModule {}
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
     MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
-    FieldErrorDisplayComponent,
+    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,SnackbarComponent,ValidateFieldsSubmitFormComponent
   ],
   imports: [
     BrowserModule,
@@ -151,11 +160,15 @@ CookieModule.forRoot(),
        tertiaryColour: '#000'
    }),
 
-  ],
+ ],
   entryComponents:[
     AddComponent,
     MattableeditComponent,
     MattabledeleteComponent,
+    UserComponent,
+    AdduserComponent,
+    EdituserComponent,
+    SnackbarComponent
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
