@@ -15,8 +15,8 @@ import { AdduserComponent } from './adduser/adduser.component'
 import { EdituserComponent } from './edituser/edituser.component'
 import { SnackbarComponent } from './snackbar/snackbar.component'
 import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component'
-
-
+import { SnackBarComponentExampleComponent } from './snack-bar-component-example/snack-bar-component-example.component'
+import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
@@ -35,6 +35,8 @@ const routes: Routes = [
 {path:'edituser',component:EdituserComponent},
 {path:'snackbar',component:SnackbarComponent},
 {path:'valid',component:ValidateFieldsSubmitFormComponent},
+{path:'snackbarexample',component:SnackBarComponentExampleComponent},
+{path:'form',component:FormComponent},
 {path:'tableview',component:TableviewComponent}];
 
 

@@ -8,6 +8,8 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 import { UserService } from '../services/user.service';
 
+import {MatSnackBar} from '@angular/material';
+
 @Component({
   selector: 'app-vendorchecksdetails',
   templateUrl: './vendorchecksdetails.component.html',
@@ -109,7 +111,7 @@ this.router.navigate(['/multicheck']);
 
 
 
-  constructor(private route: ActivatedRoute,private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService) {
+  constructor(private route: ActivatedRoute,private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService,private snackBar: MatSnackBar) {
     const users: UserData[] = [];
 this.config={}
 var name='';
@@ -137,12 +139,31 @@ this.isLoading=false
 
       if(this.data.message=="Unauthorized")
                             {
-                              alert("forbidden")
-                              window.location.href="/login"
+
+                              this.snackBar.open("Unauthorized","Ok",{
+                                duration:2000,
+                                panelClass:'red-snackbar',
+                                horizontalPosition: 'center',
+                                verticalPosition: 'top'
+                              })
+
+
+
+                              //alert("forbidden")
+                              //window.location.href="/login"
                             }
                             else if(this.data.message=="The incoming token has expired"){
-                              alert("Sorry Session Expired")
-                              window.location.href="/login"
+
+                              this.snackBar.open("Session Expired","Ok",{
+                                duration:2000,
+                                panelClass:'blue-snackbar',
+                                horizontalPosition: 'center',
+                                verticalPosition: 'top'
+                              })
+
+
+                            //  alert("Sorry Session Expired")
+                              //window.location.href="/login"
 
                             }
 

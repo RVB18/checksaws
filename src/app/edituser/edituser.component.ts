@@ -7,7 +7,7 @@
 
 
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Component,OnInit, Inject} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 //mport {DataService} from '../../services/data.service';
 import {FormControl, Validators} from '@angular/forms';
 
@@ -18,7 +18,7 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./edituser.component.css']
 })
 
-export class EdituserComponent implements OnInit {
+export class EdituserComponent  {
 
   constructor(public dialogRef: MatDialogRef<EdituserComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
@@ -46,5 +46,5 @@ export class EdituserComponent implements OnInit {
     //this.dataService.updateIssue(this.data);
   }
 
-  ngOnInit()
+
 }

@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component , Inject} from '@angular/core';
 //import { UserService } from '../services/user.service';
 
 
@@ -35,6 +35,7 @@ import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import { CookieService } from 'ngx-cookie';
 
 import {MatSnackBar} from '@angular/material';
+import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 
 @Component({
@@ -44,6 +45,15 @@ import {MatSnackBar} from '@angular/material';
 })
 
 export class TableviewComponent implements OnInit {
+
+    configSuccess: MatSnackBarConfig = {
+      panelClass: 'style-success',
+
+      duration: 10000000000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    };
+
   displayedColumns = ['Name', 'Street','City','State','Zipcode', 'Mobile', 'Email','actions'];
   index: number;
   id: string;
@@ -110,14 +120,49 @@ this.isLoading=false
 
                   if(this.datap.message=="Unauthorized")
                 {
-                   this.snackBar.open('forbidden', 'error', {duration: 5000});
+
+
+
+
+                                       this.snackBar.open("Unauthorized","Ok",{
+                                         duration:2000,
+                                         panelClass:'red-snackbar',
+                                         horizontalPosition: 'center',
+                                         verticalPosition: 'top'
+                                       })
+
+
+                  /*this.snackBar.openFromComponent(PizzaPartyyComponent, {
+                    sasa: 'ggg',
+                    ...this.configSuccess
+                  });*/
+
+
+                   //this.snackBar.open('forbidden', 'error', {duration: 5000});
 
                   //alert("forbidden")
                   //window.location.href="/login"
                 }
                 else if(this.datap.message=="The incoming token has expired"){
 
-                   this.snackBar.open('Sorry Session Expired', 'error', {duration: 5000});
+
+
+
+
+                                       this.snackBar.open("Session Expired","Ok",{
+                                         duration:2000,
+                                         panelClass:'blue-snackbar',
+                                         horizontalPosition: 'center',
+                                         verticalPosition: 'top'
+                                       })
+
+                  /*this.snackBar.openFromComponent(PizzaPartyysessionComponent, {
+                    sasa: 'ggg',
+                    ...this.configSuccess
+                  });*/
+
+
+                   //this.snackBar.open('Sorry Session Expired', 'error', {duration: 100000000});
                   //alert("Sorry Session Expired")
                   //window.location.href="/login"
 
@@ -202,7 +247,12 @@ ExportTOExcel()
 }
 
 
-
+/*openSnackBar() {
+  this.snackBar.openFromComponent(PizzaPartyyComponent, {
+    sasa: 'fhkjsghdfj;hsfjl;hj;dfgjsgsjkgfjksfdg',
+    ...this.configSuccess
+  });
+}*/
 
 
   ngOnInit() {
@@ -314,5 +364,27 @@ export interface VendorData {
   zipcode: string;
   Email: string;
   Mobile:string;
+
+}
+
+
+@Component({
+  selector: 'tableview-snack',
+  templateUrl: 'tableview-snack.html',
+})
+export class PizzaPartyyComponent {
+  constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
+
+
+}
+
+
+@Component({
+  selector: 'tableview-session',
+  templateUrl: 'tableview-session.html',
+})
+export class PizzaPartyysessionComponent {
+  constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
+
 
 }

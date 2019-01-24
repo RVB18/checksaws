@@ -157,7 +157,7 @@ else*/
 
            if(this.success.message=="Failure")
 
-  this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
+  this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 9991000});
 
            //alert(this.success.data)
            else
@@ -202,7 +202,7 @@ window.open("/cheques","_self")
     validateAllFormFields(formGroup: FormGroup) {
 
 
-                    this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
+                    this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 9991000});
 
 
       Object.keys(formGroup.controls).forEach(field => {

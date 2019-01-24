@@ -184,6 +184,15 @@ mat-cell.mat-cell, mat-header-cell.mat-header-cell {
 }
 
 
+.red-snackbar{
+  background:#f44336
+}
+.blue-snackbar{
+  background:#2196F3
+}
+.green-snackbar{
+  background:#008000
+}
 
 .mat-dialog-container{
   height:150px;

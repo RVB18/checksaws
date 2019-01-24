@@ -12,4 +12,12 @@ export class Issue {
 
   Email: string;
 
+  Username:string;
+
+  Lastname:string;
+
+  Firstname:string;
+
+  Phonenumber:string;
+
 }

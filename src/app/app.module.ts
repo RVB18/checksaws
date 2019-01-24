@@ -20,6 +20,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 //import { UserrolesComponent } from './userroles/userroles.component'
 
+
+
 //
 import {
   MatAutocompleteModule,
@@ -82,7 +84,23 @@ import { UserComponent } from './user/user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
-import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component'
+import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component';
+import { SnackBarComponentExampleComponent } from './snack-bar-component-example/snack-bar-component-example.component'
+import { PizzaPartyComponent } from './snack-bar-component-example/snack-bar-component-example.component'
+import { PizzaPartyyComponent } from './tableview/tableview.component'
+import { PizzaPartyvComponent } from './vendor/vendor.component'
+import { PizzaPartycComponent } from './chequeslist/chequeslist.component';
+import { PizzaPartycsessionComponent } from './chequeslist/chequeslist.component';
+import { PizzaPartyvsessionComponent } from './vendor/vendor.component'
+import { PizzaPartyysessionComponent} from './tableview/tableview.component';
+import { PizzaPartyaComponent} from './app.component';
+
+import { PizzaPartyuComponent} from './user/user.component';
+import { FormComponent } from './form/form.component';
+
+
+
+
 
 
 
@@ -123,7 +141,7 @@ import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form
 	MatTreeModule,
 	MatTableModule ,
   ],
-  declarations: []
+  declarations: [ ]
 })
 export class DemoMaterialModule {}
 
@@ -135,7 +153,7 @@ export class DemoMaterialModule {}
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
     MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
-    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,SnackbarComponent,ValidateFieldsSubmitFormComponent
+    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,SnackbarComponent,ValidateFieldsSubmitFormComponent,SnackBarComponentExampleComponent,PizzaPartyComponent,PizzaPartyyComponent,PizzaPartyvComponent,PizzaPartyysessionComponent,PizzaPartyvsessionComponent,PizzaPartycComponent,PizzaPartycsessionComponent,PizzaPartyaComponent,PizzaPartyuComponent,FormComponent
   ],
   imports: [
     BrowserModule,
@@ -168,7 +186,24 @@ CookieModule.forRoot(),
     UserComponent,
     AdduserComponent,
     EdituserComponent,
-    SnackbarComponent
+    SnackbarComponent,
+     PizzaPartyComponent,
+    PizzaPartyyComponent,
+    PizzaPartyvComponent,
+    PizzaPartyvsessionComponent,
+    PizzaPartycComponent,
+    PizzaPartycsessionComponent,
+    PizzaPartyysessionComponent,
+    PizzaPartyaComponent,
+    PizzaPartyuComponent,
+    FormComponent
+
+
+
+
+
+
+
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

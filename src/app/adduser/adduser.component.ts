@@ -66,8 +66,10 @@ export class AdduserComponent implements OnInit {
     var k= this.getCookie("idToken");
                     console.log(this.data)
 
+                    //console.log(this.data.Firstname)
 
-                    var b={id:uuid(),Email:this.data.Email,Password:this.data.Password}
+
+                    var b={id:uuid(),email:this.data.Email,username:this.data.Username,lastname:this.data.Lastname,firstname:this.data.Firstname,phonenumber:this.data.Phonenumber}
 
                     console.log(b)
 

@@ -1,7 +1,7 @@
 
 
 
-import { Component, ViewChild , ElementRef, OnInit ,Injectable} from '@angular/core';
+import { Component, ViewChild , ElementRef, OnInit ,Inject,Injectable} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatSort,} from '@angular/material';
 
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ import { CookieService } from 'ngx-cookie';
 import { UserService } from '../services/user.service';
 
 import {MatSnackBar} from '@angular/material';
+import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-chequeslist',
@@ -22,10 +23,18 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./chequeslist.component.css']
 })
 export class ChequeslistComponent implements OnInit  {
+
+      configSuccess: MatSnackBarConfig = {
+        panelClass: 'style-success',
+        duration: 1000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      };
+
+
   public loading = false;
   users: UserData[] = [];
   isLoading : boolean=false;
-
 config:any;
 datap:any;
 datak:any;
@@ -87,6 +96,7 @@ this.isLoading=true
     this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',options).subscribe(data => {
 //console.log(data.json())
    this.datap=data.json()
+   console.log(this.datap)
    this.isLoading=false
 
 
@@ -95,14 +105,36 @@ this.isLoading=true
    if(this.datap.message=="Unauthorized")
                    {
 
-                     this.snackBar.open('forbidden', 'error', {duration: 10000});
+
+
+                                  /*     this.snackBar.openFromComponent(PizzaPartycComponent, {
+                                         sasa: 'ggg',
+                                         this.configSuccess
+                                       });*/
+                     //this.snackBar.open('forbidden', 'error', {duration: 10000});
 
                      //alert("forbidden")
                      //window.location.href="/login"
+
+                     this.snackBar.open("Unauthorized","Ok",{
+                       duration:2000,
+                       panelClass:'red-snackbar',
+                       horizontalPosition: 'center',
+                       verticalPosition: 'top'
+                     })
                    }
                    else if(this.datap.message=="The incoming token has expired"){
 
-                     this.snackBar.open('forbidden', 'error', {duration: 10000});
+
+                     this.snackBar.open("Session Expired","Ok",{
+                       duration:2000,
+                       panelClass:'blue-snackbar',
+                       horizontalPosition: 'center',
+                       verticalPosition: 'top'
+                     })
+
+
+                    //this.snackBar.open('forbidden', 'error', {duration: 10000});
 
                      //alert("Sorry Session Expired")
                      //window.location.href="/login"
@@ -111,15 +143,45 @@ this.isLoading=true
 
                    else{
 
-                   this.datap=this.datap.body.data.Items;
+var m=[];
                    console.log(this.datap)
-                     for(var t=0;t<this.datap.length;t++){
 
-
-                       this.users.push(this.datap[t])
-
-                     }
                    //console.log(users)
+
+                   this.datap.Items.forEach(function (ele){
+                     var sudheerdata={
+                                          "Date":ele.Date,
+                                          "CityorTown":ele.CityorTown,
+                                          "timestamp":ele.timestamp,
+                                          "Loadnumber":ele.Loadnumber,
+                                          "Currentstatus":ele.Currentstatus,
+                                          "State":ele.State,
+                                          "StreetAddress":ele.StreetAddress,
+                                          "zipcode":ele.zipcode,
+                                          "Client":ele.Client,
+                                          "Amount":ele.Amount,
+                                          "Carrername":ele.Carrername,
+                                          "Name":ele.Name
+                                        }
+
+
+                                        m.push(sudheerdata)               //   m.push(sudheerdata)
+                   })
+
+console.log(m)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                      this.dataSource = new MatTableDataSource(this.users);
 
@@ -247,7 +309,7 @@ else
       //  this.dataSource.addRow(filedata[g])
 
 
-      //   }
+      //   }http://13.232.165.2:3000/statusupdates?a='
 
             //   this.dataSource = new MatTableDataSource(users);
 
@@ -550,6 +612,9 @@ export interface UserData {
   Address:string;
   Loadnumber:string;
   Carrername:string;
+  CurrentStatus:string;
+  timestamp:string;
+  Client:string
 }
 
 //
@@ -634,4 +699,28 @@ export function  convertNumberToWords(amount:string) {
        words_string = words_string.split("  ").join(" ");
    }
    return words_string;
+ }
+
+
+
+
+ @Component({
+   selector: 'chequelist-snack',
+   templateUrl: 'chequelist-snack.html',
+ })
+ export class PizzaPartycComponent {
+   constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
+
+
+ }
+
+
+ @Component({
+   selector: 'chequelist-session',
+   templateUrl: 'chequelist-session.html',
+ })
+ export class PizzaPartycsessionComponent {
+   constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
+
+
  }

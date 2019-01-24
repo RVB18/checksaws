@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,Inject,ViewChild } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
@@ -8,6 +8,8 @@ import { CookieService } from 'ngx-cookie';
 import {MatSnackBar} from '@angular/material';
 
 
+import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
+
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 @Component({
   selector: 'app-vendor',
@@ -15,6 +17,17 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
   styleUrls: ['./vendor.component.css']
 })
 export class VendorComponent implements OnInit {
+
+
+
+      configSuccess: MatSnackBarConfig = {
+        panelClass: 'style-success',
+        duration: 1000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      };
+
+
 isLoading:boolean=false
   map:any;
   data:any;
@@ -70,14 +83,42 @@ this.isLoading=false
               if(this.datac.message=="Unauthorized")
               {
 
-                this.snackBar.open('Forbidden ', 'error', {duration: 5000});
+                                     this.snackBar.open("Unauthorized","Ok",{
+                                       duration:2000,
+                                       panelClass:'red-snackbar',
+                                       horizontalPosition: 'center',
+                                       verticalPosition: 'top'
+                                     })
+
+
+                                  /*this.snackBar.openFromComponent(PizzaPartyvComponent, {
+                                    sasa: 'ggg',
+                                    ...this.configSuccess
+                                  });*/
+                //this.snackBar.open('Forbidden ', 'error', {duration: 5000});
 
                 //alert("forbidden")
                 //window.location.href="/login"
               }
               else if(this.datac.message=="The incoming token has expired"){
 
-                this.snackBar.open('Sorry Session Expired', 'error', {duration: 5000});
+
+                this.snackBar.open("Session Expired","Ok",{
+                  duration:2000,
+                  panelClass:'blue-snackbar',
+                  horizontalPosition: 'center',
+                  verticalPosition: 'top'
+                })
+
+
+
+
+                                                /*  this.snackBar.openFromComponent(PizzaPartyvsessionComponent, {
+                                                    sasa: 'ggg',
+                                                    ...this.configSuccess
+                                                  });*/
+
+                //this.snackBar.open('Sorry Session Expired', 'error', {duration: 5000});
 
 
               //  alert("Sorry Session Expired")
@@ -123,5 +164,29 @@ export interface UserData {
   Name: string;
   Pending: string;
   Paid: string;
+
+}
+
+
+
+@Component({
+  selector: 'vendor-snack',
+  templateUrl: 'vendor-snack.html',
+})
+export class PizzaPartyvComponent {
+  constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
+
+
+}
+
+
+
+@Component({
+  selector: 'vendor-session',
+  templateUrl: 'vendor-session.html',
+})
+export class PizzaPartyvsessionComponent{
+  constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
+
 
 }

@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,Inject } from '@angular/core';
 //import { UserService } from './services/user.service';
 //import { User } from './models/user.model';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
@@ -23,6 +23,8 @@ import {
 } from '@angular/forms';
 
 
+import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
+
 
 @Component({
   selector: 'app-root',
@@ -31,6 +33,16 @@ import {
 })
 
 export class AppComponent implements OnInit {
+
+
+        configSuccess: MatSnackBarConfig = {
+          //panelClass: 'style-success',
+          duration: 2000,
+          panelClass:['red-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        };
+
 
 
 
@@ -146,26 +158,36 @@ completeAddress(){
 
      console.log(sett +"dfg")
 
-     sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
+     sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": (f.value.cheque), "id": uuid(), "Name": f.value.name }
 
 
-            this.snackBar.open('Disco party!', 'Dismiss', {duration: 5000});
+            //this.snackBar.open('Disco party!', 'Dism', {duration: 5000});
 
-          //  this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-success', timeout: 1000});
+          this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-success', timeout: 1000});
                 //this.snackBar.open('Disco party!', 'Dismiss', {duration: 5000});
                 console.log('form submitted');
 
 
+
+
+                  //this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 9991000});
+
+
 }
     else{
-sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
+sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": (f.value.cheque), "id": this.config.id, "Name": f.value.name }
 
 
 //this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
  this.validateAllFormFields(this.form);
 
-       //this.snackBar.open('Disco party!', 'Dismiss', {duration: 5000});
 
+ this.snackBar.open("Success","Ok",{
+   duration:2000,
+   panelClass:'green-snackbar',
+   horizontalPosition: 'center',
+   verticalPosition: 'top'
+ })
 
 
 
@@ -178,6 +200,16 @@ console.log(sett)
 
       //alert("Succesfully Saved")
 
+      var r=data.json();
+      console.log(r)
+
+//  this.success=r
+           /*if(this.success=="success")
+             this.snackBar.open('Disco party!', 'error', {duration: 5000});
+             else
+             this.snackBar.open('Disco party!', 'error', {duration: 5000});*/
+
+
   });
 
 }
@@ -187,7 +219,22 @@ console.log(sett)
 
 validateAllFormFields(formGroup: FormGroup) {
 
-      this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
+
+  /*this.snackBar.open("Success","Ok",{
+    duration:2000,
+    panelClass:'green-snackbar',
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  })*/
+
+  /*-this.snackBar.openFromComponent(PizzaPartyaComponent, {
+    sasa: 'ggg',
+    ...this.configSuccess
+  });*/
+
+     //this.snackBar.open('Disco partyyyty!', 'Success', {duration: 5000});
+
+      //this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
   Object.keys(formGroup.controls).forEach(field => {
     console.log(field);
     const control = formGroup.get(field);
@@ -195,6 +242,8 @@ validateAllFormFields(formGroup: FormGroup) {
       control.markAsTouched({ onlySelf: true });
     } else if (control instanceof FormGroup) {
       this.validateAllFormFields(control);
+
+
     }
   });
 }
@@ -228,14 +277,29 @@ if(successdata.message="success")
   //console.log(successdata.message)
 
 
-  //this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-success', timeout: 1000});
-  this.snackBar.open('Check created!', 'success', {duration: 5000});
+
+  this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-success', timeout: 1000});
+  //this.snackBar.open('Check created!', 'success', {duration: 5000});
 //alert("check created")
 
 //window.location.reload()
 }
+
+
+
 else {
 //console.log(this.success.message);
+
+
+
+   this.snackBar.open("Success","Ok",{
+     duration:2000,
+     panelClass:'green-snackbar',
+     horizontalPosition: 'center',
+     verticalPosition: 'top'
+   })
+
+this._flashMessagesService.show('Please Enter Valid Credentiwarningals', {cssClass: 'alert-warning', timeout: 1000});
 
 //this.snackBar.open('Please Enter Valid Credentials', 'error', {duration: 5000});
 //alert("There is a problem in creating a check")
@@ -325,6 +389,18 @@ displayFieldCss(field: string) {
 
 
 
+
+
+}
+
+
+
+@Component({
+  selector: 'app-snack',
+  templateUrl: 'app-snack.html',
+})
+export class PizzaPartyaComponent {
+  constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
 
 
 }

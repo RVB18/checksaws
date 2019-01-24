@@ -3,7 +3,7 @@
 
 
 
-import { Component } from '@angular/core';
+import { Component,Inject } from '@angular/core';
 //import { UserService } from '../services/user.service';
 
 
@@ -24,6 +24,8 @@ import { UserService } from '../services/user.service';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
 import { Angular5Csv } from 'angular5-csv/Angular5-csv';
+
+
 import { v4 as uuid } from 'uuid';
 
 
@@ -37,6 +39,11 @@ import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 
 
 import { CookieService } from 'ngx-cookie';
+
+
+import {MatSnackBar} from '@angular/material';
+import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
+
 
 
 
@@ -56,24 +63,35 @@ import {
 })
 
 export class UserComponent implements OnInit {
+
+
+  configSuccess: MatSnackBarConfig = {
+    panelClass: 'style-success',
+
+    duration: 10000000000,
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  };
+
   closeResult: string;
   loading:boolean=false;
   isLoading:boolean=false;
   options:any;
-  data:any;
-EdituserComponent
+//  data:any;
 
 
-  displayedColumns = ['Name', 'Last Name','Email','actions'];
+
+  displayedColumns = ['Email', 'Firstname','Last Name','Phonenumber','Username','actions'];
   index: number;
   id: string;
-  dataSource: MatTableDataSource<VendorData>;
+  dataSource: MatTableDataSource<VendorsData>;
 
   datap:any;
   coun:any;
 
 
   a=[]
+  i:any
 
 //isLoading=false
 
@@ -90,6 +108,26 @@ EdituserComponent
 
 
 
+           get data(): Issue[] {
+             return this.dataChange.value;
+           }
+
+           getDialogData() {
+             return this.dialogData;
+           }
+
+
+
+
+
+
+
+
+
+
+
+
+
          /*get data(): Issue[] {
            return this.dataChange.value;
          }
@@ -98,22 +136,27 @@ EdituserComponent
            return this.dialogData;
          }
 */
-
+getCookie(key:string){
+    return this._cookieService.get(key);
+  }
 
   constructor(public http: Http,
               public dialog: MatDialog,
-            private _cookieService:CookieService,private router: Router) {
+            private _cookieService:CookieService,private router: Router,private snackBar: MatSnackBar) {
 
-const users: VendorData[] = [];
+const users: VendorsData[] = [];
 
                 this.coun=0;
 
 
+//console.log(k)
 
-                var k= this.getCookie("idToken");
-                                console.log(k+"venkat")
 
-console.log(k)
+
+var k= this.getCookie("idToken");
+                console.log(k+"venkat")
+
+
 
                 	let myHeaders = new Headers();
                 	myHeaders.append('Content-Type', 'application/json');
@@ -121,21 +164,38 @@ console.log(k)
                 console.log(myHeaders)
                   let optionss = new RequestOptions({ headers: myHeaders });
 this.isLoading=true
-                  this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',optionss).subscribe(data => {
-                  console.log(data.json())
+
+
+                  this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',optionss).subscribe(datas => {
+                  console.log(datas.json())
 
 this.isLoading=false
                   console.log("j")
-                  this.datap=data.json()
+                  this.datap=datas.json()
 
+                      console.log(this.datap)
 
                   if(this.datap.message=="Unauthorized")
                 {
-                  alert("forbidden")
-                  window.location.href="/login"
+
+
+
+                                                         this.snackBar.open("Unauthorized","Ok",{
+                                                           duration:2000,
+                                                           panelClass:'red-snackbar',
+                                                           horizontalPosition: 'center',
+                                                           verticalPosition: 'top'
+                                                         })
+                  /*this.snackBar.openFromComponent(PizzaPartyuComponent, {
+                    sasa: 'ggg',
+                    ...this.configSuccess
+                  });*/
+
+                //  alert("forbidden")
+                  //window.location.href="/login"
                 }
                 else if(this.datap.message=="The incoming token has expired"){
-                  alert("Sorry Session Expired")
+                //  alert("Sorry Session Expired")
                   window.location.href="/login"
 
                 }
@@ -143,23 +203,30 @@ this.isLoading=false
                 else{
 
 
-                this.datap=this.datap.body.Users;
+                this.datap=this.datap.data;
 
 
 
 
                 console.log(this.datap)
 
-cheques
+
                 for(var tt=0;tt<this.datap.length;tt++)
                 {
-                  for(var ttt=0;ttt<this.datap[tt].Attributes.length;ttt++)
-                  {
-                  console.log(this.datap[tt].Attributes[ttt].Value)
-                        users.push(this.datap[tt].Attributes[ttt].Value)
-                }
-                }
+                  console.log(this.datap[tt])
+              this.i=this.datap[tt]
+
+                users.push(this.i)
                 console.log(users)
+              }
+
+
+              this.dataSource = new MatTableDataSource(users);
+
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.sort = this.sort;
+
+
               }
                   /*for(var t=0;t<this.datap.length;t++){
 
@@ -186,36 +253,13 @@ cheques
 
 
 
-              addIssue (issue: Issue): void {
-
-          //  var b={id:uuid(),Name:issue.Name,Address:issue.Address,Mobile:issue.Mobile,Email:issue.Email}
-
-          //  console.log(b)
-
-                console.log("sdvds "+issue)
-}
-
-
-
-
-                getCookie(key:string){
-                    return this._cookieService.get(key);
-                  }
-
-
-
-                  applyFilter(filterValue: string) {
-                     filterValue = filterValue.trim(); // Remove whitespace
-                     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-                     this.dataSource.filter = filterValue;
-                   }
 
 ExportTOExcel()
 {
 	//console.log(this.table.nativeElement)
-  const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
-  const wb: XLSX.WorkBook = XLSX.utils.book_new();
-   console.log(ws)
+  //const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+//const wb: XLSX.WorkBook = XLSX.utils.book_new();
+   //console.log(ws)
   /* var head=[];
        var range = XLSX.utils.decode_range(ws['!ref']);
 	   for(var R = range.s.r; R <= range.e.r; ++R) {
@@ -228,11 +272,11 @@ ExportTOExcel()
   }
 }*/
 
-  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  //XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
   //console.log(ws["A"])
 
   /* save to file */
-  XLSX.writeFile(wb, 'SheetJS.xlsx');
+//  XLSX.writeFile(wb, 'SheetJS.xlsx');
 
 }
 
@@ -243,6 +287,8 @@ ExportTOExcel()
   ngOnInit() {
 
  console.log("hiiiii")
+
+
 
 
 
@@ -337,9 +383,19 @@ private getDismissReason(reason: any): string {
 
 }
 
+
+
+                  applyFilter(filterValue: string) {
+                     filterValue = filterValue.trim(); // Remove whitespace
+                     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+                     this.dataSource.filter = filterValue;
+                   }
+
+
+
 /*  startEdit(i: number, id: string, Name: string,Last Name:string,Email:string,Password:string) {
     this.id = id;
-    // index row is used just for debugging proposes and can be removed
+    // index row is used just for debugging proposes and can be removeusernamed
     this.index = i;
     console.log("dscvs "+StreetAddress)
     const dialogRef = this.dialog.open(MattableeditComponent, {
@@ -402,9 +458,24 @@ export function getdata(sheet){
    return result;
 };
 
-export interface VendorData {
+export interface VendorsData {
   id: string;
   Email: string;
-  Password:string;
+  Username:string;
+  Lastname:string;
+  Firstname:string;
+  Phonenumber:string;
+
+}
+
+
+
+@Component({
+  selector: 'user-snack',
+  templateUrl: 'user-snack.html',
+})
+export class PizzaPartyuComponent {
+  constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
+
 
 }
