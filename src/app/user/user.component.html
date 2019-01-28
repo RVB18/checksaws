@@ -57,50 +57,33 @@
 
     <ng-container matColumnDef="Email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Enter Email</th>
-      <td mat-cell *matCellDef="let row"> {{dataSource.Username}}</td>
+      <td mat-cell *matCellDef="let dataSource"> {{dataSource.email}}</td>
     </ng-container>
 
     <ng-container matColumnDef="Firstname">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Enter First Name</th>
-      <td mat-cell *matCellDef="let row"> {{dataSource.Lastname}}</td>
+      <td mat-cell *matCellDef="let dataSource"> {{dataSource.firstname}}</td>
     </ng-container>
 
 
       <ng-container matColumnDef="Last Name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Enter Last Name</th>
-          <td mat-cell *matCellDef="let row"> {{dataSource.Email}}</td>
+          <td mat-cell *matCellDef="let dataSource"> {{dataSource.lastname}}</td>
         </ng-container>
 
 
               <ng-container matColumnDef="Phonenumber">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Enter Phone number</th>
-                  <td mat-cell *matCellDef="let row"> {{dataSource.Firstname}}</td>
+                  <td mat-cell *matCellDef="let dataSource"> {{dataSource.phonenumber}}</td>
                 </ng-container>
 
 
-                      <ng-container matColumnDef="Username">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Enter User Name</th>
-                          <td mat-cell *matCellDef="let row"> {{dataSource.Username}}</td>
-                        </ng-container>
+                             <ng-container matColumnDef="Password">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Enter Password</th>
+                                  <td mat-cell *matCellDef="let dataSource"> {{dataSource.password}}</td>
+                                </ng-container>
 
 
-
-    <!--<ng-container matColumnDef="Zipcode">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Zipcode</th>
-      <td mat-cell *matCellDef="let row"> {{row.zipcode}}</td>
-    </ng-container>
-
-
-
-    <ng-container matColumnDef="Mobile">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</th>
-      <td mat-cell *matCellDef="let row"> {{row.Mobile}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="Email">
-      <th  mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-      <td mat-cell *matCellDef="let row"> {{row.Email}}</td>
-    </ng-container>-->
 
 
     <ng-container matColumnDef="actions">
@@ -115,7 +98,7 @@
 
 
       <td mat-cell *matCellDef="let row; let i=index;" >
-        <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.username, row.email,row.lastname,row.firstname,row.phonenumber)">
+        <button mat-icon-button color="accent" (click)="stopEdit(i, row.id, row.email,row.firstname,row.lastname,row.phonenumber,row.password)">
           <mat-icon aria-label="Edit" style="color:black">edit</mat-icon>
         </button>
 
@@ -136,8 +119,6 @@ color="accent"
 mode="indeterminate">
 </mat-progress-spinner>
 </mat-card>
-  <!--<mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50]">
-          </mat-paginator>-->
 
           <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50]">
                   </mat-paginator>

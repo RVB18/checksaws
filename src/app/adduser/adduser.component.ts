@@ -61,15 +61,24 @@ export class AdduserComponent implements OnInit {
 
   public confirmAdd(): void {
 
-
+console.log("gh")
     //
     var k= this.getCookie("idToken");
                     console.log(this.data)
 
                     //console.log(this.data.Firstname)
 
+                    //console.log(this.data.email)
 
-                    var b={id:uuid(),email:this.data.Email,username:this.data.Username,lastname:this.data.Lastname,firstname:this.data.Firstname,phonenumber:this.data.Phonenumber}
+//console.log(this.data.password)
+
+                    var b={
+                        email:this.data.email,
+                      password:uuid(),
+                      lastname:this.data.lastname,
+                      firstname:this.data.firstname,
+                      phonenumber:this.data.phonenumber
+                    }
 
                     console.log(b)
 
@@ -84,6 +93,7 @@ export class AdduserComponent implements OnInit {
 
         this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',b,options).subscribe(data => {
           var data1=data.json();
+          console.log(data.json())
           console.log(data1)
 
 

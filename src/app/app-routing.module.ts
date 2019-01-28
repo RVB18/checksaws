@@ -13,10 +13,9 @@ import { UserrolesComponent } from './userroles/userroles.component'
 import { UserComponent } from './user/user.component'
 import { AdduserComponent } from './adduser/adduser.component'
 import { EdituserComponent } from './edituser/edituser.component'
-import { SnackbarComponent } from './snackbar/snackbar.component'
-import { ValidateFieldsSubmitFormComponent } from './validate-fields-submit-form/validate-fields-submit-form.component'
-import { SnackBarComponentExampleComponent } from './snack-bar-component-example/snack-bar-component-example.component'
-import { FormComponent } from './form/form.component';
+
+
+import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
@@ -33,10 +32,8 @@ const routes: Routes = [
 {path:'user',component:UserComponent},
 {path:'adduser',component:AdduserComponent},
 {path:'edituser',component:EdituserComponent},
-{path:'snackbar',component:SnackbarComponent},
-{path:'valid',component:ValidateFieldsSubmitFormComponent},
-{path:'snackbarexample',component:SnackBarComponentExampleComponent},
-{path:'form',component:FormComponent},
+
+{path:'delete',component:DeleteuserComponent},
 {path:'tableview',component:TableviewComponent}];
 
 

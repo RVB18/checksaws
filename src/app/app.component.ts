@@ -394,7 +394,7 @@ displayFieldCss(field: string) {
 }
 
 
-
+/*
 @Component({
   selector: 'app-snack',
   templateUrl: 'app-snack.html',
@@ -403,4 +403,4 @@ export class PizzaPartyaComponent {
   constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
 
 
-}
+}*/

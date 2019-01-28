@@ -15,6 +15,8 @@ import { ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {Issue} from '../models/issue';
 import {AdduserComponent} from '../adduser/adduser.component';
+import { DeleteuserComponent } from '../deleteuser/deleteuser.component';
+import { EdituserComponent } from '../edituser/edituser.component'
 //import { MattableeditComponent } from '../mattableedit/mattableedit.component';
 import { MattabledeleteComponent } from '../mattabledelete/mattabledelete.component';
 import {map} from 'rxjs/operators';
@@ -65,14 +67,6 @@ import {
 export class UserComponent implements OnInit {
 
 
-  configSuccess: MatSnackBarConfig = {
-    panelClass: 'style-success',
-
-    duration: 10000000000,
-    horizontalPosition: 'center',
-    verticalPosition: 'top'
-  };
-
   closeResult: string;
   loading:boolean=false;
   isLoading:boolean=false;
@@ -81,7 +75,7 @@ export class UserComponent implements OnInit {
 
 
 
-  displayedColumns = ['Email', 'Firstname','Last Name','Phonenumber','Username','actions'];
+  displayedColumns = ['Email','Firstname','Last Name','Phonenumber','Password','actions'];
   index: number;
   id: string;
   dataSource: MatTableDataSource<VendorsData>;
@@ -208,18 +202,15 @@ this.isLoading=false
 
 
 
-                console.log(this.datap)
 
 
                 for(var tt=0;tt<this.datap.length;tt++)
                 {
-                  console.log(this.datap[tt])
-              this.i=this.datap[tt]
 
-                users.push(this.i)
-                console.log(users)
+                users.push(this.datap[tt])
               }
 
+              console.log(users)
 
               this.dataSource = new MatTableDataSource(users);
 
@@ -228,22 +219,6 @@ this.isLoading=false
 
 
               }
-                  /*for(var t=0;t<this.datap.length;t++){
-
-
-
-                    users.push(this.datap[t])
-
-                  }
-                console.log(users)
-
-                  this.dataSource = new MatTableDataSource(users);
-
-                  this.dataSource.paginator = this.paginator;
-                  this.dataSource.sort = this.sort;
-                  //  console.log("sdfsd "+this.dataSource)
-}*/
-
                 });
 
 
@@ -302,6 +277,59 @@ ExportTOExcel()
 
 }
 //
+
+
+
+stopEdit(i: number, id: string, Email: string,  Firstname: string,Lastname: string, Phonenumber:string, Password:string) {
+  this.id = id;
+  // index row is used just for debugging proposes and can be removed
+  this.index = i;
+  //console.log("dscvs "+StreetAddress)
+  const dialogRef = this.dialog.open(EdituserComponent, {
+    data: {id: id, Email: Email, Firstname:Firstname, Lastname: Lastname,Phonenumber:Phonenumber,Password:Password}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+  /*  if (result === 1) {
+      // When using an edit things are little different, firstly we find record inside DataService by id
+      const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);//
+      // Then you update that record using data from dialogData (values you enetered)
+      this.exampleDatabase.dataChange.value[this.index] = this.dataService.getDialogData();
+  console.log(this.dataService.getDialogData())
+      // And lastly refresh table
+      this.refreshTable();
+  //window.location.reload
+}*/
+  });
+}
+
+
+       /*animationType: ngxLoadingAnimationTypes.circle,
+       backdropBackgroundColour: '#000000',
+       backdropBorderRadius: '4px',
+       primaryColour: '#000',
+       secondaryColour: '#000',*/
+
+deleteItem(i: number, id: string, Email: string,  Firstname: string,Lastname: string, Phonenumber:string, Password:string) {
+  this.index = i;
+  this.id = id;
+  const dialogRef = this.dialog.open(DeleteuserComponent, {
+    data: {id: id, Email: Email, Firstname:Firstname, Lastname: Lastname,Phonenumber:Phonenumber,Password:Password}
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === 1) {
+    //  const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
+      // for delete we use splice in order to remove single object from DataService
+    //  this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+    //  this.refreshTable();
+    }
+  });
+}
+
+
+
+
 
 /*open(content) {
   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -459,17 +487,16 @@ export function getdata(sheet){
 };
 
 export interface VendorsData {
-  id: string;
-  Email: string;
-  Username:string;
-  Lastname:string;
-  Firstname:string;
-  Phonenumber:string;
+  email: string;
+  lastname:string;
+  firstname:string;
+  phonenumber:string;
+  password:string;
 
 }
 
 
-
+/*
 @Component({
   selector: 'user-snack',
   templateUrl: 'user-snack.html',
@@ -478,4 +505,4 @@ export class PizzaPartyuComponent {
   constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
 
 
-}
+}*/

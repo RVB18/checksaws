@@ -20,14 +20,6 @@ export class VendorComponent implements OnInit {
 
 
 
-      configSuccess: MatSnackBarConfig = {
-        panelClass: 'style-success',
-        duration: 1000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top'
-      };
-
-
 isLoading:boolean=false
   map:any;
   data:any;
@@ -168,7 +160,7 @@ export interface UserData {
 }
 
 
-
+/*
 @Component({
   selector: 'vendor-snack',
   templateUrl: 'vendor-snack.html',
@@ -189,4 +181,4 @@ export class PizzaPartyvsessionComponent{
   constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
 
 
-}
+}*/

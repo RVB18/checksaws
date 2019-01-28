@@ -46,13 +46,6 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 export class TableviewComponent implements OnInit {
 
-    configSuccess: MatSnackBarConfig = {
-      panelClass: 'style-success',
-
-      duration: 10000000000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
-    };
 
   displayedColumns = ['Name', 'Street','City','State','Zipcode', 'Mobile', 'Email','actions'];
   index: number;
@@ -367,7 +360,7 @@ export interface VendorData {
 
 }
 
-
+/*
 @Component({
   selector: 'tableview-snack',
   templateUrl: 'tableview-snack.html',
@@ -387,4 +380,4 @@ export class PizzaPartyysessionComponent {
   constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
 
 
-}
+}*/

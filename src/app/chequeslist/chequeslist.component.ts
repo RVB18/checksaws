@@ -24,12 +24,7 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 })
 export class ChequeslistComponent implements OnInit  {
 
-      configSuccess: MatSnackBarConfig = {
-        panelClass: 'style-success',
-        duration: 1000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top'
-      };
+    
 
 
   public loading = false;
@@ -149,7 +144,7 @@ var m=[];
                    //console.log(users)
 
                    this.datap.Items.forEach(function (ele){
-                     var sudheerdata={
+                     var checkdata={
                                           "Date":ele.Date,
                                           "CityorTown":ele.CityorTown,
                                           "timestamp":ele.timestamp,
@@ -165,7 +160,7 @@ var m=[];
                                         }
 
 
-                                        m.push(sudheerdata)               //   m.push(sudheerdata)
+                                        m.push(checkdata)
                    })
 
 console.log(m)
@@ -183,7 +178,7 @@ console.log(m)
 
 
 
-                     this.dataSource = new MatTableDataSource(this.users);
+                     this.dataSource = new MatTableDataSource(m);
 
                      this.dataSource.paginator = this.paginator;
                      this.dataSource.sort = this.sort;
@@ -702,7 +697,7 @@ export function  convertNumberToWords(amount:string) {
  }
 
 
-
+/*
 
  @Component({
    selector: 'chequelist-snack',
@@ -723,4 +718,4 @@ export function  convertNumberToWords(amount:string) {
    constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
 
 
- }
+ }*/
