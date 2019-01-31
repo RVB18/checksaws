@@ -9,7 +9,7 @@
 }
 .title{
   font-size: 2.5em;
-    color: black;
+    color: #778899	;
   font-family: 'Abril Fatface', cursive;
 
 }
@@ -43,8 +43,8 @@ mat-header-cell{
 }
 .one{
 
-  margin-right:15%;
-  margin-left:15%;
+  margin-right:7%;
+  margin-left:7%;
 }
 
 body{
@@ -182,8 +182,13 @@ p{
 mat-cell.mat-cell, mat-header-cell.mat-header-cell {
   overflow: visible;
 }
-
-
+.modal-backdrop.show {
+    opacity: 0;
+}
+.modal-open{
+  background-color: transparent;
+  opacity: 1;
+}
 .red-snackbar{
   background:#f44336
 }

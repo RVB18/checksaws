@@ -1,5 +1,4 @@
 mat-header-cell{
- background-color: 	#778899	;
  color: #fff;
  font-size: 1em;
  text-align: center;
@@ -66,7 +65,9 @@ th.mat-column-position, td.mat-column-position {
 .mat-table-sticky:last-child {
  border-left: 1px solid #e0e0e0;
 }
-
+#del{
+margin-right: 10px;
+}
 @media screen and (max-width: 600px) {
   .mat-cell,.mat-header-cell {
     padding: 0 8px 0  15px;
@@ -82,17 +83,21 @@ th.mat-column-position, td.mat-column-position {
     font-size: 0.2em;
   }
 #pr{
-margin-left:10%;
+margin-left:-1%;
 }
 .one{
 width:100%;
 margin-left:1px;
 
 }
-#table{
-
+.upload{
+margin-left:1%;
 }
 
+.search{
+  position:relative;
+    right:50%;
+  }
 mat-cell{
  width:100%;
  padding-right: -10%;
@@ -101,16 +106,16 @@ mat-cell{
 }
 @media screen and (min-width: 960px) {
    #pr {
-margin-left:40%;
+margin-left:10%;
 }
 
 
 
 }
-@media screen and (max-width: 1280px) {
+@media screen and (min-width: 1280px) {
 
 #pr{
-  margin-left:50%;
+  margin-left:5%;
 }
 
 
@@ -154,11 +159,22 @@ width:75%;
 
 .one{
 
-  margin-right:15%;
-  margin-left:15%;
+  margin-right:2%;
+  margin-left:2%;
 }
+.modal-open{
+  display: none;
 
-
+}
+#myModal-backdrop {
+    /* position: fixed; */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #fff;
+}
 #print{
 top:15%;
 }

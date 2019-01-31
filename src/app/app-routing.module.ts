@@ -9,14 +9,12 @@ import { Multicheck2Component } from './multicheck2/multicheck2.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TableviewComponent } from './tableview/tableview.component';
-import { UserrolesComponent } from './userroles/userroles.component'
 import { UserComponent } from './user/user.component'
 import { AdduserComponent } from './adduser/adduser.component'
 import { EdituserComponent } from './edituser/edituser.component'
-import { DriversComponent } from './drivers/drivers.component';
 
-import { DeleteuserComponent } from './deleteuser/deleteuser.component';
-
+import { SettingsComponent } from './settings/settings.component';
+//
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
 {path:'vendor',component:VendorComponent},
@@ -28,12 +26,11 @@ const routes: Routes = [
 {path:'signup',component:SignupComponent},
 {path:'login',component:LoginComponent},
 {path:'quickbooks',component:Multicheck2Component},
-{path:'userrole',component:UserrolesComponent},
 {path:'user',component:UserComponent},
 {path:'adduser',component:AdduserComponent},
 {path:'edituser',component:EdituserComponent},
-{path:'drivers',component:DriversComponent},
-{path:'delete',component:DeleteuserComponent},
+
+{path:'settings',component:SettingsComponent},
 {path:'tableview',component:TableviewComponent}];
 
 

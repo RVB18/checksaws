@@ -1,17 +1,62 @@
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" *ngIf='showNav'>
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <!--<ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Dropdown
+        </a>
+        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>-->
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <!--<li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#id02"><i class="fa fa-plus" aria-hidden="true"></i> Create Check</a>
 
 
+      </li>-->
+      <li class="nav-item">
+        <a class="nav-link"href="http://alektasolutions.com/purchase/print/cheque/ang?words=Three%20Hundred%20and%20Forty%20Three%20%20and%2030/100*****&date=10-08-2018&name=Raghava&amount=**343.3&addr=Arizona,Phoenix," target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Test Print</a>
 
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" (click)="logout()" ><i class="fa  fa-power-off"></i> Logout</a>
 
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
 
-
-
-
-
-
-
-
+<!--
 <nav class="mb-4 navbar navbar-expand-lg navbar-dark bg-teal" id="navbar" *ngIf='showNav' >
-                <a class="navbar-brand" href="#">Alekta</a>
+                <a class="navbar-brand" href="#"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -19,16 +64,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
 
                     <ul class="navbar-nav ml-auto">
-                      <li><a (click)="redirect()"><img src="/assets/qb.png" height="40px"></a></li>
 
-                        <li class="nav-item dropdown" [routerLinkActive]="['active']">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-credit-card"></i> Check</a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item"
-                                 href="http://alektasolutions.com/purchase/print/cheque?date=2018-11-26&name=ravinder&amount=4500&addr=Phoenix,Arizona" routerLink="/cheques"><i class="fa fa-list-alt" aria-hidden="true"></i> Checks </a>
-                                <a class="dropdown-item"  data-toggle="modal" data-target="#id02"><i class="fa fa-plus" aria-hidden="true"></i> Create Check</a>
-                            </div>
+                        <li>
+                          <a  class="nav-item" style="color:white;"data-toggle="modal" data-target="#id02"><i class="fa fa-plus" aria-hidden="true"></i> Create Check</a>
+
                         </li>
+                        <li>
+                          <a class="nav-item" style="color:white;" href="http://alektasolutions.com/purchase/print/cheque/ang?words=Three%20Hundred%20and%20Forty%20Three%20%20and%2030/100*****&date=10-08-2018&name=Raghava&amount=**343.3&addr=Arizona,Phoenix," target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Test Print</a>
+
+                        </li>
+                        <li>
+                          <a class="nav-item" style="color:white;" (click)="logout()" ><i class="fa  fa-power-off"></i> Logout</a>
+
+                        </li>
+
+                          <!--
     <li class="nav-item dropdown" [routerLinkActive]="['active']">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user"></i> Vendor </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
@@ -46,11 +96,82 @@
                                 <a class="dropdown-item" (click)="logout()" ><i class="fa  fa-power-off"></i> Logout</a>
 
                             </div>
-                        </li>
+                        </li>-->
 
-                    </ul>
+                    <!--</ul>
                 </div>
-            </nav>
+            </nav>-->
+
+
+
+
+<div class="control-section" >
+    <div class="col-lg-12 col-sm-12 col-md-12 center">
+    </div>
+    <div class="col-lg-12 col-sm-12 col-md-12 center">
+    </div>
+    <div class="col-lg-12 col-sm-12 col-md-12" id="sidebar-section">
+        <div id="wrapper">
+            <ejs-sidebar #dockBar id="dockSidebar" [enableDock]='enableDock' [width]='width' [dockSize]='dockSize' *ngIf='showNav'>
+                <div class="dock">
+                    <ul>
+                        <li class="sidebar-item" id="toggle" (click)="toggleClick()" >
+                            <span class="e-icons expand"></span>
+                            <span  class="e-text" title="menu" style="font-size:2.5em;" >Alekta </span>
+                        </li><br>
+                          <br>
+                        <li class="sidebar-item">
+                            <span  class="fa fa-credit-card" style="font-size:30px;color:white;"routerLink="/cheques" [routerLinkActive]="['active']" ></span>
+                            <span class="e-text" title="Checks" style="font-size:1.8em;" routerLink="/cheques" >&nbsp;&nbsp;&nbsp;Checks</span>
+                        </li>
+                        <br>
+                        <li class="sidebar-item">
+                            <span class="fa fa-user"  style="font-size:30px;color:white;"routerLink="/vendor" [routerLinkActive]="['active']"></span>
+                            <span class="e-text" title="Vendor" style="font-size:1.8em;"  routerLink="/vendor"  >&nbsp;&nbsp; &nbsp;Vendor</span>
+                        </li>
+                        <br>
+                        <li class="sidebar-item">
+                            <span class="fa fa-users" aria-hidden="true" style="font-size:30px;color:white;" routerLink="/tableview" [routerLinkActive]="['active']"></span>
+                            <span class="e-text" title="Vendor Checks" style="font-size:1.8em;" routerLink="/tableview"  >&nbsp; Vendor Checks</span>
+                        </li>
+                        <br>
+
+
+                        <li class="sidebar-item">
+                            <span class="fa  fa-cog" style="font-size:30px;color:white;" [routerLinkActive]="['active']" routerLink="/settings"  ></span>
+                            <span class="e-text" title="settings" style="font-size:1.8em;"  routerLink="/settings"  > &nbsp;&nbsp;&nbsp;Settings</span>
+                        </li>
+                        <br>
+
+
+                        <li class="sidebar-item">
+                            <span class="fa fa-user-plus" style="font-size:30px;color:white;"  routerLink="/user"  ></span>
+                            <span class="e-text" title="User Access" style="font-size:1.8em;"routerLink="/user"   > &nbsp;&nbsp; User Access</span>
+                        </li>
+                        <br>
+                        <li class="sidebar-item">
+                            <span  style="font-size:30px;color:white;"  data-toggle="modal"[routerLinkActive]="['active']" data-target="#id01" ><a style="margin-bottom:2px;" (click)="redirect()"><img src="/assets/qick.png"  height="40px"></a></span>
+                            <span class="e-text" title="Quick Books" style="font-size:1.8em;"  data-toggle="modal" data-target="#id01"> &nbsp;&nbsp;Quick Books</span>
+                        </li>
+                    </ul>
+                    <ul id="bottom-right">
+
+
+                      </ul>
+                </div>
+            </ejs-sidebar>
+            <div id="main-content container-fluid col-md-12 ">
+              <router-outlet></router-outlet>
+
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 
 
@@ -270,98 +391,98 @@
     </div>
 
 
-    <div class="modal fade" id="id02">
-             <div class="modal-dialog modal-lg">
-               <div class="modal-content">
+        <div class="modal fade" id="id02">
+                 <div class="modal-dialog modal-lg">
+                   <div class="modal-content">
 
-                 <!-- Modal Header -->
-                 <div class="modal-header">
-                   <h4 class="modal-title"><i class="fa fa-plus-square" aria-hidden="true"></i>
-    Create Single Check</h4>
-                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                 </div>
-                 <form  #f1="ngForm" (ngSubmit)="createcheck(f1)">
+                     <!-- Modal Header -->
+                     <div class="modal-header">
+                       <h4 class="modal-title"><i class="fa fa-plus-square" aria-hidden="true"></i>
+        Create Single Check</h4>
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     </div>
+                     <form  #f1="ngForm" (ngSubmit)="createcheck(f1)">
 
-                 <div class="modal-body">
-
-
-                              <h1 style="text-align:center;"> Vendor Details </h1>
-   <div class="row" style="margin-left:1%;margin-right:1%;">
-   <div class="col-50" >
-                                 <label for="fname" ><b>Vendor</b></label>
-                              <select class="form-control" name="Name" id="Name" (change)="completeAddress()" ngModel>
+                     <div class="modal-body">
 
 
-                                   <option *ngFor="let st of vendor" value={{st.Name}}>{{st.Name}}</option>
-
-                                 </select>
-   <br>
-                                               <label for="city"> <b>Load Number</b></label>
-                                               <input type="text" placeholder="Enter LOADNUMBER" name="Loadnumber"  class="form-control" required ngModel >
-
-    </div> <div class="col-50">
-
-                    <label for="email"><b> Date</b> </label>
-         <input type="date" placeholder="Enter Date" name="Date" class="form-control" width="500px;" ngModel required >
-
-                   <div class="row">
-                   <div class="col-50">
-
-   <br>
-                                     <label for="city"> <b>Carrer Name</b></label>
-                                       <input type="text" placeholder="Enter career number" name="Careern"  class="form-control" required ngModel>
+                                  <h1 style="text-align:center;"> Vendor Details </h1>
+       <div class="row" style="margin-left:1%;margin-right:1%;">
+       <div class="col-50" >
+                                     <label for="fname" ><b>Vendor</b></label>
+                                  <select class="form-control" name="Name" id="Name" (change)="completeAddress()" ngModel>
 
 
+                                       <option *ngFor="let st of vendor" value={{st.Name}}>{{st.Name}}</option>
+
+                                     </select>
+       <br>
+                                                   <label for="city"> <b>Load Number</b></label>
+                                                   <input type="text" placeholder="Enter LOADNUMBER" name="Loadnumber"  class="form-control" required ngModel >
 
         </div> <div class="col-50">
-          <br>
-                    <label for="city"> <b>Amount</b></label>
-                      <input type="text" placeholder="Enter Amount" name="Amount" class="form-control" required ngModel >
-   </div> </div>
-   </div>
-                              </div>
-   <div class="col-50" style="margin-left:1%;margin-right:1%;">
 
-              <div class="row">
-              <div class="col-25">
-                              <label for="city" style="margin-top:1px;"> <b>Country</b></label>
-                                <input type="text" placeholder="Enter Country" name="Country"  class="form-control" required ngModel={{Addresscomplete.Country}}>
-    </div> <div class="col-50">
-              <label for="city"> <b>Street</b></label>
+                        <label for="email"><b> Date</b> </label>
+             <input type="date" placeholder="Enter Date" name="Date" class="form-control" width="500px;" ngModel required >
 
-       <input type="text" placeholder="Enter StreetAddress" name="StreetAddress" class="form-control" required ngModel={{Addresscomplete.StreetAddress}} >
-   </div></div>
-   <div class="row">
-   <div class="col-25">
-                                 <label for="city"> <b>State</b></label>
+                       <div class="row">
+                       <div class="col-50">
 
-                          <input type="text" placeholder="Enter State" name="State" class="form-control" required ngModel={{Addresscomplete.State}} >
-   </div >  <div class="col-25">
-                          <label for="city"> <b>City</b></label>
-                            <input type="text" placeholder="Enter City" name="CityorTown" class="form-control" required ngModel={{Addresscomplete.CityorTown}}  >
-   </div> <div class="col-25">
-                            <label for="city">  <b> Zip Code</b></label>
-                              <input type="text" placeholder="Enter Zipcode" name="zipcode"  class="form-control" required ngModel={{Addresscomplete.zipcode}} >
-   </div>
-     </div>
-
-
-                   <br>
-                              </div>
-
-                              <flash-messages ></flash-messages>
+       <br>
+                                         <label for="city"> <b>Carrer Name</b></label>
+                                           <input type="text" placeholder="Enter career number" name="Careern"  class="form-control" required ngModel>
 
 
 
-                 <div class="modal-footer">
-                   <button type="submit" class="btn print"  >Submit</button>
+            </div> <div class="col-50">
+              <br>
+                        <label for="city"> <b>Amount</b></label>
+                          <input type="text" placeholder="Enter Amount" name="Amount" class="form-control" required ngModel >
+       </div> </div>
+       </div>
+                                  </div>
+       <div class="col-50" style="margin-left:1%;margin-right:1%;">
 
-                   <button type="button" class="btn delete" data-dismiss="modal">Close</button>
+                  <div class="row">
+                  <div class="col-25">
+                                  <label for="city" style="margin-top:1px;"> <b>Country</b></label>
+                                    <input type="text" placeholder="Enter Country" name="Country"  class="form-control" required ngModel={{Addresscomplete.Country}}>
+        </div> <div class="col-50">
+                  <label for="city"> <b>Street</b></label>
+
+           <input type="text" placeholder="Enter StreetAddress" name="StreetAddress" class="form-control" required ngModel={{Addresscomplete.StreetAddress}} >
+       </div></div>
+       <div class="row">
+       <div class="col-25">
+                                     <label for="city"> <b>State</b></label>
+
+                              <input type="text" placeholder="Enter State" name="State" class="form-control" required ngModel={{Addresscomplete.State}} >
+       </div >  <div class="col-25">
+                              <label for="city"> <b>City</b></label>
+                                <input type="text" placeholder="Enter City" name="CityorTown" class="form-control" required ngModel={{Addresscomplete.CityorTown}}  >
+       </div> <div class="col-25">
+                                <label for="city">  <b> Zip Code</b></label>
+                                  <input type="text" placeholder="Enter Zipcode" name="zipcode"  class="form-control" required ngModel={{Addresscomplete.zipcode}} >
+       </div>
+         </div>
+
+
+                       <br>
+                                  </div>
+
+                                  <flash-messages ></flash-messages>
+
+
+
+                     <div class="modal-footer">
+                       <button type="submit" class="btn print"  >Submit</button>
+
+                       <button type="button" class="btn delete" data-dismiss="modal">Close</button>
+                     </div>
+             </div>        </form>
+                   </div>
                  </div>
-         </div>        </form>
                </div>
-             </div>
-           </div>
 
 
 
@@ -384,7 +505,3 @@
         <ngx-loading [show]="loading" [config]="{
                 backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
                 primaryColour: '#DB4437', secondaryColour: '#F4B400', tertiaryColour: '#DB4437' }" ></ngx-loading>
-
-
-
-<router-outlet></router-outlet>

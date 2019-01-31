@@ -14,7 +14,10 @@ import { v4 as uuid } from 'uuid';
 import {MatSnackBar} from '@angular/material';
 
 import { FlashMessagesService } from 'angular2-flash-messages';
-
+import {  ViewEncapsulation,  ViewChild } from '@angular/core';
+import { SidebarComponent } from '@syncfusion/ej2-angular-navigations';
+import { ButtonComponent, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { enableRipple } from '@syncfusion/ej2-base';
 import {
   FormGroup,
   FormBuilder,
@@ -33,6 +36,24 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 })
 
 export class AppComponent implements OnInit {
+  @ViewChild('dockBar')
+      public dockBar: SidebarComponent;
+      public enableDock: boolean = true;
+      public width: string = '220px';
+      public dockSize: string = '72px';
+      // only for sample browser use
+
+
+      // open new tab
+      newTabClick(): void {
+          document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'sidebar/docking-sidebar/index.html');
+      }
+      positionChange(args: any) {
+          this.dockBar.position = args.value == "left" ? "Left" : "Right";
+      }
+      toggleClick() {
+          this.dockBar.toggle();
+      }
 
 
         configSuccess: MatSnackBarConfig = {
@@ -158,7 +179,7 @@ completeAddress(){
 
      console.log(sett +"dfg")
 
-     sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": (f.value.cheque), "id": uuid(), "Name": f.value.name }
+     sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
 
 
             //this.snackBar.open('Disco party!', 'Dism', {duration: 5000});
@@ -175,7 +196,7 @@ completeAddress(){
 
 }
     else{
-sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": (f.value.cheque), "id": this.config.id, "Name": f.value.name }
+sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
 
 
 //this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});

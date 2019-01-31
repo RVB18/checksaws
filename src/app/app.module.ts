@@ -18,6 +18,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
+//import { SharedModule } from './shared.module';
+
+
 //import { UserrolesComponent } from './userroles/userroles.component'
 
 
@@ -84,22 +87,22 @@ import { UserComponent } from './user/user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { EdituserComponent } from './edituser/edituser.component';
 
-
+//
 import { NgForm } from '@angular/forms';
 
 
 
 
-import { DeleteuserComponent } from './deleteuser/deleteuser.component';
-import { DriversComponent } from './drivers/drivers.component';
 
 
 
 
+import { SettingsComponent } from './settings/settings.component';
 
 
 
-
+import { RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { SidebarModule } from '@syncfusion/ej2-angular-navigations';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -124,6 +127,7 @@ import { DriversComponent } from './drivers/drivers.component';
     MatRadioModule,
     MatRippleModule,
     MatSelectModule,
+
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
@@ -147,12 +151,16 @@ export class DemoMaterialModule {}
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
+    SettingsComponent,
     MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
-    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent, DriversComponent,DeleteuserComponent,
+    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+   RadioButtonModule,
+   SidebarModule,
+
     HttpClientModule,
     DemoMaterialModule,
    MatNativeDateModule,
@@ -181,19 +189,6 @@ CookieModule.forRoot(),
     UserComponent,
     AdduserComponent,
     EdituserComponent,
-    DriversComponent,
-    DeleteuserComponent,
-
-
-
-
-
-
-
-
-
-
-
 
 
   ],

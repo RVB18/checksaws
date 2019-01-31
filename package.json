@@ -46,7 +46,17 @@
     "rxjs-compat": "^6.3.3",
     "web-animations-js": "^2.3.1",
     "xlsx": "^0.14.1",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "@syncfusion/ej2-angular-documenteditor": "16.4.48",
+    "@syncfusion/ej2-angular-richtexteditor": "16.4.48",
+    "@syncfusion/ej2-angular-notifications": "16.4.47",
+    "@syncfusion/ej2-angular-lists": "16.4.47",
+    "@syncfusion/ej2-dropdowns": "16.4.48",
+    "@syncfusion/ej2-buttons": "16.4.47",
+    "@syncfusion/ej2-angular-buttons": "16.4.47",
+    "@syncfusion/ej2-angular-navigations": "16.4.47",
+    "@syncfusion/ej2-base": "16.4.47",
+    "@syncfusion/ej2-angular-dropdowns": "16.4.48"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.1",

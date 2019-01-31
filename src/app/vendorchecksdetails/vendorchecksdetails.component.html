@@ -15,7 +15,7 @@
 	</nav>
 
 	<mat-form-field	style="width:20%">
-    <input  matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    <input  matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
 
 	</mat-form-field>
 
@@ -57,9 +57,9 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
       <mat-cell *matCellDef="let dataSource" > {{dataSource.StreetAddress}} ,{{dataSource.CityorTown}} {{dataSource.State}} {{dataSource.zipcode}} </mat-cell>
     </ng-container>
-		<ng-container matColumnDef="Load">
+		<ng-container matColumnDef="Load" >
 		      <mat-header-cell *matHeaderCellDef mat-sort-header> Load Number </mat-header-cell>
-		      <mat-cell *matCellDef="let dataSource" > {{dataSource.Loadnumber}} </mat-cell>
+		      <mat-cell  style="text-align:center;" *matCellDef="let dataSource" > {{dataSource.Loadnumber}} </mat-cell>
 		    </ng-container>
 				<ng-container matColumnDef="Carrer">
 				      <mat-header-cell *matHeaderCellDef mat-sort-header> Carrer </mat-header-cell>
@@ -87,6 +87,7 @@ mode="indeterminate">
 
 </div>
 
+<div style="margin-bottom:10%;" >   </div>
 
 <!-- Copyright 2018 Google Inc. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that

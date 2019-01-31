@@ -137,7 +137,7 @@ getCookie(key:string){
 
 
 this.editdata={}
-const VendorsData;[] = [];
+const VendorsData = [];
 
                 this.coun=0;
 
