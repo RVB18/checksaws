@@ -85,12 +85,13 @@ import { AdduserComponent } from './adduser/adduser.component';
 import { EdituserComponent } from './edituser/edituser.component';
 
 
-
+import { NgForm } from '@angular/forms';
 
 
 
 
 import { DeleteuserComponent } from './deleteuser/deleteuser.component';
+import { DriversComponent } from './drivers/drivers.component';
 
 
 
@@ -135,7 +136,7 @@ import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 	MatTreeModule,
 	MatTableModule ,
   ],
-  declarations: [ DeleteuserComponent]
+  declarations: [ ]
 })
 export class DemoMaterialModule {}
 
@@ -147,7 +148,7 @@ export class DemoMaterialModule {}
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
     MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
-    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,
+    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent, DriversComponent,DeleteuserComponent,
   ],
   imports: [
     BrowserModule,
@@ -180,7 +181,11 @@ CookieModule.forRoot(),
     UserComponent,
     AdduserComponent,
     EdituserComponent,
-  
+    DriversComponent,
+    DeleteuserComponent,
+
+
+
 
 
 

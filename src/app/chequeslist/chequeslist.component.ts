@@ -24,7 +24,7 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 })
 export class ChequeslistComponent implements OnInit  {
 
-    
+
 
 
   public loading = false;
@@ -156,7 +156,8 @@ var m=[];
                                           "Client":ele.Client,
                                           "Amount":ele.Amount,
                                           "Carrername":ele.Carrername,
-                                          "Name":ele.Name
+                                          "Name":ele.Name,
+                                          "id":ele.id
                                         }
 
 
@@ -208,6 +209,7 @@ console.log(m)
       this.loading=true
 		  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/mchequedel',fp,this.options).subscribe(data => {
   var checksdata=data.json()
+  console.log(checksdata)
   this.loading=false
 
   if(checksdata.message=="success"){

@@ -10,17 +10,18 @@ export class Issue {
 
   Mobile: string;
 
+  Username:string;
+
+    Email:string;
+
   email: string;
 
-
+ password:string;
   firstname:string;
 
   lastname:string;
 
   phonenumber:string;
 
- password:string;
-
-    Email:string;
 
 }

@@ -9,7 +9,7 @@
     <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="Email" [(ngModel)]="data.Email" name="Email" required ></textarea>
+        <textarea matInput #input class="form-control" placeholder="Email" [(ngModel)]="data.Email" name="email" required ></textarea>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -20,21 +20,21 @@
 
         <div class="form">
           <mat-form-field color="accent">
-            <textarea matInput #input class="form-control" placeholder="First Name" [(ngModel)]="data.Firstname" name="Firstname" required ></textarea>
+            <textarea matInput #input class="form-control" placeholder="First Name" [(ngModel)]="data.Firstname" name="firstname" required ></textarea>
             <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         </div>
 
         <div class="form">
           <mat-form-field color="accent">
-          <textarea matInput #input class="form-control" placeholder="Last Name" [(ngModel)]="data.Lastname" name="Lastname" required ></textarea>
+          <textarea matInput #input class="form-control" placeholder="Last Name" [(ngModel)]="data.Lastname" name="lastname" required ></textarea>
             <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
         </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="Phone number" [(ngModel)]="data.Phonenumber" name="Phonenumber" required ></textarea>
+        <textarea matInput #input class="form-control" placeholder="Phone number" [(ngModel)]="data.Phonenumber" name="phonenumber" required ></textarea>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

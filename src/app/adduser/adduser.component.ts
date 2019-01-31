@@ -74,10 +74,11 @@ console.log("gh")
 
                     var b={
                         email:this.data.email,
-                      password:uuid(),
-                      lastname:this.data.lastname,
+                        password:uuid(),
                       firstname:this.data.firstname,
+                      lastname:this.data.lastname,
                       phonenumber:this.data.phonenumber
+
                     }
 
                     console.log(b)

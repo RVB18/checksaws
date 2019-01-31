@@ -13,7 +13,7 @@ import { UserrolesComponent } from './userroles/userroles.component'
 import { UserComponent } from './user/user.component'
 import { AdduserComponent } from './adduser/adduser.component'
 import { EdituserComponent } from './edituser/edituser.component'
-
+import { DriversComponent } from './drivers/drivers.component';
 
 import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 
@@ -32,7 +32,7 @@ const routes: Routes = [
 {path:'user',component:UserComponent},
 {path:'adduser',component:AdduserComponent},
 {path:'edituser',component:EdituserComponent},
-
+{path:'drivers',component:DriversComponent},
 {path:'delete',component:DeleteuserComponent},
 {path:'tableview',component:TableviewComponent}];
 
