@@ -18,6 +18,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
+//import { SharedModule } from './shared.module';
+
+
 //import { UserrolesComponent } from './userroles/userroles.component'
 
 
@@ -95,10 +98,12 @@ import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 
 
 
+import { SettingsComponent } from './settings/settings.component';
 
 
 
-
+import { RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { SidebarModule } from '@syncfusion/ej2-angular-navigations';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -123,6 +128,7 @@ import { DeleteuserComponent } from './deleteuser/deleteuser.component';
     MatRadioModule,
     MatRippleModule,
     MatSelectModule,
+
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
@@ -135,7 +141,7 @@ import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 	MatTreeModule,
 	MatTableModule ,
   ],
-  declarations: [ DeleteuserComponent]
+  declarations: [ ]
 })
 export class DemoMaterialModule {}
 
@@ -146,12 +152,16 @@ export class DemoMaterialModule {}
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
+    SettingsComponent,
     MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
-    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,
+    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,DeleteuserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+   RadioButtonModule,
+   SidebarModule,
+
     HttpClientModule,
     DemoMaterialModule,
    MatNativeDateModule,
@@ -180,15 +190,6 @@ CookieModule.forRoot(),
     UserComponent,
     AdduserComponent,
     EdituserComponent,
-  
-
-
-
-
-
-
-
-
 
 
   ],

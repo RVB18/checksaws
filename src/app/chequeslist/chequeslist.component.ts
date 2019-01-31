@@ -1,3 +1,4 @@
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -24,7 +25,7 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 })
 export class ChequeslistComponent implements OnInit  {
 
-    
+
 
 
   public loading = false;
@@ -36,6 +37,8 @@ datak:any;
   data:any;
   map:any;
 	count:any;
+  closeResult: string;
+
   coun:any;
   options:any;
   displayedColumns = [  'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer'];
@@ -68,7 +71,7 @@ deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumb
 
 }
 
-  constructor(private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService,private snackBar: MatSnackBar) {
+  constructor(private modalService: NgbModal,private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService,private snackBar: MatSnackBar) {
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
 this.coun=0;
     // Assign the data to the data source for the table to render
@@ -156,7 +159,8 @@ var m=[];
                                           "Client":ele.Client,
                                           "Amount":ele.Amount,
                                           "Carrername":ele.Carrername,
-                                          "Name":ele.Name
+                                          "Name":ele.Name,
+                                          "id":ele.id
                                         }
 
 
@@ -188,7 +192,23 @@ console.log(m)
                    });
   }
 
+  open(content) {
+     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+       this.closeResult = `Closed with: ${result}`;
+     }, (reason) => {
+       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+     });
+   }
 
+   private getDismissReason(reason: any): string {
+     if (reason === ModalDismissReasons.ESC) {
+       return 'by pressing ESC';
+     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+       return 'by clicking on a backdrop';
+     } else {
+       return  `with: ${reason}`;
+     }
+   }
   deleteitems(items){
 
 	  var dele=[];
@@ -398,7 +418,7 @@ window.location.reload();
 
 
 
-      console.log(a)
+      console.log(row)
       if(this.map.has(a))
         this.map.delete(a)
       else
