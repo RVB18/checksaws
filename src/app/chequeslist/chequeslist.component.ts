@@ -228,6 +228,7 @@ console.log(m)
       this.loading=true
 		  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/mchequedel',fp,this.options).subscribe(data => {
   var checksdata=data.json()
+  console.log(checksdata)
   this.loading=false
 
   if(checksdata.message=="success"){

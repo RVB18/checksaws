@@ -13,11 +13,13 @@ import { UserComponent } from './user/user.component'
 import { AdduserComponent } from './adduser/adduser.component'
 import { EdituserComponent } from './edituser/edituser.component'
 
-
-import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 import { SettingsComponent } from './settings/settings.component';
+<<<<<<< HEAD
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+=======
+//
+>>>>>>> f020559e5e3421496c3716a352c0a0cd9bbfe5b2
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
 {path:'vendor',component:VendorComponent},
@@ -34,7 +36,6 @@ const routes: Routes = [
 {path:'edituser',component:EdituserComponent},
 {path:'dashboard',component:DashboardComponent},
 
-{path:'delete',component:DeleteuserComponent},
 {path:'settings',component:SettingsComponent},
 {path:'tableview',component:TableviewComponent}];
 

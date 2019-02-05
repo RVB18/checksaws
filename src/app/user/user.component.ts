@@ -1,8 +1,3 @@
-
-
-
-
-
 import { Component,Inject } from '@angular/core';
 //import { UserService } from '../services/user.service';
 
@@ -66,24 +61,28 @@ import {
 
 export class UserComponent implements OnInit {
 
-
+editdata:any;
   closeResult: string;
   loading:boolean=false;
   isLoading:boolean=false;
-  options:any;
+  //options:any;
 //  data:any;
 
+optionss:any;
 
-
-  displayedColumns = ['Email','Firstname','Last Name','Phonenumber','Password','actions'];
+  displayedColumns = ['Email','Firstname','Last Name','Phonenumber','actions'];
   index: number;
   id: string;
-  dataSource: MatTableDataSource<VendorsData>;
+  //dataSource: MatTableDataSource<VendorsData>;
+
+  dataSource :MatTableDataSource<Drivers>;
+
+  driversdata: Drivers[] = [];
 
   datap:any;
   coun:any;
 
-
+users=[];
   a=[]
   i:any
 
@@ -100,7 +99,13 @@ export class UserComponent implements OnInit {
     dialogData: any;
 
 
+    open(data) {
+  this.editdata=data
+  console.log(this.editdata)
 
+  console.log(this.editdata.username)
+
+      }
 
            get data(): Issue[] {
              return this.dataChange.value;
@@ -122,14 +127,6 @@ export class UserComponent implements OnInit {
 
 
 
-         /*get data(): Issue[] {
-           return this.dataChange.value;
-         }
-
-         getDialogData() {
-           return this.dialogData;
-         }
-*/
 getCookie(key:string){
     return this._cookieService.get(key);
   }
@@ -138,7 +135,9 @@ getCookie(key:string){
               public dialog: MatDialog,
             private _cookieService:CookieService,private router: Router,private snackBar: MatSnackBar) {
 
-const users: VendorsData[] = [];
+
+this.editdata={}
+const VendorsData = [];
 
                 this.coun=0;
 
@@ -152,18 +151,25 @@ var k= this.getCookie("idToken");
 
 
 
+
                 	let myHeaders = new Headers();
                 	myHeaders.append('Content-Type', 'application/json');
                   myHeaders.append('Authorization',k)
                 console.log(myHeaders)
-                  let optionss = new RequestOptions({ headers: myHeaders });
+                  this.optionss = new RequestOptions({ headers: myHeaders });
 this.isLoading=true
 
+console.log(this.optionss)
 
-                  this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',optionss).subscribe(datas => {
+
+                  this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',this.optionss).subscribe(datas => {
                   console.log(datas.json())
 
-this.isLoading=false
+var s=datas.json();
+/*s.data.forEach(function (ele){
+  console.log(ele.username)
+})
+*/this.isLoading=false
                   console.log("j")
                   this.datap=datas.json()
 
@@ -180,13 +186,7 @@ this.isLoading=false
                                                            horizontalPosition: 'center',
                                                            verticalPosition: 'top'
                                                          })
-                  /*this.snackBar.openFromComponent(PizzaPartyuComponent, {
-                    sasa: 'ggg',
-                    ...this.configSuccess
-                  });*/
 
-                //  alert("forbidden")
-                  //window.location.href="/login"
                 }
                 else if(this.datap.message=="The incoming token has expired"){
                 //  alert("Sorry Session Expired")
@@ -207,12 +207,12 @@ this.isLoading=false
                 for(var tt=0;tt<this.datap.length;tt++)
                 {
 
-                users.push(this.datap[tt])
+                this.users.push(this.datap[tt])
               }
 
-              console.log(users)
+              console.log(this.users)
 
-              this.dataSource = new MatTableDataSource(users);
+              this.dataSource = new MatTableDataSource(this.users);
 
               this.dataSource.paginator = this.paginator;
               this.dataSource.sort = this.sort;
@@ -224,6 +224,11 @@ this.isLoading=false
 
 
               }
+
+
+
+
+
 
 
 
@@ -256,6 +261,71 @@ ExportTOExcel()
 }
 
 
+oncreate(f){
+var drivecreate={
+  "feature": "driver_crud",
+  "operation": "driver_create",
+  "email": f.email,
+  "password":f.password,
+  "firstname": f.firstname,
+  "lastname": f.lastname,
+  "phonenumber":f.phonenumber,
+  "driverid": uuid()
+}
+
+
+console.log(drivecreate)
+this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',drivecreate,this.optionss).subscribe(data => {
+//window.location.reload()
+console.log(data)
+})
+
+}
+
+
+
+
+onedit(f,data1){
+
+  var driveredit={
+    "feature": "driver_crud",
+    "operation": "driver_update",
+    "username":this.editdata.username,
+    "email": f.email,
+    "firstname": f.firstname,
+    "lastname": f.lastname,
+    "phonenumber":f.phonenumber,
+    "driverid": uuid()
+  }
+console.log(driveredit)
+  this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',driveredit).subscribe(data => {
+  //window.location.reload()
+  console.log(data)
+  })
+
+
+}
+
+delete(f,data1){
+console.log("sudheer")
+  var del={
+
+      "username":this.editdata.username,
+  }
+console.log(del)
+var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser?username='+this.editdata.username
+console.log(url)
+  this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser?username='+this.editdata.username,this.optionss).subscribe(data => {
+  //window.location.reload()
+  console.log(data)
+  })
+
+
+}
+
+
+
+
 
 
 
@@ -280,49 +350,40 @@ ExportTOExcel()
 
 
 
-stopEdit(i: number, id: string, Email: string,  Firstname: string,Lastname: string, Phonenumber:string, Password:string) {
-  this.id = id;
+stopEdit( i:number ,id:string,Username:string, Email: string,  Firstname: string,Lastname: string, Phonenumber:string, ) {
+
+  console.log(Username)
+
+
+
   // index row is used just for debugging proposes and can be removed
   this.index = i;
+
+
   //console.log("dscvs "+StreetAddress)
   const dialogRef = this.dialog.open(EdituserComponent, {
-    data: {id: id, Email: Email, Firstname:Firstname, Lastname: Lastname,Phonenumber:Phonenumber,Password:Password}
-  });
+    data: { Username:Username,Email: Email, Firstname:Firstname, Lastname: Lastname,Phonenumber:Phonenumber}
+
+  })
+
 
   dialogRef.afterClosed().subscribe(result => {
-  /*  if (result === 1) {
-      // When using an edit things are little different, firstly we find record inside DataService by id
-      const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);//
-      // Then you update that record using data from dialogData (values you enetered)
-      this.exampleDatabase.dataChange.value[this.index] = this.dataService.getDialogData();
-  console.log(this.dataService.getDialogData())
-      // And lastly refresh table
-      this.refreshTable();
-  //window.location.reload
-}*/
+
   });
 }
 
 
-       /*animationType: ngxLoadingAnimationTypes.circle,
-       backdropBackgroundColour: '#000000',
-       backdropBorderRadius: '4px',
-       primaryColour: '#000',
-       secondaryColour: '#000',*/
 
-deleteItem(i: number, id: string, Email: string,  Firstname: string,Lastname: string, Phonenumber:string, Password:string) {
+deleteItem(i: number, id: string,Username:string) {
   this.index = i;
   this.id = id;
   const dialogRef = this.dialog.open(DeleteuserComponent, {
-    data: {id: id, Email: Email, Firstname:Firstname, Lastname: Lastname,Phonenumber:Phonenumber,Password:Password}
+    data: {Username:Username}
   });
 
   dialogRef.afterClosed().subscribe(result => {
     if (result === 1) {
-    //  const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
-      // for delete we use splice in order to remove single object from DataService
-    //  this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-    //  this.refreshTable();
+
     }
   });
 }
@@ -330,69 +391,6 @@ deleteItem(i: number, id: string, Email: string,  Firstname: string,Lastname: st
 
 
 
-
-/*open(content) {
-  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-    //this.closeResult = `Closed with: ${result}`;
-    var em = (<HTMLInputElement>document.getElementById('email'));
-    var pass = (<HTMLInputElement>document.getElementById('password'));
-
-
-console.log(em.value)/*
-    this.loading=true
-        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',{Name:name},this.options).subscribe(data => {
-          console.log(data.json());
-          this.data=data.json();
-
-
-    this.loading=false
-
-          if(this.data.message=="Unauthorized")
-                                {
-                                  alert("forbidden")
-                                  window.location.href="/login"
-                                }
-                                else if(this.data.message=="The incoming token has expired"){
-                                  alert("Sorry Session Expired")
-                                  window.location.href="/login"
-
-                                }
-
-        else{
-
-export interface VendorData {
-  id: string;
-  Name: string;
-  Email: string;
-  Password:string;
-  Value:string;
-
-}
-
-
-
-
-        }
-            });
-
-
-
-
-
-  }, (reason) => {
-    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  });
-}
-
-private getDismissReason(reason: any): string {
-  if (reason === ModalDismissReasons.ESC) {
-    return 'by pressing ESC';
-  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-    return 'by clicking on a backdrop';
-  } else {
-    return  `with: ${reason}`;
-  }
-}*/
 
 
 
@@ -421,51 +419,12 @@ private getDismissReason(reason: any): string {
 
 
 
-/*  startEdit(i: number, id: string, Name: string,Last Name:string,Email:string,Password:string) {
-    this.id = id;
-    // index row is used just for debugging proposes and can be removeusernamed
-    this.index = i;
-    console.log("dscvs "+StreetAddress)
-    const dialogRef = this.dialog.open(MattableeditComponent, {
-      //data: {id: id, Name: Name, StreetAddress: StreetAddress,CityorTown:CityorTown,State:State,zipcode:zipcode, Mobile: Mobile, Email: Email}
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-    /*  if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);//
-        // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[this.index] = this.dataService.getDialogData();
-		console.log(this.dataService.getDialogData())
-        // And lastly refresh table
-        this.refreshTable();
-		//window.location.reload
-  }
-    });
-  }
-
-
-  deleteItem(i: number, id: string, Name: string,Last Name:string,Email:string,Password:string) {
-    this.index = i;
-    this.id = id;
-    const dialogRef = this.dialog.open(MattabledeleteComponent, {
-    //  data: {id: id, Name: Name, Address: Address, Mobile: Mobile,Email:Email}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
-      //  const foundIndex = this.exampleDatabase.datathis.datap[t]Change.value.findIndex(x => x.id === this.id);
-        // for delete we use splice in order to remove single object from DataService
-      //  this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-      //  this.refreshTable();
-      }
-    });
-  }*/
 
 
 
 }
-export function getdata(sheet){
+/*export function getdata(sheet){
    var result = [];
    var row;
    var rowNum;
@@ -476,8 +435,7 @@ export function getdata(sheet){
        for(colNum=range.s.c; colNum<=range.e.c; colNum++){
           var nextCell = sheet[
              XLSX.utils.encode_cell({r: rowNum, c: colNum})
-          ];
-          if( typeof nextCell === 'undefined' ){
+          ],if( typeof nextCell === 'undefined' ){
              row.push(void 0);
           } else row.push(nextCell.w);
        }
@@ -485,24 +443,26 @@ export function getdata(sheet){
    }
    return result;
 };
+*/
 
-export interface VendorsData {
-  email: string;
-  lastname:string;
-  firstname:string;
-  phonenumber:string;
-  password:string;
 
-}
+  export interface Drivers {
+    email: string;
+    password:string;
+    firstname:string;
+    lastname:string;
+    phonenumber:string;
+  }
+
 
 
 /*
-@Component({
-  selector: 'user-snack',
-  templateUrl: 'user-snack.html',
-})
-export class PizzaPartyuComponent {
-  constructor( @Inject(MAT_SNACK_BAR_DATA) public sasa: any) { }
+export interface VendorsData {
+  email: string;
+  password:string;
+  firstname:string;
+  lastname:string;
+  phonenumber:string;
 
 
 }*/

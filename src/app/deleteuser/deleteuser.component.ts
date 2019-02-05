@@ -16,15 +16,17 @@ import { CookieService } from 'ngx-cookie';
 export class DeleteuserComponent implements OnInit {
 
 options:any;
+
+getCookie(key:string){
+    return this._cookieService.get(key);
+  }
   constructor(public dialogRef: MatDialogRef<DeleteuserComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private _cookieService:CookieService,private http:Http) {
 
               }
 
 
-              getCookie(key:string){
-                  return this._cookieService.get(key);
-                }
+
 
 
                 onNoClick(): void {
@@ -35,15 +37,16 @@ options:any;
 
 
 
-                confirmDelete(): void {
+            /*   confirmDelete(): void {
 
 
-                                /*  console.log(this.data)
-                                  console.log(this.data.id)
 
+    var b={username:this.data.Username}
+
+    console.log(b)
 
                               var k= this.getCookie("idToken");
-
+console.log(k)
                               let myHeaders = new Headers();
                                 myHeaders.append('Content-Type', 'application/json');
                                 myHeaders.append('Authorization',k)
@@ -52,16 +55,16 @@ options:any;
                                 console.log(options)
 
 
-                  this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',b,options).subscribe(data => {
+                  this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser?username='+this.data.Username,b,options).subscribe(data => {
                     //window.location.reload();
 
 
                   console.log(data);
-                })*/
+                })
 
 
 
-                }
+              }*/
 
   ngOnInit() {
   }

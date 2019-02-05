@@ -21,6 +21,7 @@
     "@angular/material": "^7.2.1",
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
+<<<<<<< HEAD
     "@angular/router": "~7.0.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "@syncfusion/ej2-angular-buttons": "16.4.47",
@@ -33,6 +34,10 @@
     "@syncfusion/ej2-base": "16.4.47",
     "@syncfusion/ej2-buttons": "16.4.47",
     "@syncfusion/ej2-dropdowns": "16.4.48",
+=======
+    "@angular/router": "^7.0.4",
+    "@ng-bootstrap/ng-bootstrap": "^4.0.2",
+>>>>>>> f020559e5e3421496c3716a352c0a0cd9bbfe5b2
     "@types/datatables.net": "^1.10.13",
     "angular-chart.js": "^1.1.1",
     "angular-material": "^1.1.10",

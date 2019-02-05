@@ -1,12 +1,38 @@
+<<<<<<< HEAD
 /* Structure */
 th{
  background-color: #44505d	;
  color: #fff;
  font-size: 1em;
 
-}
-.print{
+=======
+body{
 
+}
+header,
+section,
+aside,
+footer {
+  margin: 0 1.5% 24px 1.5%;
+>>>>>>> f020559e5e3421496c3716a352c0a0cd9bbfe5b2
+}
+section {
+  float: left;
+  width: 63%;
+  height:100%;
+
+   }
+   h2{
+     text-align:center;
+   }
+aside {
+  float: right;
+  width: 30%;
+  height:100%;
+
+   padding:20px;
+
+<<<<<<< HEAD
   background-color: white;
   border-color: #72BA65;
   color:#72BA65;
@@ -26,27 +52,72 @@ th{
 .delete:hover{
   background-color: #FA7888;
   color:white;
+=======
 }
-mat-header-cell{
- background-color: 	#778899	;
- color: #fff;
- font-size: 1em;
- text-align: center;
+.create{
+  font-size:12px;
+  font-weight:bold;
+  border-style:solid;
+   border-width:5px;
+   border-color:#000;
+   padding:20px;
+
+>>>>>>> f020559e5e3421496c3716a352c0a0cd9bbfe5b2
+}
+.registerbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
 }
 
-.export{
-align-items:center;height:35px;
+.registerbtn:hover {
+    opacity: 1;
 }
-.container{
-padding-right:0px;
-padding-left:0px;
-
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
 }
 
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
 
-@media screen and (min-width: 1180px) {
-    #both {
-margin-left:65%;
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
     }
+}
+
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+table {
+  width: 100%;
+}
+.modal-header{
+  background-color:#000000;
+  color:white;
 
 }

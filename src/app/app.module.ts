@@ -88,13 +88,12 @@ import { AdduserComponent } from './adduser/adduser.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+//
+import { NgForm } from '@angular/forms';
 
 
 
 
-
-
-import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 
 
 
@@ -155,7 +154,7 @@ export class DemoMaterialModule {}
     SinglechequeprintComponent,
     SettingsComponent,DashboardComponent,
     MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
-    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,DeleteuserComponent,
+    FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,
   ],
   imports: [
     BrowserModule,

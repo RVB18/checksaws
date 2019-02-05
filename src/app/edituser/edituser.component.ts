@@ -55,16 +55,13 @@ export class EdituserComponent  {
 
 
   stopEdit(): void {
-console.log(this.data.Email)
-console.log(this.data.Firstname)
-console.log(this.data.Lastname)
-console.log(this.data.Phonenumber)
-
-
-
-
-    var b={password:uuid(),email:this.data.Email,firstname:this.data.Firstname,lastname:this.data.Lastname,phonenumber:this.data.Phonenumber}
+console.log(this.data)
+    var b={email:this.data.Email,firstname:this.data.Firstname,lastname:this.data.Lastname,phonenumber:this.data.Phonenumber,username:this.data.Username,}
     console.log(b)
+
+  //  console.log(this.data.Email)
+
+  //    console.log(this.data)
 
     var k= this.getCookie("idToken");
                     console.log(this.data)
@@ -77,7 +74,7 @@ console.log(this.data.Phonenumber)
         let options = new RequestOptions({ headers: myHeaders });
 
 
-          this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,options).subscribe(data => {
+          this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',b,options).subscribe(data => {
             var data1=data.json();
             console.log(data1)
             if(data1.message="success"){

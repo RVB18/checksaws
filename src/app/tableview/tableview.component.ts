@@ -124,17 +124,6 @@ this.isLoading=false
                                          verticalPosition: 'top'
                                        })
 
-
-                  /*this.snackBar.openFromComponent(PizzaPartyyComponent, {
-                    sasa: 'ggg',
-                    ...this.configSuccess
-                  });*/
-
-
-                   //this.snackBar.open('forbidden', 'error', {duration: 5000});
-
-                  //alert("forbidden")
-                  //window.location.href="/login"
                 }
                 else if(this.datap.message=="The incoming token has expired"){
 
@@ -148,16 +137,6 @@ this.isLoading=false
                                          horizontalPosition: 'center',
                                          verticalPosition: 'top'
                                        })
-
-                  /*this.snackBar.openFromComponent(PizzaPartyysessionComponent, {
-                    sasa: 'ggg',
-                    ...this.configSuccess
-                  });*/
-
-
-                   //this.snackBar.open('Sorry Session Expired', 'error', {duration: 100000000});
-                  //alert("Sorry Session Expired")
-                  //window.location.href="/login"
 
                 }
 
@@ -334,7 +313,12 @@ export function getdata(sheet){
    var colNum;
    var range = XLSX.utils.decode_range(sheet['!ref']);
    for(rowNum = range.s.r; rowNum <= range.e.r; rowNum++){
-      row = [];
+      row = []; this.snackBar.open("Unauthorized","Ok",{
+                                         duration:2000,
+                                         panelClass:'red-snackbar',
+                                         horizontalPosition: 'center',
+                                         verticalPosition: 'top'
+                                       })
        for(colNum=range.s.c; colNum<=range.e.c; colNum++){
           var nextCell = sheet[
              XLSX.utils.encode_cell({r: rowNum, c: colNum})
