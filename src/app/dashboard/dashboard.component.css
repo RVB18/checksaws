@@ -1,0 +1,431 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+* {
+  box-sizing: border-box;
+}
+
+
+a, a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+}
+
+a:active {
+  color: #fff !important;
+}
+
+
+.icon-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  -webkit-transform: translate3d(-43px, 0, 0);
+          transform: translate3d(-43px, 0, 0);
+  transition: all .2s ease-in-out;
+}
+
+.rad-txt-primary {
+  color: #1C7EBB;
+}
+
+.rad-bg-primary {
+  background: #1C7EBB;
+}
+
+.rad-txt-success {
+  color: #23AE89;
+}
+
+.rad-bg-success {
+  background: #23AE89;
+}
+
+.rad-txt-danger {
+  color: #E94B3B;
+}
+
+.rad-bg-danger {
+  background: #E94B3B;
+}
+
+.rad-txt-warning {
+  color: #F98E33;
+}
+
+.rad-bg-warning {
+  background: #F98E33;
+}
+
+.rad-txt-violet {
+  color: #6A55C2;
+}
+
+.rad-bg-violet {
+  background: #6A55C2;
+}
+
+
+.rad-body-wrapper {
+  position: absolute;
+  left: 230px;
+  top: 75px;
+  width: auto;
+  right: 0;
+  transition: all .2s ease-in-out;
+}
+
+.rad-body-wrapper.rad-nav-min {
+  left: 50px;
+}
+
+.rad-chart {
+  height: 250px;
+}
+
+.rad-map {
+  width: 100%;
+  height: 100%;
+}
+
+.rad-map-container {
+  height: 400px;
+  position: relative;
+}
+
+.rad-collapse {
+  height: 0px;
+  padding: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes flipInX {
+  0% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    -webkit-transition-timing-function: ease-in;
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    -webkit-transition-timing-function: ease-in;
+  }
+  60% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+  100% {
+    -webkit-transform: perspective(400px);
+  }
+}
+@media screen and (max-width: 450px) {
+  .rad-info-box i {
+    opacity: .3;
+  }
+
+  .flat-theme .rad-toggle-btn {
+    right: 20px !important;
+  }
+  .flat-theme .rad-top-nav-container .links:last-child {
+    display: none;
+  }
+}
+@media screen and (min-width: 850px) {
+  .rad-logo-container {
+    height: 75px;
+  }
+  .rad-logo-container .rad-logo {
+    line-height: 75px;
+  }
+  .rad-logo-container .rad-toggle-btn {
+    line-height: 75px;
+    height: auto;
+  }
+
+  .rad-top-nav-container {
+    padding: 10px;
+  }
+
+  .rad-sidebar {
+    top: 75px;
+  }
+
+  .rad-body-wrapper {
+    top: 100px;
+  }
+
+  .flat-theme .rad-toggle-btn {
+    top: 20px !important;
+  }
+}
+@media screen and (max-width: 850px) {
+  .flat-theme .rad-menu-badge {
+    top: -3px;
+  }
+  .flat-theme .rad-toggle-btn {
+    right: 20px !important;
+  }
+  .flat-theme .rad-body-wrapper {
+    top: 125px !important;
+  }
+  .flat-theme .rad-sidebar {
+    position: absolute;
+  }
+  .flat-theme .rad-navigation {
+    position: absolute;
+  }
+  .flat-theme .rad-navigation .links > li:first-child {
+    margin-left: 15px !important;
+  }
+  .flat-theme.sticky .rad-logo-container {
+    z-index: 10000;
+  }
+  .flat-theme.sticky .rad-logo-container .rad-toggle-btn {
+    color: #89949B !important;
+    position: fixed;
+    right: 120px !important;
+    background: #f6f6f6;
+    top: 11px;
+  }
+  .flat-theme.sticky .rad-logo-container .rad-toggle-btn:hover {
+    background: crimson;
+    color: #fff !important;
+  }
+  .flat-theme.sticky .rad-navigation {
+    height: 50px;
+  }
+  .flat-theme.sticky .rad-sidebar {
+    top: 50px;
+    position: fixed;
+  }
+  .flat-theme.sticky .rad-top-nav-container {
+    background: #FFF important;
+    box-shadow: 0 0px 9px 4px rgba(0, 0, 0, 0.1), 0 -5px 2px 2px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  .flat-theme.sticky .links {
+    margin-left: 50px;
+  }
+  .flat-theme.sticky .brand-icon {
+    margin-left: 0px;
+  }
+  .flat-theme.sticky .brand-icon:hover {
+    color: #fff;
+  }
+
+  .rad-navigation {
+    height: 100px;
+  }
+
+  .rad-logo-container.rad-nav-min {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    background: transparent;
+  }
+  .rad-logo-container.rad-nav-min .rad-logo {
+    opacity: 1;
+  }
+  .rad-logo-container.rad-nav-min + .rad-logo-hidden {
+    display: none;
+  }
+
+  .rad-logo-container {
+    display: block;
+    float: none;
+    width: 100%;
+    border-bottom: 1px solid #F2F2F2;
+  }
+
+  .rad-top-nav-container {
+    display: block;
+    float: none;
+    height: 50px;
+    background: white;
+  }
+  .rad-top-nav-container .links > li > a {
+    font-size: 12px;
+  }
+
+  .rad-menu-badge {
+    font-size: 10px;
+    min-width: 15px;
+    min-height: 15px;
+    line-height: 15px;
+  }
+
+  .rad-sidebar {
+    top: 100px;
+  }
+
+  .rad-sidebar.rad-nav-min {
+    -webkit-transform: translate3d(-200px, 0, 0);
+            transform: translate3d(-200px, 0, 0);
+  }
+
+  .rad-body-wrapper {
+    top: 125px;
+    position: relative;
+  }
+
+  .rad-body-wrapper.rad-nav-min {
+    left: 0px;
+  }
+}
+.panel {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-radius: 0 !important;
+  position: relative;
+  -webkit-transition: all .2s linear;
+}
+
+.panel-close {
+  -webkit-transform: scale3d(0, 0, 0);
+          transform: scale3d(0, 0, 0);
+}
+
+.panel-body {
+  position: relative;
+  -webkit-transition: all .2s linear;
+}
+
+.panel-heading {
+  background: white !important;
+  border-radius: 0;
+  padding: 15px;
+  border-bottom: 0 !important;
+}
+
+.panel-heading .panel-title {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 13px;
+  color: #515d6e;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+.overlay:before {
+  content: "";
+  height: 100%;
+  vertical-align: middle;
+  width: 1px;
+  display: inline-block;
+  margin-left: -5px;
+}
+.overlay .overlay-content {
+  display: inline-block;
+  vertical-align: middle;
+}
+.overlay i {
+  display: block;
+  position: inline-block;
+  vertical-align: middle;
+  color: black;
+}
+
+.rad-panel-action {
+  list-style: none;
+  display: inline-block;
+  float: right;
+}
+
+.rad-panel-action li {
+  display: inline-block;
+  color: #515d6e;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.rad-info-box {
+  margin-bottom: 16px;
+  box-shadow: 1px 1px 2px 0 #CCCCCC;
+  padding: 20px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  background: white !important;
+}
+
+.rad-info-box i {
+  display: block;
+  background-clip: padding-box;
+  margin-right: 15px;
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  line-height: 60px;
+  text-align: center;
+  font-size: 4.4em;
+  position: absolute;
+}
+
+.rad-info-box .value,
+.rad-info-box .heading {
+  display: block;
+  position: relative;
+  color: #515d6e;
+  text-align: right;
+  z-index: 10;
+}
+
+.rad-info-box .heading {
+  font-size: 1.2em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.rad-info-box .value {
+  font-size: 2.1em;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+
+
+
+.rad-chart{
+	height:250px;
+}
+
+.rad-map{
+	width: 100%;
+	height:100%;
+}
+
+.rad-map-container{
+	height: 100%;
+	position: relative;
+}
+
+.rad-collapse {
+  height:0px;
+  padding: 0;
+	opacity:0;
+  overflow: hidden;
+}
+.chart{
+border-radius: 15px;
+border-color: #2d323e;
+
+}

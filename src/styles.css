@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+SC');
 
 
 /* You can add global styles to this file, and also import other style files */
@@ -9,12 +10,12 @@
 }
 .title{
   font-size: 2.5em;
-    color: #778899	;
-  font-family: 'Abril Fatface', cursive;
+    color: #3F5866;
+    font-family: 'Alegreya SC', serif;
 
 }
 mat-header-cell{
- background-color: 	#778899	;
+ background-color: 	#44505d	;
  color: #fff;
  font-size: 1em;
  text-align: center;
@@ -43,8 +44,8 @@ mat-header-cell{
 }
 .one{
 
-  margin-right:7%;
-  margin-left:7%;
+  margin-right:2%;
+  margin-left:2%;
 }
 
 body{

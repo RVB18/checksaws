@@ -119,20 +119,25 @@
                             <span class="e-icons expand"></span>
                             <span  class="e-text" title="menu" style="font-size:2.5em;" >Alekta </span>
                         </li><br>
+                        <br>
+                      <li class="sidebar-item">
+                          <span  class="fa fa-home" style="font-size:30px;color:white;"routerLink="/dashboard" [routerLinkActive]="['active']" ></span>
+                          <span class="e-text" title="Checks" style="margin-left:2%;;font-size:1.8em;" routerLink="/dashboard" >&nbsp;&nbsp;Dashboard</span>
+                      </li>
                           <br>
                         <li class="sidebar-item">
                             <span  class="fa fa-credit-card" style="font-size:30px;color:white;"routerLink="/cheques" [routerLinkActive]="['active']" ></span>
-                            <span class="e-text" title="Checks" style="font-size:1.8em;" routerLink="/cheques" >&nbsp;&nbsp;&nbsp;Checks</span>
+                            <span class="e-text" title="Checks" style="margin-left:2%;;font-size:1.8em;" routerLink="/cheques" >&nbsp;&nbsp;&nbsp;Checks</span>
                         </li>
                         <br>
                         <li class="sidebar-item">
-                            <span class="fa fa-user"  style="font-size:30px;color:white;"routerLink="/vendor" [routerLinkActive]="['active']"></span>
+                            <span class="fa fa-user"  style="font-size:35px;color:white;"routerLink="/vendor" [routerLinkActive]="['active']"></span>
                             <span class="e-text" title="Vendor" style="font-size:1.8em;"  routerLink="/vendor"  >&nbsp;&nbsp; &nbsp;Vendor</span>
                         </li>
                         <br>
                         <li class="sidebar-item">
                             <span class="fa fa-users" aria-hidden="true" style="font-size:30px;color:white;" routerLink="/tableview" [routerLinkActive]="['active']"></span>
-                            <span class="e-text" title="Vendor Checks" style="font-size:1.8em;" routerLink="/tableview"  >&nbsp; Vendor Checks</span>
+                            <span class="e-text" title="Vendor Checks" style="font-size:1.8em;" routerLink="/tableview"  > &nbsp; Vendor Checks</span>
                         </li>
                         <br>
 
@@ -146,12 +151,12 @@
 
                         <li class="sidebar-item">
                             <span class="fa fa-user-plus" style="font-size:30px;color:white;"  routerLink="/user"  ></span>
-                            <span class="e-text" title="User Access" style="font-size:1.8em;"routerLink="/user"   > &nbsp;&nbsp; User Access</span>
+                            <span class="e-text" title="User Access" style="font-size:1.8em;"routerLink="/user"   > &nbsp; User Access</span>
                         </li>
                         <br>
                         <li class="sidebar-item">
-                            <span  style="font-size:30px;color:white;"  data-toggle="modal"[routerLinkActive]="['active']" data-target="#id01" ><a style="margin-bottom:2px;" (click)="redirect()"><img src="/assets/qick.png"  height="40px"></a></span>
-                            <span class="e-text" title="Quick Books" style="font-size:1.8em;"  data-toggle="modal" data-target="#id01"> &nbsp;&nbsp;Quick Books</span>
+                            <span  style="font-size:30px;color:white;" [routerLinkActive]="['active']"  ><a style="margin-bottom:2px;" (click)="redirect()"><img src="/assets/qick.png"  height="40px"></a></span>
+                            <span class="e-text" title="Quick Books" style="font-size:1.8em;"  data-toggle="modal" data-target="#id01"> &nbsp;Quick Books</span>
                         </li>
                     </ul>
                     <ul id="bottom-right">
@@ -183,7 +188,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title"><i class="fa fa-university" aria-hidden="true"></i>   Enter Bank details</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!--  <button type="button" class="close" data-dismiss="modal">&times;</button>-->
 			</div>
           <form  #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="form" class="form-horizontal">
           <div class="modal-body">
@@ -399,7 +404,7 @@
                      <div class="modal-header">
                        <h4 class="modal-title"><i class="fa fa-plus-square" aria-hidden="true"></i>
         Create Single Check</h4>
-                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
                      </div>
                      <form  #f1="ngForm" (ngSubmit)="createcheck(f1)">
 

@@ -86,6 +86,7 @@ import { UserrolesComponent } from './userroles/userroles.component';
 import { UserComponent } from './user/user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { EdituserComponent } from './edituser/edituser.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -152,7 +153,7 @@ export class DemoMaterialModule {}
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
-    SettingsComponent,
+    SettingsComponent,DashboardComponent,
     MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
     FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,DeleteuserComponent,
   ],

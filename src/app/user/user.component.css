@@ -1,17 +1,30 @@
 /* Structure */
 th{
- background-color: 	#778899	;
+ background-color: #44505d	;
  color: #fff;
+ font-size: 1em;
+
 }
 .print{
 
   background-color: white;
-  border-color: green;
-  color:GREEN;
+  border-color: #72BA65;
+  color:#72BA65;
   transition: 0.3s;
 }
 .print:hover{
-  background-color: green;
+  background-color: #72BA65;
+  color:white;
+}
+.delete{
+
+  background-color: white;
+  border-color: #FA7888;
+  color:#FA7888;
+  transition: 0.3s;
+}
+.delete:hover{
+  background-color: #FA7888;
   color:white;
 }
 mat-header-cell{

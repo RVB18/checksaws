@@ -109,24 +109,25 @@ input[type=text] {
   box-sizing: border-box;
 }
 .print{
+
   background-color: white;
-  border-color: green;
-  color:green;
+  border-color: #72BA65;
+  color:#72BA65;
   transition: 0.3s;
 }
 .print:hover{
-  background-color: green;
+  background-color: #72BA65;
   color:white;
 }
 .delete{
 
   background-color: white;
-  border-color: red;
-  color:red;
+  border-color: #FA7888;
+  color:#FA7888;
   transition: 0.3s;
 }
 .delete:hover{
-  background-color: red;
+  background-color: #FA7888;
   color:white;
 }
 footer {
@@ -262,7 +263,6 @@ overflow-y: auto;
 }
 
 #dockSidebar.e-dock.e-open span.e-text {
-   display: inline-block;
 }
 
 #dockSidebar li {

@@ -3,9 +3,9 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Upload CSV File</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+  <!--  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
-    </button>
+    </button>-->
   </div>
   <div class="modal-body">
     <form  #f="ngForm">
@@ -46,7 +46,6 @@
 
 <br>
 
-<br>
 
 <div class="one" >
   <h1 align="left" class="title" > &nbsp;
@@ -144,27 +143,30 @@
 		</div>
 		<br>
 		<br>
+ <!--- main body ------------------------------------------------------------------------------------------->
+ <div class=" search-butons">
+       &nbsp;
+       <mat-form-field class="search ">
+         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+       </mat-form-field>     &nbsp;    &nbsp;
+       <button type="button" id="del" class="btn delete pull-right" style="float:right; " (click)="openModal(true)" >
+         <i class="fa fa-trash" aria-hidden="true"></i>
+     Delete
+       </button>
+       <button type="button" class="btn check pull-right" style="float:right;margin-right:10px;" data-toggle="modal" data-target="#id02">
+       <i class="fa fa-plus" aria-hidden="true"></i>
+     single cheque
+       </button> &nbsp;
+       <button type="button"  id="delete" class="btn upload pull-right" style="float:right;margin-right:10px;" (click)="open(content)">
+         <i class="fa fa-upload" aria-hidden="true"></i>
+     Upload
+       </button>
+     &nbsp;
 
-		<div class="example-container mat-elevation-z8">
-<div class=" search-butons">
-      &nbsp;
-      <mat-form-field class="search">
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-      </mat-form-field>     &nbsp;    &nbsp;
-      <button type="button"  id="delete" class="btn upload" (click)="open(content)">
-        <i class="fa fa-upload" aria-hidden="true"></i>
-    Upload
-      </button>
-    &nbsp;
-    <button type="button" class="btn upload" data-toggle="modal" data-target="#id02">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-  single cheque
-    </button> &nbsp;
-        <button type="button" id="del" class="btn delete  " (click)="openModal(true)" >
-          <i class="fa fa-trash" aria-hidden="true"></i>
-      Delete
-        </button>
-</div>
+
+ </div>
+    <div class="example-container mat-elevation-z8">
+
 			<mat-table #table [dataSource]="dataSource" matSort width="100%">
 
 				<!--- Note that these columns can be defined in any order.

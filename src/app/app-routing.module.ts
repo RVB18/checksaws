@@ -16,6 +16,7 @@ import { EdituserComponent } from './edituser/edituser.component'
 
 import { DeleteuserComponent } from './deleteuser/deleteuser.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
 {path:'user',component:UserComponent},
 {path:'adduser',component:AdduserComponent},
 {path:'edituser',component:EdituserComponent},
+{path:'dashboard',component:DashboardComponent},
 
 {path:'delete',component:DeleteuserComponent},
 {path:'settings',component:SettingsComponent},

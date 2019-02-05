@@ -4,6 +4,7 @@ import { ListViewModule } from '@syncfusion/ej2-angular-lists';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { TreeViewModule, TabModule } from '@syncfusion/ej2-angular-navigations';
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { NgxLineChartModule } from 'ngx-line-chart';
 
 
 
@@ -15,17 +16,18 @@ import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor'
         DropDownListModule,
         TreeViewModule,
         TabModule,
-        RichTextEditorAllModule
-        
+        RichTextEditorAllModule,
+        NgxLineChartModule
 
     ],
-     
+
     exports: [
         ButtonModule,
         TreeViewModule,
         ListViewModule,
         DropDownListModule,
         TabModule,
+        NgxLineChartModule,
         RichTextEditorAllModule
     ]
 })
