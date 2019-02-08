@@ -2,6 +2,7 @@ import { Component,Inject } from '@angular/core';
 //import { UserService } from '../services/user.service';
 
 
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 import {DataSource} from '@angular/cdk/collections';
 
@@ -99,12 +100,18 @@ users=[];
     dialogData: any;
 
 
-    open(data) {
+    open(data,content,content1) {
   this.editdata=data
   console.log(this.editdata)
 
   console.log(this.editdata.username)
 
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    },);
+    this.modalService.open(content1, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, );
       }
 
            get data(): Issue[] {
@@ -132,7 +139,7 @@ getCookie(key:string){
   }
 
   constructor(public http: Http,
-              public dialog: MatDialog,
+              public dialog: MatDialog,private modalService: NgbModal,
             private _cookieService:CookieService,private router: Router,private snackBar: MatSnackBar) {
 
 
@@ -224,6 +231,8 @@ var s=datas.json();
 
 
               }
+
+
 
 
 

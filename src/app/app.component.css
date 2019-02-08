@@ -1,3 +1,33 @@
+
+
+
+.sticky-top{
+
+z-index:2;
+}
+
+
+
+
+
+
+
+/* Style the active class, and buttons on mouse-over */
+.active, .sidebar-item:hover, .e-text:hover {
+  color: #23ae89;
+}
+
+li .hover,{
+color:red;
+}
+
+li{
+  color:#ddd;
+}
+
+
+
+
 .hm-gradient {
     background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
 }
@@ -10,6 +40,7 @@
 }
 .navbar{
 background-color:#2d323e;
+overflow: hidden;
 }
 .row {
   display: -ms-flexbox; /* IE10 */
@@ -351,3 +382,11 @@ padding: 0px;
 top: 0px;
 }
 /* end of sidebar styles */
+
+
+
+
+li{
+    list-style:none;
+    cursor:pointer;
+}

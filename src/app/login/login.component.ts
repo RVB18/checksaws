@@ -91,7 +91,7 @@ this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/logi
 
 
    }
-   this.router.navigate(['/cheques'])
+   this.router.navigate(['/dashboard'])
 
 /*	if(r.message=="Error")
 alert(r.data.message)
@@ -176,7 +176,7 @@ else*/
 
 
 //this.router.navigate(['/cheques'])
-window.open("/cheques","_self")
+window.open("/dashboard","_self")
 
            }
 

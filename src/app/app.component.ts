@@ -156,6 +156,30 @@ completeAddress(){
 
 
 
+  oncreate(f){
+  var drivecreate={
+    "feature": "driver_crud",
+    "operation": "driver_create",
+    "email": f.email,
+    "password":f.password,
+    "firstname": f.firstname,
+    "lastname": f.lastname,
+    "phonenumber":f.phonenumber,
+    "driverid": uuid()
+  }
+
+
+  console.log(drivecreate)
+  this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',drivecreate,this.options).subscribe(data => {
+  //window.location.reload()
+  console.log(data)
+  })
+
+  }
+
+
+
+
 
 
 

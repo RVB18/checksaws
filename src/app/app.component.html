@@ -1,5 +1,6 @@
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" *ngIf='showNav'>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark default-color" *ngIf='showNav'>
+
   <a class="navbar-brand" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,56 +53,6 @@
     </ul>
   </div>
 </nav>
-<!--/.Navbar -->
-
-<!--
-<nav class="mb-4 navbar navbar-expand-lg navbar-dark bg-teal" id="navbar" *ngIf='showNav' >
-                <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-
-                    <ul class="navbar-nav ml-auto">
-
-                        <li>
-                          <a  class="nav-item" style="color:white;"data-toggle="modal" data-target="#id02"><i class="fa fa-plus" aria-hidden="true"></i> Create Check</a>
-
-                        </li>
-                        <li>
-                          <a class="nav-item" style="color:white;" href="http://alektasolutions.com/purchase/print/cheque/ang?words=Three%20Hundred%20and%20Forty%20Three%20%20and%2030/100*****&date=10-08-2018&name=Raghava&amount=**343.3&addr=Arizona,Phoenix," target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Test Print</a>
-
-                        </li>
-                        <li>
-                          <a class="nav-item" style="color:white;" (click)="logout()" ><i class="fa  fa-power-off"></i> Logout</a>
-
-                        </li>
-
-                          <!--
-    <li class="nav-item dropdown" [routerLinkActive]="['active']">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-user"></i> Vendor </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item"
-                                 href="http://alektasolutions.com/purchase/print/cheque?date=2018-11-26&name=ravinder&amount=4500&addr=Phoenix,Arizona" routerLink="/vendor"><i class="fa  fa-user"></i> Vendor Checks </a>
-                                <a class="dropdown-item"  routerLink="/tableview"><i class="fa fa-id-card" aria-hidden="true"></i> Vendor</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa  fa-cog"></i> Settings </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item" href="http://alektasolutions.com/purchase/print/cheque/ang?words=Three%20Hundred%20and%20Forty%20Three%20%20and%2030/100*****&date=10-08-2018&name=Raghava&amount=**343.3&addr=Arizona,Phoenix," target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Test Print</a>
-                                <a class="dropdown-item"  data-toggle="modal" data-target="#id01"><i class="fa  fa-wrench"></i> Config</a>
-                                <a class="dropdown-item" (click)="logout()" ><i class="fa  fa-power-off"></i> Logout</a>
-
-                            </div>
-                        </li>-->
-
-                    <!--</ul>
-                </div>
-            </nav>-->
-
 
 
 
@@ -113,50 +64,50 @@
     <div class="col-lg-12 col-sm-12 col-md-12" id="sidebar-section">
         <div id="wrapper">
             <ejs-sidebar #dockBar id="dockSidebar" [enableDock]='enableDock' [width]='width' [dockSize]='dockSize' *ngIf='showNav'>
-                <div class="dock">
-                    <ul>
+                <div class="dock" id="menu">
+                    <ul >
                         <li class="sidebar-item" id="toggle" (click)="toggleClick()" >
                             <span class="e-icons expand"></span>
                             <span  class="e-text" title="menu" style="font-size:2.5em;" >Alekta </span>
                         </li><br>
                         <br>
-                      <li class="sidebar-item">
-                          <span  class="fa fa-home" style="font-size:30px;color:white;"routerLink="/dashboard" [routerLinkActive]="['active']" ></span>
+                      <li class="sidebar-item  ">
+                          <span  class="fa fa-dashboard" style="font-size:30px;"routerLink="/dashboard" [routerLinkActive]="['active']" ></span>
                           <span class="e-text" title="Checks" style="margin-left:2%;;font-size:1.8em;" routerLink="/dashboard" >&nbsp;&nbsp;Dashboard</span>
                       </li>
                           <br>
-                        <li class="sidebar-item">
-                            <span  class="fa fa-credit-card" style="font-size:30px;color:white;"routerLink="/cheques" [routerLinkActive]="['active']" ></span>
+                        <li class="sidebar-item ">
+                            <span  class="fa fa-credit-card" style="font-size:28px;"routerLink="/cheques" [routerLinkActive]="['active']" ></span>
                             <span class="e-text" title="Checks" style="margin-left:2%;;font-size:1.8em;" routerLink="/cheques" >&nbsp;&nbsp;&nbsp;Checks</span>
                         </li>
                         <br>
-                        <li class="sidebar-item">
-                            <span class="fa fa-user"  style="font-size:35px;color:white;"routerLink="/vendor" [routerLinkActive]="['active']"></span>
+                        <li class="sidebar-item ">
+                            <span class="fa fa-user"  style="font-size:35px;"routerLink="/vendor" [routerLinkActive]="['active']"></span>
                             <span class="e-text" title="Vendor" style="font-size:1.8em;"  routerLink="/vendor"  >&nbsp;&nbsp; &nbsp;Vendor</span>
                         </li>
                         <br>
-                        <li class="sidebar-item">
-                            <span class="fa fa-users" aria-hidden="true" style="font-size:30px;color:white;" routerLink="/tableview" [routerLinkActive]="['active']"></span>
+                        <li class="sidebar-item " >
+                            <span class="fa fa-users" aria-hidden="true" style="font-size:30px;" routerLink="/tableview" [routerLinkActive]="['active']"></span>
                             <span class="e-text" title="Vendor Checks" style="font-size:1.8em;" routerLink="/tableview"  > &nbsp; Vendor Checks</span>
                         </li>
                         <br>
 
 
                         <li class="sidebar-item">
-                            <span class="fa  fa-cog" style="font-size:30px;color:white;" [routerLinkActive]="['active']" routerLink="/settings"  ></span>
+                            <span class="fa  fa-cog" style="font-size:30px;" [routerLinkActive]="['active']" routerLink="/settings"  ></span>
                             <span class="e-text" title="settings" style="font-size:1.8em;"  routerLink="/settings"  > &nbsp;&nbsp;&nbsp;Settings</span>
                         </li>
                         <br>
 
 
                         <li class="sidebar-item">
-                            <span class="fa fa-user-plus" style="font-size:30px;color:white;"  routerLink="/user"  ></span>
+                            <span class="fa fa-user-plus" style="font-size:30px;"  routerLink="/user"  ></span>
                             <span class="e-text" title="User Access" style="font-size:1.8em;"routerLink="/user"   > &nbsp; User Access</span>
                         </li>
                         <br>
                         <li class="sidebar-item">
-                            <span  style="font-size:30px;color:white;" [routerLinkActive]="['active']"  ><a style="margin-bottom:2px;" (click)="redirect()"><img src="/assets/qick.png"  height="40px"></a></span>
-                            <span class="e-text" title="Quick Books" style="font-size:1.8em;"  data-toggle="modal" data-target="#id01"> &nbsp;Quick Books</span>
+                            <span  style="font-size:30px;" [routerLinkActive]="['active']"  ><a style="margin-bottom:2px;" (click)="redirect()"><img src="/assets/qick.png"  height="40px"></a></span>
+                            <span class="e-text" title="Quick Books" style="font-size:1.8em;"  > &nbsp;Quick Books</span>
                         </li>
                     </ul>
                     <ul id="bottom-right">
@@ -200,91 +151,6 @@
 
 
 
-
-                    <!--   <form class="form-horizontal" [formGroup]="form">
-
-                         <div class="form-group" [ngClass]="displayFieldCss('name')">
-                           <div class="col-sm-12">
-                             <label for="name" class="control-label required">Name</label>
-                             <input type="text" id="name" class="form-control" formControlName="name">
-                             <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Please inform your name">
-                             </app-field-error-display>
-                           </div>
-                         </div>
-
-                         <div class="form-group" [ngClass]="displayFieldCss('email')">
-                           <div class="col-sm-12">
-                             <label for="email" class="control-label required">Email</label>
-                             <input type="text" id="email" class="form-control" formControlName="email">
-                             <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Please inform your email">
-                             </app-field-error-display>
-                           </div>
-                         </div>
-
-                         <div formGroupName="address">
-
-                           <div class="form-group">
-
-                             <div class="col-md-6" [ngClass]="displayFieldCss('address.street')">
-                               <label for="street" class="control-label required">Address</label>
-                               <input type="text" id="street" class="form-control" formControlName="street">
-                               <app-field-error-display [displayError]="isFieldValid('address.street')" errorMsg="Please inform your address">
-                               </app-field-error-display>
-                             </div>
-
-                             <div class="col-md-3">
-                               <label for="street2" class="control-label">Address 2</label>
-                               <input type="text" id="street2" class="form-control" formControlName="street2">
-                             </div>
-
-                             <div class="col-md-3" [ngClass]="displayFieldCss('address.zipCode')">
-                               <label for="zipCode" class="control-label required">Zip Code</label>
-                               <input type="text" id="zipCode" class="form-control" formControlName="zipCode">
-                               <app-field-error-display [displayError]="isFieldValid('address.zipCode')" errorMsg="Please inform your zipCode">
-                               </app-field-error-display>
-                             </div>
-
-                           </div>
-
-                           <div class="form-group">
-
-                             <div class="col-md-4" [ngClass]="displayFieldCss('address.city')">
-                               <label for="city" class="control-label required">City</label>
-                               <input type="text" id="city" class="form-control" formControlName="city">
-                               <app-field-error-display [displayError]="isFieldValid('address.city')" errorMsg="Please inform your city">
-                               </app-field-error-display>
-                             </div>
-
-                             <div class="col-md-4" [ngClass]="displayFieldCss('address.state')">
-                               <label for="state" class="control-label required">State / Province / Region</label>
-                               <input type="text" id="state" class="form-control" formControlName="state">
-                               <app-field-error-display [displayError]="isFieldValid('address.state')" errorMsg="Please inform your state">
-                               </app-field-error-display>
-                             </div>
-
-                             <div class="col-md-4" [ngClass]="displayFieldCss('address.country')">
-                               <label for="country" class="control-label required">Country</label>
-                               <input type="text" id="country" class="form-control" formControlName="country">
-                               <app-field-error-display [displayError]="isFieldValid('address.country')" errorMsg="Please inform your country">
-                               </app-field-error-display>
-                             </div>
-
-                           </div>
-                         </div>
-
-
-
-                         <div class="pop" align="center">
-
-                         <flash-messages ></flash-messages>
-                         </div>
-
-
-                         <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
-                         <button class="btn" (click)="reset()">Reset</button>
-
-
-                       </form>-->
 
 
 
@@ -475,7 +341,6 @@
                        <br>
                                   </div>
 
-                                  <flash-messages ></flash-messages>
 
 
 
@@ -510,3 +375,77 @@
         <ngx-loading [show]="loading" [config]="{
                 backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
                 primaryColour: '#DB4437', secondaryColour: '#F4B400', tertiaryColour: '#DB4437' }" ></ngx-loading>
+
+
+
+
+
+
+
+                                  <div class="modal fade" id="myModal1" role="dialog">
+                                    <div class="modal-dialog">
+
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h4 class="modal-title">Add User</h4>
+
+                                          <button type="button" class="close" data-dismiss="modal"  #closeBtn>&times;</button>
+                                        </div>
+
+
+
+                                        <form  #f="ngForm" (ngSubmit)="oncreate(f.value)">
+
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="Name">Email</label>
+                                              <input type="text" placeholder="Enter Email"  class="form-control" name="email"  ngModel required>
+                                              <label for="Name">Password</label>
+                                               <input  type="password" name="pwd" placeholder="Enter Password"  class="form-control" name="password"  ngModel required>
+                                              <label for="Name">First name</label>
+
+                                              <input type="text" placeholder="Enter First name"  class="form-control" name="firstname"  ngModel required>
+                                              <label for="Name">Last Name</label>
+                                              <input type="text" placeholder="Enter Last Name"  class="form-control" name="lastname"  ngModel required>
+
+                                              <label for="Name">Phone Number</label>
+                                              <input type="address" placeholder="Enter Phone Number"  class="form-control" name="phonenumber"  ngModel required>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="submit" class="btn btn-outline-dark">Save</button>
+                                        </div>
+                                      </form>
+
+                                      </div>
+
+                                    </div>
+                                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  var header = document.getElementById("menu");
+  var btns = header.getElementsByClassName("btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    if (current.length > 0) {
+      current[0].className = current[0].className.replace(" active", "");
+    }
+    this.className += " active";
+    });
+  }  </script>

@@ -76,10 +76,10 @@ this.isLoading=false
               {
 
                                      this.snackBar.open("Unauthorized","Ok",{
-                                       duration:2000,
+                                       duration:2000000000,
                                        panelClass:'red-snackbar',
                                        horizontalPosition: 'center',
-                                       verticalPosition: 'top'
+                                       verticalPosition: 'top',
                                      })
 
 

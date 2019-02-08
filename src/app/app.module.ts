@@ -87,6 +87,7 @@ import { UserComponent } from './user/user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { QuickbooksComponent } from './quickbooks/quickbooks.component';
 
 //
 import { NgForm } from '@angular/forms';
@@ -152,7 +153,7 @@ export class DemoMaterialModule {}
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
-    SettingsComponent,DashboardComponent,
+    SettingsComponent,DashboardComponent,QuickbooksComponent,
     MulticheckComponent, Multicheck2Component,LoginComponent,SignupComponent,TableviewComponent,AddComponent,MattableeditComponent,MattabledeleteComponent,UserrolesComponent,
     FieldErrorDisplayComponent,UserComponent,AdduserComponent,EdituserComponent,
   ],

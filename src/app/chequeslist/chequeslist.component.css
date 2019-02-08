@@ -4,6 +4,11 @@ mat-header-cell{
  font-size: 1em;
  text-align: center;
 }
+.mat-cell {
+  margin-top:10px;
+  text-align:left;
+}
+
 .print{
 
   background-color: white;
@@ -95,6 +100,16 @@ margin-right: 10px;
     width:100%;
     font-size: 0.2em;
   }
+  .mat-column-Amount,.mat-column-Date,.mat-column-Status,.mat-column-LoadNo {
+    flex: 0 0 100px;
+  }
+  .mat-column-Name,.mat-column-Date{
+    flex:  0 0 150px;
+
+  }
+  .mat-coloumn-Address{
+    flex:0 0 150px;
+  }
 #pr{
 margin-left:-1%;
 }
@@ -122,16 +137,47 @@ mat-cell{
 margin-left:10%;
 }
 
-
+.mat-column-Amount,.mat-column-Date,.mat-column-Status,.mat-column-LoadNo {
+  flex: 0 0 100px;
+}
+.mat-column-Name,.mat-column-Date{
+  flex:  0 0 150px;
 
 }
-@media screen and (min-width: 1280px) {
+.mat-coloumn-Address{
+  flex:0 0 150px;
+}
+
+}
+@media (min-width: 1025px) and (max-width: 1280px){
+
+  .mat-column-Amount,.mat-column-Date,.mat-column-Status,.mat-column-LoadNo {
+    flex: 0 0 150px;
+  }
+  .mat-column-Name,{
+    flex:  0 0 0;
+
+  }
+  .mat-coloumn-Address{
+    flex:0 0 100px;
+  }
+}
+@media screen and (min-width: 1281px) {
 
 #pr{
   margin-left:5%;
 }
 
+.mat-column-Amount,.mat-column-Date,.mat-column-Status,.mat-column-LoadNo {
+  flex: 0 0 150px;
+}
+.mat-column-Name,{
+  flex:  0 0 220px;
 
+}
+.mat-coloumn-Address{
+  flex:0 0 100px;
+}
 }
 
 .row {

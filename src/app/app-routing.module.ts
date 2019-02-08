@@ -14,12 +14,11 @@ import { AdduserComponent } from './adduser/adduser.component'
 import { EdituserComponent } from './edituser/edituser.component'
 
 import { SettingsComponent } from './settings/settings.component';
-<<<<<<< HEAD
-import { DashboardComponent } from './dashboard/dashboard.component';
 
-=======
-//
->>>>>>> f020559e5e3421496c3716a352c0a0cd9bbfe5b2
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { QuickbooksComponent } from './quickbooks/quickbooks.component';
+
+
 const routes: Routes = [
   {path:'cheques',component:ChequeslistComponent},
 {path:'vendor',component:VendorComponent},
@@ -35,6 +34,7 @@ const routes: Routes = [
 {path:'adduser',component:AdduserComponent},
 {path:'edituser',component:EdituserComponent},
 {path:'dashboard',component:DashboardComponent},
+{path:'quickbook',component:QuickbooksComponent},
 
 {path:'settings',component:SettingsComponent},
 {path:'tableview',component:TableviewComponent}];
