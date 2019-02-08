@@ -7,6 +7,8 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
+import { v4 as uuid } from 'uuid';
+
 import {MatSnackBar} from '@angular/material';
 
 @Component({
@@ -51,9 +53,11 @@ this.config={};
     }
 
 onreset(f){
+  this.loading=true
 
 
-  //alert(f.value)
+  //alert(f.value)import { v4 as uuid } from 'uuid';
+
   console.log(f.value)
 if(f.value.newpswd!=f.value.pswrepeat){
   this.snackBar.open("Password Didn't Matched","Ok",{
@@ -66,10 +70,40 @@ if(f.value.newpswd!=f.value.pswrepeat){
 
 }
 else{
+  this.loading=true
+
+var changedata=  {
+    password:f.value.psw,
+    newpassword:f.value.newpswd
+}
+
+        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/resetpassword',changedata,this.options).subscribe(data => {
+        var t=data.json()
+        console.log(t)
+        if(t.meassage=="success")
+        {
+          this.snackBar.open("Success","Ok",{
+            duration:2000,
+            panelClass:'green-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          })
+        }
+        else{
+          this.snackBar.open("Sorry caught an error","Ok",{
+            duration:2000,
+            panelClass:'red-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          })
 
 
-console.log("hi")
+        }
 
+
+
+    });
+    this.loading=false
 }
 
 

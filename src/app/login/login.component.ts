@@ -141,7 +141,7 @@ else*/
         //
         ///
 
-        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/login',this.form.value)
+        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/adminuserlogin',this.form.value)
         .subscribe (
           (res:Response) =>{
             this.loading = false;

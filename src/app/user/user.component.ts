@@ -272,8 +272,7 @@ ExportTOExcel()
 
 oncreate(f){
 var drivecreate={
-  "feature": "driver_crud",
-  "operation": "driver_create",
+
   "email": f.email,
   "password":f.password,
   "firstname": f.firstname,

@@ -1,461 +1,203 @@
-<!--
-<div class="tab w3-padding-16">
-<button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen"><i class="fa fa-key" aria-hidden="true"></i>
-Reset Passsword</button> <br>
-
-<button class="tablinks" onclick="openCity(event, 'Paris')"><i class="fa fa-university" aria-hidden="true"></i> bank Account Info</button> <br>
-<button class="tablinks" onclick="openCity(event, 'Tokyo')"><i class="fa fa-user-circle" aria-hidden="true"></i>
-User details</button>  <br>
 
 
-
-</div>
-
-<div id="London" class="tabcontent">
-<h1 align="Left" style="margin-left:25%;font-weight:bold;font-size:1.5em;"><i class="fa fa-key" aria-hidden="true"></i>
-Change Password  </h1>
-<br>
-<div class="row">
-          <div class="col-75">
-
-          <form action="/action_page.php">
-            <div class="container">
-<div class="row">
-
-<div class="col-25">
-              <label for="psw" style="font-size:20px;padding-top:20px;"><b>Password</b></label>
-</div>
-<div class="col-50">
-        <label width="100%">      <input type="password" placeholder="Enter Current Password" name="psw" required >
-</label>
-<br>   </div>
-</div>
-<div class="row">
-
-<div class="col-25">
-       <label for="psw-repeat" style="font-size:20px;padding-top:20px;"><b>Repeat Password</b></label>
-     </div>
-     <div class="col-50">
-            <label>  <input type="password"  placeholder="Repeat Password" name="psw-repeat" required>
-</label>
-            </div>
-
-           </div>
-           <div class="row">
-
-           <div class="col-25">
-              <label for="psw"style="font-size:20px;padding-top:20px;"><b>New Password</b></label>
-            </div>
-            <div class="col-50">
-              <label>
-              <input type="password" id="password-field" type="password" placeholder="Enter New  Password" name="psw" required>
-              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-</label>
-</div>
-</div>
-
-              <button  style="width:40%;" type="submit" class="registerbtn print">Reset Password</button>
-            </div>
-
-
-          </form>
-
-
-
-          </div>
-          <div class="col-25" id="ser">
-
-          </div>
-        </div>
-      </div>
-      <div id="Paris" class="tabcontent">
-        <h1 align="Left" style="margin-left:25%;font-weight:bold;font-size:1.5em;"><i class="fa fa-university" aria-hidden="true"></i>
-        Bank Account Details  </h1>      <br>  <div class="row">
-                    <div class="col-75">
-                      <form  #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="form" class="form-horizontal">
-                      <div class="modal-body ">
-                        <div class="row" style="margin-left:50px;">
-                        <br>
-                        <br>
-                                 <div class="col-50" >
-
-
-
-
-
-
-
-
-
-
-                                   <div class="form-group" [ngClass]="displayFieldCss('bank')">
-                                     <div class="col-sm-12">
-                                       <label for="name" class="control-label required"><b>Bank Name</b></label>
-                                       <input type="text"  placeholder="Enter Bank Name" id="bank" name="bank" class="form-control" formControlName="bank" ngModel={{config.Bankname}} required>
-                                       <app-field-error-display [displayError]="isFieldValid('bank')" errorMsg="Please enter Bank name">
-                                       </app-field-error-display>
-                                     </div>
-                                   </div>
-
-
-
-
-                                                          <div class="form-group" [ngClass]="displayFieldCss('routing')">
-                                                            <div class="col-sm-12">
-                                                              <label for="routing" class="control-label required"><b>Routing</b></label>
-                                                              <input type="text"  placeholder="Enter Routing" id="routing" name="routing" class="form-control" formControlName="routing" ngModel={{config.Routenumber}} required>
-                                                              <app-field-error-display [displayError]="isFieldValid('routing')" errorMsg="Please enter Routing number">
-                                                              </app-field-error-display>
-                                                            </div>
-                                                          </div>
-
-
-
-                                                                                                        <div class="form-group" [ngClass]="displayFieldCss('cheque')">
-                                                                                                          <div class="col-sm-12">
-                                                                                                            <label for="cheque" class="control-label required"><b>Cheque Number</b></label>
-                                                                                                            <input type="text"  placeholder="Enter Cheque Number" id="cheque" name="cheque" class="form-control" formControlName="cheque" ngModel={{config.Chequenumber}} required>
-                                                                                                            <app-field-error-display [displayError]="isFieldValid('cheque')" errorMsg="Please enter Cheque Number">
-                                                                                                            </app-field-error-display>
-                                                                                                          </div>
-                                                                                                        </div>
-
-</div>
-<div class="col-50">
-                                                                                                    <div class="form-group" [ngClass]="displayFieldCss('account')">
-                                                                                                      <div class="col-sm-12">
-                                                                                                          <label for="account" class="control-label required"><b>Account Number</b></label>
-                                                                                                      <input type="text"  placeholder="Enter Account Number" id="account" name="account" class="form-control" formControlName="account" ngModel={{config.Accountnumber}} required>
-                                                                                                        <app-field-error-display [displayError]="isFieldValid('account')" errorMsg="Please enter Account Number">
-                                                                                                        </app-field-error-display>
-                                                                                                      </div>
-                                                                                                      </div>
-
-
-                                                                                                      <div class="form-group" [ngClass]="displayFieldCss('name')">
-                                                                                                        <div class="col-sm-12">
-                                                                                                            <label for="name" class="control-label required"><b>Enter Name</b></label>
-                                                                                                        <input type="text"  placeholder="Enter Your Name" id="name" name="name" class="form-control" formControlName="name" ngModel={{config.Name}} required>
-                                                                                                          <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Please enter Name">
-                                                                                                          </app-field-error-display>
-                                                                                                        </div>
-                                                                                                        </div>
-
-                                                                                                        <div class="form-group" [ngClass]="displayFieldCss('address')">
-                                                                                                          <div class="col-sm-12">
-                                                                                                              <label for="address" class="control-label required"><b>Enter Address</b></label>
-                                                                                                          <input type="text"  placeholder="Enter Addres" id="address" name="address" class="form-control" formControlName="address" ngModel={{config.Address}} required>
-                                                                                                            <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please enter Address">
-                                                                                                            </app-field-error-display>
-                                                                                                          </div>
-                                                                                                          </div>
-
-
-
-                    </div>                                   </div>
-<div class="row">
-  <div clas="col-40" style="text-align:right;margin-left:7%;">
-                  &nbsp;  &nbsp;   <label >  Upload Authorized Signature  </label>
-</div>
-<div class="col-50">
-                    <div class="file-upload" >
-                      <div class="file-select">
-                        <div class="file-select-button" id="fileName">Choose File</div>
-                        <div class="file-select-name" id="noFile">No file chosen...</div>
-                        <input type="file"  name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" ngModel>
-                      </div>
-                    </div>
-</div></div>
-                    <div class="modal-footer">
-                      <button  class="btn print" (click)="onSubmit(f)" >Submit</button>
-
-
-
-                      <button type="button" class="btn delete" data-dismiss="modal">Close</button>
-                    </div>
-
-                        <br>
-                         </div>
-
-
-
-
-
-
-
-                      </form>
-                    </div>
-
-                  </div>
-                </div>
-      		  <div id="Tokyo" class="tabcontent">
-       <h3 align="center">Healthcare </h3><br>
-        <div class="row">
-                    <div class="col-75">
-                  <p>
-      Health care or healthcare is the maintenance or improvement of health via the prevention, diagnosis, and treatment of disease, illness, injury, and other physical and mental impairments in human beings.
-       Health care is delivered by health professionals in allied health fields.
-      </p>
-                    </div>
-                    <div class="col-25" id="ser">
-
-        <img src="./images/healthcare.png" class="image" alt="healthcare" width="100%" height="100%" >
-                    </div>
-                  </div>
-      </div>
-      <div id="edu" class="tabcontent">
-       <h3 align="center">Education </h3><br>
-        <div class="row">
-                    <div class="col-75">
-                  <p>
-      Education is the process of facilitating learning, or the acquisition of knowledge, skills, values, beliefs, and habits. Educational methods include storytelling, discussion, teaching, training, and directed research.
-       Education frequently takes place under the guidance of educators, but learners may also educate themselves.
-       Education can take place in formal or informal settings and any experience that has a formative effect on the way one thinks, feels, or acts may be considered educational.
-      </p>
-                    </div>
-                    <div class="col-25" id="ser">
-
-        <img src="./images/edd.png" class="image" alt="Education" width="100%" height="100%" >
-                    </div>
-                  </div>
-
-
--->
 
 <h1 align="left" class="title" > &nbsp;
- Settings</h1><div class="page-content tab-parallax">
-<div class="container1">
-                    <div class="row">
-                        <div class="col-md-12">
+ Settings</h1>
+<!-- Nav tabs -->
+<div class="container">
+<ul class="nav nav-tabs md-tabs nav-justified primary-color" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
+    <i class="fas fa-key pr-2"></i>Reset Password</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#panel666" role="tab">
+    <i class="fas fa-university pr-2"></i>Bank Details</a>
+  </li>
+</ul>
+<!-- Nav tabs -->
 
-                            <!--tabs square start-->
-                            <section class="icon-box-tabs ">
-                                <ul class="nav nav-pills">
-                                    <li class="active">
-                                        <a data-toggle="tab" href="#tab-15" aria-expanded="true">
-                                            <i class="fa fa-key"></i>    &nbsp;
-                                                  <h3 style="font-size:15px;" >Reset Password </h3>
+<!-- Tab panels -->
+<div class="tab-content" style="background-color:#e8e8e8;">
 
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a data-toggle="tab" href="#tab-16" aria-expanded="false">
-                                            <i class="fa fa-university"></i>
-                                            <h3 style="font-size:15px;" >Bank Account Details </h3>
+  <!-- Panel 1 -->
+  <div class="tab-pane fade in show active" id="panel555" role="tabpanel">
 
-                                        </a>
-                                    </li>
-                                    <!--
-                                    <li class="">
-                                        <a data-toggle="tab" href="#tab-17" aria-expanded="false">
-                                            <i class="fa fa-user-circle-o"></i>
-                                            <h3 style="font-size:15px;" > User Access Control </h3>
+    <!-- Nav tabs -->
+    <div class="row">
+      <div class="col-md-8" style="margin-top:1%;magin-left:5%;">
 
-                                        </a>
-                                    </li>-->
+        <form  #reset="ngForm" (ngSubmit)="onreset(reset)" >
+                                                              <div class="" style="margin-top:5%;margin-left:10%;">
+                                                  <div class="row">
 
+                                                  <div class="col-25">
+                                                                <label for="psw" style="font-size:20px;padding-top:20px;"><b>Password</b></label>
+                                                  </div>
+                                                  <div class="col-50">
+                                                          <label width="100%">      <input type="password" placeholder="Enter Current Password" name="psw" required ngModel>
+                                                  </label>
+                                                  <br>   </div>
+                                                  </div>
+                                                  <div class="row">
 
-                                </ul>
-                        <div class="panel-body">
-                          <div class="tab-content">
-                                        <div id="tab-15" class="tab-pane active">
-                                            <div class="heading-title-alt">
-                                              <br>
-
-                                              <!--    <h2 class="text-uppercase">  <i class="fa fa-key" aria-hidden="true"></i>Change Password</h2>
--->
-                                            </div>
-
-
-                                            <div class="row">
-                                                      <div class="col-75">
-
-                                                      <form  #reset="ngForm" (ngSubmit)="onreset(reset)">
-                                                        <div class="container">
-                                            <div class="row">
-
-                                            <div class="col-25">
-                                                          <label for="psw" style="font-size:20px;padding-top:20px;"><b>Old Password</b></label>
-                                            </div>
-                                            <div class="col-50">
-                                                    <label width="100%">      <input type="password" placeholder="Enter Current Password" name="oldpswd" required ngModel >
-                                            </label>
-                                            <br>   </div>
-                                            </div>
-                                            <div class="row">
-
-                                            <div class="col-25">
-                                                   <label for="psw-repeat" style="font-size:20px;padding-top:20px;"><b>Enter Password</b></label>
-                                                 </div>
-                                                 <div class="col-50">
-                                                        <label>  <input type="password"  placeholder="Repeat Password" name="newpswd" required ngModel>
-                                            </label>
-                                                        </div>
-
+                                                  <div class="col-25">
+                                                         <label for="psw-repeat" style="font-size:20px;padding-top:20px;"><b>New Password</b></label>
                                                        </div>
-                                                       <div class="row">
+                                                       <div class="col-50">
+                                                              <label>  <input type="password"  placeholder="Repeat Password" name="newpswd" required ngModel>
+                                                  </label>
+                                                              </div>
 
-                                                       <div class="col-25">
-                                                          <label for="psw"style="font-size:20px;padding-top:20px;"><b>Repeat Password</b></label>
-                                                        </div>
-                                                        <div class="col-50">
-                                                          <label>
-                                                          <input type="password" id="password-field" type="password" placeholder="Repeat Password" name="pswrepeat" required ngModel>
+                                                             </div>
+                                                             <div class="row">
 
-                                            </label>
-                                            </div>
-                                            </div>
+                                                             <div class="col-25">
+                                                                <label for="psw"style="font-size:20px;padding-top:20px;"><b>Repeat Password</b></label>
+                                                              </div>
+                                                              <div class="col-50">
+                                                                <label>
+                                                                <input type="password" id="password-field" type="password" placeholder="Enter New  Password" name="pswrepeat" required ngModel>
 
-                                                          <button  style="width:40%;" type="submit" class="registerbtn print">Reset Password</button>
-                                                        </div>
+                                                  </label>
+                                                  </div>
+                                                  </div>
 
-
-                                                      </form>
-
-
-
-                                                      </div>
-                                                      <div class="col-25" id="ser">
-
-                                                      </div>
-                                                    </div>
-</div>
-
-
-  <div id="tab-16" class="tab-pane">
-                                            <div class="heading-title-alt">
-                                    <br><!--
-                                                <h2 class="text-uppercase"><i class="fa fa-university" aria-hidden="true"></i>
-                                                Bank Account Details </h2>-->
-                                            </div>
-                                            <div class="container2" >
-                                                <div class="row">
-                                                          <div >
-                                                            <form  #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="form" class="form-horizontal">
-                                                            <div class="modal-body ">
-                                                              <div class="row" style="">
-                                                              <br>
-                                                              <br>
-                                                                       <div class="col-50" >
-                   <div class="form-group" [ngClass]="displayFieldCss('bank')">
-                                                                           <div class="col-sm-12">
-                                                                             <label for="name" class="control-label required"><b>Bank Name</b></label>
-                                                                             <input type="text"  placeholder="Enter Bank Name" id="bank" name="bank" class="form-control" formControlName="bank" ngModel={{config.Bankname}} required>
-                                                                             <app-field-error-display [displayError]="isFieldValid('bank')" errorMsg="Please enter Bank name">
-                                                                             </app-field-error-display>
-                                                                           </div>
-                                                                         </div>
-
-
-
-
-                                                                                                <div class="form-group" [ngClass]="displayFieldCss('routing')">
-                                                                                                  <div class="col-sm-12">
-                                                                                                    <label for="routing" class="control-label required"><b>Routing</b></label>
-                                                                                                    <input type="text"  placeholder="Enter Routing" id="routing" name="routing" class="form-control" formControlName="routing" ngModel={{config.Routenumber}} required>
-                                                                                                    <app-field-error-display [displayError]="isFieldValid('routing')" errorMsg="Please enter Routing number">
-                                                                                                    </app-field-error-display>
-                                                                                                  </div>
-                                                                                              </div>
-      <div class="form-group" [ngClass]="displayFieldCss('cheque')">
-                          <div class="col-sm-12">
-              <label for="cheque" class="control-label required"><b>Cheque Number</b></label>
-                            <input type="text"  placeholder="Enter Cheque Number" id="cheque" name="cheque" class="form-control" formControlName="cheque" ngModel={{config.Chequenumber}} required>
-                                  <app-field-error-display [displayError]="isFieldValid('cheque')" errorMsg="Please enter Cheque Number">
-                        </app-field-error-display>
-                                    </div>
-                      </div>
-</div>
-                                      <div class="col-50">
-                          <div class="form-group" [ngClass]="displayFieldCss('account')">
-                                  <div class="col-sm-12">
-                    <label for="account" class="control-label required"><b>Account Number</b></label>
-            <input type="text"  placeholder="Enter Account Number" id="account" name="account" class="form-control" formControlName="account" ngModel={{config.Accountnumber}} required>
-        <app-field-error-display [displayError]="isFieldValid('account')" errorMsg="Please enter Account Number">
-                          </app-field-error-display>
-                        </div>
-                          </div>
-      <div class="form-group" [ngClass]="displayFieldCss('name')">
-                                    <div class="col-sm-12">
-                  <label for="name" class="control-label required"><b>Enter Name</b></label>
-          <input type="text"  placeholder="Enter Your Name" id="name" name="name" class="form-control" formControlName="name" ngModel={{config.Name}} required>
-            <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Please enter Name">
-                </app-field-error-display>
-                </div>
-        </div>
-          <div class="form-group" [ngClass]="displayFieldCss('address')">
-                                  <div class="col-sm-12">
-                                <label for="address" class="control-label required"><b>Enter Address</b></label>
-                                                    <input type="text"  placeholder="Enter Addres" id="address" name="address" class="form-control" formControlName="address" ngModel={{config.Address}} required>
-                                                      <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please enter Address">
-                                </app-field-error-display>
-                            </div>
-              </div>
-        </div>                                   </div>
-                                      <div class="row">
-                                        <div clas="col-40" style="text-align:right;margin-left:7%;">
-                                                        &nbsp;  &nbsp;   <label >  Upload Authorized Signature  </label>
-                                      </div>
-                                      <div class="col-50">
-                                                          <div class="file-upload" >
-                                                            <div class="file-select">
-                                                              <div class="file-select-button" id="fileName">Choose File</div>
-                                                              <div class="file-select-name" id="noFile">No file chosen...</div>
-                                                              <input type="file"  name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" ngModel>
-                                                            </div>
-                                                          </div>
-                                      </div></div>
-                                                          <div class="modal-footer">
-                                                            <button  class="btn print" (click)="onSubmit(f)" >Submit</button>
-
-
-
-                                                            <button type="button" class="btn delete" data-dismiss="modal">Close</button>
-                                                          </div>
-
-                                                              <br>
-                                                               </div>
-
-
-
-
-
+                                                                <button  style="width:40%;" type="submit" class="registerbtn print">Reset Password</button>
+                                                              </div>
 
 
                                                             </form>
-                                                          </div>
+
+    </div>
+    </div>
+    <!-- Nav tabs -->
+
+  </div>
+  <!-- Panel 1 -->
+
+  <!-- Panel 2 -->
+  <div class="tab-pane fade" id="panel666" role="tabpanel" style="margin-left:5%;">
+
+    <form  #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="form" class="form-horizontal">
+    <div class="modal-body ">
+      <div class="row" >
+      <br>
+      <br>
+               <div class="col-50" >
+
+
+
+
+
+
+
+
+
+
+                 <div class="form-group" [ngClass]="displayFieldCss('bank')">
+                   <div class="col-sm-12">
+                     <label for="name" class="control-label required"><b>Bank Name</b></label>
+                     <input type="text"  placeholder="Enter Bank Name" id="bank" name="bank" class="form-control" formControlName="bank" ngModel={{config.Bankname}} required>
+                     <app-field-error-display [displayError]="isFieldValid('bank')" errorMsg="Please enter Bank name">
+                     </app-field-error-display>
+                   </div>
+                 </div>
+
+
+
+
+                                        <div class="form-group" [ngClass]="displayFieldCss('routing')">
+                                          <div class="col-sm-12">
+                                            <label for="routing" class="control-label required"><b>Routing</b></label>
+                                            <input type="text"  placeholder="Enter Routing" id="routing" name="routing" class="form-control" formControlName="routing" ngModel={{config.Routenumber}} required>
+                                            <app-field-error-display [displayError]="isFieldValid('routing')" errorMsg="Please enter Routing number">
+                                            </app-field-error-display>
+                                          </div>
+                                        </div>
+
+
+
+                                                                                      <div class="form-group" [ngClass]="displayFieldCss('cheque')">
+                                                                                        <div class="col-sm-12">
+                                                                                          <label for="cheque" class="control-label required"><b>Cheque Number</b></label>
+                                                                                          <input type="text"  placeholder="Enter Cheque Number" id="cheque" name="cheque" class="form-control" formControlName="cheque" ngModel={{config.Chequenumber}} required>
+                                                                                          <app-field-error-display [displayError]="isFieldValid('cheque')" errorMsg="Please enter Cheque Number">
+                                                                                          </app-field-error-display>
+                                                                                        </div>
+                                                                                      </div>
+
 </div>
-                                                        </div>
-                                                      </div>
-                                        <div id="tab-17" class="tab-pane">
-                                            <div class="heading-title-alt">
-                                                <span class="heading-sub-title-alt text-uppercase theme-color-">Multipurpose</span>
-                                                <h2 class="text-uppercase">Huge possibilities</h2>
-                                            </div>
-                                            congue laoreet elit metus eget diam. Proin ac metus diam. In quis scelerisque velit. Proin pellentesque neque ut scelerisque dapibus. Praesent elementum feugiat dignissim. Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam. In quis scelerisque velit. Proin pellentesque neque ut scelerisque dapibus. Praesent elementum feugiat dignissim. Nunc placerat mi id nisi interdum mollis.
-                                        </div>
-                                        <div id="tab-18" class="tab-pane">
-                                            <div class="heading-title-alt">
-                                                <span class="heading-sub-title-alt text-uppercase theme-color-">sky is the limit</span>
-                                                <h2 class="text-uppercase">we work together for fun</h2>
-                                            </div>
-                                            Proin ac metus diam. In quis scelerisque velit. Leo quam aliquet diam, congue laoreet elit metus eget diam. Proin pellentesque neque ut scelerisque dapibus. Praesent elementum feugiat dignissim. Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam. In quis scelerisque velit. Proin pellentesque neque ut scelerisque dapibus. Praesent elementum feugiat dignissim. Nunc placerat mi id nisi interdum mollis.
-                                        </div>
-                                        <div id="tab-19" class="tab-pane">
-                                            <div class="heading-title-alt">
-                                                <span class="heading-sub-title-alt text-uppercase theme-color-">responsive</span>
-                                                <h2 class="text-uppercase">Unlimited shortcode</h2>
-                                            </div>
-                                            Kusto ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam. In quis scelerisque velit. Proin pellentesque neque ut scelerisque dapibus. Praesent elementum feugiat dignissim. Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque mattis, leo quam aliquet diam, congue laoreet elit metus eget diam. Proin ac metus diam. In quis scelerisque velit. Proin pellentesque neque ut scelerisque dapibus. Praesent elementum feugiat dignissim. Nunc placerat mi id nisi interdum mollis.
-                                        </div>
+<div class="col-50">
+                                                                                  <div class="form-group" [ngClass]="displayFieldCss('account')">
+                                                                                    <div class="col-sm-12">
+                                                                                        <label for="account" class="control-label required"><b>Account Number</b></label>
+                                                                                    <input type="text"  placeholder="Enter Account Number" id="account" name="account" class="form-control" formControlName="account" ngModel={{config.Accountnumber}} required>
+                                                                                      <app-field-error-display [displayError]="isFieldValid('account')" errorMsg="Please enter Account Number">
+                                                                                      </app-field-error-display>
+                                                                                    </div>
+                                                                                    </div>
 
-                                    </div>
-                                </div>
-                            </section>
-                            <!--tabs square end-->
 
-                        </div>
+                                                                                    <div class="form-group" [ngClass]="displayFieldCss('name')">
+                                                                                      <div class="col-sm-12">
+                                                                                          <label for="name" class="control-label required"><b>Enter Name</b></label>
+                                                                                      <input type="text"  placeholder="Enter Your Name" id="name" name="name" class="form-control" formControlName="name" ngModel={{config.Name}} required>
+                                                                                        <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Please enter Name">
+                                                                                        </app-field-error-display>
+                                                                                      </div>
+                                                                                      </div>
 
-                    </div>
-                </div>
-	</div>
+                                                                                      <div class="form-group" [ngClass]="displayFieldCss('address')">
+                                                                                        <div class="col-sm-12">
+                                                                                            <label for="address" class="control-label required"><b>Enter Address</b></label>
+                                                                                        <input type="text"  placeholder="Enter Addres" id="address" name="address" class="form-control" formControlName="address" ngModel={{config.Address}} required>
+                                                                                          <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please enter Address">
+                                                                                          </app-field-error-display>
+                                                                                        </div>
+                                                                                        </div>
+
+
+
+  </div>                                   </div>
+<div class="row">
+<div clas="col-40" style="text-align:right;margin-left:7%;">
+&nbsp;  &nbsp;   <label >  Upload Authorized Signature  </label>
+</div>
+<div class="col-50">
+  <div class="file-upload" >
+    <div class="file-select">
+      <div class="file-select-button" id="fileName">Choose File</div>
+      <div class="file-select-name" id="noFile">No file chosen...</div>
+      <input type="file"  name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" ngModel>
+    </div>
+  </div>
+</div></div>
+  <div class="modal-footer">
+    <button  class="btn print" (click)="onSubmit(f)" >Submit</button>
+
+
+
+    <button type="button" class="btn delete" data-dismiss="modal">Close</button>
+  </div>
+
+      <br>
+       </div>
+
+
+
+
+
+
+
+    </form>
+  </div>
+  <!-- Panel 2 -->
+
+</div>
+<!-- Tab panels -->
+</div>
+<ngx-loading [show]="loading" [config]="{
+        backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
+        primaryColour: '#DB4437', secondaryColour: '#F4B400', tertiaryColour: '#DB4437' }" >
+</ngx-loading>
