@@ -175,7 +175,7 @@ else*/
                                console.log(k+"venkat")
 
 
-//this.router.navigate(['/cheques'])
+//this.router.navigate(['/dashboard'])
 window.open("/dashboard","_self")
 
            }

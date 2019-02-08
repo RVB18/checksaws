@@ -38,7 +38,18 @@
 </head>
 <body>
 
-    <app-root></app-root>
+          <ngx-loading [show]="loading" [config]="{
+                  backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
+                  primaryColour: '#DB4437', secondaryColour: '#F4B400', tertiaryColour: '#DB4437' }" >
+
+  <app-root></app-root>
+                </ngx-loading>
+
+
+
+
+
+
 
 
 </body>
