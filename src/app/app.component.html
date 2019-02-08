@@ -40,7 +40,11 @@
         <a class="nav-link"href="http://alektasolutions.com/purchase/print/cheque/ang?words=Three%20Hundred%20and%20Forty%20Three%20%20and%2030/100*****&date=10-08-2018&name=Raghava&amount=**343.3&addr=Arizona,Phoenix," target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Test Print</a>
 
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()"  ><i class="fa  fa-power-off"></i> Logout</a>
+
+      </li>
+    <!--  <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           <i class="fas fa-user"></i>
@@ -49,7 +53,7 @@
           <a class="dropdown-item" (click)="logout()" ><i class="fa  fa-power-off"></i> Logout</a>
 
         </div>
-      </li>
+      </li>-->
     </ul>
   </div>
 </nav>
@@ -94,7 +98,7 @@
 
 
                         <li class="sidebar-item">
-                            <span class="fa  fa-cog" style="font-size:30px;" [routerLinkActive]="['active']" routerLink="/settings"  ></span>
+                            <span class="fa fa-cog" style="font-size:30px;" [routerLinkActive]="['active']" routerLink="/settings"  ></span>
                             <span class="e-text" title="settings" style="font-size:1.8em;"  routerLink="/settings"  > &nbsp;&nbsp;&nbsp;Settings</span>
                         </li>
                         <br>
@@ -102,7 +106,7 @@
 
                         <li class="sidebar-item">
                             <span class="fa fa-user-plus" style="font-size:30px;"  routerLink="/user"  ></span>
-                            <span class="e-text" title="User Access" style="font-size:1.8em;"routerLink="/user"   > &nbsp; User Access</span>
+                            <span class="e-text" title="User Access" style="font-size:1.8em;" routerLink="/user"   > &nbsp; User Access</span>
                         </li>
                         <br>
                         <li class="sidebar-item">

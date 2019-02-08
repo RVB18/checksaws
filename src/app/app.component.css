@@ -17,10 +17,13 @@ z-index:2;
   color: #23ae89;
 }
 
-li .hover,{
+li:hover{
 color:red;
 }
+.sidebar:active{
+  color: #000;
 
+}
 li{
   color:#ddd;
 }

@@ -560,7 +560,7 @@ aside {
 }
 
 .donut-chart {
-  position: relative;
+  position: fixed;
   border-radius: 50%;
   overflow: hidden;
 }
