@@ -31,11 +31,11 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AdminComponent implements OnInit {
   @ViewChild('dockBar')
       public dockBar: SidebarComponent;
       public enableDock: boolean = true;
@@ -85,12 +85,13 @@ users:any
   data:any;
 config:any;
 vendor:any;
+success:any;
 isDataAvailable:boolean = false;
 loading:boolean = false;
 
 myHeaders:any;
 options:any;
-//showNav:boolean=false;
+showNav:boolean=false;
 mdlSampleIsOpen : boolean = false;
 
 Addresscomplete:any;
@@ -104,6 +105,11 @@ this.myHeaders = new Headers();
 var k= this.getCookie("idToken");
                 console.log(k)
 this.hash={}
+                if(window.location.pathname=="/login"||window.location.pathname=="/signup"||window.location.pathname=="/"||window.location.pathname=="")
+this.showNav=false
+else
+this.showNav=true
+
 
 
 this.Addresscomplete={}
@@ -153,13 +159,12 @@ completeAddress(){
 
   oncreate(f){
   var drivecreate={
-    "feature": "driver_crud",
-    "operation": "driver_create",
+
     "email": f.email,
     "password":f.password,
     "firstname": f.firstname,
     "lastname": f.lastname,
-    "phonenumber":f.phonenumber,
+    "phonenumber":"+91"+f.phonenumber,
     "driverid": uuid()
   }
 
@@ -168,6 +173,25 @@ completeAddress(){
   this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',drivecreate,this.options).subscribe(data => {
   //window.location.reload()
   console.log(data)
+  var r=data.json();
+  console.log(r);
+
+
+  this.success=r
+
+
+
+
+ if(this.success.message=="Failure"){
+
+   this.snackBar.open("Unable To Create","Ok",{
+     duration:2000,
+     panelClass:'red-snackbar',
+     horizontalPosition: 'center',
+     verticalPosition: 'top'
+   })}
+   else
+location.reload()
   })
 
   }
@@ -357,7 +381,7 @@ logout(){
 
 
 this._cookieService.removeAll()
-location.href='/login'
+this.router.navigate(['/'])
 
 }
 redirect(){

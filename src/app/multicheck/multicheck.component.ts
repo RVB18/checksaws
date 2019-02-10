@@ -44,7 +44,7 @@ options:any;
 
   public openModal(open : boolean) : void {
     this.mdlSampleIsOpen = open;
-	this.router.navigate(['/cheques']);
+	this.router.navigate(['/admin/cheques']);
 
 }
  updatestatus(){
@@ -102,8 +102,8 @@ else
             this.loading=false
 
             //alert("Succesfully Saved")
-            window.open("/cheques","_self")
-          //  this.router.navigate(['/cheques'])
+            //window.open("/cheques","_self")
+           this.router.navigate(['/admin/cheques'])
 
         });
 

@@ -286,6 +286,24 @@ console.log(drivecreate)
 this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',drivecreate,this.optionss).subscribe(data => {
 //window.location.reload()
 console.log(data)
+var r=data.json();
+console.log(r);
+
+
+
+
+
+
+if(r.message=="Failure"){
+
+ this.snackBar.open("Unable to Create","Ok",{
+   duration:2000,
+   panelClass:'red-snackbar',
+   horizontalPosition: 'center',
+   verticalPosition: 'top'
+ })}
+ else
+location.reload();
 })
 
 }
@@ -296,8 +314,7 @@ console.log(data)
 onedit(f,data1){
 
   var driveredit={
-    "feature": "driver_crud",
-    "operation": "driver_update",
+
     "username":this.editdata.username,
     "email": f.email,
     "firstname": f.firstname,
@@ -309,23 +326,59 @@ console.log(driveredit)
   this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',driveredit).subscribe(data => {
   //window.location.reload()
   console.log(data)
+  var r=data.json();
+  console.log(r);
+
+
+
+
+
+
+  if(r.message=="Failure"){
+
+   this.snackBar.open("Unable to Update","Ok",{
+     duration:2000,
+     panelClass:'red-snackbar',
+     horizontalPosition: 'center',
+     verticalPosition: 'top'
+   })}
+   else
+  location.reload();
   })
 
 
 }
 
 delete(f,data1){
-console.log("sudheer")
+console.log(f +" "+data1)
   var del={
 
       "username":this.editdata.username,
   }
 console.log(del)
-var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser?username='+this.editdata.username
-console.log(url)
+//var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser?username='+this.editdata.username
+//console.log(url)
   this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser?username='+this.editdata.username,this.optionss).subscribe(data => {
-  //window.location.reload()
+  window.location.reload()
   console.log(data)
+  var r=data.json();
+  console.log(r);
+
+
+
+
+
+
+  if(r.message=="Failure"){
+
+   this.snackBar.open("Unable to Delete","Ok",{
+     duration:2000,
+     panelClass:'red-snackbar',
+     horizontalPosition: 'center',
+     verticalPosition: 'top'
+   })}
+   else
+  location.reload();
   })
 
 

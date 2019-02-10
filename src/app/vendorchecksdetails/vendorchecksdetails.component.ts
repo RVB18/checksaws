@@ -52,14 +52,14 @@ options:any;
  g1--;
  }
  var tt=[]
-  tt=[{count:1,words:nu,street:data.StreetAddress,postal:data.CityorTown+" "+data.State+" "+data.zipcode,date:data.Date,name:data.Name,amount:astreik+data.Amount,addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
+  tt=[{id:data.id,count:1,words:nu,street:data.StreetAddress,postal:data.CityorTown+" "+data.State+" "+data.zipcode,date:data.Date,name:data.Name,amount:astreik+data.Amount,addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
  //window.print("/multicheck?a="+JSON.stringify(tt), "_blank");
  var newString = JSON.stringify(tt).replace(/undefined/g," ");
  this.userdata.changeMessage(JSON.stringify(tt))
  this.userdata.changeMessage1(this.config)
 
 
- this.router.navigate(['/multicheck']);
+this.router.navigate(['/multicheck']);
  }
  else{
 
@@ -75,7 +75,7 @@ options:any;
    }
    console.log("astreik "+g1)
    var tt=[]
-    tt=[{count:1,words:convertNumberToWords(data.Amount),street:data.StreetAddress,postal:data.CityorTown+" "+data.State+" "+data.zipcode,date:data.Date+"",name:data.Name,amount:astreik+data.Amount+".00",addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
+    tt=[{id:data.id,count:1,words:convertNumberToWords(data.Amount),street:data.StreetAddress,postal:data.CityorTown+" "+data.State+" "+data.zipcode,date:data.Date+"",name:data.Name,amount:astreik+data.Amount+".00",addr:data.Address,load:data.Loadnumber,carrer:data.Carrername}]
 
 //    window.open("/multicheck?a="+JSON.stringify(tt), "_blank");
 
@@ -85,7 +85,7 @@ this.userdata.changeMessage1(this.config)
 
 
 this.router.navigate(['/multicheck']);
-
+//
  }
 
 

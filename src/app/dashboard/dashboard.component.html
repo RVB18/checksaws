@@ -9,14 +9,14 @@
 						<div class="rad-info-box rad-txt-success">
 							<i class="fa fa-users"></i>
 							<span class="heading">No of Vendors </span>
-							<span class="value"><span>4949</span></span>
+							<span class="value"><span>{{data.Vendor_Count}}</span></span>
 						</div>
 					</div>
 					<div class="col-lg-6 col-xs-4">
 						<div class="rad-info-box rad-txt-success">
 							<i class="fa fa-money"></i>
 							<span class="heading">AMOUNT Paid </span>
-							<span class="value"><span>23K</span></span>
+							<span class="value"><span>{{data.Paid_amount}}</span></span>
 						</div>
 					</div><br>
           <br>
@@ -24,14 +24,14 @@
 						<div class="rad-info-box rad-txt-success">
 							<i class="fa fa-usd"></i>
 							<span class="heading">Pending AMOUNT</span>
-							<span class="value"><span>49M</span></span>
+							<span class="value"><span>{{data.Pending_amount}}</span></span>
 						</div>
 					</div>
 					<div class="col-lg-6 col-xs-4 rad-txt-success">
 						<div class="rad-info-box rad-txt-success" >
 							<i class="fa fa-user"></i>
 							<span class="heading">No of Users </span>
-							<span class="value"><span>10.9K</span></span>
+							<span class="value"><span>{{data.Users}}</span></span>
 						</div>
 					</div>
 				</div>
@@ -63,7 +63,7 @@
     <div class="slice one"></div>
     <div class="slice two"></div>
     <div class="chart-center">
-      <span></span>
+      <span>{{data.checkpercentage}}%</span>
     </div>
   </div>
   </div></div> <br>

@@ -76,7 +76,7 @@ export class AddComponent  implements OnInit {
           console.log(data1)
           if(data1.message="success"){
           //  console.log("")
-          //window.location.reload();
+          window.location.reload();
 
           }
           else

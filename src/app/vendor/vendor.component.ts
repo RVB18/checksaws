@@ -34,7 +34,7 @@ datac:any;
   go(name){
 
     console.log("event started "+JSON.stringify(name))
-    this.router.navigate(['/vendorcheckdetails', name.Name]);
+    this.router.navigate(['/admin/vendorcheckdetails', name.Name]);
 
   }
 

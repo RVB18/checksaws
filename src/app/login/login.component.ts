@@ -1,6 +1,7 @@
 import { Component, OnInit,Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import {MatSnackBar} from '@angular/material';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -43,7 +44,7 @@ public showNav = true;
 
 public loading = false;
 
-constructor(private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService,private _flashMessagesService: FlashMessagesService) {
+constructor(private snackBar:MatSnackBar, private http: Http, private router: Router, private route: ActivatedRoute,private spinner: NgxSpinnerService,private formBuilder: FormBuilder,private _cookieService:CookieService,private _flashMessagesService: FlashMessagesService) {
 
 this.showNav=true
  }
@@ -155,10 +156,14 @@ else*/
 
 
 
-           if(this.success.message=="Failure")
+           if(this.success.message=="Failure"){
 
-  this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 9991000});
-
+             this.snackBar.open("Invalid Username or Password","Ok",{
+               duration:2000,
+               panelClass:'red-snackbar',
+               horizontalPosition: 'center',
+               verticalPosition: 'top'
+             })}
            //alert(this.success.data)
            else
            {
@@ -175,8 +180,8 @@ else*/
                                console.log(k+"venkat")
 
 
-//this.router.navigate(['/dashboard'])
-window.open("/dashboard","_self")
+this.router.navigate(['/admin/dashboard'])
+//window.open("/dashboard","_self")
 
            }
 

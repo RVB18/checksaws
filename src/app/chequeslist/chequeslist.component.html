@@ -17,8 +17,8 @@
           <div class="file-upload">
             <div class="file-select">
               <div class="file-select-button" id="fileName">Choose File</div>
-              <div class="file-select-name" id="noFile">No file chosen...</div>
-              <input type="file"  name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" ngModel>
+              <div class="file-select-name" id="noFile">{{filevalue}}</div>
+              <input type="file" #file name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" (change)='inform(file)' ngModel>
             </div>
           </div>
 
@@ -34,7 +34,7 @@
     <div class="modal-footer">
       <button type="submit" class="btn print" (click)="handleFileSelect($event)" >Submit</button>
 
-      <button type="button" class="btn delete" data-dismiss="modal">Close</button>	</div>
+      <button type="button" class="btn delete" (click)="modal.close('Save click')">Close</button>	</div>
     </form>
   </div>
 
@@ -78,8 +78,7 @@
             <div class="file-upload">
               <div class="file-select">
                 <div class="file-select-button" id="fileName">Choose File</div>
-                <div class="file-select-name" id="noFile">No file chosen...</div>
-                <input type="file"  name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" ngModel>
+                <input type="file"  name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" (change)='inform()' ngModel>
               </div>
             </div>
 
@@ -234,7 +233,7 @@ CELLSPACING=0 CELLPADDING=5>
 	<div id="mdlSample" class="modal  fade" height="500px" role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
 	<div class="modal-dialog  modal-lg" id="modal">
 	<div class="modal-content">
-		<div class="modal-header modalhead" id="head" style="height:150px">
+		<div class="modal-header modalhead" id="head" style="height:110px">
 	  <h2 class="modal-title" style="color:white;margin-top:2%">Delete Check's</h2>
 
 						</div>
@@ -242,8 +241,8 @@ CELLSPACING=0 CELLPADDING=5>
 	<div class="row">
 
 	<div class="col-md-12">
-	  <div class="container" id="table1">
-	  <p>Are You Sure You Want To delete this check's....?</p>
+	  <div class="container " id="table1">
+	  <p >Are You Sure You Want To delete this check's....?</p>
 	  <table class="table ">
 	    <thead>
 	      <tr>

@@ -38,7 +38,7 @@ datak:any;
   map:any;
 	count:any;
   closeResult: string;
-
+filevalue:any
   coun:any;
   options:any;
   displayedColumns = [  'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer'];
@@ -191,7 +191,11 @@ console.log(m)
 
                    });
   }
+inform(file: HTMLInputElement){
 
+this.filevalue=file.value
+
+}
   open(content) {
      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
        this.closeResult = `Closed with: ${result}`;
@@ -234,8 +238,16 @@ console.log(m)
   if(checksdata.message=="success"){
   window.location.reload()
 }
-else
-  alert("Cannot be Deleted")
+else{
+
+                       this.snackBar.open("Cannot be Deleted","Ok",{
+                         duration:2000,
+                         panelClass:'red-snackbar',
+                         horizontalPosition: 'center',
+                         verticalPosition: 'top'
+                       })
+
+}
 
 //window.location.reload()
 
@@ -317,8 +329,14 @@ else
          console.log(res.json());
          var uploadresponse=res.json()
          if(uploadresponse.message=="success"){
-         alert("Succesfully uploaded")
-         console.log(this.users)
+
+           this.snackBar.open("Succesfully Uploaded","Ok",{
+             duration:2000,
+             panelClass:'blue-snackbar',
+             horizontalPosition: 'center',
+             verticalPosition: 'top'
+           })
+                                        console.log(this.users)
       //   this.dataSource.data=filedata.concat(this.users)
         // for(var g=0;g<filedata.length;g++){
 
@@ -334,8 +352,13 @@ else
          window.location.reload()
        }
        else{
-         alert("There is a Problem With Upload File")
-       }
+
+                              this.snackBar.open("There is a Problem occured while Uploading File","Ok",{
+                                duration:2000,
+                                panelClass:'red-snackbar',
+                                horizontalPosition: 'center',
+                                verticalPosition: 'top'
+                              })       }
 
   }
   )

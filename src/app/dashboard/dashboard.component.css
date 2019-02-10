@@ -642,9 +642,7 @@ aside {
   line-height: 150px;
   color: #23ae89;
 }
-.donut-chart.chart2 .chart-center span:after {
-  content: "91%";
-}
+
 
 .donut-chart.chart3 {
   width: 120px;

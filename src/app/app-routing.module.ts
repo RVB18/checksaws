@@ -17,18 +17,23 @@ import { SettingsComponent } from './settings/settings.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { QuickbooksComponent } from './quickbooks/quickbooks.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
+
+  {
+path:  'admin',
+component:  AdminComponent,
+children: [
+
   {path:'cheques',component:ChequeslistComponent},
 {path:'vendor',component:VendorComponent},
 {path:'vendorcheckdetails/:name',component:VendorchecksdetailsComponent},
 {path:'singlecheck/:data',component:SinglechequeprintComponent},
-{path:'multicheck',component:MulticheckComponent},
 {path:'multicheck2',component:Multicheck2Component},
 {path:'',component:LoginComponent},
-{path:'signup',component:SignupComponent},
-{path:'login',component:LoginComponent},
+
 {path:'quickbooks',component:Multicheck2Component},
 {path:'user',component:UserComponent},
 {path:'adduser',component:AdduserComponent},
@@ -37,9 +42,15 @@ const routes: Routes = [
 {path:'quickbook',component:QuickbooksComponent},
 
 {path:'settings',component:SettingsComponent},
-{path:'tableview',component:TableviewComponent}];
+{path:'tableview',component:TableviewComponent
+}]},
+{path:'multicheck',component:MulticheckComponent},
 
+{path:'signup',component:SignupComponent},
+{path:'',component:LoginComponent}
+];
 
+//
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -69,7 +69,7 @@ console.log(b)
         if(data1.message="success"){
         console.log("done")
 
-      // window.location.reload();
+       window.location.reload();
   }
         else
         alert("Unable to Update")
