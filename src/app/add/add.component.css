@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-width: 500px;
-  max-height: 100vh;
+  max-height: 80vh;
 }
 
 .container > * {
@@ -19,27 +19,29 @@
   flex-grow: 1;
 }
 .mat-dialog-content{
+  min-height: 75vh;
 
-  height:390px;
+  height:750px;
 }
 .print{
+
   background-color: white;
-  border-color: green;
-  color:green;
+  border-color: #72BA65;
+  color:#72BA65;
   transition: 0.3s;
 }
 .print:hover{
-  background-color: green;
+  background-color: #72BA65;
   color:white;
 }
 .delete{
 
   background-color: white;
-  border-color: red;
-  color:red;
+  border-color: #FA7888;
+  color:#FA7888;
   transition: 0.3s;
 }
 .delete:hover{
-  background-color: red;
+  background-color: #FA7888;
   color:white;
 }

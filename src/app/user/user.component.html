@@ -152,7 +152,7 @@ mode="indeterminate">
                           <p>Are You Sure Want to delete"{{editdata.username}}"</p>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default" (click)="delete(f1.value,editdata)">delete</button>
+                          <button type="button" class="btn btn-default" (click)="delete(editdata)">delete</button>
                         </div>
                       </div>
 
@@ -177,11 +177,12 @@ mode="indeterminate">
                 </ng-template>
 
 <!-- Edit user ---------------------------------------------------------->
+<div class="modal">
                   <ng-template #content let-modal>
-                    <div class="modal-header">
+                    <div class="modal-header" style="z-index:1;">
                       <h4 class="modal-title" id="modal-basic-title">Edit User</h4>
                       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                        <span aria-hidden="true">&times;</span>
+                        <span >&times;</span>
                       </button>
                     </div>
 
@@ -210,7 +211,7 @@ mode="indeterminate">
                   </ng-template>
 
 
-
+</div>
 
 
 

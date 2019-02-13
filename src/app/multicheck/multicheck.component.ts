@@ -47,6 +47,15 @@ options:any;
 	this.router.navigate(['/admin/cheques']);
 
 }
+logout(){
+
+
+
+
+this._cookieService.removeAll()
+this.router.navigate(['/'])
+
+}
  updatestatus(){
 //	 var data=document.getElementById('to').value
    var data=(<HTMLInputElement>document.getElementById('to')).value;

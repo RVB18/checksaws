@@ -107,3 +107,36 @@ table {
   color:white;
 
 }
+ngb-modal-backdrop{
+aria-hidden:none;}
+.modal-backdrop.show {
+opacity: 0.1;
+background-color: transparent !important;
+  }
+  .fade {
+      opacity: 0.1;
+      -webkit-transition: opacity .15s linear;
+      -o-transition: opacity .15s linear;
+      transition: opacity .15s linear;
+  }
+
+  .fade.in {
+      opacity: 0.1;
+  }
+
+.modal.in .modal-dialog {
+   -webkit-transform: translate(0,0);
+   -ms-transform: translate(0,0);
+   -o-transform: translate(0,0);
+   transform: translate(0,0);
+}
+
+.modal.fade .modal-dialog {
+   -webkit-transition: -webkit-transform .3s ease-out;
+   -o-transition: -o-transform .3s ease-out;
+   transition: transform .3s ease-out;
+   -webkit-transform: translate(0,-25%);
+   -ms-transform: translate(0,-25%);
+   -o-transform: translate(0,-25%);
+   transform: translate(0,-25%);
+}

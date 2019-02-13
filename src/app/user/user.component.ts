@@ -11,7 +11,7 @@ import { ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {Issue} from '../models/issue';
 import {AdduserComponent} from '../adduser/adduser.component';
-import { DeleteuserComponent } from '../deleteuser/deleteuser.component';
+//import { DeleteuserComponent } from '../deleteuser/deleteuser.component';
 import { EdituserComponent } from '../edituser/edituser.component'
 //import { MattableeditComponent } from '../mattableedit/mattableedit.component';
 import { MattabledeleteComponent } from '../mattabledelete/mattabledelete.component';
@@ -319,7 +319,7 @@ onedit(f,data1){
     "email": f.email,
     "firstname": f.firstname,
     "lastname": f.lastname,
-    "phonenumber":f.phonenumber,
+    "phonenumber":"91"+f.phonenumber,
     "driverid": uuid()
   }
 console.log(driveredit)
@@ -342,15 +342,15 @@ console.log(driveredit)
      horizontalPosition: 'center',
      verticalPosition: 'top'
    })}
-   else
-  location.reload();
+   //else
+//  location.reload();
   })
 
 
 }
 
-delete(f,data1){
-console.log(f +" "+data1)
+delete(data1){
+console.log(data1)
   var del={
 
       "username":this.editdata.username,
@@ -434,7 +434,7 @@ stopEdit( i:number ,id:string,Username:string, Email: string,  Firstname: string
 }
 
 
-
+/*
 deleteItem(i: number, id: string,Username:string) {
   this.index = i;
   this.id = id;
@@ -447,7 +447,7 @@ deleteItem(i: number, id: string,Username:string) {
 
     }
   });
-}
+}*/
 
 
 

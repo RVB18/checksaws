@@ -1,5 +1,12 @@
-<h1 align="left" class="title" > &nbsp;
- Dashboard</h1>
+
+<div class="head">
+  <h1 align="left" class="title" > &nbsp;
+ Dashboard
+ <ngx-mat-drp class="pull-right"(selectedDateRangeChanged)="updateRange($event)" [options]="options" #dateRangePicker></ngx-mat-drp>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</h1>
+</div>
+<br>
 <div style="margin-top:2%;margin-right:5%;margin-left:2%; ">
   <div class="row">
     <div class="col-xs-12 col-md-9">
@@ -116,3 +123,6 @@
 
 
 </div>
+<script>
+
+</script>

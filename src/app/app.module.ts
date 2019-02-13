@@ -95,6 +95,7 @@ import { NgForm } from '@angular/forms';
 
 
 
+import { NgxMatDrpModule } from 'ngx-mat-daterange-picker';
 
 
 
@@ -163,6 +164,7 @@ export class DemoMaterialModule {}
     AppRoutingModule,
    RadioButtonModule,
    SidebarModule,
+NgxMatDrpModule,
 
     HttpClientModule,
     DemoMaterialModule,
