@@ -1,8 +1,9 @@
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
+import * as XLSX from 'xlsx';
 
-import { Component, ViewChild , ElementRef, OnInit ,Inject,Injectable} from '@angular/core';
+import { Component, Directive, Input, ViewChild , ElementRef, OnInit ,Inject,Injectable} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatSort,} from '@angular/material';
 
 import { Router } from '@angular/router';
@@ -25,8 +26,10 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 })
 export class ChequeslistComponent implements OnInit  {
 
+  @ViewChild('uploadclose') uploadclose: ElementRef;
 
 
+  modalReference = null;
 
   public loading = false;
   users: UserData[] = [];
@@ -70,7 +73,7 @@ deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumb
  }
 
 }
-
+//
   constructor(private modalService: NgbModal,private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService,private snackBar: MatSnackBar) {
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
 this.coun=0;
@@ -78,7 +81,7 @@ this.coun=0;
 //
 var k= this.getCookie("idToken");
               //  console.log(k+"venkat")
-
+//
 
 
 
@@ -87,117 +90,123 @@ var k= this.getCookie("idToken");
   myHeaders.append('Authorization',k)
 console.log(myHeaders)
   let options = new RequestOptions({ headers: myHeaders });
-
 this.options=options;
-this.isLoading=true
+this.loaddata();
 
-    this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',options).subscribe(data => {
-//console.log(data.json())
-   this.datap=data.json()
-   console.log(this.datap)
-   this.isLoading=false
-
-
-
-
-   if(this.datap.message=="Unauthorized")
-                   {
-
-
-
-                                  /*     this.snackBar.openFromComponent(PizzaPartycComponent, {
-                                         sasa: 'ggg',
-                                         this.configSuccess
-                                       });*/
-                     //this.snackBar.open('forbidden', 'error', {duration: 10000});
-
-                     //alert("forbidden")
-                     //window.location.href="/login"
-
-                     this.snackBar.open("Unauthorized","Ok",{
-                       duration:2000,
-                       panelClass:'red-snackbar',
-                       horizontalPosition: 'center',
-                       verticalPosition: 'top'
-                     })
-                   }
-                   else if(this.datap.message=="The incoming token has expired"){
-
-
-                     this.snackBar.open("Session Expired","Ok",{
-                       duration:2000,
-                       panelClass:'blue-snackbar',
-                       horizontalPosition: 'center',
-                       verticalPosition: 'top'
-                     })
-
-
-                    //this.snackBar.open('forbidden', 'error', {duration: 10000});
-
-                     //alert("Sorry Session Expired")
-                     //window.location.href="/login"
-
-                   }
-
-                   else{
-
-var m=[];
-                   console.log(this.datap)
-
-                   //console.log(users)
-
-                   this.datap.Items.forEach(function (ele){
-                     var checkdata={
-                                          "Date":ele.Date,
-                                          "CityorTown":ele.CityorTown,
-                                          "timestamp":ele.timestamp,
-                                          "Loadnumber":ele.Loadnumber,
-                                          "Currentstatus":ele.Currentstatus,
-                                          "State":ele.State,
-                                          "StreetAddress":ele.StreetAddress,
-                                          "zipcode":ele.zipcode,
-                                          "Client":ele.Client,
-                                          "Amount":ele.Amount,
-                                          "Carrername":ele.Carrername,
-                                          "Name":ele.Name,
-                                          "id":ele.id
-                                        }
-
-
-                                        m.push(checkdata)
-                   })
-
-console.log(m)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                     this.dataSource = new MatTableDataSource(m);
-
-                     this.dataSource.paginator = this.paginator;
-                     this.dataSource.sort = this.sort;
-                     //  console.log("sdfsd "+this.dataSource)
- }
-
-                   });
   }
 inform(file: HTMLInputElement){
 
 this.filevalue=file.value
 
 }
+
+loaddata(){
+
+  this.isLoading=true
+
+      this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',this.options).subscribe(data => {
+  //console.log(data.json())
+     this.datap=data.json()
+     console.log(this.datap)
+     this.isLoading=false
+
+
+
+
+     if(this.datap.message=="Unauthorized")
+                     {
+
+
+
+                                    /*     this.snackBar.openFromComponent(PizzaPartycComponent, {
+                                           sasa: 'ggg',
+                                           this.configSuccess
+                                         });*/
+                       //this.snackBar.open('forbidden', 'error', {duration: 10000});
+
+                       //alert("forbidden")
+                       //window.location.href="/login"
+
+                       this.snackBar.open("Unauthorized","Ok",{
+                         duration:2000,
+                         panelClass:'red-snackbar',
+                         horizontalPosition: 'center',
+                         verticalPosition: 'top'
+                       })
+                     }
+                     else if(this.datap.message=="The incoming token has expired"){
+
+
+                       this.snackBar.open("Session Expired","Ok",{
+                         duration:2000,
+                         panelClass:'blue-snackbar',
+                         horizontalPosition: 'center',
+                         verticalPosition: 'top'
+                       })
+
+
+                      //this.snackBar.open('forbidden', 'error', {duration: 10000});
+
+                       //alert("Sorry Session Expired")
+                       //window.location.href="/login"
+
+                     }
+
+                     else{
+
+  var m=[];
+                     console.log(this.datap)
+
+                     //console.log(users)
+
+                     this.datap.Items.forEach(function (ele){
+                       var checkdata={
+                                            "Date":ele.Date,
+                                            "CityorTown":ele.CityorTown,
+                                            "timestamp":ele.timestamp,
+                                            "Loadnumber":ele.Loadnumber,
+                                            "Currentstatus":ele.Currentstatus,
+                                            "State":ele.State,
+                                            "StreetAddress":ele.StreetAddress,
+                                            "zipcode":ele.zipcode,
+                                            "Client":ele.Client,
+                                            "Amount":ele.Amount,
+                                            "Carrername":ele.Carrername,
+                                            "Name":ele.Name,
+                                            "id":ele.id
+                                          }
+
+
+                                          m.push(checkdata)
+                     })
+
+  console.log(m)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       this.dataSource = new MatTableDataSource(m);
+
+                       this.dataSource.paginator = this.paginator;
+                       this.dataSource.sort = this.sort;
+                       //  console.log("sdfsd "+this.dataSource)
+   }
+
+                     });
+
+}
   open(content) {
-     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
        this.closeResult = `Closed with: ${result}`;
      }, (reason) => {
        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -258,6 +267,8 @@ else{
 
   handleFileSelect(e)
     {
+    //  this.uploadclose.nativeElement.click();
+//this.modalReference.close()
       var filedata=[];
   var filedate2=[];
       var file = (<HTMLInputElement>document.getElementById('filePicker'));
@@ -265,63 +276,86 @@ else{
     //  var jsonFile = this.csvJSON(file);
 
       //console.log(jsonFilefile)
-      const reader = new FileReader();
-   reader.onload = () => {
-     var text = reader.result.toString();
-    // console.log('CSV: ', text);
-     var lines = text.split("\n");
 
-     var result = [];
 
-     var headers = lines[0].split(",");
 
-     for (var i = 1; i < lines.length; i++) {
+      let fileReader = new FileReader();
+             fileReader.onload = (e) => {
+                 this.arrayBuffer = fileReader.result;
+                 var data = new Uint8Array(this.arrayBuffer);
+                 var arr = new Array();
+                 for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                 var bstr = arr.join("");
+                 var workbook = XLSX.read(bstr, {type:"binary"});
+                 var first_sheet_name = workbook.SheetNames[0];
+                 var worksheet = workbook.Sheets[first_sheet_name];
+                 console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
 
-         var obj = {};
-         var currentline = lines[i].split(",");
+                 this.loading=true
+                   var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
 
-         for (var j = 0; j < headers.length; j++) {
-             obj[headers[j]] = currentline[j];
-         }
+                      this.http.post(url,{"Items":XLSX.utils.sheet_to_json(worksheet,{raw:true})},this.options).subscribe (
 
-         result.push(obj);
+                       (res:Response) =>{
+                         this.loading=false
 
-     }
-     //convert text to json here
-     //var json = this.csvJSON(text);
-  //   console.log(JSON.stringify(result.pop()))
-  /*   result.forEach(function(ele){
-     console.log(ele.Name+ele.Amount)
+                         console.log(res.json());
+                         var uploadresponse=res.json()
+                         if(uploadresponse.message=="success"){
 
-   })*/
-   result.forEach(function(ele){
-     //console.log(ele.Name)
-    var m={
+                           this.snackBar.open("Succesfully Uploaded","Ok",{
+                             duration:2000,
+                             panelClass:'blue-snackbar',
+                             horizontalPosition: 'center',
+                             verticalPosition: 'top'
+                           })
+                           this.loaddata()
+                                                        console.log(this.users)
+                      //   this.dataSource.data=filedata.concat(this.users)
+                        // for(var g=0;g<filedata.length;g++){
 
-       "Amount": ele.Amount,
-          "Carrername":ele.CarrerName,
-          "Date": ele.Date,
-          "id": uuid(),
-          "Loadnumber": ele.LoadNumber,
-          "Name": ele.Name,
-          "StreetAddress":ele.StreetAddress,
-          "CityorTown": ele.CityorTown,
-          "State":ele.State,
-          "zipcode": ele.zipcode,
-          "Country": ele.Country,
+                      //  this.dataSource.addRow(filedata[g])
 
-  }
 
-  filedata.push(m)
-  //this.filedata.push(m);
-  //console.log(filedata)
-  })
+                      //   }http://13.232.165.2:3000/statusupdates?a='
 
-  console.log(filedata)
-  this.loading=true
+                            //   this.dataSource = new MatTableDataSource(users);
+
+                            //   this.dataSource.paginator = this.paginator;
+                            //     this.dataSource.sort = this.sort;
+                    //     window.location.reload()
+                       }
+                       else{
+
+                                              this.snackBar.open("There is a Problem occured while Uploading File","Ok",{
+                                                duration:2000,
+                                                panelClass:'red-snackbar',
+                                                horizontalPosition: 'center',
+                                                verticalPosition: 'top'
+                                              })       }
+
+                  }
+                  )
+                  }
+                  fileReader.readAsArrayBuffer(file.files[0]);
+
+             }
+
+  /*    let fileReader = new FileReader();
+           fileReader.onload = (e) => {
+               var arrayBuffer = fileReader.result();
+               var data = new Uint8Array(arrayBuffer);
+               var arr = new Array();
+               for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+               var bstr = arr.join("");
+               var workbook = XLSX.read(bstr, {type:"binary"});
+               var first_sheet_name = workbook.SheetNames[0];
+               var worksheet = workbook.Sheets[first_sheet_name];
+               console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}))*/
+/*  this.loading=true
    var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
    if(filedata.length>0){
-      this.http.post(url,{"Items":filedata},this.options).subscribe (
+      this.http.post(url,{"Items":"ds"},this.options).subscribe (
 
        (res:Response) =>{
          this.loading=false
@@ -336,6 +370,7 @@ else{
              horizontalPosition: 'center',
              verticalPosition: 'top'
            })
+           this.loaddata()
                                         console.log(this.users)
       //   this.dataSource.data=filedata.concat(this.users)
         // for(var g=0;g<filedata.length;g++){
@@ -349,7 +384,7 @@ else{
 
             //   this.dataSource.paginator = this.paginator;
             //     this.dataSource.sort = this.sort;
-         window.location.reload()
+    //     window.location.reload()
        }
        else{
 
@@ -360,20 +395,14 @@ else{
                                 verticalPosition: 'top'
                               })       }
 
-  }
+  }file
   )
   }
   else
-  console.log("sorry file is empty....")
-   };
-
-
-
-
-
-   reader.readAsText(file.files[0]);
-
-  }
+  console.log("sorry file is empty....")*/
+//}
+//fileReader.readAsArrayBuffer(file.files[0]);
+//console.log(file.files[0])
 
 
 
