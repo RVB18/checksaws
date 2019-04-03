@@ -18,7 +18,7 @@ import { UserService } from '../services/user.service';
 
 import {MatSnackBar} from '@angular/material';
 import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
-
+//
 @Component({
   selector: 'app-chequeslist',
   templateUrl: './chequeslist.component.html',
@@ -44,7 +44,7 @@ datak:any;
 filevalue:any
   coun:any;
   options:any;
-  displayedColumns = [  'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer'];
+  displayedColumns = [  'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer','Cheque ID'];
   dataSource: MatTableDataSource<UserData>;
   //
   mdlSampleIsOpen : boolean = false;
@@ -173,7 +173,8 @@ loaddata(){
                                             "Amount":ele.Amount,
                                             "Carrername":ele.Carrername,
                                             "Name":ele.Name,
-                                            "id":ele.id
+                                            "id":ele.id,
+                                            "chequeid":ele.chequeid
                                           }
 
 
@@ -289,12 +290,22 @@ else{
                  var workbook = XLSX.read(bstr, {type:"binary"});
                  var first_sheet_name = workbook.SheetNames[0];
                  var worksheet = workbook.Sheets[first_sheet_name];
-                 console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
-
+                // console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
+var bt=XLSX.utils.sheet_to_json(worksheet,{raw:true})
                  this.loading=true
+var tt=[];
+//
+  var top={}
+for(var l=0;l<bt.length;l++){
+   top={Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, Loadnumber:  bt[l].LoadNumber, Carrername:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
+tt.push(top)
+//console.log({Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()})
+
+}
+//
                    var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
 
-                      this.http.post(url,{"Items":XLSX.utils.sheet_to_json(worksheet,{raw:true})},this.options).subscribe (
+                      this.http.post(url,{"Items":tt},this.options).subscribe (
 
                        (res:Response) =>{
                          this.loading=false

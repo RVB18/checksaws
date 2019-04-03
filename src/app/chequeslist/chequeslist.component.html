@@ -212,7 +212,10 @@ CELLSPACING=0 CELLPADDING=5>
 						<mat-header-cell *matHeaderCellDef mat-sort-header> Carrer </mat-header-cell>
 						<mat-cell *matCellDef="let dataSource"> {{dataSource.Carrername}} </mat-cell>
 					</ng-container>
-
+          <ng-container matColumnDef="Cheque ID">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Cheque ID </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.chequeid}} </mat-cell>
+        </ng-container>
 
 					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 					<mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="highlightedRows(row)" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (click)="row.highlighted = !row.highlighted" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>

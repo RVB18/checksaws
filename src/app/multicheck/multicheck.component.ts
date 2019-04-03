@@ -80,7 +80,7 @@ var podata=[];
 		  console.log(this.data[t].id)
 
 
-        podata.push(this.data[t].id)
+        podata.push({id:this.data[t].id,chequeid:parseInt(this.config.Chequenumber)+t})
 
 		  	//idmap+="'"+this.data[t].id+"',"
 
