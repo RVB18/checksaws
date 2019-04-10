@@ -1,6 +1,10 @@
 body{
 
 }
+.modal{
+  width: 50%;
+  margin-left: 50%;
+}
 header,
 section,
 aside,
