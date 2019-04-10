@@ -66,6 +66,7 @@ editdata:any;
   closeResult: string;
   loading:boolean=false;
   isLoading:boolean=false;
+  
   //options:any;
 //  data:any;
 
@@ -301,7 +302,10 @@ if(r.message=="Failure"){
    panelClass:'red-snackbar',
    horizontalPosition: 'center',
    verticalPosition: 'top'
- })}
+ })
+
+
+}
  else
 location.reload();
 })

@@ -1,4 +1,4 @@
-import { Component,OnInit,Inject } from '@angular/core';
+import { Component,OnInit,Inject ,ElementRef } from '@angular/core';
 //import { UserService } from './services/user.service';
 //import { User } from './models/user.model';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
@@ -37,6 +37,8 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 export class AdminComponent implements OnInit {
   @ViewChild('dockBar')
+  @ViewChild('closesinglecheck') singling: ElementRef;
+
       public dockBar: SidebarComponent;
       public enableDock: boolean = true;
       public width: string = '220px';
@@ -158,6 +160,7 @@ completeAddress(){
 
 
   oncreate(f){
+    this.loading=true;
   var drivecreate={
 
     "email": f.email,
@@ -175,7 +178,7 @@ completeAddress(){
   console.log(data)
   var r=data.json();
   console.log(r);
-
+this.loading=false
 
   this.success=r
 
@@ -190,8 +193,15 @@ completeAddress(){
      horizontalPosition: 'center',
      verticalPosition: 'top'
    })}
-   else
-location.reload()
+   else{
+     this.snackBar.open("User Created","Ok",{
+       duration:2000,
+       panelClass:'green-snackbar',
+       horizontalPosition: 'center',
+       verticalPosition: 'top'
+     })
+location.reload();
+   }
   })
 
   }
@@ -340,13 +350,16 @@ if(successdata.message="success")
 {
   //console.log(successdata.message)
 
+  this.singling.nativeElement.click();
 
+  this.snackBar.open("Success","Ok",{
+    duration:2000,
+    panelClass:'green-snackbar',
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  })
 
-  this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-success', timeout: 1000});
-  //this.snackBar.open('Check created!', 'success', {duration: 5000});
-//alert("check created")
-
-//window.location.reload()
+location.reload()
 }
 
 

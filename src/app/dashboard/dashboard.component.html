@@ -16,13 +16,21 @@
 						<div class="rad-info-box rad-txt-success">
 							<i class="fa fa-users"></i>
 							<span class="heading">No of Vendors </span>
-							<span class="value"><span>{{data.Vendor_Count}}</span></span>
+              <mat-progress-spinner style="display: flex; justify-content: center; align-items: center" class="offset-10" diameter=60
+              color="warn"
+                mode="indeterminate" *ngIf="isLoading">
+              </mat-progress-spinner>
+							<span class="value"><span>{{data.Vendor_Count}}     </span></span>
 						</div>
 					</div>
 					<div class="col-lg-6 col-xs-4">
 						<div class="rad-info-box rad-txt-success">
 							<i class="fa fa-money"></i>
 							<span class="heading">AMOUNT Paid </span>
+              <mat-progress-spinner style="display: flex; justify-content: center; align-items: center" class="offset-10" diameter=60
+              color="warn"
+                mode="indeterminate" *ngIf="isLoading">
+              </mat-progress-spinner>
 							<span class="value"><span>{{data.Paid_amount}}</span></span>
 						</div>
 					</div><br>
@@ -31,6 +39,10 @@
 						<div class="rad-info-box rad-txt-success">
 							<i class="fa fa-usd"></i>
 							<span class="heading">Pending AMOUNT</span>
+              <mat-progress-spinner style="display: flex; justify-content: center; align-items: center" class="offset-10" diameter=60
+              color="warn"
+                mode="indeterminate" *ngIf="isLoading">
+              </mat-progress-spinner>
 							<span class="value"><span>{{data.Pending_amount}}</span></span>
 						</div>
 					</div>
@@ -38,7 +50,12 @@
 						<div class="rad-info-box rad-txt-success" >
 							<i class="fa fa-user"></i>
 							<span class="heading">No of Users </span>
+
 							<span class="value"><span>{{data.Users}}</span></span>
+              <mat-progress-spinner style="display: flex; justify-content: center; align-items: center"  class="offset-10" diameter=60
+              color="warn"
+                mode="indeterminate" *ngIf="isLoading">
+              </mat-progress-spinner>
 						</div>
 					</div>
 				</div>
@@ -50,10 +67,13 @@
                               </h3>
 
             </div>
+            <mat-progress-spinner style="display: flex; justify-content: center; align-items: center"    class="offset-2"   diameter=150      color="warn"
+              mode="indeterminate" *ngIf="isLoading">
+            </mat-progress-spinner>
             <!--<aside class="chart vert">
               <canvas id="canPie" width="300" height="200" data-values='40, 30, 20, 60, 10, 50'>
                 This browser does not support HTML5 Canvas.
-              </canvas>
+              </canvas>checkpercentage
               <ol class="legend">
                 <li class="key one">One</li>
                 <li class="key two">Two</li>
@@ -65,7 +85,7 @@
             </aside>-->
             <div class="panel-body"   style="background-color:white; ">
 
-<div class="" style="background-color:white; margin-left:1%; ">
+<div *ngIf="!isLoading" class="" style="background-color:white; margin-left:1%; ">
   <div class="donut-chart chart2">
     <div class="slice one"></div>
     <div class="slice two"></div>

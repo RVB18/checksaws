@@ -49,6 +49,7 @@ filevalue:any
   //
   mdlSampleIsOpen : boolean = false;
 del:any;
+arrayBuffer:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -96,12 +97,17 @@ this.loaddata();
   }
 inform(file: HTMLInputElement){
 
+
 this.filevalue=file.value
 
 }
 
 loaddata(){
 
+  this.dataSource = new MatTableDataSource([]);
+
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
   this.isLoading=true
 
       this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',this.options).subscribe(data => {
@@ -246,7 +252,8 @@ loaddata(){
   this.loading=false
 
   if(checksdata.message=="success"){
-  window.location.reload()
+    this.openModal(false)
+this.loaddata()
 }
 else{
 
@@ -291,18 +298,22 @@ else{
                  var first_sheet_name = workbook.SheetNames[0];
                  var worksheet = workbook.Sheets[first_sheet_name];
                 // console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
-var bt=XLSX.utils.sheet_to_json(worksheet,{raw:true})
+var bt=[]
+bt=XLSX.utils.sheet_to_json(worksheet,{raw:true})
+console.log(bt)
                  this.loading=true
 var tt=[];
 //
   var top={}
+  var amount=''
 for(var l=0;l<bt.length;l++){
-   top={Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, Loadnumber:  bt[l].LoadNumber, Carrername:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
+  amount=(bt[l].Amount).toString()
+   top={Status:"NotSet",Name:bt[l].Name, Date:bt[l].Date, Amount:  amount.replace('$', ''), LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
 tt.push(top)
 //console.log({Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()})
 
 }
-//
+
                    var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
 
                       this.http.post(url,{"Items":tt},this.options).subscribe (
@@ -322,19 +333,7 @@ tt.push(top)
                            })
                            this.loaddata()
                                                         console.log(this.users)
-                      //   this.dataSource.data=filedata.concat(this.users)
-                        // for(var g=0;g<filedata.length;g++){
 
-                      //  this.dataSource.addRow(filedata[g])
-
-
-                      //   }http://13.232.165.2:3000/statusupdates?a='
-
-                            //   this.dataSource = new MatTableDataSource(users);
-
-                            //   this.dataSource.paginator = this.paginator;
-                            //     this.dataSource.sort = this.sort;
-                    //     window.location.reload()
                        }
                        else{
 
@@ -352,124 +351,7 @@ tt.push(top)
 
              }
 
-  /*    let fileReader = new FileReader();
-           fileReader.onload = (e) => {
-               var arrayBuffer = fileReader.result();
-               var data = new Uint8Array(arrayBuffer);
-               var arr = new Array();
-               for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-               var bstr = arr.join("");
-               var workbook = XLSX.read(bstr, {type:"binary"});
-               var first_sheet_name = workbook.SheetNames[0];
-               var worksheet = workbook.Sheets[first_sheet_name];
-               console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}))*/
-/*  this.loading=true
-   var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
-   if(filedata.length>0){
-      this.http.post(url,{"Items":"ds"},this.options).subscribe (
 
-       (res:Response) =>{
-         this.loading=false
-
-         console.log(res.json());
-         var uploadresponse=res.json()
-         if(uploadresponse.message=="success"){
-
-           this.snackBar.open("Succesfully Uploaded","Ok",{
-             duration:2000,
-             panelClass:'blue-snackbar',
-             horizontalPosition: 'center',
-             verticalPosition: 'top'
-           })
-           this.loaddata()
-                                        console.log(this.users)
-      //   this.dataSource.data=filedata.concat(this.users)
-        // for(var g=0;g<filedata.length;g++){
-
-      //  this.dataSource.addRow(filedata[g])
-
-
-      //   }http://13.232.165.2:3000/statusupdates?a='
-
-            //   this.dataSource = new MatTableDataSource(users);
-
-            //   this.dataSource.paginator = this.paginator;
-            //     this.dataSource.sort = this.sort;
-    //     window.location.reload()
-       }
-       else{
-
-                              this.snackBar.open("There is a Problem occured while Uploading File","Ok",{
-                                duration:2000,
-                                panelClass:'red-snackbar',
-                                horizontalPosition: 'center',
-                                verticalPosition: 'top'
-                              })       }
-
-  }file
-  )
-  }
-  else
-  console.log("sorry file is empty....")*/
-//}
-//fileReader.readAsArrayBuffer(file.files[0]);
-//console.log(file.files[0])
-
-
-
-
-
-
-
-
-
-  updatestatus(data){
-var idmap='';
-
-
-	  console.log(data.value.to +"sdfgs "+this.config.Chequenumber)
-	  var gh=0;
-	  //{from: "236", to: "249"}
-	  if(data.value.to==this.config.Chequenumber){
-		  gh=0
-	  }
-	  else{
-	  gh=parseInt(data.value.to)-parseInt(this.config.Chequenumber)
-	  }
-	  console.log(this.config.Chequenumber+"  checking "+gh)
-	//  var po=parseInt(data.value.to)-parseInt(data.value.from)
-
-	  for(var t=0;t<=gh;t++){
-		  console.log(this.count[t].id)
-
-
-
-		  	idmap+="'"+this.count[t].id+"',"
-
- 	  }
-	  idmap = idmap.slice(0, -1); // "12345.0"
-
-
-console.log(idmap)
-if(gh==0)
-	gh=1
-else
-	gh++
-  this.http.get('http://13.232.165.2:3000/statusupdates?a='+idmap).subscribe(data => {
-      console.log(data);
-      this.datak=data
-      this.datak=this.datak.data;
-
-
-this.http.get('http://alektasolutions.com/connected/chequeupdate?a='+gh).subscribe(data => {
-      console.log(data);
-      //this.data=data.data;
-
-window.location.reload();
-
-    });
-    });
-  }
 
 
 
@@ -582,70 +464,7 @@ this.router.navigate(['/multicheck']);
 //this.router.navigate(['/multicheckmulticheck',a])
       }
 
-  public changeListener(){
 
-
-    var filedata=[];
-    var filedate2=[];
-        var file = (<HTMLInputElement>document.getElementById('filePicker'));
-      //  var jsonFile = this.csvJSON(file);
-        //console.log(jsonFilefile)
-        const reader = new FileReader();
-     reader.onload = () => {
-       var text=""
-      // text = reader.result;
-       console.log('CSV: ', text);
-       var lines = text.split("\n");
-       var result = [];
-       var headers = lines[0].split(",");
-       for (var i = 1; i < lines.length; i++) {
-           var obj = {};
-           var currentline = lines[i].split(",");
-           for (var j = 0; j < headers.length; j++) {
-               obj[headers[j]] = currentline[j];
-           }
-           result.push(obj);
-       }
-       //convert text to json here
-       //var json = this.csvJSON(text);
-       console.log(JSON.stringify(result.pop()))
-    /*   result.forEach(function(ele){
-       console.log(ele.Name+ele.Amount)
-     })*/
-     result.forEach(function(ele){
-       console.log(ele.Name)
-      var m={
-         "Amount": ele.Amount,
-            "Carrername":ele.CarrerName,
-            "Date": ele.Date,
-            "id": uuid(),
-            "Loadnumber": ele.LoadNumber,
-            "Name": ele.Name,
-            "StreetAddress":ele.StreetAddress,
-            "CityorTown": ele.CityorTown,
-            "State":ele.State,
-            "zipcode": ele.zipcode,
-            "Country": ele.Country,
-    }
-    filedata.push(m)
-    //this.filedata.push(m);
-    //console.log(filedata)
-    })
-    console.log(filedata)
-     var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
-     if(filedata.length>0){
-        this.http.post(url,{"Items":filedata}).subscribe (
-         (res:Response) =>{
-           console.log("success "+JSON.stringify(res));
-    }
-    )
-    }
-    else
-    console.log("sorry file is empty....")
-     };
-     reader.readAsText(file.files[0]);
-
-}
 
 
   ngOnInit() {

@@ -18,7 +18,7 @@
             <div class="file-select">
               <div class="file-select-button" id="fileName">Choose File</div>
               <div class="file-select-name" id="noFile">{{filevalue}}</div>
-              <input type="file" #file name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" (change)='inform(file)' ngModel>
+              <input type="file" #file name="chooseFile" id="filePicker" align="right"  name="file"  accept=".xlsx" (change)='inform(file)' ngModel>
             </div>
           </div>
 
@@ -110,7 +110,7 @@
 
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
-					<form  #d="ngForm" (ngSubmit)="updatestatus(d)" >
+					<form  #d="ngForm"  >
 
 						<!-- Modal body -->
 					<div class="modal-body">

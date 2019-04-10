@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { CookieService } from 'ngx-cookie';
 import { NgxDrpOptions, PresetItem, Range } from 'ngx-mat-daterange-picker';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,17 +16,18 @@ export class DashboardComponent implements OnInit {
   range:Range = {fromDate:new Date(), toDate: new Date()};
   options1:NgxDrpOptions;
   presets:Array<PresetItem> = [];
+  isLoading : boolean=false;
   @ViewChild('dateRangePicker') dateRangePicker;
 
-  constructor(private http: Http,private _cookieService:CookieService) {
-
+  constructor(private http: Http,private _cookieService:CookieService,private snackBar: MatSnackBar) {
     this.myHeaders = new Headers();
     var k= this.getCookie("idToken");
                     console.log(k)
-
                       this.myHeaders.append('Authorization',k)
                     console.log("headu",this.myHeaders)
+                //    this.data={Vendor_Count:0,Paid_amount:0,Pending_amount:0,checkpercentage:0,Users:0}
 
+                    this.isLoading=true
 
 
 
@@ -33,7 +35,57 @@ export class DashboardComponent implements OnInit {
 
                               this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/dashboard',this.options).subscribe(data1 => {
                           console.log(data1.json())
-                          this.data=data1.json()
+                          this.isLoading=false
+
+
+                               if(data1.json().message=="Unauthorized")
+                                               {
+
+
+                                                 this.data={Vendor_Count:0,Paid_amount:0,Pending_amount:0,checkpercentage:0,Users:0}
+
+                                                              /*     this.snackBar.openFromComponent(PizzaPartycComponent, {
+                                                                     sasa: 'ggg',
+                                                                     this.configSuccess
+                                                                   });*/
+                                                 //this.snackBar.open('forbidden', 'error', {duration: 10000});
+
+                                                 //alert("forbidden")
+                                                 //window.location.href="/login"
+
+                                                 this.snackBar.open("Unauthorized","Ok",{
+                                                   duration:2000,
+                                                   panelClass:'red-snackbar',
+                                                   horizontalPosition: 'center',
+                                                   verticalPosition: 'top'
+                                                 })
+                                               }
+                                               else if(data1.json().message=="The incoming token has expired"){
+                                                 this.data={Vendor_Count:0,Paid_amount:0,Pending_amount:0,checkpercentage:0,Users:0}
+
+
+                                                 this.snackBar.open("Session Expired","Ok",{
+                                                   duration:2000,
+                                                   panelClass:'blue-snackbar',
+                                                   horizontalPosition: 'center',
+                                                   verticalPosition: 'top'
+                                                 })
+
+
+                                                //this.snackBar.open('forbidden', 'error', {duration: 10000});
+
+                                                 //alert("Sorry Session Expired")
+                                                 //window.location.href="/login"
+
+                                               }
+                                               else
+                                               this.data=data1.json()
+
+
+
+
+
+
 })
   }
 
