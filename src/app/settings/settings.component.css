@@ -28,7 +28,9 @@ position: relative;
    border-radius: 15px;
    border-color: #000;
 text-align:left;
-margin-left: 15%;
+margin-left: 25%;
+margin-top: 5%;
+
 border-style: solid;
 border-color: #000;
  }
@@ -329,6 +331,7 @@ height:10%;
    transition: 0.3s;
    margin-left:30%;
    border-radius: 15px;
+   width:30%;
 
  }
  .print:hover{
@@ -336,7 +339,7 @@ height:10%;
    color:white;
  }
  .delete{
-
+width:20%;
    background-color: white;
    border-color: red;
    color:red;

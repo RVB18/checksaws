@@ -4,7 +4,8 @@
 <h1 align="left" class="title" > &nbsp;
  Settings</h1>
 <!-- Nav tabs -->
-<div class="container" style="width:50%;">
+<div class="col-md-12">
+<div class="container " style="width:50%;">
 <ul class="nav nav-tabs md-tabs nav-justified primary-color" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
@@ -25,7 +26,7 @@
 
     <!-- Nav tabs -->
     <div class="row">
-      <div class="col-md-8" style="margin-top:1%;magin-left:5%;">
+      <div class="col-md-8 offset-1" style="margin-top:1%;magin-left:5%;">
 
         <form  #reset="ngForm" (ngSubmit)="onreset(reset)" >
                                                               <div class="" style="margin-top:5%;margin-left:10%;">
@@ -161,8 +162,8 @@
 
   </div>                                   </div>
 <div class="row">
-<div clas="col-40" style="text-align:right;margin-left:7%;">
-&nbsp;  &nbsp;   <label >  Upload Authorized Signature  </label>
+<div clas="col-40" style="text-align:right;margin-left:3%;">
+  <label style="margin-top:2%" >  <b>Upload  Signature </b> </label>
 </div>
 <div class="col-50">
   <div class="file-upload" >
@@ -173,12 +174,12 @@
     </div>
   </div>
 </div></div>
+<br>
   <div class="modal-footer">
-    <button  class="btn print" (click)="onSubmit(f)" >Submit</button>
+    <button  class="registerbtn print" width="50%" (click)="onSubmit(f)" >Submit</button>
 
 
 
-    <button type="button" class="btn delete" data-dismiss="modal">Close</button>
   </div>
 
       <br>
@@ -196,6 +197,7 @@
 
 </div>
 <!-- Tab panels -->
+</div>
 </div>
 <ngx-loading [show]="loading" [config]="{
         backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
