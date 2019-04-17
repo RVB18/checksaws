@@ -1,4 +1,3 @@
-
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
@@ -26,7 +25,7 @@ access:any;
 
 
     this.options = new RequestOptions({ headers: this.myHeaders });
-var data={code:params.code,url:window.location.origin+window.location.pathname}
+var data={code:params.code,url:window.location.origin+window.location.pathname,realmId:params.realmId}
 console.log(data)
 
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/quickbooks',data,this.options).subscribe(data => {
@@ -44,6 +43,8 @@ this.router.navigate(['/cheques',{ queryParams: { "host": 'qb' } }])
 
 
 
-  ngOnInit(){}
+  ngOnInit(){
+    
+  }
 
 }

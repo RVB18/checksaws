@@ -66,7 +66,7 @@ editdata:any;
   closeResult: string;
   loading:boolean=false;
   isLoading:boolean=false;
-  
+
   //options:any;
 //  data:any;
 
@@ -94,6 +94,9 @@ users=[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
     @ViewChild('TABLE') table: ElementRef;
+    @ViewChild('closeadd') closeadd: ElementRef;
+    @ViewChild('closeedit') closeedit: ElementRef;
+    @ViewChild('closedel') closedel: ElementRef;
 
 
     dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
@@ -125,7 +128,10 @@ users=[];
 
 
 
-
+grabdata(row){
+  this.editdata=row
+  console.log(this.editdata)
+}
 
 
 
@@ -170,76 +176,78 @@ this.isLoading=true
 console.log(this.optionss)
 
 
-                  this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',this.optionss).subscribe(datas => {
-                  console.log(datas.json())
+this.refreshdata();
 
+
+              }
+
+
+
+
+
+
+
+refreshdata(){
+  this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',this.optionss).subscribe(datas => {
+  console.log(datas.json())
+this.users=[]
 var s=datas.json();
 /*s.data.forEach(function (ele){
-  console.log(ele.username)
+console.log(ele.username)
 })
 */this.isLoading=false
-                  console.log("j")
-                  this.datap=datas.json()
+  console.log("j")
+  this.datap=datas.json()
 
-                      console.log(this.datap)
+      console.log(this.datap)
 
-                  if(this.datap.message=="Unauthorized")
-                {
-
-
-
-                                                         this.snackBar.open("Unauthorized","Ok",{
-                                                           duration:2000,
-                                                           panelClass:'red-snackbar',
-                                                           horizontalPosition: 'center',
-                                                           verticalPosition: 'top'
-                                                         })
-
-                }
-                else if(this.datap.message=="The incoming token has expired"){
-                //  alert("Sorry Session Expired")
-                  window.location.href="/login"
-
-                }
-
-                else{
-
-
-                this.datap=this.datap.data;
+  if(this.datap.message=="Unauthorized")
+{
 
 
 
+                                         this.snackBar.open("Unauthorized","Ok",{
+                                           duration:2000,
+                                           panelClass:'red-snackbar',
+                                           horizontalPosition: 'center',
+                                           verticalPosition: 'top'
+                                         })
+
+}
+else if(this.datap.message=="The incoming token has expired"){
+//  alert("Sorry Session Expired")
+  window.location.href="/"
+
+}
+
+else{
 
 
-
-                for(var tt=0;tt<this.datap.length;tt++)
-                {
-
-                this.users.push(this.datap[tt])
-              }
-
-              console.log(this.users)
-
-              this.dataSource = new MatTableDataSource(this.users);
-
-              this.dataSource.paginator = this.paginator;
-              this.dataSource.sort = this.sort;
-
-
-              }
-                });
-
-
-
-              }
+this.datap=this.datap.data;
 
 
 
 
 
 
+for(var tt=0;tt<this.datap.length;tt++)
+{
+
+this.users.push(this.datap[tt])
+}
+
+console.log(this.users)
+
+this.dataSource = new MatTableDataSource(this.users);
+
+this.dataSource.paginator = this.paginator;
+this.dataSource.sort = this.sort;
 
 
+}
+});
+
+}
 
 
 
@@ -274,24 +282,28 @@ ExportTOExcel()
 oncreate(f){
 var drivecreate={
 
-  "email": f.email,
-  "password":f.password,
+  "email": f.emailid,
+  "password":f.pass,
   "firstname": f.firstname,
   "lastname": f.lastname,
-  "phonenumber":f.phonenumber,
+  "phonenumber":"+91"+f.phonenumber,
   "driverid": uuid()
 }
 
-
+this.loading=true;
 console.log(drivecreate)
+this.closeadd.nativeElement.click();
+
 this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',drivecreate,this.optionss).subscribe(data => {
 //window.location.reload()
 console.log(data)
 var r=data.json();
+
 console.log(r);
 
 
 
+this.loading=false
 
 
 
@@ -306,8 +318,17 @@ if(r.message=="Failure"){
 
 
 }
- else
-location.reload();
+else{
+  this.snackBar.open("Created Succesfully","Ok",{
+    duration:2000,
+    panelClass:'green-snackbar',
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  })
+  this.refreshdata();
+
+}
+//location.reload();
 })
 
 }
@@ -315,7 +336,7 @@ location.reload();
 
 
 
-onedit(f,data1){
+onedit(f){
 
   var driveredit={
 
@@ -323,15 +344,18 @@ onedit(f,data1){
     "email": f.email,
     "firstname": f.firstname,
     "lastname": f.lastname,
-    "phonenumber":"91"+f.phonenumber,
-    "driverid": uuid()
+    "phonenumber":f.phonenumber
   }
+  this.loading=true
+  this.closeedit.nativeElement.click();
+
 console.log(driveredit)
   this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser',driveredit).subscribe(data => {
   //window.location.reload()
   console.log(data)
   var r=data.json();
   console.log(r);
+  this.loading=false
 
 
 
@@ -346,15 +370,24 @@ console.log(driveredit)
      horizontalPosition: 'center',
      verticalPosition: 'top'
    })}
-   //else
-//  location.reload();
+   else{
+     this.snackBar.open("Updated Succesfully","Ok",{
+       duration:2000,
+       panelClass:'green-snackbar',
+       horizontalPosition: 'center',
+       verticalPosition: 'top'
+     })
+   this.refreshdata();
+}
   })
 
 
 }
 
-delete(data1){
-console.log(data1)
+delete(){
+
+this.closedel.nativeElement.click();
+
   var del={
 
       "username":this.editdata.username,
@@ -362,12 +395,15 @@ console.log(data1)
 console.log(del)
 //var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser?username='+this.editdata.username
 //console.log(url)
+this.loading=true
+
   this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/admincreateuser?username='+this.editdata.username,this.optionss).subscribe(data => {
   window.location.reload()
   console.log(data)
   var r=data.json();
   console.log(r);
 
+  this.loading=false
 
 
 
@@ -381,8 +417,16 @@ console.log(del)
      horizontalPosition: 'center',
      verticalPosition: 'top'
    })}
-   else
-  location.reload();
+   else{
+   this.snackBar.open("Deleted Succesfully","Ok",{
+     duration:2000,
+     panelClass:'green-snackbar',
+     horizontalPosition: 'center',
+     verticalPosition: 'top'
+   })
+   this.refreshdata();
+
+}
   })
 
 

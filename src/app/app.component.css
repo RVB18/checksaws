@@ -188,7 +188,7 @@ mat-toolbar{
   background-color: #C5D7ED;
   color:white;
 overflow-y: auto;
-  position: fixed;
+position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
@@ -375,7 +375,7 @@ overflow-y: auto;
 {
 left: 0;
 bottom: 0;
-position: absolute;
+/*position: absolute;*/
 }
 .ej2-new .container-fluid, .ej2-new .control-section, #sidebar-section{
 padding: 0px;

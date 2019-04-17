@@ -12,7 +12,7 @@ import { v4 as uuid } from 'uuid';
 
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 
-
+//
 import { CookieService } from 'ngx-cookie';
 import { UserService } from '../services/user.service';
 
@@ -26,7 +26,7 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 })
 export class ChequeslistComponent implements OnInit  {
 
-  @ViewChild('uploadclose') uploadclose: ElementRef;
+  @ViewChild('closeupload') uploadclose: ElementRef;
 
 
   modalReference = null;
@@ -275,7 +275,7 @@ else{
 
   handleFileSelect(e)
     {
-    //  this.uploadclose.nativeElement.click();
+     this.uploadclose.nativeElement.click();
 //this.modalReference.close()
       var filedata=[];
   var filedate2=[];
@@ -313,6 +313,7 @@ tt.push(top)
 //console.log({Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()})
 
 }
+console.log(top)
 
                    var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
 
@@ -353,12 +354,22 @@ tt.push(top)
 
 
 
+selectall(){
 
+  console.log(this.dataSource.connect().value)
+  for(var t=0;t<this.dataSource.connect().value.length;t++){
+
+    this.highlightedRows(this.dataSource.connect().value[t])
+  }
+
+}
 
 
   highlightedRows(row){
       //  if(hash)
 //
+if(row.highlighted = !row.highlighted){}
+
 
       var a=row.id
 

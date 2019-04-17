@@ -95,7 +95,7 @@
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary" (click)="addNew()">
+        <button mat-icon-button color="primary" data-toggle="modal" data-target="#addvendor" >
           <mat-icon aria-label="Example icon-button with a heart icon" style="color:white">add</mat-icon>
         </button>
       </th>
@@ -105,12 +105,12 @@
 
 
       <td mat-cell *matCellDef="let row; let i=index;" >
-        <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.Name, row.StreetAddress,row.CityorTown,row.State,row.zipcode, row.Mobile, row.Email)">
-          <mat-icon aria-label="Edit" style="color:black">edit</mat-icon>
+        <button mat-icon-button color="accent" data-toggle="modal" data-target="#editvendor">
+          <mat-icon aria-label="Edit" style="color:black" (click)="selectedrow(row)">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.Name,  row.StreetAddress,row.CityorTown,row.State,row.zipcode, row.Mobile, row.Email)">
-          <mat-icon aria-label="Delete" style="color:black">delete</mat-icon>
+        <button mat-icon-button color="accent" data-toggle="modal" data-target="#deletevendor">
+          <mat-icon aria-label="Delete" style="color:black" (click)="selectedrow(row)">delete</mat-icon>
         </button>
       </td>
     </ng-container>
@@ -134,3 +134,114 @@ mode="indeterminate">
 
 <div>
 </div>
+
+                        <div class="modal " id="addvendor" role="dialog" data-backdrop="false" >
+                  <div class="modal-dialog ">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title"><i class="fa fa-university" aria-hidden="true"></i>   Add Vendor</h4>
+                      <button type="button" class="close" data-dismiss="modal" #closeadd>&times;</button>
+            			</div>
+
+                  <form  #add="ngForm" (ngSubmit)="addnew(add.value)">
+            <div class="modal-body">
+                <div class="form-group">
+                  <label for="Name">Name</label>
+              <input type="text" placeholder=" Name"  class="form-control" name="Name"  ngModel required>
+
+            <label for="Name">StreetAddress </label>
+            <input  type="text" name="pwd" placeholder="Street "  class="form-control" name="StreetAddress"  ngModel required>
+            <label for="Name">City or Town </label>
+            <input  type="text" name="pwd" placeholder="City "  class="form-control" name="CityorTown"  ngModel required>
+            <label for="Name">State </label>
+            <input  type="text" name="pwd" placeholder="State "  class="form-control" name="State"  ngModel required>
+
+            <label for="Name">Zipcode</label>
+            <input type="text" placeholder="Zipcode"  class="form-control" name="zipcode"  ngModel required>
+            <label for="Name">Phone Number</label>
+            <input type="address" placeholder=" Phone Number"  class="form-control" name="Mobile"  ngModel required>
+            <label for="Name">Email</label>
+            <input type="text" placeholder=" Email"  class="form-control" name="Email"  ngModel required>
+                    </div>
+                </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark">Save</button>
+                    </div>
+                </form>
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+                                                        <div class="modal " id="editvendor" role="dialog" data-backdrop="false" >
+                                                  <div class="modal-dialog ">
+                                                    <div class="modal-content">
+                                                      <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Vendor</h4>
+                                                      <button type="button" class="close" data-dismiss="modal" #closeedit>&times;</button>
+                                            			</div>
+
+                                                  <form  #editdata1="ngForm" (ngSubmit)="edit(editdata1.value)">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                  <label for="Name">Name</label>
+                                              <input type="text" placeholder="Name"  class="form-control" name="Name"  ngModel={{existdata.Name}} required>
+
+                                            <label for="Name">StreetAddress </label>
+                                            <input  type="text" name="pwd" placeholder="Street "  class="form-control" name="StreetAddress"  ngModel={{existdata.StreetAddress}} required>
+                                            <label for="Name">City or Town </label>
+                                            <input  type="text" name="pwd" placeholder="City "  class="form-control" name="CityorTown"  ngModel={{existdata.CityorTown}} required>
+                                            <label for="Name">State </label>
+                                            <input  type="text" name="pwd" placeholder="State "  class="form-control" name="State"  ngModel={{existdata.State}} required>
+
+                                            <label for="Name">Zipcode</label>
+                                            <input type="text" placeholder="Zipcode"  class="form-control" name="zipcode"  ngModel={{existdata.zipcode}} required>
+                                            <label for="Name">Phone Number</label>
+                                            <input type="address" placeholder=" Phone Number"  class="form-control" name="Mobile"  ngModel={{existdata.Mobile}} required>
+                                            <label for="Name">Email</label>
+                                            <input type="text" placeholder=" Email"  class="form-control" name="Email"  ngModel={{existdata.Email}} required>
+                                                    </div>
+                                                </div>
+                                            <div class="modal-footer">
+                                            <button type="submit" class="btn btn-outline-dark">Save</button>
+                                                    </div>
+                                                </form>
+
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+
+
+
+
+
+                                                                                        <div class="modal " id="deletevendor" role="dialog" data-backdrop="false" >
+                                                                                  <div class="modal-dialog ">
+                                                                                    <div class="modal-content">
+                                                                                      <div class="modal-header">
+                                                                                        <h4 class="modal-title">   Delete Vendor</h4>
+                                                                                      <button type="button" class="close" data-dismiss="modal" #closedel>&times;</button>
+                                                                            			</div>
+
+                                                                                  <form  #delete="ngForm" (ngSubmit)="del()">
+                                                                            <div class="modal-body">
+                                                                        <h4> Are You Sure</h4>
+
+                                                                            Name:{{this.existdata.Name}}
+                                                                                </div>
+                                                                            <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-outline-dark">Save</button>
+                                                                                    </div>
+                                                                                </form>
+
+                                                                                    </div>
+                                                                                  </div>
+                                                                                </div>
+
+
+                                                                                <ngx-loading [show]="loading" [config]="{
+                                                                                        backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
+                                                                                        primaryColour: '#DB4437', secondaryColour: '#F4B400', tertiaryColour: '#DB4437' }" ></ngx-loading>

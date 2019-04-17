@@ -1,53 +1,68 @@
-<div class="form" style="margin-top:8%">
+<div class="form">
 
       <ul class="tab-group">
         <li class="tab active"><a href="#signup">Sign Up</a></li>
-        <li class="tab"><a routerLink="/">Log In</a></li>
+        <li class="tab"><a routerLink="/user">Log In</a></li>
       </ul>
 
       <div class="tab-content">
         <div id="signup">
           <h1>Sign Up for Free</h1>
 
+          <form class="form-horizontal"  #Data = "ngForm" (ngSubmit) = "onSubmit(Data.value)">
 
-<br>
+          <div class="top-row">
+            <div class="field-wrap">
 
+              <input type="text" required placeholder="Email" autocomplete="off"  name="fname" id="fname" ngModel/>
+            </div>
 
+            <div class="field-wrap">
 
-                                                <form class="form-horizontal" [formGroup]="form">
+              <input type="text"required placeholder="Name" autocomplete="off" name="lname" id="lname" ngModel/>
+            </div>
+          </div>
 
-                                              <p style="color:white">  Email ID:<p>  <div class="form-group" [ngClass]="displayFieldCss('email')">
+          <div class="field-wrap">
 
-                                                    <div class="field-wrap">
-                                                      <label for="email" class="control-label required"><b></b></label>
-                                                      <input type="text" placeholder="Email"  id="email" class="form-control"  formControlName="email" ngModel required>
-                                                      <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Please enter Email">
-                                                      </app-field-error-display>
-                                                    </div>
-                                                  </div>
+            <input type="email"required placeholder="Re-enter Email" autocomplete="off" name="email" id="email" ngModel/>
+          </div>
 
+          <div class="field-wrap">
 
+            <input type="password"required placeholder="Password" autocomplete="off"name="pasword"  id="password" ngModel/>
+          </div>
 
+          <button type="submit" class="button button-block" >Sign Up</button>
 
-                                            <p style="color:white">  Password:<p>  <div class="form-group" [ngClass]="displayFieldCss('password')">
-                                                                                                      <div class="field-wrap">
-                                                                                                        <label for="password" class="control-label required"><b></b></label>
-                                                                                                        <input type="password" placeholder="Password"  id="password" class="form-control"  formControlName="password" ngModel required>
-                                                                                                        <app-field-error-display [displayError]="isFieldValid('password')" errorMsg="Please enter Password">
-                                                                                                        </app-field-error-display>
-                                                                                                      </div>
-                                                                                                    </div>
-
-
-      <button type="submit" class="button button-block" (click)="onSubmit()">Signup Now</button>
-
-
-</form>
-
-
+          </form>
 
         </div>
-  
+        <div class="modal" id="myModal">
+           <div class="modal-dialog">
+             <div class="modal-content">
+
+               <!-- Modal Header -->
+               <div class="modal-header">
+                 <h4 class="modal-title">Authentication..!</h4>
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+
+               <!-- Modal body -->
+               <div class="modal-body">
+       <p>Please enter your 6-digit authentication code </p>
+       <input type="password"name="verify" id="verifys" placeholder="000000" color="black"></div>
+
+               <!-- Modal footer -->
+               <div class="modal-footer">
+
+                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+               </div>
+
+             </div>
+           </div>
+         </div>
+
       </div><!-- tab-content -->
 
 </div> <!-- /form -->
@@ -57,8 +72,10 @@
 
 <script>
   $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+
     var $this = $(this),
         label = $this.prev('label');
+
   	  if (e.type === 'keyup') {
   			if ($this.val() === '') {
             label.removeClass('active highlight');
@@ -72,6 +89,7 @@
   		    label.removeClass('highlight');
   			}
       } else if (e.type === 'focus') {
+
         if( $this.val() === '' ) {
       		label.removeClass('highlight');
   			}
@@ -79,13 +97,21 @@
   		    label.addClass('highlight');
   			}
       }
+
   });
+
   $('.tab a').on('click', function (e) {
+
     e.preventDefault();
+
     $(this).parent().addClass('active');
     $(this).parent().siblings().removeClass('active');
+
     target = $(this).attr('href');
+
     $('.tab-content > div').not(target).hide();
+
     $(target).fadeIn(600);
+
   });
 </script>

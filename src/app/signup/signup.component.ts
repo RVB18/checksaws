@@ -79,14 +79,15 @@ constructor(private http: Http, private router: Router, private route: Activated
       };
     }
 
-    onSubmit() {
+    onSubmit(data) {
+      console.log(data)
       console.log(this.form.value);
-      if (this.form.valid) {
+    
 
 
 
 
-        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/signup',this.form.value)
+        this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/signup',data)
         .subscribe (
         (res:Response) =>{
         var r=res.json();
@@ -124,7 +125,7 @@ constructor(private http: Http, private router: Router, private route: Activated
         this.validateAllFormFields(this.form);
         }
       })
-      }
+
     }
 
     validateAllFormFields(formGroup: FormGroup) {

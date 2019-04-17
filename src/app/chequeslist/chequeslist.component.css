@@ -16,6 +16,7 @@ mat-header-cell{
   color:#72BA65;
   transition: 0.3s;
 }
+
 .print:hover{
   background-color: #72BA65;
   color:white;
@@ -226,14 +227,17 @@ width:75%;
 
 }
 #myModal-backdrop {
-    /* position: fixed; */
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1040;
     background-color: #fff;
 }
+.modal-dialog {
+    position: fixed;
+  width:100%;
+margin-left: 30%;}
 #print{
 top:15%;
 }

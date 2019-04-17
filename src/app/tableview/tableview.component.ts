@@ -51,9 +51,11 @@ export class TableviewComponent implements OnInit {
   index: number;
   id: string;
   dataSource: MatTableDataSource<VendorData>;
-
+options:any;
   datap:any;
+  loading:boolean=false;
   coun:any;
+  existdata:any;
 
   a=[]
 
@@ -64,11 +66,16 @@ isLoading=false
   @ViewChild('filter') filter: ElementRef;
     @ViewChild('TABLE') table: ElementRef;
 
+    @ViewChild('closeadd') closeadd: ElementRef;
+    @ViewChild('closeedit') closeedit: ElementRef;
+
+    @ViewChild('closedel') closedel: ElementRef;
 
     dataChange: BehaviorSubject<Issue[]> = new BehaviorSubject<Issue[]>([]);
     // Temporarily stores data from dialogs
     dialogData: any;
 
+     users: VendorData[] = [];
 
 
 
@@ -86,9 +93,9 @@ isLoading=false
               public dialog: MatDialog,
             private _cookieService:CookieService,private router: Router,private snackBar: MatSnackBar) {
 
-const users: VendorData[] = [];
 
                 this.coun=0;
+                this.existdata={}
 
 
 
@@ -101,70 +108,77 @@ console.log(k)
                 	myHeaders.append('Content-Type', 'application/json');
                   myHeaders.append('Authorization',k)
                 console.log(myHeaders)
-                  let optionss = new RequestOptions({ headers: myHeaders });
-this.isLoading=true
-                  this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',optionss).subscribe(data => {
-                  console.log(data.json())
-
-this.isLoading=false
-                  console.log("j")
-                  this.datap=data.json()
-
-
-                  if(this.datap.message=="Unauthorized")
-                {
-
-
-
-
-                                       this.snackBar.open("Unauthorized","Ok",{
-                                         duration:2000,
-                                         panelClass:'red-snackbar',
-                                         horizontalPosition: 'center',
-                                         verticalPosition: 'top'
-                                       })
-
-                }
-                else if(this.datap.message=="The incoming token has expired"){
-
-
-
-
-
-                                       this.snackBar.open("Session Expired","Ok",{
-                                         duration:2000,
-                                         panelClass:'blue-snackbar',
-                                         horizontalPosition: 'center',
-                                         verticalPosition: 'top'
-                                       })
-
-                }
-
-                else{
-
-                this.datap=this.datap.body.data.Items;
-                console.log(this.datap)
-                  for(var t=0;t<this.datap.length;t++){
-
-
-                    users.push(this.datap[t])
-
-                  }
-                console.log(users)
-
-                  this.dataSource = new MatTableDataSource(users);
-
-                  this.dataSource.paginator = this.paginator;
-                  this.dataSource.sort = this.sort;
-                  //  console.log("sdfsd "+this.dataSource)
-}
-
-                });
+                  this.options = new RequestOptions({ headers: myHeaders });
+this.refreshdata()
 
 
 
               }
+refreshdata(){
 
+this.users=[]
+this.dataSource = new MatTableDataSource(this.users);
+
+this.dataSource.paginator = this.paginator;
+this.dataSource.sort = this.sort;
+  this.isLoading=true
+                    this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',this.options).subscribe(data => {
+                    console.log(data.json())
+
+  this.isLoading=false
+                    console.log("j")
+                    this.datap=data.json()
+
+
+                    if(this.datap.message=="Unauthorized")
+                  {
+
+
+
+
+                                         this.snackBar.open("Unauthorized","Ok",{
+                                           duration:2000,
+                                           panelClass:'red-snackbar',
+                                           horizontalPosition: 'center',
+                                           verticalPosition: 'top'
+                                         })
+
+                  }
+                  else if(this.datap.message=="The incoming token has expired"){
+
+
+
+
+
+                                         this.snackBar.open("Session Expired","Ok",{
+                                           duration:2000,
+                                           panelClass:'blue-snackbar',
+                                           horizontalPosition: 'center',
+                                           verticalPosition: 'top'
+                                         })
+
+                  }
+
+                  else{
+
+                  this.datap=this.datap.body.data.Items;
+                  console.log(this.datap)
+                    for(var t=0;t<this.datap.length;t++){
+
+
+                      this.users.push(this.datap[t])
+
+                    }
+
+                    this.dataSource = new MatTableDataSource(this.users);
+
+                    this.dataSource.paginator = this.paginator;
+                    this.dataSource.sort = this.sort;
+                    //  console.log("sdfsd "+this.dataSource)
+  }
+
+                  });
+}
 
 
 
@@ -246,61 +260,73 @@ ExportTOExcel()
 
 
 
+addnew(data){
+  this.closeadd.nativeElement.click();
+this.loading=true
+var b={id:uuid(),Name:data.Name,StreetAddress:data.StreetAddress,CityorTown:data.CityorTown,State:data.State,zipcode:data.zipcode,Mobile:data.Mobile,Email:data.Email}
 
-
-  addNew(issue: Issue) {
-
-
-
-    const dialogRef = this.dialog.open(AddComponent, {
-      data: { }
-
-    });
+console.log(data)
 
 
 
-
-  }
-
-  startEdit(i: number, id: string, Name: string, StreetAddress: string, CityorTown: string, State:string, zipcode:string,Mobile:string,Email:string) {
-    this.id = id;
-    // index row is used just for debugging proposes and can be removed
-    this.index = i;
-    console.log("dscvs "+StreetAddress)
-    const dialogRef = this.dialog.open(MattableeditComponent, {
-      data: {id: id, Name: Name, StreetAddress: StreetAddress,CityorTown:CityorTown,State:State,zipcode:zipcode, Mobile: Mobile, Email: Email}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    /*  if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);//
-        // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[this.index] = this.dataService.getDialogData();
-		console.log(this.dataService.getDialogData())
-        // And lastly refresh table
-        this.refreshTable();
-		//window.location.reload
-  }*/
-    });
-  }
+      this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,this.options).subscribe(data => {
+        this.loading=false
+        var data1=data.json();
+        console.log(data1)
+        if(data1.message="success"){
+        //  console.log("")
+      //  window.location.reload();
+      this.refreshdata()
 
 
-  deleteItem(i: number, id: string, Name: string, Address: string, Mobile: string, Email:string) {
-    this.index = i;
-    this.id = id;
-    const dialogRef = this.dialog.open(MattabledeleteComponent, {
-      data: {id: id, Name: Name, Address: Address, Mobile: Mobile,Email:Email}
-    });
+        }
+        else
+        alert("Unable to Create")
+  console.log(data.json())
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
-      //  const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
-        // for delete we use splice in order to remove single object from DataService
-      //  this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-      //  this.refreshTable();
+
+})
+}
+selectedrow(row){
+
+this.existdata=row
+console.log(this.existdata)
+
+}
+
+  edit(data){
+
+    this.isLoading=true
+    this.closeedit.nativeElement.click();
+    var b={id:this.existdata.id,Name:data.Name,StreetAddress:data.StreetAddress,CityorTown:data.CityorTown,State:data.State,zipcode:data.zipcode,Mobile:data.Mobile,Email:data.Email}
+    console.log(b)
+
+
+          this.http.put('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor',b,this.options).subscribe(data => {
+            var data1=data.json();
+            this.isLoading=false
+
+            console.log(data1)
+            if(data1.message="success"){
+            console.log("done")
+
+        //   window.location.reload();
       }
-    });
+            else
+            alert("Unable to Update")
+      console.log(data.json())
+
+
+    })
+  }
+
+  del() {
+    this.loading=true
+this.closedel.nativeElement.click()
+                      this.http.delete('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/vendor?id='+'"'+this.existdata.id+'"',this.options).subscribe(data => {
+                        this.loading=false
+    this.refreshdata()
+                    })
   }
 
 

@@ -1,10 +1,21 @@
 body{
 
 }
-.modal{
-  width: 50%;
-  margin-left: 50%;
+.modal-header[_ngcontent-c18] {
 }
+#myModal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+.modal-dialog {
+    position: fixed;
+  width:100%;
+margin-left: 30%;}
+
 header,
 section,
 aside,
@@ -107,7 +118,7 @@ table {
   width: 100%;
 }
 .modal-header{
-  background-color:#000000;
+  background-color: #44505d;
   color:white;
 
 }

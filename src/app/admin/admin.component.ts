@@ -38,7 +38,7 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 export class AdminComponent implements OnInit {
   @ViewChild('dockBar')
   @ViewChild('closesinglecheck') singling: ElementRef;
-
+editdata:any;
       public dockBar: SidebarComponent;
       public enableDock: boolean = true;
       public width: string = '220px';
@@ -103,11 +103,12 @@ getCookie(key:string){
 
   constructor(private http: Http,private router: Router,private formBuilder: FormBuilder,private _cookieService:CookieService,private snackBar: MatSnackBar,private _flashMessagesService: FlashMessagesService) {
 this.config={}
+this.editdata={}
 this.myHeaders = new Headers();
 var k= this.getCookie("idToken");
                 console.log(k)
 this.hash={}
-                if(window.location.pathname=="/login"||window.location.pathname=="/signup"||window.location.pathname=="/"||window.location.pathname=="")
+                if(window.location.pathname=="/"||window.location.pathname=="/signup"||window.location.pathname=="/"||window.location.pathname=="")
 this.showNav=false
 else
 this.showNav=true
@@ -398,16 +399,22 @@ this.router.navigate(['/'])
 
 }
 redirect(){
+
+  this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/quickbooks-checks',this.options).subscribe(data => {
+console.log(data.json())
+  })
+
+  /*
 var port=4200
 var consumerKey='Q0ypusZrhhgqsIbvnA1PNv2rleMwENKSvuY5GGbDS3kfskJ1Ho'
 console.log(window.location)
 var bb=  "https://appcenter.intuit.com/connect/oauth2" +
      '?client_id=' + consumerKey +
-     '&redirect_uri=' + window.location.origin+'/quickbooks'+
+     '&redirect_uri=' + window.location.origin+'/admin/quickbooks'+
      '&scope=com.intuit.quickbooks.accounting' +
      '&response_type=code' +
      '&state=555ghjghj'
-window.open(bb,'_self')
+window.open(bb,'_self')*/
 }
   ngOnInit() {
 
