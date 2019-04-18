@@ -223,6 +223,18 @@
                                                                                               </div>
                                                                                               </div>
 
+                                                                                            <div class="form-group" [ngClass]="displayFieldCss('address')">
+                                                                                              <div class="col-sm-12">
+                                                                                                  <label for="address" class="control-label required"><b>Upload Sign</b></label>
+                                                                                                  <input type="file"  name="chooseFile" id="filePicker" align="right"  (change)="handleFileSelect($event)" id="file" name="file" formControlName="file" accept="image/png" ngModel>
+                                                                                                <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please enter Address">
+                                                                                                </app-field-error-display>
+                                                                                              </div>
+                                                                                              </div>
+                                                                                            </div>
+
+
+
 					<!-- <label for="fname"><b>Bank Name</b></label><br>
                          <input type="text" placeholder="Enter Bank Name"  class="form-control" name="bank"  ngModel={{config.Bankname}} required>-->
                           <!--<label for="fname"><b>Routing</b></label><br>
@@ -237,7 +249,6 @@
          <input type="text" placeholder="Enter Your Name" name="name" class="form-control"  ngModel={{config.Name}} required >-->
               <!-- <label for="city"> <b>Enter Your Address</b></label>
       <input type="text" placeholder="Enter Your Address" name="address" class="form-control" maxlength="40" ngModel={{config.Address}} required ngModel >-->
-        </div>
 
         <div class="col-5">  </div>
 
@@ -250,15 +261,14 @@
 
 
 
-          <flash-messages></flash-messages>
 
 
           <div class="modal-footer">
-            <button type="submit" class="btn print" (click)="onSubmit(f)" data-dismiss="modal" >Submit</button>
+            <button type="submit" class="btn print"   >Submit</button>
 
 
 
-            <button type="button" class="btn delete" data-dismiss="modal">Close</button>
+            <button type="button" class="btn delete" data-dismiss="modal" #closebank>Close</button>
           </div>
           </form>
         </div>

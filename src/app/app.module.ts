@@ -17,8 +17,9 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-
+import { ScrollContainerComponent } from './scroll-container/scroll-container.component';
 //import { SharedModule } from './shared.module';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 //import { UserrolesComponent } from './userroles/userroles.component'
@@ -152,6 +153,7 @@ export class DemoMaterialModule {}
   declarations: [
     AppComponent,
     ChequeslistComponent,
+    ScrollContainerComponent,
     VendorComponent,
     VendorchecksdetailsComponent,
     SinglechequeprintComponent,
@@ -177,6 +179,16 @@ HttpModule,
 NgbModule,
 CookieModule.forRoot(),
  FlashMessagesModule.forRoot(),
+ NgCircleProgressModule.forRoot({
+     // set defaults here
+     radius: 100,
+     outerStrokeWidth: 16,
+     innerStrokeWidth: 8,
+     outerStrokeColor: "#78C000",
+     innerStrokeColor: "#C7E596",
+     animationDuration: 300,
+
+   }),
  NgxLoadingModule.forRoot({
        animationType: ngxLoadingAnimationTypes.circle,
        backdropBackgroundColour: '#000000',

@@ -1,3 +1,6 @@
+body{
+  overflow-y: scroll;
+}
 mat-header-cell{
   background-color: #44505d;
  color: #fff;
@@ -9,6 +12,14 @@ mat-header-cell{
   text-align:left;
 }
 
+/* Important part */
+#modal-dialog{
+    overflow-y: initial !important
+}
+#modal-body{
+    height: 450px;
+    overflow-y: auto;
+}
 .print{
 
   background-color: white;
@@ -34,6 +45,17 @@ mat-header-cell{
 }
 .upload:hover{
   background-color: #71CDE9;
+  color:white;
+}
+.upload1{
+
+  background-color: white;
+  border-color: #23ae89;
+  color:#23ae89;
+  transition: 0.3s;
+}
+.upload1:hover{
+  background-color: #23ae89;
   color:white;
 }
 .check{
@@ -241,12 +263,7 @@ margin-left: 30%;}
 #print{
 top:15%;
 }
-.modalhead{
- background-color: black;
- color:white;
- padding-top:11%;
 
-}
 .modal-title
 {
 color:white;
@@ -257,18 +274,9 @@ color:white;
    height: 80%;
 }
 
- #mdlSample{
-   top:15%;
-padding-top:2%;
-}
 
 
-#table1{
 
-  height:400px;
-
-  overflow-y:scroll;
-}
 .file-upload{
   margin-left:19px;
   margin-top:19px;

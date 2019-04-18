@@ -50,7 +50,7 @@
 <div class="one" >
   <h1 align="left" class="title" > &nbsp;
    Check Details
-   <button type="button" id="pr"  style="width:130px" name="button" class="btn print pull-right" style=""  data-toggle="modal" data-target="#print"(click)="g()"><i class="fa fa-print" style="font-size:18px"></i>
+   <button type="button" id="pr"  style="width:130px" name="button" class="btn print pull-right" style=""  (click)="g()"><i class="fa fa-print" style="font-size:18px"></i>
        Print      	</button>&nbsp;&nbsp;&nbsp;&nbsp;</h1>
 
 
@@ -108,7 +108,7 @@
        <mat-form-field class="search ">
          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
        </mat-form-field>     &nbsp;    &nbsp;
-       <button type="button" id="del" class="btn delete pull-right" style="float:right; " (click)="openModal(true)" >
+       <button type="button" id="del" class="btn delete pull-right" style="float:right; "  data-toggle="modal" (click)="extractselecteddata()" data-target="#mdlSample">
          <i class="fa fa-trash" aria-hidden="true"></i>
      Delete
        </button>
@@ -120,7 +120,7 @@
          <i class="fa fa-upload" aria-hidden="true"></i>
      Upload
        </button>
-       <button type="button"  id="delete" class="btn upload pull-right" style="float:right;margin-right:10px;" (click)="selectall()">
+       <button type="button"  id="delete" class="btn upload1 pull-right" style="float:right;margin-right:10px;" (click)="selectall()">
          <i class="fa fa-check" aria-hidden="true"></i>
      Select All
        </button>
@@ -181,7 +181,7 @@ CELLSPACING=0 CELLPADDING=5>
           <mat-cell *matCellDef="let dataSource"> {{dataSource.chequeid}} </mat-cell>
         </ng-container>
 
-					<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+					<mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
 					<mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="highlightedRows(row)" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}"  (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
 				</mat-table>
         <mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
@@ -197,7 +197,56 @@ CELLSPACING=0 CELLPADDING=5>
 		</div>
 
 
-	<div id="mdlSample" class="modal  fade" height="500px" role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
+                      <div id="mdlSample" class="modal fade" data-backdrop="false" role="dialog">
+                        <div class="modal-dialog">
+
+                          <!-- Modal content-->
+                          <div class="modal-content" id="modal-content">
+                            <div class="modal-header" id="modal-header">
+                              <h4 class="modal-title">Delete Check's</h4>
+
+                              <button type="button" class="close" data-dismiss="modal" #closedel>&times;</button>
+                            </div>
+                            <div class="modal-body" id="modal-body">
+                              <div class="row">
+
+                            	<div class="col-md-12">
+                            	  <div class="container " id="table1">
+                            	  <p >Are You Sure You Want To delete this check's....?</p>
+                            	  <table class="table ">
+                            	    <thead>
+                            	      <tr>
+
+                            	        <th>Name</th>
+                            			        <th>Date</th>
+
+                            	        <th>LoadNo</th>
+                            	      </tr>
+                            	    </thead>
+                            	    <tbody>
+                            	      <tr *ngFor="let ft of del">
+
+                            	        <td>{{ft.name}}</td>
+                            			        <td>{{ft.date}}</td>
+
+                            	        <td>{{ft.load}}</td>
+                            	      </tr>
+
+                            	    </tbody>
+                            	  </table>
+                            	</div>             </div>
+                            	            </div>                            </div>
+                            <div class="modal-footer">
+
+                                          <button type="button" id="btnOK" class="btn btn-success" (click)="deleteitems(del)"><i class="fa fa-check fa-fw"></i> Ok</button>
+                                                                </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+
+	<div id="mdlSample" class="modal  fade" height="500px" role="dialog" >
 	<div class="modal-dialog  modal-lg" id="modal">
 	<div class="modal-content">
 		<div class="modal-header modalhead" id="head" style="height:110px">
@@ -205,34 +254,7 @@ CELLSPACING=0 CELLPADDING=5>
 
 						</div>
 	<div class="modal-body">
-	<div class="row">
-
-	<div class="col-md-12">
-	  <div class="container " id="table1">
-	  <p >Are You Sure You Want To delete this check's....?</p>
-	  <table class="table ">
-	    <thead>
-	      <tr>
-
-	        <th>Name</th>
-			        <th>Date</th>
-
-	        <th>LoadNo</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr *ngFor="let ft of del">
-
-	        <td>{{ft.name}}</td>
-			        <td>{{ft.date}}</td>
-
-	        <td>{{ft.load}}</td>
-	      </tr>
-
-	    </tbody>
-	  </table>
-	</div>             </div>
-	            </div></div>
+</div>
 	<div class="modal-footer" align="right">
 	            <button type="button" id="btnOK" class="btn btn-success" (click)="deleteitems(del)"><i class="fa fa-check fa-fw"></i> Ok</button>
 	            <button type="button" id="btnClose" class="btn btn-danger" (click)="openModal(false)"><i class="fa fa-times fa-fw"></i> Cancel</button></div>
@@ -272,8 +294,8 @@ CELLSPACING=0 CELLPADDING=5>
                   </form>
                    <br>
 
-                <label style="margin-top:10px;"> Download Sample Csv File </label>	<a href="http://13.232.165.2:3000/images/csv file.csv" download>
-                    <i class="fa fa-download" aria-hidden="true"></i>
+       <label style="margin-top:10px;margin-left:5%;"> Download Sample Csv File </label> &nbsp;
+                       <a href="https://s3.us-east-2.amazonaws.com/angulardeploy10/sample+files/sample.xlsx" download>    <i class="fa fa-download" aria-hidden="true"></i>
 
           </a>
                 </div>

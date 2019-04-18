@@ -5,7 +5,7 @@
  Settings</h1>
 <!-- Nav tabs -->
 <div class="col-md-12">
-<div class="container " style="width:50%;">
+<div class="container  " width="50%" >
 <ul class="nav nav-tabs md-tabs nav-justified primary-color" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#panel555" role="tab">
@@ -65,7 +65,8 @@
                                                   </div>
 <div class="modal-footer">
                                                                 <button  style="width:40%;" type="submit" class="registerbtn print">Reset Password</button>
-                          </div>                                    </div>
+
+                            <br>    <br>     </div>                                    </div>
 
 
                                                             </form>
@@ -166,17 +167,13 @@
   <label style="margin-top:2%" >  <b>Upload  Signature </b> </label>
 </div>
 <div class="col-50">
-  <div class="file-upload" >
-    <div class="file-select">
-      <div class="file-select-button" id="fileName">Choose File</div>
-      <div class="file-select-name" id="noFile">No file chosen...</div>
-      <input type="file"  name="chooseFile" id="filePicker" align="right"  name="file"  accept="image/csv" ngModel>
-    </div>
-  </div>
+  <input type="file"  name="chooseFile" id="filePicker" align="right"  (change)="handleFileSelect($event)" id="file" name="file" formControlName="file" accept="image/png" ngModel>
+
+
 </div></div>
 <br>
   <div class="modal-footer">
-    <button  class="registerbtn print" width="50%" (click)="onSubmit(f)" >Submit</button>
+    <button  class="registerbtn print" width="50%"  >Submit</button>
 
 
 

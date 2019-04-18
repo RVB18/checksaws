@@ -13,7 +13,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #1ab188;
+color:#000;
   transition: .5s ease;
 }
 a:hover {
@@ -85,7 +85,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+  color: #fff;
 }
 
 label.active {
@@ -108,10 +108,10 @@ input, textarea {
   width: 100%;
   height: 100%;
   padding: 5px 10px;
-  background: none;
+  background: #fff;
   background-image: none;
   border: 1px solid #a0b3b0;
-  color: #1ab188;
+  color: #000;
   border-radius: 0;
   transition: border-color .25s ease, box-shadow .25s ease;
 }
@@ -149,7 +149,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #1ab188;
+  color: #000;
   transition: .5s ease;
 }
 a:hover {
@@ -221,7 +221,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+  color: #000;
 }
 
 label.active {
@@ -242,6 +242,7 @@ input, textarea {
   font-size: 22px;
   display: block;*, *:before, *:after {
   box-sizing: border-box;
+  color: #fff;
 }
 
 html {
@@ -255,7 +256,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #1ab188;
+  color: #fff;
   transition: .5s ease;
 }
 a:hover {
@@ -327,7 +328,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+color:#000;
 }
 
 label.active {
@@ -353,7 +354,7 @@ input, textarea {
   background: none;
   background-image: none;
   border: 1px solid #a0b3b0;
-  color: #1ab188;
+color:#000;
   border-radius: 0;
   transition: border-color .25s ease, box-shadow .25s ease;
 }
@@ -391,7 +392,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #1ab188;
+color:#000;
   transition: .5s ease;
 }
 a:hover {
@@ -463,7 +464,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+color:#000;
 }
 
 label.active {
@@ -489,7 +490,7 @@ input, textarea {
   background: none;
   background-image: none;
   border: 1px solid #a0b3b0;
-  color: #1ab188;
+color:#000;
   border-radius: 0;
   transition: border-color .25s ease, box-shadow .25s ease;
 }
@@ -527,7 +528,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #1ab188;
+color:#000;
   transition: .5s ease;
 }
 a:hover {
@@ -599,7 +600,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #1ab188;
+color:#000;
 }
 
 label.active {
@@ -625,7 +626,7 @@ input, textarea {
   background: none;
   background-image: none;
   border: 1px solid #a0b3b0;
-  color: #1ab188;
+color:#000;
   border-radius: 0;
   transition: border-color .25s ease, box-shadow .25s ease;
 }
@@ -766,7 +767,7 @@ textarea {
   background: none;
   background-image: none;
   border: 1px solid #a0b3b0;
-  color: #1ab188;
+color:#fff;
   border-radius: 0;
   transition: border-color .25s ease, box-shadow .25s ease;
 }

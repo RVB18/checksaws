@@ -11,6 +11,46 @@
 .nav{
 flex-wrap: nowrap;
 }
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  width:50%;
+}
 
 #team{
 
@@ -28,7 +68,7 @@ position: relative;
    border-radius: 15px;
    border-color: #000;
 text-align:left;
-margin-left: 25%;
+
 margin-top: 5%;
 
 border-style: solid;
@@ -81,37 +121,7 @@ border-color: #000;
    background-color: #f1f1f1;
    text-align: center;
  }
- .row {
-   display: -ms-flexbox; /* IE10 */
-   display: flex;
-   -ms-flex-wrap: wrap; /* IE10 */
-   flex-wrap: wrap;
-   margin: 0 -16px;
- }
 
- .col-25 {
-   -ms-flex: 25%; /* IE10 */
-   flex: 25%;
-   margin-left:5%;
- }
- .col-55 {
-   -ms-flex: 55%; /* IE10 */
-   flex: 55%;
-   margin-left:5%;
- }
- .col-40 {
-   -ms-flex: 40%; /* IE10 */
-   flex: 40%;
-
- }
- .col-60 {
-   -ms-flex: 60%; /* IE10 */
-   flex: 60%;
-
- }
-
- .col-50 {
-   -ms-fle
 #team{
 
  background-color: #fff;
@@ -119,7 +129,7 @@ border-color: #000;
  /* Add padding to containers */
  .container {
    padding: 16px;
-   width:10%;
+
    border-radius: 15px;
 
  }
@@ -157,46 +167,13 @@ border-color: #000;
    background-color: #f1f1f1;
    text-align: center;
  }
- .row {
-   display: -ms-flexbox; /* IE10 */
-   display: flex;
-   -ms-flex-wrap: wrap; /* IE10 */
-   flex-wrap: wrap;
-   margin: 0 -16px;
- }
 
- .col-25 {
-   -ms-flex: 25%; /* IE10 */
-   flex: 25%;
-   margin-left:5%;
- }
- .col-40 {
-   -ms-flex: 40%; /* IE10 */
-   flex: 40%;
-
- }
-
- .col-50 {
-   -ms-flex: 50%; /* IE10 */
-   flex: 50%;
-   margin-left:5%;
-
- }
-
- .col-75 {
-   -ms-flex: 75%; /* IE10 */
-   flex: 55%;
- }
  .modal-footer{
 display: inline;
-  margin-left:50%;
+
  }
 
- .col-25,
- .col-50,
- .col-75 {
-   padding: 0 16px;
- }
+
  .print{
 
    background-color: white;
@@ -206,6 +183,22 @@ display: inline;
  }
  .print:hover{
    background-color: #72BA65;
+   color:white;
+ }
+ .print{
+height:10%;
+   background-color: transparent;
+   border-style: solid;
+   border-color: green;
+   color:GREEN;
+   transition: 0.3s;
+   margin-left:30%;
+   border-radius: 15px;
+   width:30%;
+
+ }
+ .print:hover{
+   background-color: green;
    color:white;
  }
  .delete{
@@ -220,30 +213,7 @@ display: inline;
    color:white;
  }
  @media screen and (max-width: 960px) {
-   .row {
-     display: -ms-flexbox; /* IE10 */
-     display: flex;
-     -ms-flex-wrap: wrap; /* IE10 */
-     flex-wrap: wrap;
-     margin: 0 -16px;
-   }
-   .col-20 {
-     -ms-flex: 20%; /* IE10 */
-     flex: 20%;
-   }
-   .col-5 {
-     -ms-flex: 5%; /* IE10 */
-     flex: 5%;
-   }
-   .col-50 {
-     -ms-flex: 20%; /* IE10 */
-     flex: 50%;
-   }
 
-   .col-75 {
-     -ms-flex: 55%; /* IE10 */
-     flex: 75%;
-   }
  .field-icon {
    float: right;
    margin-left: -30px;
@@ -308,10 +278,7 @@ display: inline;
 .file-upload .file-select.file-select-disabled{opacity:0.65;}
 .file-upload .file-select.file-select-disabled:hover{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
 .file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
-.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;} IE10 */
-   flex: 50%;
- }
-
+.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
  .col-75 {
    -ms-flex: 75%; /* IE10 */
    flex: 55%;
@@ -322,22 +289,8 @@ display: inline;
  .col-75 {
    padding: 0 16px;
  }
- .print{
-height:10%;
-   background-color: transparent;
-   border-style: solid;
-   border-color: green;
-   color:GREEN;
-   transition: 0.3s;
-   margin-left:30%;
-   border-radius: 15px;
-   width:30%;
 
- }
- .print:hover{
-   background-color: green;
-   color:white;
- }
+
  .delete{
 width:20%;
    background-color: white;

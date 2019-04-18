@@ -28,6 +28,7 @@ export class ChequeslistComponent implements OnInit  {
 
   @ViewChild('closeupload') uploadclose: ElementRef;
 
+  @ViewChild('closedel') closedel: ElementRef;
 
   modalReference = null;
 
@@ -57,11 +58,10 @@ arrayBuffer:any;
   /*highlight(element: Element) {
     element.highlighted = !element.highlighted;
   }*/
-  public openModal(open : boolean) : void {
-   this.mdlSampleIsOpen = open;
- //this.router.navigate(['/cheques']);
+   extractselecteddata() {
+
  var deletedata=[]
- if(open==true){
+
 
    this.map.forEach((value, key) => {
 deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumber})
@@ -73,7 +73,7 @@ deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumb
 
  }
 
-}
+
 //
   constructor(private modalService: NgbModal,private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService,private snackBar: MatSnackBar) {
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
@@ -230,7 +230,7 @@ loaddata(){
      }
    }
   deleteitems(items){
-
+this.closedel.nativeElement.click()
 	  var dele=[];
 
 
@@ -252,7 +252,8 @@ loaddata(){
   this.loading=false
 
   if(checksdata.message=="success"){
-    this.openModal(false)
+    //this.openModal(false)
+    this.del=[];
 this.loaddata()
 }
 else{
@@ -392,8 +393,8 @@ if(row.highlighted = !row.highlighted){}
 
 
       g(){
-
 console.log(this.map)
+console.log(Object.keys(this.map).length)
 var a=[]
 this.map.forEach((value, key) => {
   this.coun++
@@ -468,7 +469,9 @@ this.count=a
 this.userdata.changeMessage(JSON.stringify(a))
 this.userdata.changeMessage1(this.config)
 
-
+if(a.length==0)
+alert("Please Select atleast one Checks to Print")
+else
 this.router.navigate(['/multicheck']);
 //window.open("http://alektasolutions.com/purchase/print/cheques/ang?a="+JSON.stringify(a), "_blank");
 

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef} from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { UserService } from '../services/user.service';
 import { CookieService } from 'ngx-cookie';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-multicheck',
@@ -10,6 +11,7 @@ import { CookieService } from 'ngx-cookie';
   styleUrls: ['./multicheck.component.css']
 })
 export class MulticheckComponent implements OnInit  {
+  @ViewChild('clicktoopen') clicktoopen: ElementRef;
 
   data:any;
   m:any;
@@ -22,7 +24,7 @@ to:any;
 public loading = false;
 
 options:any;
-  constructor(private router:Router,private route: ActivatedRoute,private http:Http,private userdata:UserService,private _cookieService:CookieService) {
+  constructor(private router:Router,private route: ActivatedRoute,private http:Http,private userdata:UserService,private _cookieService:CookieService,private snackBar: MatSnackBar) {
 	 this.config={}
 	 this.coun=0
 	 this.to=""
@@ -59,6 +61,7 @@ this.router.navigate(['/'])
  updatestatus(){
 //	 var data=document.getElementById('to').value
    var data=(<HTMLInputElement>document.getElementById('to')).value;
+if(data){
 var idmap='';
 var podata=[];
 
@@ -118,7 +121,18 @@ else
 
   });
   }
+  else{
 
+    this.snackBar.open("Please Select cheque Numbers","Ok",{
+      duration:2000,
+      panelClass:'red-snackbar',
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    })
+  }
+
+
+}
   pagin(f){
 	 // console.log(typeof this.coun)
 	  if(this.coun==2)
@@ -150,7 +164,7 @@ console.log(this.config)
 setTimeout(()=>{    //<<<---    using ()=> syntax
   window.print()
 
-  this.mdlSampleIsOpen = true;
+this.clicktoopen.nativeElement.click()
  }, 1500);
 
 

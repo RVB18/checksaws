@@ -38,6 +38,8 @@ import {  MatSnackBarConfig, MAT_SNACK_BAR_DATA } from '@angular/material';
 export class AdminComponent implements OnInit {
   @ViewChild('dockBar')
   @ViewChild('closesinglecheck') singling: ElementRef;
+  @ViewChild('closebank') closebank: ElementRef;
+
 editdata:any;
       public dockBar: SidebarComponent;
       public enableDock: boolean = true;
@@ -95,7 +97,7 @@ myHeaders:any;
 options:any;
 showNav:boolean=false;
 mdlSampleIsOpen : boolean = false;
-
+base64textString:any;
 Addresscomplete:any;
 getCookie(key:string){
     return this._cookieService.get(key);
@@ -215,17 +217,34 @@ location.reload();
 
 
 
+  handleFileSelect(evt){
+        var files = evt.target.files;
+        var file = files[0];
 
+      if (files && file) {
+          var reader = new FileReader();
+
+          reader.onload =this._handleReaderLoaded.bind(this);
+
+          reader.readAsBinaryString(file);
+      }
+    }
+
+    _handleReaderLoaded(readerEvt) {
+       var binaryString = readerEvt.target.result;
+              this.base64textString= btoa(binaryString);
+              console.log(btoa(binaryString));
+      }
 
 
 
   onSubmit(f){
     var sett={}
+    this.validateAllFormFields(this.form);
 
-    console.log(this.form);
+    console.log(f.value);
     if (this.form.valid)
 
- this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-success', timeout: 1000});
 
     if(Object.keys(this.config).length==0){
 
@@ -233,12 +252,11 @@ location.reload();
 
      console.log(sett +"dfg")
 
-     sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
+     sett={sign:this.base64textString, "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
 
 
             //this.snackBar.open('Disco party!', 'Dism', {duration: 5000});
 
-          this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-success', timeout: 1000});
                 //this.snackBar.open('Disco party!', 'Dismiss', {duration: 5000});
                 console.log('form submitted');
 
@@ -250,19 +268,13 @@ location.reload();
 
 }
     else{
-sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
+sett={sign:this.base64textString, "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
 
-
+}
 //this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
- this.validateAllFormFields(this.form);
 
 
- this.snackBar.open("Success","Ok",{
-   duration:2000,
-   panelClass:'green-snackbar',
-   horizontalPosition: 'center',
-   verticalPosition: 'top'
- })
+ this.loading=true
 
 
 
@@ -276,8 +288,26 @@ console.log(sett)
       //alert("Succesfully Saved")
 
       var r=data.json();
-      console.log(r)
 
+                 if(r.message=="Success"){
+                   this.snackBar.open("Success","Ok",{
+                     duration:2000,
+                     panelClass:'green-snackbar',
+                     horizontalPosition: 'center',
+                     verticalPosition: 'top'
+                   })
+this.closebank.nativeElement.click();
+                 }
+                   else{
+                     this.snackBar.open("Sorry caught an error","Ok",{
+                       duration:2000,
+                       panelClass:'red-snackbar',
+                       horizontalPosition: 'center',
+                       verticalPosition: 'top'
+                     })
+
+
+      }
 //  this.success=r
            /*if(this.success=="success")
              this.snackBar.open('Disco party!', 'error', {duration: 5000});
@@ -287,7 +317,7 @@ console.log(sett)
 
   });
 
-}
+
 }
 
 
@@ -431,7 +461,9 @@ console.log("nope")*/
         cheque: [null, Validators.required],
           account: [null, Validators.required],
             address: [null, Validators.required],
-            name: [null, Validators.required]
+            name: [null, Validators.required],
+            file: [null, Validators.required]
+
 
     });
 

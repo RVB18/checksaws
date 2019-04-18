@@ -82,7 +82,7 @@ constructor(private http: Http, private router: Router, private route: Activated
     onSubmit(data) {
       console.log(data)
       console.log(this.form.value);
-    
+
 
 
 
@@ -119,6 +119,7 @@ constructor(private http: Http, private router: Router, private route: Activated
                                                          horizontalPosition: 'center',
                                                          verticalPosition: 'top'
                                                        })
+                                                       this.router.navigate(['/'])
 
 
 

@@ -24,7 +24,7 @@
    <p class="top-right" style="color:black;margin-right:1%;margin-top:5.5%;font-family: 'Saira Semi Condensed', sans-serif;">{{exdata1.date}}</p>
       <p class="top-right" style="color:black;margin-right:11%;margin-top:5%;font-family: 'Bree Serif', cursive;font-size:28px;">DATE :</p>
 
-  <img class="bottom-right "  style="margin-right:-4%;height:28%;width:18%;margin-bottom:2%" src="/assets/signn.png" alt="no signadfkjbadkjfbadkjvbjakd" />
+  <img class="bottom-right "  style="margin-right:-4%;height:100px;width:200px;margin-bottom:2%" src="data:image/png;base64,{{config.sign}}" alt="no sign" />
   <p class="centered" style="color:black;margin-top:1%;font-family: 'Saira Semi Condensed', sans-serif;">$ {{exdata1.amount}}</p>
 
   <p class="top-right1" style="color:black;font-family: 'Saira Semi Condensed', sans-serif ;top:6%;margin-right:0%;"><strong style="font-family: 'Bree Serif', cursive;">No:</strong> &nbsp;&nbsp;{{config.Chequenumber+i}}</p>
@@ -53,7 +53,7 @@
    <p class="top-right" style="color:black;margin-right:1%;margin-top:5.5%;font-family: 'Saira Semi Condensed', sans-serif;">{{exdata1.date}}</p>
       <p class="top-right" style="color:black;margin-right:11%;margin-top:5%;font-family: 'Bree Serif', cursive;font-size:28px;">DATE :</p>
 
-  <img class="bottom-right "  style="margin-right:-4%;height:28%;width:18%;margin-bottom:2%" src="/assets/signn.png" alt="no signadfkjbadkjfbadkjvbjakd" />
+  <img class="bottom-right "  style="margin-right:-4%;height:100px;width:200px;margin-bottom:2%" src="data:image/png;base64,{{config.sign}}" alt="no signadfkjbadkjfbadkjvbjakd" />
   <p class="centered" style="color:black;margin-top:1%;font-family: 'Saira Semi Condensed', sans-serif;">$ {{exdata1.amount}}</p>
 
   <p class="top-right1" style="color:black;font-family: 'Saira Semi Condensed', sans-serif ;top:6%;margin-right:0%;"><strong style="font-family: 'Bree Serif', cursive;">No: </strong>&nbsp;&nbsp;{{config.Chequenumber+i}}</p>
@@ -82,7 +82,7 @@
    <p class="top-right" style="color:black;margin-right:1%;margin-top:5.5%;font-family: 'Saira Semi Condensed', sans-serif;">{{exdata1.date}}</p>
       <p class="top-right" style="color:black;margin-right:11%;margin-top:5%;font-family: 'Bree Serif', cursive;font-size:28px;">DATE :</p>
 
-  <img class="bottom-right "  style="margin-right:-4%;height:28%;width:18%;margin-bottom:2%" src="/assets/signn.png" alt="no signadfkjbadkjfbadkjvbjakd" />
+  <img class="bottom-right "  style="margin-right:-4%;height:100px;width:200px;margin-bottom:2%" src="data:image/png;base64,{{config.sign}}" alt="no signadfkjbadkjfbadkjvbjakd" />
   <p class="centered" style="color:black;margin-top:1%;font-family: 'Saira Semi Condensed', sans-serif;">$ {{exdata1.amount}}</p>
 
   <p class="top-right1" style="color:black;font-family: 'Saira Semi Condensed', sans-serif ;top:6%;margin-right:0%;"><strong style="font-family: 'Bree Serif', cursive;">No: </strong>&nbsp;&nbsp;{{config.Chequenumber+i}}</p>
@@ -94,31 +94,40 @@
 </div>
 </div>
 
+<button type="button" id="del" class="btn delete pull-right" style="float:right; " [hidden]="true" #clicktoopen data-toggle="modal" data-target="#mdlSample">
+  <i class="fa fa-trash" aria-hidden="true"></i>
+Delete
+</button>
 
-<div id="mdlSample" class="modal fade"  role="dialog" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
-<div class="modal-dialog ">
-<div class="modal-content">
-	<div class="modal-header">
-						<h4 class="modal-title">Print Status</h4>
+              <div class="modal " id="mdlSample" role="dialog" data-backdrop="false">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">Print Status</h4>
+                      <button type="button" class="close" data-dismiss="modal" >&times;</button>
 
-					</div>
-<div class="modal-body"> 			  <label>Please Select The Check Numbers That Are Succesfully Printed </label><br>
-<div class="row">
-              <div class="col-25">
-               <label for="cvv"><strong>To</strong></label>
-</div>    &nbsp;
-<div class="col-md-12">
-  <select  width="100%;" class="form-control" name="to" id="to" ngModel>
-    <option *ngFor="let st of data; let i=index;" value={{config.Chequenumber+i}}>{{config.Chequenumber+i}} </option>
+                    </div>
+                    <div class="modal-body"> 			  <label>Please Select The Check Numbers That Are Succesfully Printed </label><br>
+                    <div class="row">
+                                  <div class="col-25">
+                                   <label for="cvv"><strong>To</strong></label>
+                    </div>    &nbsp;
+                    <div class="col-md-12">
+                      <select  width="100%;" class="form-control" name="to" id="to" ngModel>
+                        <option *ngFor="let st of data; let i=index;" value={{config.Chequenumber+i}}>{{config.Chequenumber+i}} </option>
 
-  </select>              </div>
-            </div></div>
-<div class="modal-footer" align="right">
-            <button type="button" id="btnOK" class="btn btn-success" (click)="updatestatus()"><i class="fa fa-check fa-fw"></i> Ok</button>
-            <button type="button" id="btnClose" class="btn btn-danger" (click)="openModal(false)"><i class="fa fa-times fa-fw"></i> Cancel</button></div>
-</div>
-</div>
-</div>
+                      </select>              </div>
+                                </div></div>
+                    <div class="modal-footer" align="right">
+                                <button type="button" id="btnOK" class="btn btn-success" (click)="updatestatus()"><i class="fa fa-check fa-fw"></i> Ok</button>
+                                <button type="button" id="btnClose" class="btn btn-danger" (click)="openModal(false)"><i class="fa fa-times fa-fw"></i> Cancel</button></div>
+
+                          </div>
+                          </div>
+                        </div>
+
+
 <ngx-loading [show]="loading" [config]="{
         backdropBackgroundColour: 'rgba(255,255,255,0.7)', backdropBorderRadius: '10px',
         primaryColour: '#DB4437', secondaryColour: '#F4B400', tertiaryColour: '#DB4437' }" ></ngx-loading>

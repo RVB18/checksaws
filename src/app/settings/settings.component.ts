@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { CookieService } from 'ngx-cookie';
+import { Router } from '@angular/router';
+
 import {
   FormGroup,
   FormBuilder,
@@ -22,8 +24,8 @@ myHeaders:any;
 options:any;
 config:any;
 loading:any;
-
-  constructor(private formBuilder: FormBuilder,private _cookieService:CookieService,private http: Http,private snackBar: MatSnackBar) {
+base64textString:any;
+  constructor(private router:Router,private formBuilder: FormBuilder,private _cookieService:CookieService,private http: Http,private snackBar: MatSnackBar) {
 this.config={};
     this.myHeaders = new Headers();
     var k= this.getCookie("idToken");
@@ -41,6 +43,8 @@ this.config={};
       var bankdata=data.json()
 
     this.config=bankdata.data.body.data.Items[0]
+    this.base64textString=this.config.sign;
+    console.log("sf "+this.base64textString)
 
 
 
@@ -88,6 +92,7 @@ var changedata=  {
             horizontalPosition: 'center',
             verticalPosition: 'top'
           })
+          this.router.navigate(['/admin/dashboard'])
         }
         else{
           this.snackBar.open("Sorry caught an error","Ok",{
@@ -112,19 +117,20 @@ var changedata=  {
 
   onSubmit(f){
     var sett={}
+    this.loading=true
 
 
-    console.log(this.form);
+    console.log(f.value);
     if (this.form.valid)
 
+    if(!this.config){
 
-    if(Object.keys(this.config).length==0){
 
 
 
      console.log(sett +"dfg")
 
-     sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
+     sett={ sign:this.base64textString,"Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
 
 
             //this.snackBar.open('Disco party!', 'Dism', {duration: 5000});
@@ -140,9 +146,11 @@ var changedata=  {
 
 
 }
-    else{
-sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
+else{
+sett={ sign:this.base64textString, "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
+console.log(sett)
 
+}
 
 //this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
  this.validateAllFormFields(this.form);
@@ -150,8 +158,6 @@ sett={ "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.
 
 
 
-console.log(sett)
-this.loading=true
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
       console.log(data)
       this.loading=false
@@ -164,6 +170,7 @@ this.loading=true
       console.log(r)
 
 //  this.success=r
+
            if(r.message=="Success"){
              this.snackBar.open("Success","Ok",{
                duration:2000,
@@ -171,6 +178,7 @@ this.loading=true
                horizontalPosition: 'center',
                verticalPosition: 'top'
              })
+             this.router.navigate(['/admin/dashboard'])
 
            }
              else{
@@ -185,10 +193,26 @@ this.loading=true
 }
   });
 
-}
-}
 
 
+}
+handleFileSelect(evt){
+      var files = evt.target.files;
+      var file = files[0];
+
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload =this._handleReaderLoaded.bind(this);
+
+        reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvt) {
+     var binaryString = readerEvt.target.result;
+            this.base64textString= btoa(binaryString);
+    }
 isFieldValid(field: string) {
   return !this.form.get(field).valid && this.form.get(field).touched;
 }
@@ -236,7 +260,9 @@ validateAllFormFields(formGroup: FormGroup) {
         cheque: [null, Validators.required],
           account: [null, Validators.required],
             address: [null, Validators.required],
-            name: [null, Validators.required]
+            name: [null, Validators.required],
+            file: [null, Validators.required]
+
 
     });
   }
