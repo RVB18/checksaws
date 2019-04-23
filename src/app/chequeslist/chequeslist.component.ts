@@ -295,30 +295,45 @@ else{
                  var arr = new Array();
                  for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
                  var bstr = arr.join("");
-                 var workbook = XLSX.read(bstr, {type:"binary"});
+                 var workbook = XLSX.read(bstr, {type:"binary",cellDates:true});
                  var first_sheet_name = workbook.SheetNames[0];
                  var worksheet = workbook.Sheets[first_sheet_name];
+                 //console.log(bstr)
+
                 // console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));
 var bt=[]
 bt=XLSX.utils.sheet_to_json(worksheet,{raw:true})
 console.log(bt)
-                 this.loading=true
 var tt=[];
 //
   var top={}
   var amount=''
 for(var l=0;l<bt.length;l++){
+var ty=bt[l].Date
+if (typeof ty === 'string' || ty instanceof String)
+ty=bt[l].Date
+else{
+  var dd = ty.getDate()+1;
+
+var mm = ty.getMonth()+1;
+var yyyy = ty.getFullYear();
+ty=mm+"/"+dd+"/"+yyyy
+}
   amount=(bt[l].Amount).toString()
-   top={Status:"NotSet",Name:bt[l].Name, Date:bt[l].Date, Amount:  amount.replace('$', ''), LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
+   top={Status:"NotSet",Name:bt[l].Name, Date:ty, Amount:  amount.replace('$', ''), LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
 tt.push(top)
 //console.log({Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()})
 
 }
 console.log(top)
+//console.log(sheet2arr(worksheet))
+
+                 this.loading=true
+
 
                    var url='https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/csvupload'
 
-                      this.http.post(url,{"Items":tt},this.options).subscribe (
+                     this.http.post(url,{"Items":tt},this.options).subscribe (
 
                        (res:Response) =>{
                          this.loading=false
@@ -347,7 +362,7 @@ console.log(top)
                                               })       }
 
                   }
-                  )
+                )
                   }
                   fileReader.readAsArrayBuffer(file.files[0]);
 
@@ -612,7 +627,35 @@ export function  convertNumberToWords(amount:string) {
    }
    return words_string;
  }
+export function sheet2arr(sheet){
+    var result = [];
+    var json=[];
+    var row;
+    var rowNum;
+    var colNum;
+    var range = XLSX.utils.decode_range(sheet['!ref']);
+    for(rowNum = range.s.r; rowNum <= range.e.r; rowNum++){
+       row = [];
+        for(colNum=range.s.c; colNum<=range.e.c; colNum++){
+           var nextCell = sheet[
+              XLSX.utils.encode_cell({r: rowNum, c: colNum})
+           ];
+           if( typeof nextCell === 'undefined' ){
+              row.push(void 0);
+           } else row.push(nextCell.w);
+        }
+        result.push(row);
+    }
+    console.log(result)
+    for(var t=1;t<result.length;t++){
+//     json.push({result[0][0]:result[t][0],result[0][1]:result[t][1],result[0][2]:result[t][2],result[0][3]:result[t][3],result[0][4]:result[t][4],result[0][5]:result[t][5]})
+    //  json.push({result[0][0]:result[t][0]})
+  //  console.log({result[0][0]:result[t][0]})
+  json.push({Status:"NotSet",Name:result[t][0], Date:result[t][1], Amount:  result[t][2], LoadNumber:  result[t][3], CarrerName:  result[t][4],State: result[t][5],zipcode: result[t][6],StreetAddress: result[t][7],Country:result[t][8],CityorTown:result[t][9],id:uuid()})
 
+    }
+    return json;
+ };
 
 /*
 

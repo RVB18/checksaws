@@ -814,6 +814,9 @@ MIT
 
 @angular/material/icon
 
+ng-circle-progress
+MIT
+
 ngx-mat-daterange-picker
 MIT
 
