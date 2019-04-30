@@ -128,6 +128,15 @@
                                                                                           </app-field-error-display>
                                                                                         </div>
                                                                                       </div>
+                                                                                      <div class="form-group" [ngClass]="displayFieldCss('routing')">
+                                                                                        <div class="col-sm-12">
+                                                                                          <label style="margin-top:2%" >  <b>Upload  Signature </b> </label>
+                                                                                          <input type="file"  name="chooseFile" id="filePicker" align="right"  (change)="handleFileSelect($event)" id="file" name="file" formControlName="file" accept="image/png" ngModel>
+
+                                                                                        </div>
+                                                                                      </div>
+
+
 
 </div>
 <div class="col-50">
@@ -159,18 +168,25 @@
                                                                                         </div>
                                                                                         </div>
 
+                                                                                        <div class="form-group" [ngClass]="displayFieldCss('bank')">
+                                                                                          <div class="col-sm-12">
+                                                                                            <label for="name" class="control-label required"><b>Present Signature</b></label><br>
+                                                                                            <img src="data:image/png;base64,{{base64textString}}" height="50px" width="150px"/>
+
+                                                                                          </div>
+                                                                                        </div>
 
 
   </div>                                   </div>
-<div class="row">
+<!--<div class="row">
 <div clas="col-40" style="text-align:right;margin-left:3%;">
   <label style="margin-top:2%" >  <b>Upload  Signature </b> </label>
-</div>
-<div class="col-50">
+
   <input type="file"  name="chooseFile" id="filePicker" align="right"  (change)="handleFileSelect($event)" id="file" name="file" formControlName="file" accept="image/png" ngModel>
 
 
-</div></div>
+</div>
+</div> -->
 <br>
   <div class="modal-footer">
     <button  class="registerbtn print" width="50%"  >Submit</button>

@@ -145,7 +145,7 @@ CELLSPACING=0 CELLPADDING=5>
 
 					<!-- Progress Column -->
 					<ng-container matColumnDef="Name">
-						<mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+						<mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
 						<mat-cell *matCellDef="let dataSource"> {{dataSource.Name}} </mat-cell>
 					</ng-container>
 
@@ -156,30 +156,44 @@ CELLSPACING=0 CELLPADDING=5>
 					</ng-container>
 
 					<!-- Color Column -->
-					<ng-container matColumnDef="Amount" >
+					<ng-container matColumnDef="Load" >
+						<mat-header-cell *matHeaderCellDef mat-sort-header> Load </mat-header-cell>
+						<mat-cell *matCellDef="let dataSource"> {{dataSource.Loadnumber}}</mat-cell>
+					</ng-container>
+
+
+          
+
+
+
+
+					<ng-container matColumnDef="Amount">
 						<mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-						<mat-cell *matCellDef="let dataSource" [style.color]="dataSource.color"> {{dataSource.Amount}}</mat-cell>
+						<mat-cell *matCellDef="let dataSource"> {{dataSource.Amount}} </mat-cell>
 					</ng-container>
-					<ng-container matColumnDef="Status" style="color:red;">
-						<mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-						<mat-cell *matCellDef="let dataSource"> {{dataSource.Currentstatus}} </mat-cell>
-					</ng-container>
-					<ng-container matColumnDef="Address">
-						<mat-header-cell *matHeaderCellDef mat-sort-header> Address </mat-header-cell>
-						<mat-cell *matCellDef="let dataSource"> {{dataSource.StreetAddress}} , {{dataSource.CityorTown}}  {{dataSource.State}} {{dataSource.zipcode}} </mat-cell>
-					</ng-container> &nbsp;&nbsp;&nbsp;&nbsp;
-						<ng-container matColumnDef="LoadNo">
-						<mat-header-cell *matHeaderCellDef mat-sort-header> LoadNo </mat-header-cell>
-						<mat-cell *matCellDef="let dataSource"> {{dataSource.Loadnumber}} </mat-cell>
-					</ng-container>
+
+
+
+
+        <ng-container matColumnDef="Status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.Currentstatus}} </mat-cell>
+        </ng-container>
+
+
 						<ng-container matColumnDef="Carrer">
-						<mat-header-cell *matHeaderCellDef mat-sort-header> Carrer </mat-header-cell>
+						<mat-header-cell *matHeaderCellDef > Carrer </mat-header-cell>
 						<mat-cell *matCellDef="let dataSource"> {{dataSource.Carrername}} </mat-cell>
 					</ng-container>
           <ng-container matColumnDef="Cheque ID">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Cheque ID </mat-header-cell>
           <mat-cell *matCellDef="let dataSource"> {{dataSource.chequeid}} </mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="Address">
+          <mat-header-cell *matHeaderCellDef > Address </mat-header-cell>
+          <mat-cell *matCellDef="let dataSource"> {{dataSource.StreetAddress}} , {{dataSource.CityorTown}}  {{dataSource.State}} {{dataSource.zipcode}} </mat-cell>
+        </ng-container> &nbsp;&nbsp;&nbsp;&nbsp;
 
 					<mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
 					<mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="highlightedRows(row)" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}"  (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>

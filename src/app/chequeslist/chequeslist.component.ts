@@ -45,7 +45,7 @@ datak:any;
 filevalue:any
   coun:any;
   options:any;
-  displayedColumns = [  'Name', 'Date', 'Amount','Status','Address','LoadNo','Carrer','Cheque ID'];
+  displayedColumns = ['Name','Load','Amount','Status','Date','Carrer','Cheque ID','Address'];
   dataSource: MatTableDataSource<UserData>;
   //
   mdlSampleIsOpen : boolean = false;
@@ -161,16 +161,17 @@ loaddata(){
                      else{
 
   var m=[];
-                     console.log(this.datap)
+                     //console.log(this.datap)
 
                      //console.log(users)
 
                      this.datap.Items.forEach(function (ele){
                        var checkdata={
+                         "Loadnumber":(ele.Loadnumber).toString(),
+
                                             "Date":ele.Date,
                                             "CityorTown":ele.CityorTown,
                                             "timestamp":ele.timestamp,
-                                            "Loadnumber":ele.Loadnumber,
                                             "Currentstatus":ele.Currentstatus,
                                             "State":ele.State,
                                             "StreetAddress":ele.StreetAddress,
@@ -325,7 +326,7 @@ tt.push(top)
 //console.log({Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()})
 
 }
-console.log(top)
+console.log(tt)
 //console.log(sheet2arr(worksheet))
 
                  this.loading=true

@@ -31,7 +31,7 @@ this.config={};
     var k= this.getCookie("idToken");
 
       this.myHeaders.append('Authorization',k)
-    console.log("headu",this.myHeaders)
+  //  console.log("headu",this.myHeaders)
 
 
 
@@ -39,12 +39,13 @@ this.config={};
       this.options = new RequestOptions({ headers: this.myHeaders });
 
       this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',this.options).subscribe(data => {
-      console.log(data.json())
+    //  console.log(data.json())
       var bankdata=data.json()
 
     this.config=bankdata.data.body.data.Items[0]
+  //  console.log(this.config)
     this.base64textString=this.config.sign;
-    console.log("sf "+this.base64textString)
+//console.log("sf "+this.base64textString)
 
 
 
@@ -120,15 +121,13 @@ var changedata=  {
     this.loading=true
 
 
-    console.log(f.value);
-    if (this.form.valid)
+    //console.log(f.value);
 
     if(!this.config){
 
+//console.log("data hey")
 
 
-
-     console.log(sett +"dfg")
 
      sett={ sign:this.base64textString,"Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
 
@@ -148,7 +147,7 @@ var changedata=  {
 }
 else{
 sett={ sign:this.base64textString, "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
-console.log(sett)
+//console.log(sett)
 
 }
 
@@ -156,10 +155,11 @@ console.log(sett)
  this.validateAllFormFields(this.form);
 
 
+ console.log(sett )
 
 
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
-      console.log(data)
+  //    console.log(data)
       this.loading=false
 
        //this.snackBar.open('Disco party!', 'Dismiss', {duration: 5000});
@@ -167,7 +167,7 @@ console.log(sett)
       //alert("Succesfully Saved")
 
       var r=data.json();
-      console.log(r)
+//      console.log(r)
 
 //  this.success=r
 
@@ -242,7 +242,7 @@ validateAllFormFields(formGroup: FormGroup) {
 
       //this._flashMessagesService.show('Please Enter Valid Credentials', {cssClass: 'alert-danger', timeout: 1000});
   Object.keys(formGroup.controls).forEach(field => {
-    console.log(field);
+  //  console.log(field);
     const control = formGroup.get(field);
     if (control instanceof FormControl) {
       control.markAsTouched({ onlySelf: true });
