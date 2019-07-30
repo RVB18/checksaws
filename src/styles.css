@@ -80,10 +80,20 @@ p{
     top: 10%;
     left: 7%;color:black;margin-left:-6%;
 }
+top-left-address{
+  position: absolute;
+  top: 10%;
+  left: 1%;color:black;margin-left:-6%;
+}
 .top-left1 {
     position: absolute;
     top: 25%;
     left: 7%;
+}
+.top-left11 {
+    position: absolute;
+    top: 25%;
+    text-align: left;
 }
 .top-left2 {
     position: absolute;

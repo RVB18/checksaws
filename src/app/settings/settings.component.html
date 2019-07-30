@@ -128,6 +128,14 @@
                                                                                           </app-field-error-display>
                                                                                         </div>
                                                                                       </div>
+                                                                                      <div class="form-group" [ngClass]="displayFieldCss('address')">
+                                                                                        <div class="col-sm-12">
+                                                                                            <label for="address" class="control-label required"><b> State</b></label>
+                                                                                        <input type="text"  placeholder="Enter Addres" id="address" name="address" class="form-control" formControlName="address" ngModel={{config.Address}} required>
+                                                                                          <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please enter Address">
+                                                                                          </app-field-error-display>
+                                                                                        </div>
+                                                                                        </div>
                                                                                       <div class="form-group" [ngClass]="displayFieldCss('routing')">
                                                                                         <div class="col-sm-12">
                                                                                           <label style="margin-top:2%" >  <b>Upload  Signature </b> </label>
@@ -161,12 +169,20 @@
 
                                                                                       <div class="form-group" [ngClass]="displayFieldCss('address')">
                                                                                         <div class="col-sm-12">
-                                                                                            <label for="address" class="control-label required"><b>Enter Address</b></label>
+                                                                                            <label for="address" class="control-label required"><b> Address</b></label>
                                                                                         <input type="text"  placeholder="Enter Addres" id="address" name="address" class="form-control" formControlName="address" ngModel={{config.Address}} required>
                                                                                           <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please enter Address">
                                                                                           </app-field-error-display>
                                                                                         </div>
                                                                                         </div>
+                                                                                         <div class="form-group" [ngClass]="displayFieldCss('address')">
+                                                                                              <div class="col-sm-12">
+                                                                                                  <label for="address" class="control-label required"><b>Zip Code</b></label>
+                                                                                              <input type="text"  placeholder="Enter Addres" id="address" name="address" class="form-control" formControlName="address" ngModel={{config.Address}} required>
+                                                                                                <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Please enter Address">
+                                                                                                </app-field-error-display>
+                                                                                              </div>
+                                                                                              </div>
 
                                                                                         <div class="form-group" [ngClass]="displayFieldCss('bank')">
                                                                                           <div class="col-sm-12">
