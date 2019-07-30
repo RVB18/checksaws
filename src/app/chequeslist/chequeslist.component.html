@@ -2,7 +2,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Upload CSV File</h4>
+    <h4 class="modal-title" id="modal-basic-title">Upload Excel Sheet</h4>
     <button type="button" class="close" aria-label="Close" #uploadclose (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -25,7 +25,7 @@
           </form>
            <br>
 
-        <label style="margin-top:10px;"> Download Sample Csv File </label>	<a href="http://13.232.165.2:3000/images/csv file.csv" download>
+        <label style="margin-top:10px;"> Download Sample Excel Sheet </label>	<a href="http://13.232.165.2:3000/images/csv file.csv" download>
             <i class="fa fa-download" aria-hidden="true"></i>
 
   </a>
@@ -141,11 +141,14 @@ CELLSPACING=0 CELLPADDING=5>
 
 					<!-- ID Column -->
 
-
+          <ng-container matColumnDef="Index">
+            <mat-header-cell *matHeaderCellDef mat-sort-header > Index </mat-header-cell>
+            <mat-cell *matCellDef="let dataSource"> {{dataSource.index}} </mat-cell>
+          </ng-container>
 
 					<!-- Progress Column -->
 					<ng-container matColumnDef="Name">
-						<mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+						<mat-header-cell *matHeaderCellDef mat-sort-header > Name </mat-header-cell>
 						<mat-cell *matCellDef="let dataSource"> {{dataSource.Name}} </mat-cell>
 					</ng-container>
 
@@ -162,7 +165,7 @@ CELLSPACING=0 CELLPADDING=5>
 					</ng-container>
 
 
-          
+
 
 
 
@@ -283,7 +286,7 @@ CELLSPACING=0 CELLPADDING=5>
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header" style="z-index:1;">
-          <h4 class="modal-title" id="modal-basic-title">Upload Csv</h4>
+          <h4 class="modal-title" id="modal-basic-title">Upload Excel Shet</h4>
           <button type="button" class="close" data-dismiss="modal" #closeupload>&times;</button>
 
         </div>
@@ -308,7 +311,7 @@ CELLSPACING=0 CELLPADDING=5>
                   </form>
                    <br>
 
-       <label style="margin-top:10px;margin-left:5%;"> Download Sample Csv File </label> &nbsp;
+       <label style="margin-top:10px;margin-left:5%;"> Download Sample Excel Sheet </label> &nbsp;
                        <a href="https://s3.us-east-2.amazonaws.com/angulardeploy10/sample+files/sample.xlsx" download>    <i class="fa fa-download" aria-hidden="true"></i>
 
           </a>

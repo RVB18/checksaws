@@ -45,7 +45,7 @@ datak:any;
 filevalue:any
   coun:any;
   options:any;
-  displayedColumns = ['Name','Load','Amount','Status','Date','Carrer','Cheque ID','Address'];
+  displayedColumns = ['Index','Name','Load','Amount','Status','Date','Carrer','Cheque ID','Address'];
   dataSource: MatTableDataSource<UserData>;
   //
   mdlSampleIsOpen : boolean = false;
@@ -164,11 +164,11 @@ loaddata(){
                      //console.log(this.datap)
 
                      //console.log(users)
-
+var i=this.datap.Items.lengt;
                      this.datap.Items.forEach(function (ele){
+                       i--;
                        var checkdata={
-                         "Loadnumber":(ele.Loadnumber).toString(),
-
+                         "Loadnumber":ele.Loadnumber,
                                             "Date":ele.Date,
                                             "CityorTown":ele.CityorTown,
                                             "timestamp":ele.timestamp,
@@ -181,7 +181,8 @@ loaddata(){
                                             "Carrername":ele.Carrername,
                                             "Name":ele.Name,
                                             "id":ele.id,
-                                            "chequeid":ele.chequeid
+                                            "chequeid":ele.chequeid,
+                                            "index":i
                                           }
 
 
@@ -320,8 +321,9 @@ var mm = ty.getMonth()+1;
 var yyyy = ty.getFullYear();
 ty=mm+"/"+dd+"/"+yyyy
 }
-  amount=(bt[l].Amount).toString()
-   top={Status:"NotSet",Name:bt[l].Name, Date:ty, Amount:  amount.replace('$', ''), LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
+  amount=bt[l].Amount
+  console.log("array "+l)
+   top={Status:"NotSet",Name:bt[l].Name, Date:ty, Amount:  amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].Zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
 tt.push(top)
 //console.log({Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()})
 
