@@ -121,7 +121,7 @@ var changedata=  {
     this.loading=true
 
 
-    //console.log(f.value);
+    console.log(f.value);
 
     if(!this.config){
 
@@ -129,7 +129,7 @@ var changedata=  {
 
 
 
-     sett={ sign:this.base64textString,"Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
+     sett={ sign:this.base64textString,"Bankname": f.value.bank , "Address": f.value.address,"State":f.value.State,"Zipcode":f.value.Zipcode,"Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": uuid(), "Name": f.value.name }
 
 
             //this.snackBar.open('Disco party!', 'Dism', {duration: 5000});
@@ -146,7 +146,7 @@ var changedata=  {
 
 }
 else{
-sett={ sign:this.base64textString, "Bankname": f.value.bank , "Address": f.value.address, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
+sett={ sign:this.base64textString, "Bankname": f.value.bank , "Address": f.value.address,"State":f.value.State,"Zipcode":f.value.Zipcode, "Accountnumber":f.value.account, "Routenumber":f.value.routing, "Chequenumber": parseInt(f.value.cheque), "id": this.config.id, "Name": f.value.name }
 //console.log(sett)
 
 }
@@ -155,7 +155,7 @@ sett={ sign:this.base64textString, "Bankname": f.value.bank , "Address": f.value
  this.validateAllFormFields(this.form);
 
 
- console.log(sett )
+ console.log(sett)
 
 
     this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {
@@ -261,6 +261,8 @@ validateAllFormFields(formGroup: FormGroup) {
           account: [null, Validators.required],
             address: [null, Validators.required],
             name: [null, Validators.required],
+            State: [null, Validators.required],
+            Zipcode: [null, Validators.required],
             file: [null, Validators.required]
 
 
