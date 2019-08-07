@@ -286,7 +286,7 @@ var drivecreate={
   "password":f.pass,
   "firstname": f.firstname,
   "lastname": f.lastname,
-  "phonenumber":"+91"+f.phonenumber,
+  "phonenumber":"+1"+f.phonenumber,
   "driverid": uuid()
 }
 

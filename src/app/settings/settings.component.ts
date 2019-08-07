@@ -85,6 +85,8 @@ var changedata=  {
         this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/resetpassword',changedata,this.options).subscribe(data => {
         var t=data.json()
         console.log(t)
+        this.loading=false
+
         if(t.meassage=="success")
         {
           this.snackBar.open("Success","Ok",{
@@ -109,7 +111,6 @@ var changedata=  {
 
 
     });
-    this.loading=false
 }
 
 
@@ -262,8 +263,7 @@ validateAllFormFields(formGroup: FormGroup) {
             address: [null, Validators.required],
             name: [null, Validators.required],
             State: [null, Validators.required],
-            Zipcode: [null, Validators.required],
-            file: [null, Validators.required]
+            Zipcode: [null, Validators.required]
 
 
     });

@@ -152,12 +152,12 @@
                                                                   <input type="text" placeholder="Enter Last Name"  class="form-control" name="lastname"  ngModel required>
 
                                                                   <label for="Name">Phone Number</label>
-                                                                  <input type="address" placeholder="Enter Phone Number"  class="form-control" name="phonenumber"  ngModel required>
+                                                                  <input type="address" placeholder="Enter Phone Number"  class="form-control" name="phonenumber"  ngModel required>+1
 
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                              <button type="submit" class="btn btn-outline-dark">Save</button>
+                                                              <button type="submit" [disabled]="!f2.form.valid" class="btn btn-outline-dark">Save</button>
                                                             </div>
                                                           </form>
 
@@ -210,7 +210,7 @@ mode="indeterminate">
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="modal-footer">
-                                                                                              <button type="submit" class="btn btn-outline-dark">Save</button>
+                                                                                              <button type="submit" [disabled]="!f.form.valid" class="btn btn-outline-dark">Save</button>
                                                                                             </div>
                                                                                           </form>
 

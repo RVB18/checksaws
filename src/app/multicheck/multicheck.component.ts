@@ -105,7 +105,7 @@ else
       console.log(data.json());
 
 
-      var sett={ "Bankname": this.config.Bankname , "Address": this.config.Address, "Accountnumber":this.config.Accountnumber, "Routenumber":this.config.Routenumber, "Chequenumber": parseInt(this.config.Chequenumber+gh), "id": this.config.id, "Name":this.config.Name }
+      var sett={"sign":this.config.sign,"State":this.config.State,"Zipcode":this.config.Zipcode, "Bankname": this.config.Bankname , "Address": this.config.Address, "Accountnumber":this.config.Accountnumber, "Routenumber":this.config.Routenumber, "Chequenumber": parseInt(this.config.Chequenumber+gh), "id": this.config.id, "Name":this.config.Name }
       console.log(sett)
 
           this.http.post('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/config',sett,this.options).subscribe(data => {

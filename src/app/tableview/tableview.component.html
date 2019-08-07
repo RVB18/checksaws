@@ -165,7 +165,7 @@ mode="indeterminate">
                     </div>
                 </div>
             <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-dark">Save</button>
+            <button type="submit" [disabled]="!add.form.valid" class="btn btn-outline-dark">Save</button>
                     </div>
                 </form>
 
@@ -205,7 +205,7 @@ mode="indeterminate">
                                                     </div>
                                                 </div>
                                             <div class="modal-footer">
-                                            <button type="submit" class="btn btn-outline-dark">Save</button>
+                                            <button type="submit" [disabled]="!editdata1.form.valid" class="btn btn-outline-dark">Save</button>
                                                     </div>
                                                 </form>
 

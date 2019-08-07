@@ -64,7 +64,7 @@
                                                   </div>
                                                   </div>
 <div class="modal-footer">
-                                                                <button  style="width:40%;" type="submit" class="registerbtn print">Reset Password</button>
+                                                                <button  style="width:40%;" type="submit" [disabled]="!reset.form.valid" class="registerbtn print">Reset Password</button>
 
                             <br>    <br>     </div>                                    </div>
 
@@ -205,7 +205,7 @@
 </div> -->
 <br>
   <div class="modal-footer">
-    <button  class="registerbtn print" width="50%"  >Submit</button>
+    <button  class="registerbtn print" [disabled]="!f.form.valid" width="50%" >Submit</button>
 
 
 

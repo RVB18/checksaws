@@ -37,7 +37,7 @@
 
       </li>-->
       <li class="nav-item">
-        <a class="nav-link"href="http://alektasolutions.com/purchase/print/cheque/ang?words=Three%20Hundred%20and%20Forty%20Three%20%20and%2030/100*****&date=10-08-2018&name=Raghava&amount=**343.3&addr=Arizona,Phoenix," target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Test Print</a>
+        <!--  <a class="nav-link"href="http://alektasolutions.com/purchase/print/cheque/ang?words=Three%20Hundred%20and%20Forty%20Three%20%20and%2030/100*****&date=10-08-2018&name=Raghava&amount=**343.3&addr=Arizona,Phoenix," target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Test Print</a>-->
 
       </li>
       <li class="nav-item">
@@ -102,7 +102,7 @@
                             <span class="e-text" title="settings" style="font-size:1.8em;"  routerLink="/admin/settings"  > &nbsp;&nbsp;&nbsp;Settings</span>
                         </li>
                         <br>
-
+  <!--
 
                         <li class="sidebar-item">
                             <span class="fa fa-user-plus" style="font-size:30px;"  routerLink="/admin/user"  ></span>
@@ -112,7 +112,7 @@
                         <li class="sidebar-item">
                             <span  style="font-size:30px;" [routerLinkActive]="['active']"  ><a style="margin-bottom:2px;" (click)="redirect()"><img src="/assets/qick.png"  height="40px"></a></span>
                             <span class="e-text" title="Quick Books" style="font-size:1.8em;"  > &nbsp;Quick Books</span>
-                        </li>
+                        </li>-->
                     </ul>
                     <ul id="bottom-right">
 
@@ -359,7 +359,7 @@
 
 
                      <div class="modal-footer">
-                       <button type="submit" class="btn print"   >Submit</button>
+                       <button type="submit" class="btn print" [disabled]="!f1.form.valid"  >Submit</button>
 
                        <button type="button" class="btn delete" data-dismiss="modal" #closesinglecheck>Close</button>
                      </div>

@@ -3,7 +3,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 import * as XLSX from 'xlsx';
 
-import { Component, Directive, Input, ViewChild , ElementRef, OnInit ,Inject,Injectable} from '@angular/core';
+import { Component, Directive, Input, ViewChild , ElementRef, OnInit ,Inject,Injectable,ChangeDetectorRef} from '@angular/core';
 import {MatTableDataSource,MatPaginator, MatSort,} from '@angular/material';
 
 import { Router } from '@angular/router';
@@ -75,7 +75,7 @@ deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumb
 
 
 //
-  constructor(private modalService: NgbModal,private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService,private snackBar: MatSnackBar) {
+  constructor(private cdRef: ChangeDetectorRef,private modalService: NgbModal,private http: Http,private router: Router,private _cookieService:CookieService,private userdata:UserService,private snackBar: MatSnackBar) {
     //  for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
 this.coun=0;
     // Assign the data to the data source for the table to render
@@ -103,7 +103,7 @@ this.filevalue=file.value
 }
 
 loaddata(){
-
+this.del=[];
   this.dataSource = new MatTableDataSource([]);
 
   this.dataSource.paginator = this.paginator;
@@ -164,7 +164,7 @@ loaddata(){
                      //console.log(this.datap)
 
                      //console.log(users)
-var i=this.datap.Items.lengt;
+var i=this.datap.Items.length;
                      this.datap.Items.forEach(function (ele){
                        i--;
                        var checkdata={
@@ -256,7 +256,9 @@ this.closedel.nativeElement.click()
   if(checksdata.message=="success"){
     //this.openModal(false)
     this.del=[];
+    this.cdRef.detectChanges();
 this.loaddata()
+//alert(JSON.stringify(this.del))
 }
 else{
 
@@ -280,6 +282,7 @@ else{
     {
      this.uploadclose.nativeElement.click();
 //this.modalReference.close()
+var unable_to_update=[];
       var filedata=[];
   var filedate2=[];
       var file = (<HTMLInputElement>document.getElementById('filePicker'));
@@ -322,13 +325,34 @@ var yyyy = ty.getFullYear();
 ty=mm+"/"+dd+"/"+yyyy
 }
   amount=bt[l].Amount
-  console.log("array "+l)
+  console.log("array "+JSON.stringify(bt[l]))
+
+console.log(Object.keys(bt[l]).length)
+
+  if(Object.keys(bt[l]).length==10){
    top={Status:"NotSet",Name:bt[l].Name, Date:ty, Amount:  amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].Zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
+//console.log(Object.keys(top).length+"hi")
+
+  // if((Object.keys(top).length==12)&&(![this.config.Name,this.config.Date,this.config.LoadNumber,this.config.CarrerName,this.config.State,this.config.Zipcode,this.config.StreetAddress,this.config.Country,this.config.CityorTown].includes("undefined")))
 tt.push(top)
+}
+else{
+
+  unable_to_update.push({Name:bt[l].Name, Date:ty, Amount:  amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,Zipcode: bt[l].Zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown})
+}
 //console.log({Name:bt[l].Name, Date:bt[l].Date, Amount:  bt[l].Amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()})
 
 }
+if(unable_to_update.length>0){
+const fileName = 'items unable to upload.xlsx';
+
+const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(unable_to_update);
+const wb: XLSX.WorkBook = XLSX.utils.book_new();
+XLSX.utils.book_append_sheet(wb, ws, 'test');
+
+XLSX.writeFile(wb, fileName);
 console.log(tt)
+}
 //console.log(sheet2arr(worksheet))
 
                  this.loading=true
