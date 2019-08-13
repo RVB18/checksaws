@@ -2,6 +2,7 @@ import { Component,OnInit,Inject ,ElementRef } from '@angular/core';
 //import { UserService } from './services/user.service';
 //import { User } from './models/user.model';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import { UserService } from '../services/user.service';
 
 
 import { Router } from '@angular/router';
@@ -103,7 +104,7 @@ getCookie(key:string){
     return this._cookieService.get(key);
   }
 
-  constructor(private http: Http,private router: Router,private formBuilder: FormBuilder,private _cookieService:CookieService,private snackBar: MatSnackBar,private _flashMessagesService: FlashMessagesService) {
+  constructor(private userdata:UserService,private http: Http,private router: Router,private formBuilder: FormBuilder,private _cookieService:CookieService,private snackBar: MatSnackBar,private _flashMessagesService: FlashMessagesService) {
 this.config={}
 this.editdata={}
 this.myHeaders = new Headers();
@@ -211,7 +212,19 @@ location.reload();
 
 
 
+testprint(){
+var a=[{"count":1,"street":"PO BOX 96-0479","postal":"Oklahoma City OK  73196-0479","id":"7b2c6835-bf21-469e-96ee-f0b75cd9addd","name":"Love's Solutions, LLC","date":"10/31/2018","amount":"*2090.00","words":"Two Thousand Ninety  and 00 cents","load":8234,"carrer":"M A LOPEZ LOGISTIC LLC"},{"count":2,"street":"PO BOX 151052","postal":"Ogden UT 84415","id":"095112af-309b-4c65-882f-23a362662f95","name":"Financial Carrier Services, INC","date":"10/30/2018","amount":"**700.00","words":"Seven Hundred  and 00 cents","load":8233,"carrer":"MERIDA LOGISTICS LLC"},{"count":3,"street":"1110-240 SKYVIEW RANCH ROAD NE","postal":"CALGARY AB T3N 0P4","id":"91d2db96-04ac-48ed-9292-a16b07d653f9","name":"TOP WAY LOGISTICS INC","date":"10/29/2018","amount":"*1470.00","words":"One Thousand Four Hundred Seventy  and 00 cents","load":8231,"carrer":"TOP WAY LOGISTICS INC"}]
+  this.userdata.changeMessage(JSON.stringify(a))
+  var tconfig={statusCode:200,"data":
+  {message:"success",body:
+  {data:{Items:
+  [{Bankname:"Bank Of America N",Address:"11233 W Elm Ln. Avondale",Client:"fedricks199@gmail.com",Accountnumber:"457034047941",timestamp:"Fri, 09 Aug 2019 06:05:34 GMT",Routenumber:"122101706",Zipcode:"85323",Chequenumber:6859,id:"480c1584-6524-44fe-a431-1035bf18296d",State:"AZ",sign:"https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Gary_Vaynerchuk_Signature.svg/1280px-Gary_Vaynerchuk_Signature.svg.png"
+}]}}}}
+  this.userdata.changeMessage1(JSON.stringify(tconfig))
+  this.router.navigate(['/multicheck']);
 
+
+}
 
 
 

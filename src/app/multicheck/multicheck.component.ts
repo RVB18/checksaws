@@ -59,6 +59,7 @@ this.router.navigate(['/'])
 
 }
  updatestatus(){
+   console.log(this.data)
 //	 var data=document.getElementById('to').value
    var data=(<HTMLInputElement>document.getElementById('to')).value;
 if(data){
@@ -77,14 +78,18 @@ var podata=[];
     console.log(this.config.Chequenumber+"  checking " +" "+gh)
 
 	  }
+
 	//  var po=parseInt(data.value.to)-parseInt(data.value.from)
+var should_not_updated=0;
+var typ=this.data
+	  for(var t=0;t<typ.length;t++){
+		  console.log(this.data[t])
 
-	  for(var t=0;t<=gh;t++){
-		  console.log(this.data[t].id)
+if(this.data[t].Currentstatus=="NotSet"){
+    podata.push({id:this.data[t].id,chequeid:parseInt(this.config.Chequenumber)+t})
 
-
-        podata.push({id:this.data[t].id,chequeid:parseInt(this.config.Chequenumber)+t})
-
+    should_not_updated++;
+}
 		  	//idmap+="'"+this.data[t].id+"',"
 
 	  }
@@ -97,6 +102,8 @@ if(gh==0)
 else
 	gh++
 
+
+gh=gh-should_not_updated
   var printchangedata={id:podata}
   console.log(printchangedata)
   this.loading=true
@@ -148,10 +155,11 @@ else
 
 
     this.userdata.currentMessage.subscribe(message => this.message = message)
-    console.log("data "+this.message)
+    //console.log("data "+this.message)
 
-
+//if(this.config.length>0)
         this.userdata.currentMessage1.subscribe(message => this.config = message)
+        this.config=JSON.parse(this.config)
 this.config=this.config.data.body.data.Items[0]
 console.log(this.config)
 

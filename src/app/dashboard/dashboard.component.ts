@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
                                                {
 
 
-                                                 this.data={Vendor_Count:0,Paid_amount:0,Pending_amount:0,checkpercentage:0,Users:0}
+                                                 this.data={Vendor_Count:0,Paid_amount:0,Pending_amount:0,checkpercentage:0,Users:0,printed:0,not_printed:0}
 
                                                               /*     this.snackBar.openFromComponent(PizzaPartycComponent, {
                                                                      sasa: 'ggg',
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
                                                  })
                                                }
                                                else if(data1.json().message=="The incoming token has expired"){
-                                                 this.data={Vendor_Count:0,Paid_amount:0,Pending_amount:0,checkpercentage:0,Users:0}
+                                                 this.data={Vendor_Count:0,Paid_amount:0,Pending_amount:0,checkpercentage:0,Users:0,printed:0,not_printed:0}
 
 
                                                  this.snackBar.open("Session Expired","Ok",{
@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-
+//
 
 
 })

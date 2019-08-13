@@ -64,8 +64,17 @@ arrayBuffer:any;
 
 
    this.map.forEach((value, key) => {
+     if(value.Currentstatus=="Printcomplete"){
+       this.snackBar.open("Check cannot be selected as it is already printed","Ok",{
+         duration:2000,
+         panelClass:'red-snackbar',
+         horizontalPosition: 'center',
+         verticalPosition: 'top'
+       })
+     }
+     else{
 deletedata.push({id:value.id,name:value.Name,date:value.Date,load:value.Loadnumber})
-
+}
 
    })
    this.del=deletedata;
@@ -344,7 +353,10 @@ else{
 
 }
 if(unable_to_update.length>0){
-const fileName = 'items unable to upload.xlsx';
+
+var today = new Date();
+var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+const fileName = unable_to_update.length+' items contains errors ('+ date +').xlsx';
 
 const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(unable_to_update);
 const wb: XLSX.WorkBook = XLSX.utils.book_new();
@@ -399,7 +411,7 @@ console.log(tt)
 
 selectall(){
 
-  console.log(this.dataSource.connect().value)
+  console.log(this.dataSource.connect().value[0])
   for(var t=0;t<this.dataSource.connect().value.length;t++){
 
     this.highlightedRows(this.dataSource.connect().value[t])
@@ -411,6 +423,9 @@ selectall(){
   highlightedRows(row){
       //  if(hash)
 //
+console.log(row)
+
+
 if(row.highlighted = !row.highlighted){}
 
 
@@ -418,15 +433,14 @@ if(row.highlighted = !row.highlighted){}
 
 
 
-      console.log(row)
       if(this.map.has(a))
         this.map.delete(a)
       else
       this.map.set(a,row)
 
-      }
 
 
+}
 
   getCookie(key:string){
       return this._cookieService.get(key);
@@ -435,10 +449,30 @@ if(row.highlighted = !row.highlighted){}
 
 
       g(){
-console.log(this.map)
-console.log(Object.keys(this.map).length)
+        if(this.config.data.body.data.Count!=1){
+          this.snackBar.open("Bank Account details are unavailable","Ok",{
+            duration:2000,
+            panelClass:'red-snackbar',
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          })
+
+        }
+        else{
+          var config_cheque=parseInt(this.config.data.body.data.Items[0].Chequenumber);
+          var check_count=0;
 var a=[]
 this.map.forEach((value, key) => {
+console.log(value)
+if(!value.chequeid||value.chequeid=="undefined"){
+check_count=config_cheque
+config_cheque++;
+
+}
+else{
+check_count=value.chequeid
+}
+
   this.coun++
   if(this.coun==4)
 		  this.coun=1
@@ -466,7 +500,7 @@ g1--;
   var mydate = new Date(value.Date);
    var t=mydate.getMonth()+1;
 
-a.push({count:this.coun,street:value.StreetAddress,postal:value.CityorTown+" "+value.State+" "+value.zipcode,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
+a.push({Currentstatus:value.Currentstatus,chequeid:check_count,count:this.coun,street:value.StreetAddress,postal:value.CityorTown+" "+value.State+" "+value.zipcode,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount,words:nu,addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
 
 
 }
@@ -488,7 +522,7 @@ else{
 
 
    var t=mydate.getMonth()+1;
-  a.push({count:this.coun,street:value.StreetAddress,postal:value.CityorTown+" "+value.State+" "+value.zipcode,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount+".00",words:k+ " and 00 cents",addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
+  a.push({Currentstatus:value.Currentstatus,chequeid:check_count,count:this.coun,street:value.StreetAddress,postal:value.CityorTown+" "+value.State+" "+value.zipcode,id:value.id,name:value.Name,date:value.Date,amount:astreik+value.Amount+".00",words:k+ " and 00 cents",addr:value.Address,load:value.Loadnumber,carrer:value.Carrername})
 }
 });
 /*var xdata=[];
@@ -507,13 +541,21 @@ getCookie(key:string){
 a=xdata;*/
 //
 this.count=a
-
+console.log(JSON.stringify(a))
+console.log(JSON.stringify(this.config))
 this.userdata.changeMessage(JSON.stringify(a))
-this.userdata.changeMessage1(this.config)
+this.userdata.changeMessage1(JSON.stringify(this.config))
 
 if(a.length==0)
-alert("Please Select atleast one Checks to Print")
-else
+{
+
+  this.snackBar.open("Please Select Atleast One Check","Ok",{
+    duration:2000,
+    panelClass:'red-snackbar',
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  })
+}else
 this.router.navigate(['/multicheck']);
 //window.open("http://alektasolutions.com/purchase/print/cheques/ang?a="+JSON.stringify(a), "_blank");
 
@@ -521,7 +563,7 @@ this.router.navigate(['/multicheck']);
       }
 
 
-
+}
 
   ngOnInit() {
     this.map = new Map();

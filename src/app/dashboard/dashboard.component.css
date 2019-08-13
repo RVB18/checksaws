@@ -19,7 +19,9 @@ svg {
   background: #fff;
   border-radius: 50%;
 }
-
+.single{
+  height: 10%;
+}
 circle {
   fill: #eee;
   stroke: #428bca;
