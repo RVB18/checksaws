@@ -49,6 +49,8 @@ li{
 .navbar{
 background-color:#2d323e;
 overflow: hidden;
+width: 150%;
+
 }
 .row {
   display: -ms-flexbox; /* IE10 */

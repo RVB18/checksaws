@@ -103,7 +103,7 @@ else
 	gh++
 
 
-gh=gh-should_not_updated
+gh=should_not_updated
   var printchangedata={id:podata}
   console.log(printchangedata)
   this.loading=true
