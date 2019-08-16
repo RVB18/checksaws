@@ -80,6 +80,7 @@ var podata=[];
 	  }
 
 	//  var po=parseInt(data.value.to)-parseInt(data.value.from)
+var should_updated=0;
 var should_not_updated=0;
 var typ=this.data
 	  for(var t=0;t<typ.length;t++){
@@ -88,8 +89,10 @@ var typ=this.data
 if(this.data[t].Currentstatus=="NotSet"){
     podata.push({id:this.data[t].id,chequeid:parseInt(this.config.Chequenumber)+t})
 
-    should_not_updated++;
+    should_updated++;
 }
+else
+should_not_updated++;
 		  	//idmap+="'"+this.data[t].id+"',"
 
 	  }
@@ -103,7 +106,7 @@ else
 	gh++
 
 
-gh=should_not_updated
+
   var printchangedata={id:podata}
   console.log(printchangedata)
   this.loading=true

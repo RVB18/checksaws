@@ -45,7 +45,7 @@ datak:any;
 filevalue:any
   coun:any;
   options:any;
-  displayedColumns = ['Index','Name','Load','Amount','Status','Date','Carrer','Cheque ID','Address'];
+  displayedColumns = ['Name','Load','Amount','Status','Date','Carrer','Cheque ID','Address'];
   dataSource: MatTableDataSource<UserData>;
   //
   mdlSampleIsOpen : boolean = false;
@@ -115,8 +115,8 @@ loaddata(){
 this.del=[];
   this.dataSource = new MatTableDataSource([]);
 
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
+  //this.dataSource.paginator = this.paginator;
+//  this.dataSource.sort = this.sort;
   this.isLoading=true
 
       this.http.get('https://y50p3nohl9.execute-api.us-west-2.amazonaws.com/prod/cheque',this.options).subscribe(data => {
@@ -141,6 +141,7 @@ this.del=[];
 
                        //alert("forbidden")
                        //window.location.href="/login"
+                       this.router.navigate(['/']);
 
                        this.snackBar.open("Unauthorized","Ok",{
                          duration:2000,
@@ -159,6 +160,7 @@ this.del=[];
                          verticalPosition: 'top'
                        })
 
+                       this.router.navigate(['/']);
 
                       //this.snackBar.open('forbidden', 'error', {duration: 10000});
 
@@ -190,8 +192,7 @@ var i=this.datap.Items.length;
                                             "Carrername":ele.Carrername,
                                             "Name":ele.Name,
                                             "id":ele.id,
-                                            "chequeid":ele.chequeid,
-                                            "index":i
+                                            "chequeid":ele.chequeid
                                           }
 
 
@@ -215,7 +216,7 @@ var i=this.datap.Items.length;
 
                        this.dataSource = new MatTableDataSource(m);
 
-                       this.dataSource.paginator = this.paginator;
+                     this.dataSource.paginator = this.paginator;
                        this.dataSource.sort = this.sort;
                        //  console.log("sdfsd "+this.dataSource)
    }
@@ -336,9 +337,9 @@ ty=mm+"/"+dd+"/"+yyyy
   amount=bt[l].Amount
   console.log("array "+JSON.stringify(bt[l]))
 
-console.log(Object.keys(bt[l]).length)
+console.log(bt[l].Amount +"edfds")
 
-  if(Object.keys(bt[l]).length==10){
+  if(Object.keys(bt[l]).length==10&&typeof(bt[l].Amount)!=='undefined'&&typeof(bt[l].Name)!=='undefined'&&typeof(bt[l].Date)!=='undefined'&&typeof(bt[l].LoadNumber)!=='undefined'&&typeof(bt[l].CarrerName)!=='undefined'&&typeof(bt[l].State)!=='undefined'&&typeof(bt[l].Zipcode)!=='undefined'&&typeof(bt[l].Country)!=='undefined'&&typeof(bt[l].CityorTown)!=='undefined'&&typeof(bt[l].StreetAddress)!=='undefined'){
    top={Status:"NotSet",Name:bt[l].Name, Date:ty, Amount:  amount, LoadNumber:  bt[l].LoadNumber, CarrerName:  bt[l].CarrerName,State: bt[l].State,zipcode: bt[l].Zipcode,StreetAddress: bt[l].StreetAddress,Country:bt[l].Country,CityorTown:bt[l].CityorTown,id:uuid()}
 //console.log(Object.keys(top).length+"hi")
 
@@ -366,7 +367,7 @@ XLSX.writeFile(wb, fileName);
 console.log(tt)
 }
 //console.log(sheet2arr(worksheet))
-
+if(tt.length>0){
                  this.loading=true
 
 
@@ -402,6 +403,17 @@ console.log(tt)
 
                   }
                 )
+
+              }
+              else{
+                this.snackBar.open("Upload Fail please check your xlsx","Ok",{
+                  duration:2000,
+                  panelClass:'red-snackbar',
+                  horizontalPosition: 'center',
+                  verticalPosition: 'top'
+                })
+
+              }
                   }
                   fileReader.readAsArrayBuffer(file.files[0]);
 

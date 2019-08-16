@@ -50,7 +50,7 @@
 <div class="one" >
   <h1 align="left" class="title" > &nbsp;
    Check Details
-   
+
    <button type="button" id="pr"  style="width:130px" name="button" class="btn print pull-right" style=""  (click)="g()"><i class="fa fa-print" style="font-size:18px"></i>
        Print      	</button>&nbsp;&nbsp;&nbsp;&nbsp;</h1>
 
@@ -142,10 +142,7 @@ CELLSPACING=0 CELLPADDING=5>
 
 					<!-- ID Column -->
 
-          <ng-container matColumnDef="Index">
-            <mat-header-cell *matHeaderCellDef mat-sort-header > Index </mat-header-cell>
-            <mat-cell *matCellDef="let dataSource"> {{dataSource.index}} </mat-cell>
-          </ng-container>
+
 
 					<!-- Progress Column -->
 					<ng-container matColumnDef="Name">

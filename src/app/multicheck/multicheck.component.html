@@ -8,7 +8,7 @@
    <p class="top-left2" style="color:black;margin-left:41%;font-family: 'ZCOOL XiaoWei', serif;text-align:left;">{{config.Bankname}}</p> <br>
  <span class="top-left" style="color:black;margin-left:-6%;margin-top:-2%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Name}}</span>
  <span class="top-left" style="color:black;margin-left:-6%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Address}}</span>
- <span class="top-left" style="color:black;margin-left:-6%;margin-top:4%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.State}} , {{config.Zipcode}}</span>
+ <span class="top-left" style="color:black;margin-left:-6%;margin-top:4%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.State}}  {{config.Zipcode}}</span>
 
 <!--
  <label class="top-left" style="	width:75%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px;margin-left:-35%" >{{config.Address}} </label>
@@ -36,16 +36,16 @@
 
   <p class="top-right1" style="color:black;font-family: 'Saira Semi Condensed', sans-serif ;top:6%;margin-right:0%;"><strong style="font-family: 'Bree Serif', cursive;">No:</strong> &nbsp;&nbsp;{{exdata1.chequeid}}</p>
 
-  <p class="bot" style="color:black;margin-left:10%;font: italic bold;margin-top:5% ">C{{exdata1.chequeid}}C  A{{config.Routenumber}}A  {{config.Accountnumber}}C</p>
+  <p class="bot" style="color:black;margin-left:10%;font: italic bold;margin-top:7% ">C{{exdata1.chequeid}}C  A{{config.Routenumber}}A  {{config.Accountnumber}}C</p>
 
 
 
 </div>
-     <div *ngIf="exdata1.count == 2" style="margin-top:25px;width:100%;height:480px;background:transparent" class="container1">
+<div *ngIf="exdata1.count == 2" style="margin-top:30px;width:100%;height:480px;background:transparent" class="container1">
    <p class="top-left2" style="color:black;margin-left:41%;font-family: 'ZCOOL XiaoWei', serif;">{{config.Bankname}}</p> <br>
    <span class="top-left" style="color:black;margin-left:-6%;margin-top:-2%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Name}}</span>
    <span class="top-left" style="color:black;margin-left:-6%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Address}}</span>
-   <span class="top-left" style="color:black;margin-left:-6%;margin-top:4%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.State}} , {{config.Zipcode}}</span>
+   <span class="top-left" style="color:black;margin-left:-6%;margin-top:4%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.State}}  {{config.Zipcode}}</span>
 
 
      <br><br>
@@ -74,11 +74,11 @@
 
 
 </div>
-     <div *ngIf="exdata1.count == 3" style="margin-top:46px;width:100%;height:480px;background:transparent" class="container1">
+<div *ngIf="exdata1.count == 3" style="margin-top:49px;width:100%;height:480px;background:transparent" class="container1">
    <p class="top-left2" style="color:black;margin-left:41%;font-family: 'ZCOOL XiaoWei', serif;">{{config.Bankname}}</p> <br>
    <span class="top-left" style="color:black;margin-left:-6%;margin-top:-2%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Name}}</span>
    <span class="top-left" style="color:black;margin-left:-6%;margin-top:1%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.Address}}</span>
-   <span class="top-left" style="color:black;margin-left:-6%;margin-top:4%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.State}} , {{config.Zipcode}}</span>
+   <span class="top-left" style="color:black;margin-left:-6%;margin-top:4%;font-family: 'ZCOOL XiaoWei', serif;font-size:24px">{{config.State}}  {{config.Zipcode}}</span>
 
 
         <br><br>
@@ -132,7 +132,7 @@ Delete
                       <select  width="100%;" class="form-control" name="to" id="to" ngModel>
 
 <ng-container *ngFor="let st of data;let i=index;">
-                        <option   value={{st.chequeid}}>{{st.chequeid}} </option>
+                        <option  *ngIf="st.Currentstatus==='NotSet'" value={{st.chequeid}}>{{st.chequeid}} </option>
                         </ng-container>
                       </select>              </div>
                                 </div></div>
